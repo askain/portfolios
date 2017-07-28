@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+
+    <object name="MakeJsJob" type="Spring.Scheduling.Quartz.JobDetailObject, Spring.Scheduling.Quartz">
+        <property name="JobType" value="HDIMS.Scheduler.MakeJsJob, HDIMS" />
+        <property name="JobDataAsMap">
+            <dictionary>
+            </dictionary>
+        </property>
+    </object>
+
+    <object id="MakeJsTrigger" type="Spring.Scheduling.Quartz.CronTriggerObject, Spring.Scheduling.Quartz">
+        <property name="JobDetail" ref="MakeJsJob" />
+        <property name="CronExpressionString" value="0 5,10,15,20,25,30,35,40,45,50,55 * * * ?" />
+        <property name="MisfireInstructionName" value="FireOnceNow" />
+    </object>
+    <!--
+    <object id="MakeJsSchedulerFactory" type="Spring.Scheduling.Quartz.SchedulerFactoryObject, Spring.Scheduling.Quartz">
+        <property name="AutoStartup" value="true"/>
+        <property name="QuartzProperties">
+            <dictionary>
+                <entry key="quartz.scheduler.instanceName" value="MakeJsScheduler"/>
+                <entry key="quartz.threadPool.type" value="Quartz.Simpl.SimpleThreadPool, Quartz"/>
+                <entry key="quartz.threadPool.threadCount" value="1"/>
+            </dictionary>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref object="MakeJsTrigger" />
+            </list>
+        </property>
+    </object>
+    -->
+</objects>

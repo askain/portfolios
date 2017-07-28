@@ -1,0 +1,605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5CE9F6D9-E9E7-4797-AAD3-994264119E91}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HDIMSAPP</RootNamespace>
+    <AssemblyName>HDIMSAPP</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>ko</SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>HDIMSAPP.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>HDIMSAPP.App</SilverlightAppEntry>
+    <TestPageFileName>HDIMSAPPTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZLib.Silverlight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5d294010d9f292b5, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools.Filtering, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools.IO.Bmp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools.IO.Gif, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools.IO.Jpeg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools.IO.Png, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="ImageTools.Utils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fb8ec453a8e30e6c, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsSL4.Controls.Charts.XamDataChart.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\SilverlightCommon\Bin\SharedXAML\InfragisticsSL4.Controls.Charts.XamDataChart.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Editors.v11.2">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SLOnly\InfragisticsSL4.Controls.Editors.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Editors.XamCalendar.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Editors.XamCalendar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Editors.XamColorPicker.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Editors.XamColorPicker.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Editors.XamComboEditor.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Editors.XamComboEditor.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Editors.XamDateTimeInput.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Editors.XamDateTimeInput.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Editors.XamMaskedInput.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Editors.XamMaskedInput.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Grids.ExcelExporter.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SLOnly\InfragisticsSL4.Controls.Grids.ExcelExporter.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Grids.XamGrid.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Grids.XamGrid.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Interactions.XamDialogWindow.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Interactions.XamDialogWindow.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Interactions.XamHtmlViewer.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SLOnly\InfragisticsSL4.Controls.Interactions.XamHtmlViewer.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Layouts.XamTileManager.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Layouts.XamTileManager.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Lists.XamTileView.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SLOnly\InfragisticsSL4.Controls.Lists.XamTileView.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Maps.XamOrgChart.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsSL4.Controls.Menus.XamDataTree.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Menus.XamDataTree.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Menus.XamMenu.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Menus.XamMenu.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Menus.XamOutlookBar.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SLOnly\InfragisticsSL4.Controls.Menus.XamOutlookBar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Controls.Menus.XamTree.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\SilverlightCommon\Bin\SLOnly\InfragisticsSL4.Controls.Menus.XamTree.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.DataVisualization.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\SilverlightCommon\Bin\SharedXAML\InfragisticsSL4.DataVisualization.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.Documents.Excel.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\SilverlightCommon\Bin\SharedXAML\InfragisticsSL4.Documents.Excel.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsSL4.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage 2011.2\SilverlightCommon\Bin\SLOnly\InfragisticsSL4.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Controls.Data.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\..\..\Users\kijung\AppData\Roaming\Telerik\Updates\RadControls_for_Silverlight4_2012_2_0725_DEV_hotfix\Binaries\Silverlight\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\..\..\Users\kijung\AppData\Roaming\Telerik\Updates\RadControls_for_Silverlight4_2012_2_0725_DEV_hotfix\Binaries\Silverlight\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\..\..\Users\kijung\AppData\Roaming\Telerik\Updates\RadControls_for_Silverlight4_2012_2_0725_DEV_hotfix\Binaries\Silverlight\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\..\..\Users\kijung\AppData\Roaming\Telerik\Updates\RadControls_for_Silverlight4_2012_2_0725_DEV_hotfix\Binaries\Silverlight\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\..\..\Users\kijung\AppData\Roaming\Telerik\Updates\RadControls_for_Silverlight4_2012_2_0725_DEV_hotfix\Binaries\Silverlight\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.Silverlight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9b00a96d55051ebd, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Behavior\ChartBehaviors.cs" />
+    <Compile Include="Common\Commands\CustomNextPageCommand.cs" />
+    <Compile Include="Common\Commands\CustomPrevPageCommand.cs" />
+    <Compile Include="Common\ConditionalFormatRule\BoardConditionalFormatRule.cs" />
+    <Compile Include="Common\ConditionalFormatRule\ColorConditionalFormatRule.cs" />
+    <Compile Include="Common\ConditionalFormatRule\EditableColumnConditionalFormatRule.cs" />
+    <Compile Include="Common\ConditionalFormatRule\ExCodeConditionalFormatRule.cs" />
+    <Compile Include="Common\ConditionalFormatRule\DamDataConditionalFormatRule.cs" />
+    <Compile Include="Common\ConditionalFormatRule\NetworkConditionalFormatRule.cs" />
+    <Compile Include="Common\ConditionalFormatRule\DamAreaConditionalFormatRule.cs" />
+    <Compile Include="Common\ConditionalFormatRule\EquipConditionalFormatRule.cs" />
+    <Compile Include="Common\Converter\AutoStatConverter.cs" />
+    <Compile Include="Common\Converter\ChartConverter.cs" />
+    <Compile Include="Common\Converter\ColorConverter.cs" />
+    <Compile Include="Common\Converter\ColorPickerConverter.cs" />
+    <Compile Include="Common\Converter\DamAreaConverter.cs" />
+    <Compile Include="Common\Converter\DamDataConverter.cs" />
+    <Compile Include="Common\Converter\DateTimeConverter.cs" />
+    <Compile Include="Common\Converter\RainFallConverter.cs" />
+    <Compile Include="Common\Converter\UnboundConverter.cs" />
+    <Compile Include="Common\ConditionalFormatRule\DateTimeContionalFormatRule.cs" />
+    <Compile Include="Common\Converter\DamDataForVerifyingConverter.cs" />
+    <Compile Include="Common\Converter\NumericConverter.cs" />
+    <Compile Include="Common\Converter\EquipConverter.cs" />
+    <Compile Include="Common\Converter\ObsDtKorConverter.cs" />
+    <Compile Include="Common\Converter\WsSummaryFormatStringConverter.cs" />
+    <Compile Include="Common\Converter\ZeroValueConverter.cs" />
+    <Compile Include="Common\Converter\CheckBoxConverter.cs" />
+    <Compile Include="Common\RadGridViewCustomKeyboardCommandProvider.cs" />
+    <Compile Include="Common\Styles\DamDataStyle.cs" />
+    <Compile Include="Common\Converter\ObsDtConverter.cs" />
+    <Compile Include="Common\Styles\DirtyCellStyleSelector.cs" />
+    <Compile Include="Common\Summary\DamAreaSummary.cs" />
+    <Compile Include="Common\UnitFinder.cs" />
+    <Compile Include="Common\UserInteractionMonitor.cs" />
+    <Compile Include="Controls\DoubleClickDataGrid.cs" />
+    <Compile Include="Controls\OptionPanel.cs" />
+    <Compile Include="Models\Board\BoardContentModel.cs" />
+    <Compile Include="Models\Board\BoardReplyModel.cs" />
+    <Compile Include="Models\Codes\ExamManagementModel.cs" />
+    <Compile Include="Models\Board\BoardModel.cs" />
+    <Compile Include="Models\Common\AlarmCode.cs" />
+    <Compile Include="Models\Common\Code.cs" />
+    <Compile Include="Models\Common\DamCode.cs" />
+    <Compile Include="Models\Common\DamColType.cs" />
+    <Compile Include="Models\Common\DamType.cs" />
+    <Compile Include="Models\Common\DataPoint.cs" />
+    <Compile Include="Models\Common\DataSettings.cs" />
+    <Compile Include="Models\Common\EquipCode.cs" />
+    <Compile Include="Models\Common\LinkModel.cs" />
+    <Compile Include="Models\Common\MenuModel.cs" />
+    <Compile Include="Models\Common\MgtCode.cs" />
+    <Compile Include="Models\Common\ObsCode.cs" />
+    <Compile Include="Models\Common\ObservableModel.cs" />
+    <Compile Include="Models\Common\ExCode.cs" />
+    <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\DamBoObsMng\DamBoModel.cs" />
+    <Compile Include="Models\DataSearch\NetworkModel.cs" />
+    <Compile Include="Models\DataSearch\ElectricModel.cs" />
+    <Compile Include="Models\DataSearch\QualityColumn.cs" />
+    <Compile Include="Models\DataSearch\WaterQuality.cs" />
+    <Compile Include="Models\DataSearch\EquipColumn.cs" />
+    <Compile Include="Models\DataSearch\EquipModel.cs" />
+    <Compile Include="Models\Evaluation\EvaluationModel.cs" />
+    <Compile Include="Models\JsonModel.cs" />
+    <Compile Include="Models\KeyValue.cs" />
+    <Compile Include="Models\Verify\RainFallSearchData.cs" />
+    <Compile Include="Models\Verify\WaterLevelSearchData.cs" />
+    <Compile Include="Models\Main\AbnormEquipModel.cs" />
+    <Compile Include="Models\Main\AbnormOperModel.cs" />
+    <Compile Include="Models\Main\EquipMonitor.cs" />
+    <Compile Include="Models\ManAuthMng\AuthModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\Statistics\AutoStatModel.cs" />
+    <Compile Include="Models\Verify\DamData.cs" />
+    <Compile Include="Models\Verify\DamDataCollection.cs" />
+    <Compile Include="Models\Verify\DamDataColumn.cs" />
+    <Compile Include="Models\Verify\DAMLinearInterpolationResultModel.cs" />
+    <Compile Include="Models\EmpData.cs" />
+    <Compile Include="Models\Verify\Data.cs" />
+    <Compile Include="Models\Verify\WaterLevelData.cs" />
+    <Compile Include="Models\Verify\WaterLevelDataForVerifying.cs" />
+    <Compile Include="Models\Verify\RainFallData.cs" />
+    <Compile Include="Utils\DataSourceCreator.cs" />
+    <Compile Include="Utils\DataSourceUtil.cs" />
+    <Compile Include="Utils\DateUtil.cs" />
+    <Compile Include="Utils\ExcelUtil.cs" />
+    <Compile Include="Utils\ImageUtil.cs" />
+    <Compile Include="Utils\MinMaxCalculator.cs" />
+    <Compile Include="Utils\ModelComparer.cs" />
+    <Compile Include="Utils\NetworkUtil.cs" />
+    <Compile Include="Utils\SilverlightUtil.cs" />
+    <Compile Include="Utils\StatUtil.cs" />
+    <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="Utils\ValidationHandler.cs" />
+    <Compile Include="Utils\CommonUtil.cs" />
+    <Compile Include="Common\XamGridClipboardExtensions.cs" />
+    <Compile Include="Views\DataSearch\QueryBrowser.xaml.cs">
+      <DependentUpon>QueryBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Verify\DamDataHistoryDialog.xaml.cs">
+      <DependentUpon>DamDataHistoryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Verify\DamDataSaveDialog.xaml.cs">
+      <DependentUpon>DamDataSaveDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Verify\WaterLevelSearch.xaml.cs">
+      <DependentUpon>WaterLevelSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Verify\WaterLevelVerify.xaml.cs">
+      <DependentUpon>WaterLevelVerify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Verify\WaterLevelUpdateDialog.xaml.cs">
+      <DependentUpon>WaterLevelUpdateDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Verify\XamGridTest.xaml.cs">
+      <DependentUpon>XamGridTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Verify\WaterLevelSearch_Telerik.xaml.cs">
+      <DependentUpon>WaterLevelSearch_Telerik.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Assets\BoardStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\GridViewStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\IndicatorStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DataSearch\QueryBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Verify\DamDataHistoryDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Verify\DamDataSaveDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Verify\WaterLevelSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Verify\WaterLevelVerify.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Verify\WaterLevelUpdateDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Verify\XamGridTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Verify\WaterLevelSearch_Telerik.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="Assets\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\television.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\document-excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\border-color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cross-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\chart-up-color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\discs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\application-list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\disks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\application-table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\disk--arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\image--plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\images-stack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\ICSharpCode.SharpZLib.Silverlight.dll" />
+    <None Include="Lib\ImageTools.Controls.dll" />
+    <None Include="Lib\ImageTools.dll" />
+    <None Include="Lib\ImageTools.Filtering.dll" />
+    <None Include="Lib\ImageTools.IO.Bmp.dll" />
+    <None Include="Lib\ImageTools.IO.Gif.dll" />
+    <None Include="Lib\ImageTools.IO.Jpeg.dll" />
+    <None Include="Lib\ImageTools.IO.Png.dll" />
+    <None Include="Lib\ImageTools.Utils.dll" />
+    <None Include="Lib\zxing.Silverlight.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\application-resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\top_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder-open.png" />
+    <Resource Include="Images\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\user--arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\monitor\commtype_icon.png" />
+    <Resource Include="Images\monitor\commtype_icon_0.png" />
+    <Resource Include="Images\monitor\commtype_icon_1.png" />
+    <Resource Include="Images\monitor\commtype_icon_2.png" />
+    <Resource Include="Images\monitor\commtype_icon_3.png" />
+    <Resource Include="Images\monitor\commtype_icon_4.png" />
+    <Resource Include="Images\monitor\flag_icon.png" />
+    <Resource Include="Images\monitor\flag_icon_01.png" />
+    <Resource Include="Images\monitor\flag_icon_02.png" />
+    <Resource Include="Images\monitor\flag_icon_03.png" />
+    <Resource Include="Images\monitor\flag_icon_04.png" />
+    <Resource Include="Images\monitor\flag_icon_05.png" />
+    <Resource Include="Images\monitor\flag_icon_06.png" />
+    <Resource Include="Images\monitor\flag_icon_07.png" />
+    <Resource Include="Images\monitor\flag_icon_08.png" />
+    <Resource Include="Images\monitor\flag_icon_09.png" />
+    <Resource Include="Images\monitor\flag_icon_10.png" />
+    <Resource Include="Images\monitor\flag_icon_11.png" />
+    <Resource Include="Images\monitor\flag_icon_12.png" />
+    <Resource Include="Images\monitor\flag_icon_13.png" />
+    <Resource Include="Images\monitor\flag_icon_14.png" />
+    <Resource Include="Images\monitor\flag_icon_15.png" />
+    <Resource Include="Images\monitor\flag_icon_16.png" />
+    <Resource Include="Images\monitor\flag_icon_17.png" />
+    <Resource Include="Images\monitor\flag_icon_18.png" />
+    <Resource Include="Images\monitor\flag_icon_19.png" />
+    <Resource Include="Images\monitor\monitoring_icon_01.png" />
+    <Resource Include="Images\monitor\monitoring_icon_02.png" />
+    <Resource Include="Images\monitor\monitoring_icon_03.png" />
+    <Resource Include="Images\monitor\monitoring_top_01.png" />
+    <Resource Include="Images\monitor\monitoring_top_02.png" />
+    <Resource Include="Images\monitor\mon_icon01_01.png" />
+    <Resource Include="Images\monitor\mon_icon01_02.png" />
+    <Resource Include="Images\monitor\mon_icon02_01.png" />
+    <Resource Include="Images\monitor\mon_icon02_02.png" />
+    <Resource Include="Images\monitor\mon_icon03_01.png" />
+    <Resource Include="Images\monitor\mon_icon03_02.png" />
+    <Resource Include="Images\monitor\mon_top01.png" />
+    <Resource Include="Images\monitor\mon_top02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\img_radio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plus-circle-frame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\minus-circle-frame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow-repeat-once.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shield--pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bottom_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\television_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\highlighter.png" />
+    <Resource Include="Images\monitor-window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wrench--exclamation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wrench--pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilverlightFileUploader\SilverlightFileUploader.csproj">
+      <Project>{3B4A42BA-206F-4041-9A34-978CCFBEEEBA}</Project>
+      <Name>SilverlightFileUploader</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\address-book--arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\control.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\minus-white.png" />
+    <Resource Include="Images\plus-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lock-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exclamation-red.png" />
+    <Resource Include="Images\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clipboard-list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\application--minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\application--plus.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

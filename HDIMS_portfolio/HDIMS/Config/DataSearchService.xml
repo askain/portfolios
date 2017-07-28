@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+  <object name="DataSearchService" id="DataSearchService" type="HDIMS.Services.DataSearch.DataSearchService, HDIMS">
+  </object>
+  <object name="WLDataSearchService" id="WLDataSearchService" type="HDIMS.Services.DataSearch.WLDataSearchService, HDIMS">
+  </object>
+  <object name="RFDataSearchService" id="RFDataSearchService" type="HDIMS.Services.DataSearch.RFDataSearchService, HDIMS">
+  </object>
+</objects>
+

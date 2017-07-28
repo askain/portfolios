@@ -1,0 +1,1813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Statistics"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="StatModel" type="HDIMS.Models.Domain.Statistics.StatModel, HDIMS" />
+    <typeAlias alias="StatAbnorm" type="HDIMS.Models.Domain.Statistics.StatAbnorm, HDIMS" />
+    <typeAlias alias="AutoStatModel" type="HDIMS.Models.Domain.Statistics.AutoStatModel, HDIMS" />
+    <typeAlias alias="EquipModel" type="HDIMS.Models.Domain.Statistics.EquipModel, HDIMS" />
+  </alias>
+  <statements>
+    <!-- 수위통계 -->
+    <select id="GetWaterLevelStatList" resultClass="Hashtable" parameterClass="HashTable" remapResults="true">
+        SELECT 
+            <isEmpty property="displaytype">D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DAMCD, D.DAMNM, O.OBSNM, RET.OBSCD</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.MGTCD, D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            , SUM(RET.TCNT) TCNT, SUM(RET.TCNT)-SUM(RET.ECNT) NCNT, SUM(RET.ACNT) ACNT, SUM(RET.ECNT) ECNT, SUM(RET.A0971) A0971, SUM(RET.A0972) A0972, SUM(RET.A0954) A0954, SUM(RET.A0961) A0961, SUM(RET.A0952) A0952, SUM(RET.A0953) A0953, SUM(RET.A0951) A0951, SUM(RET.A0992) A0992
+            , TRUNC((SUM(RET.TCNT) - SUM(RET.ECNT))/SUM(RET.TCNT)*100,1) TPERC
+            , SUBSTR(MAX(RET.OBSDT),0,$dlen$) OBSDT
+            , SUBSTR(MIN(RET.OBSDT),0,$dlen$) STARTDT
+            ,'WL' OBSTP
+            <isNotEqual property="displaytype" compareValue="OBSCD"> , MIN(D.WLOBSLIST) WLOBSLIST, MIN(D.WLOBSCNT) WLOBSCNT </isNotEqual>   <!-- 관측국 수 표시-->
+        FROM (
+            SELECT S.OBSCD, S.OBSDT, S.TCNT, S.ECNT, S.A0971, S.A0972, S.A0954, S.A0961, S.A0952, S.A0953, S.A0951, S.A0992
+                <isNotEmpty property="excd">
+                  <iterate property="excdlist" open=", (TCNT - (" close=")) AS NCNT" conjunction=" +">A$excdlist[]$</iterate>
+                  <iterate property="excdlist" open=", (" close=") AS ACNT" conjunction=" +">A$excdlist[]$</iterate>
+                </isNotEmpty>
+                <isEmpty property="excd">, NCNT, ACNT</isEmpty>
+            FROM HM_WLSTAT S
+            WHERE OBSDT BETWEEN #sdate# AND #edate#
+                <isNotNull property="obscd">
+                    <iterate prepend="AND" property="obscd"  open="S.OBSCD IN (" close=")" conjunction=",">
+                        #obscd[]#
+                    </iterate>
+                </isNotNull>
+        ) RET, DUBWLOBSIF@TECH.WORLD O, 
+        (   <!-- 박범석과장의 요청에 따라 관측국리스트도 출력 -->
+                SELECT 
+                    LTRIM(SYS_CONNECT_BY_PATH(OBSNM,', '),', ') WLOBSLIST, CNT WLOBSCNT, DAMNM, DAMCD, MGTCD, MGTCOMMENT, DAMTYPE, DTORD             
+                FROM (
+                    SELECT A.DAMCD, A.WLOBSCD || ' ' || A.OBSNM AS OBSNM, B.DAMNM, M.MGTCD, MN.MGTCOMMENT, M.DAMTYPE, DT.ORD DTORD
+                    <isEmpty property="displaytype"><!-- 댐별 통계 -->
+                        , ROW_NUMBER() OVER (PARTITION BY A.DAMCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY A.DAMCD) CNT
+                    </isEmpty> 
+                    <isEqual property="displaytype" compareValue="OBSCD"><!-- 관측소별 통계 - 실질적으론 안쓰임 의미없음-->
+                        , ROW_NUMBER() OVER (PARTITION BY A.DAMCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY A.DAMCD) CNT
+                    </isEqual> 
+                    <isEqual property="displaytype" compareValue="MGTCD"><!-- 관리단별 통계 -->
+                        , ROW_NUMBER() OVER (PARTITION BY M.MGTCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY M.MGTCD) CNT
+                    </isEqual> 
+                    FROM DUBWLOBSIF@TECH.WORLD A, DUBDAMSPC@TECH.WORLD B, HM_DAMMST M, HM_DAMMGT MN, HM_DAMTYPE DT
+                    WHERE 1=1
+                    <!-- 관측국-댐 조인 -->
+                    AND A.DAMCD = B.DAMCD
+                    <!-- 댐-관리단 조인 -->
+                    AND M.DAMCD = B.DAMCD
+                    <!-- 관리단명 조인 -->
+                    AND M.MGTCD = MN.MGTCD
+                    <!-- 댐분류정렬 조인 -->
+                    AND M.DAMTYPE = DT.DAMTYPE
+                    AND A.CLSDV = '0'
+                    <isNotNull property="damcd">
+                        <iterate prepend="AND" property="damcd"  open="B.DAMCD IN (" close=")" conjunction=",">
+                            #damcd[]#
+                        </iterate>
+                    </isNotNull>
+                    <isNotNull property="obscd">
+                        <iterate prepend="AND" property="obscd"  open="A.WLOBSCD IN (" close=")" conjunction=",">
+                            #obscd[]#
+                        </iterate>
+                    </isNotNull>
+                )          
+                WHERE RN=CNT          
+                START WITH RN=1          
+                CONNECT BY PRIOR RN=RN-1 
+                    <isEmpty property="displaytype"><!-- 댐별 통계 -->
+                        AND DAMCD=PRIOR DAMCD
+                    </isEmpty> 
+                    <isEqual property="displaytype" compareValue="OBSCD"><!-- 관측소별 통계 - 실질적으론 안쓰임 의미없음-->
+                        AND DAMCD=PRIOR DAMCD
+                    </isEqual> 
+                    <isEqual property="displaytype" compareValue="MGTCD"><!-- 관리단별 통계 -->
+                        AND MGTCD=PRIOR MGTCD
+                    </isEqual> 
+        ) D
+        <!-- 관측국명 조인 -->
+        WHERE RET.OBSCD = O.WLOBSCD
+        <!--  댐명 조인 -->
+        AND O.DAMCD = D.DAMCD
+        AND O.CLSDV = '0'
+        <isNotNull property="obscd">
+            <iterate prepend="AND" property="obscd"  open="O.WLOBSCD IN (" close=")" conjunction=",">
+                #obscd[]#
+            </iterate>
+        </isNotNull>
+        GROUP BY 
+            <isEmpty property="displaytype">D.DTORD, D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DTORD, D.DAMCD, D.DAMNM, O.OBSNM, RET.OBSCD</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.MGTCD, D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            <isNotEqual property="stype" compareValue="I">, SUBSTR(RET.OBSDT,0,$dlen$)</isNotEqual>     
+        ORDER BY 
+            <isEmpty property="displaytype">D.DTORD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DTORD, D.DAMNM, O.OBSNM</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            <isNotEqual property="stype" compareValue="I">, SUBSTR(RET.OBSDT,0,$dlen$) DESC</isNotEqual> 
+    </select>
+    <select id="GetWaterLevelAbnormList" resultClass="StatAbnorm" parameterClass="HashTable">
+      SELECT DAMCD||'_'||<isNotEmpty property="displaytype">OBSCD||'_'||</isNotEmpty>OBSDT||'_'||EXCD ID, DAMCD, OBSDT, EXCD, ECNT
+      FROM (
+          SELECT DAMCD, <isNotEmpty property="displaytype">OBSCD,</isNotEmpty> SUBSTR(OBSDT,1,$dlen$) OBSDT, EXCD, COUNT(*) ECNT
+          FROM HM_ABNORMSTAT
+          WHERE OBSTP='WL'
+              <isNotNull property="damcd">
+                <iterate prepend="AND" property="damcd"  open="DAMCD IN (" close=")" conjunction=",">
+                  #damcd[]#
+                </iterate>
+              </isNotNull>
+              <isNotNull property="obscd">
+                <iterate prepend="AND" property="obscd"  open="OBSCD IN (" close=")" conjunction=",">
+                  #obscd[]#
+                </iterate>
+              </isNotNull>
+          AND OBSDT BETWEEN #sdate#||'0000' AND #edate#||'2400'
+          GROUP BY DAMCD, <isNotEmpty property="displaytype">OBSCD,</isNotEmpty> SUBSTR(OBSDT,1,$dlen$), EXCD
+      )
+    </select>
+      
+    <!-- 우량통계 -->
+    <select id="GetRainFallStatList" resultClass="Hashtable" parameterClass="HashTable" remapResults="true">
+        SELECT 
+            <isEmpty property="displaytype">D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DAMCD, D.DAMNM, O.OBSNM, RET.OBSCD</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.MGTCD, D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            , SUM(RET.TCNT) TCNT, SUM(RET.TCNT)-SUM(RET.ECNT) NCNT, SUM(RET.ACNT) ACNT, SUM(RET.ECNT) ECNT, SUM(RET.A0911) A0911, SUM(RET.A0912) A0912, SUM(RET.A0931) A0931, SUM(RET.A0922) A0922, SUM(RET.A0921) A0921, SUM(RET.A0991) A0991
+            , TRUNC((SUM(RET.TCNT) - SUM(RET.ECNT))/SUM(RET.TCNT)*100,1) TPERC
+            , SUBSTR(MAX(RET.OBSDT),0,$dlen$) OBSDT
+            , SUBSTR(MIN(RET.OBSDT),0,$dlen$) STARTDT
+            ,'RF' OBSTP
+            <isNotEqual property="displaytype" compareValue="OBSCD"> , MIN(D.RFOBSLIST) RFOBSLIST, MIN(D.RFOBSCNT) RFOBSCNT </isNotEqual>
+        FROM (
+            SELECT S.OBSDT, S.OBSCD, S.TCNT, S.ECNT, S.A0911, S.A0912, S.A0931, S.A0922, S.A0921, S.A0991
+                <isNotEmpty property="excd">
+                  <iterate property="excdlist" open=", (TCNT - (" close=")) AS NCNT" conjunction=" +">A$excdlist[]$</iterate>
+                  <iterate property="excdlist" open=", (" close=") AS ACNT" conjunction=" +">A$excdlist[]$</iterate>
+                </isNotEmpty>
+                <isEmpty property="excd">, NCNT, ACNT</isEmpty>
+            FROM HM_RFSTAT S
+            WHERE OBSDT BETWEEN #sdate# AND #edate#
+            <isNotNull property="obscd">
+                <iterate prepend="AND" property="obscd"  open="S.OBSCD IN (" close=")" conjunction=",">
+                    #obscd[]#
+                </iterate>
+            </isNotNull>
+        ) RET, DUBRFOBSIF@TECH.WORLD O, 
+        (   <!-- 박범석과장의 요청에 따라 관측국리스트도 출력 -->
+                SELECT 
+                    LTRIM(SYS_CONNECT_BY_PATH(OBSNM,', '),', ') RFOBSLIST, CNT RFOBSCNT, DAMNM, DAMCD, MGTCD, MGTCOMMENT, DAMTYPE, DTORD             
+                FROM (
+                    SELECT A.DAMCD, A.RFOBSCD || ' ' || A.OBSNM AS OBSNM, B.DAMNM, M.MGTCD, MN.MGTCOMMENT, M.DAMTYPE, DT.ORD DTORD
+                    <isEmpty property="displaytype"><!-- 댐별 통계 -->
+                        , ROW_NUMBER() OVER (PARTITION BY A.DAMCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY A.DAMCD) CNT
+                    </isEmpty> 
+                    <isEqual property="displaytype" compareValue="OBSCD"><!-- 관측소별 통계 - 실질적으론 안쓰임 의미없음-->
+                        , ROW_NUMBER() OVER (PARTITION BY A.DAMCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY A.DAMCD) CNT
+                    </isEqual> 
+                    <isEqual property="displaytype" compareValue="MGTCD"><!-- 관리단별 통계 -->
+                        , ROW_NUMBER() OVER (PARTITION BY M.MGTCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY M.MGTCD) CNT
+                    </isEqual> 
+                    FROM DUBRFOBSIF@TECH.WORLD A, DUBDAMSPC@TECH.WORLD B, HM_DAMMST M, HM_DAMMGT MN, HM_DAMTYPE DT
+                    WHERE 1=1
+                    <!-- 관측국-댐 조인 -->
+                    AND A.DAMCD = B.DAMCD
+                    <!-- 댐-관리단 조인 -->
+                    AND M.DAMCD = B.DAMCD
+                    <!-- 관리단명 조인 -->
+                    AND M.MGTCD = MN.MGTCD
+                    <!-- 댐분류정렬 조인 -->
+                    AND M.DAMTYPE = DT.DAMTYPE
+                    AND A.CLSDV = 0
+                    <isNotNull property="damcd">
+                        <iterate prepend="AND" property="damcd"  open="B.DAMCD IN (" close=")" conjunction=",">
+                            #damcd[]#
+                        </iterate>
+                    </isNotNull>
+                    <isNotNull property="obscd">
+                        <iterate prepend="AND" property="obscd"  open="A.RFOBSCD IN (" close=")" conjunction=",">
+                            #obscd[]#
+                        </iterate>
+                    </isNotNull>
+                )          
+                WHERE RN=CNT          
+                START WITH RN=1          
+                CONNECT BY PRIOR RN=RN-1 
+                    <isEmpty property="displaytype"><!-- 댐별 통계 -->
+                        AND DAMCD=PRIOR DAMCD
+                    </isEmpty> 
+                    <isEqual property="displaytype" compareValue="OBSCD"><!-- 관측소별 통계 - 실질적으론 안쓰임 의미없음-->
+                        AND DAMCD=PRIOR DAMCD
+                    </isEqual> 
+                    <isEqual property="displaytype" compareValue="MGTCD"><!-- 관리단별 통계 -->
+                        AND MGTCD=PRIOR MGTCD
+                    </isEqual> 
+        ) D
+        <!-- 관측국명 조인 -->
+        WHERE RET.OBSCD = O.RFOBSCD
+        <!--  댐명 조인 -->
+        AND O.DAMCD = D.DAMCD
+        AND O.CLSDV = 0
+        <isNotNull property="obscd">
+            <iterate prepend="AND" property="obscd"  open="O.RFOBSCD IN (" close=")" conjunction=",">
+                #obscd[]#
+            </iterate>
+        </isNotNull>
+        GROUP BY 
+            <isEmpty property="displaytype">D.DTORD, D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DTORD, D.DAMCD, D.DAMNM, O.OBSNM, RET.OBSCD</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.MGTCD, D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            <isNotEqual property="stype" compareValue="I">, SUBSTR(RET.OBSDT,0,$dlen$)</isNotEqual>     
+        ORDER BY 
+            <isEmpty property="displaytype">D.DTORD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DTORD, D.DAMNM, O.OBSNM</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            <isNotEqual property="stype" compareValue="I">, SUBSTR(RET.OBSDT,0,$dlen$) DESC</isNotEqual> 
+    </select>
+    <select id="GetRainFallAbnormList" resultClass="StatAbnorm" parameterClass="HashTable">
+      SELECT DAMCD||'_'||<isNotEmpty property="displaytype">OBSCD||'_'||</isNotEmpty> OBSDT||'_'||EXCD ID, DAMCD, OBSDT, EXCD, ECNT
+      FROM (
+          SELECT DAMCD, <isNotEmpty property="displaytype">OBSCD,</isNotEmpty> SUBSTR(OBSDT,1,$dlen$) OBSDT, EXCD, COUNT(*) ECNT
+          FROM HM_ABNORMSTAT
+          WHERE OBSTP='RF'
+          <isNotNull property="damcd">
+            <iterate prepend="AND" property="damcd"  open="DAMCD IN (" close=")" conjunction=",">
+              #damcd[]#
+            </iterate>
+          </isNotNull>
+          <isNotNull property="obscd">
+            <iterate prepend="AND" property="obscd"  open="OBSCD IN (" close=")" conjunction=",">
+              #obscd[]#
+            </iterate>
+          </isNotNull>
+          AND OBSDT BETWEEN #sdate#||'0000' AND #edate#||'2400'
+          GROUP BY DAMCD, <isNotEmpty property="displaytype">OBSCD,</isNotEmpty> SUBSTR(OBSDT,1,$dlen$), EXCD
+      )
+    </select>
+
+    <!-- 수위 + 우량 통계 -->
+    <select id="GetWaterLevelAndRainFallStatList" resultClass="Hashtable" parameterClass="HashTable">
+        SELECT             
+            <isEmpty property="displaytype">D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DAMCD, D.DAMNM, O.OBSNM, RET.OBSCD</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.MGTCD, D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            , SUM (RET.WLTCNT) WLTCNT, SUM (RET.WLNCNT) WLNCNT, SUM (RET.WLECNT) WLECNT, SUM(RET.WLACNT) WLACNT  <!-- 수위 -->
+            , TRUNC(CASE WHEN SUM(WLTCNT) = 0 THEN 1 ELSE SUM(RET.WLNCNT) / SUM (RET.WLTCNT) END * 100,1) WLTPERC
+            , SUM (RET.RFTCNT) RFTCNT, SUM (RET.RFNCNT) RFNCNT, SUM (RET.RFECNT) RFECNT, SUM(RET.RFACNT) RFACNT  <!-- 우량 -->
+            , TRUNC(CASE WHEN SUM(RFTCNT) = 0 THEN 1 ELSE SUM(RET.RFNCNT) / SUM (RET.RFTCNT) END * 100,1) RFTPERC
+            , SUM (RET.WLTCNT + RET.RFTCNT) TCNT, SUM (RET.WLNCNT + RET.RFNCNT) NCNT, SUM (RET.WLECNT + RET.RFECNT) ECNT, SUM (RET.WLACNT + RET.RFACNT) ACNT    <!-- 수위+우량 -->
+            , TRUNC(SUM(RET.WLNCNT + RET.RFNCNT) / SUM (RET.WLTCNT + RET.RFTCNT)* 100,1) TPERC
+            , SUBSTR(MAX(RET.OBSDT),0,$dlen$) OBSDT
+            , SUBSTR(MIN(RET.OBSDT),0,$dlen$) STARTDT
+            ,'WR' OBSTP
+            <isNotEqual property="displaytype" compareValue="OBSCD"> , MIN(D.WLOBSLIST) WLOBSLIST, MIN(D.WLOBSCNT) WLOBSCNT, MIN(D.RFOBSLIST) RFOBSLIST, MIN(D.RFOBSCNT) RFOBSCNT </isNotEqual>
+        FROM (
+            SELECT W.OBSDT, W.OBSCD, W.TCNT WLTCNT, (W.TCNT-W.ECNT) WLNCNT, W.ACNT WLACNT,    
+               W.ECNT WLECNT, 0 RFTCNT, 0 RFNCNT, 0 RFECNT, 0 RFACNT
+            FROM HM_WLSTAT W
+            WHERE OBSDT BETWEEN #sdate# AND #edate#
+            <isNotNull property="obscd">
+                <iterate prepend="AND" property="obscd"  open="W.OBSCD IN (" close=")" conjunction=",">
+                    #obscd[]#
+                </iterate>
+            </isNotNull>
+            UNION ALL
+            SELECT R.OBSDT, R.OBSCD, 0 WLTCNT, 0 WLNCNT, 0 WLECNT, 0 WLACNT,
+               R.TCNT RFTCNT, (R.TCNT-R.ECNT) RFNCNT, R.ECNT RFECNT, R.ACNT RFACNT
+            FROM HM_RFSTAT R
+            WHERE OBSDT BETWEEN #sdate# AND #edate#
+            <isNotNull property="obscd">
+                <iterate prepend="AND" property="obscd"  open="R.OBSCD IN (" close=")" conjunction=",">
+                    #obscd[]#
+                </iterate>
+            </isNotNull>
+        ) RET, VM_OBSCODE O, 
+        ( <!-- 박범석과장의 요청에 따라 관측국리스트도 출력 -->
+            SELECT DAMNM, DAMCD, MGTCD, MGTCOMMENT, DTORD
+            , NVL(MAX(DECODE(OBSTP, 'WL', OBSLIST)), '선택된 관측국 없음') WLOBSLIST
+            , NVL(MAX(DECODE(OBSTP, 'WL', OBSCNT)), 0) WLOBSCNT
+            , NVL(MAX(DECODE(OBSTP, 'RF', OBSLIST)), '선택된 관측국 없음') RFOBSLIST
+            , NVL(MAX(DECODE(OBSTP, 'RF', OBSCNT)), 0) RFOBSCNT 
+            FROM (
+                SELECT 
+                    LTRIM(SYS_CONNECT_BY_PATH(OBSNM,', '),', ') OBSLIST, CNT OBSCNT, DAMNM, DAMCD, MGTCD, MGTCOMMENT, DAMTYPE, DTORD, OBSTP
+                FROM (
+                    SELECT A.DAMCD, A.OBSCD || ' ' || A.OBSNM AS OBSNM, B.DAMNM, M.MGTCD, MN.MGTCOMMENT, M.DAMTYPE, DT.ORD DTORD, A.OBSTP
+                    <isEmpty property="displaytype"><!-- 댐별 통계 -->
+                        , ROW_NUMBER() OVER (PARTITION BY A.OBSTP, A.DAMCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY A.OBSTP, A.DAMCD) CNT
+                    </isEmpty> 
+                    <isEqual property="displaytype" compareValue="MGTCD"><!-- 관리단별 통계 -->
+                        , ROW_NUMBER() OVER (PARTITION BY A.OBSTP, M.MGTCD ORDER BY DT.ORD, B.DAMNM, A.OBSNM) RN
+                        , COUNT(*) OVER (PARTITION BY A.OBSTP, M.MGTCD) CNT
+                    </isEqual> 
+                    FROM VM_OBSCODE A, DUBDAMSPC@TECH.WORLD B, HM_DAMMST M, HM_DAMMGT MN, HM_DAMTYPE DT
+                    WHERE 1=1
+                    <!-- 관측국-댐 조인 -->
+                    AND A.DAMCD = B.DAMCD
+                    <!-- 댐-관리단 조인 -->
+                    AND M.DAMCD = B.DAMCD
+                    <!-- 관리단명 조인 -->
+                    AND M.MGTCD = MN.MGTCD
+                    <!-- 댐분류정렬 조인 -->
+                    AND M.DAMTYPE = DT.DAMTYPE
+                    <isNotNull property="damcd">
+                        <iterate prepend="AND" property="damcd"  open="B.DAMCD IN (" close=")" conjunction=",">
+                            #damcd[]#
+                        </iterate>
+                    </isNotNull>
+                    <isNotNull property="obscd">
+                        <iterate prepend="AND" property="obscd"  open="A.OBSCD IN (" close=")" conjunction=",">
+                            #obscd[]#
+                        </iterate>
+                    </isNotNull>
+                )          
+                WHERE RN=CNT          
+                START WITH RN=1          
+                CONNECT BY PRIOR RN=RN-1 
+                    <isEmpty property="displaytype"><!-- 댐별 통계 -->
+                        AND DAMCD=PRIOR DAMCD AND OBSTP=PRIOR OBSTP
+                    </isEmpty> 
+                    <isEqual property="displaytype" compareValue="MGTCD"><!-- 관리단별 통계 -->
+                        AND MGTCD=PRIOR MGTCD AND OBSTP=PRIOR OBSTP
+                    </isEqual> 
+            ) 
+            GROUP BY DAMNM, DAMCD, MGTCD, MGTCOMMENT, DTORD
+        ) D
+        <!-- 관측국명 조인 -->
+        WHERE RET.OBSCD = O.OBSCD
+        <!--  댐명 조인 -->
+        AND O.DAMCD = D.DAMCD
+        <isNotNull property="obscd">
+            <iterate prepend="AND" property="obscd"  open="O.OBSCD IN (" close=")" conjunction=",">
+                #obscd[]#
+            </iterate>
+        </isNotNull>
+        GROUP BY 
+            <isEmpty property="displaytype">D.DTORD, D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DAMCD, D.DAMNM, O.OBSNM, RET.OBSCD</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.DTORD, D.MGTCD, D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            <isNotEqual property="stype" compareValue="I">, SUBSTR(RET.OBSDT,0,$dlen$)</isNotEqual>     
+        ORDER BY 
+            <isEmpty property="displaytype">D.DTORD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+            <isEqual property="displaytype" compareValue="OBSCD">D.DAMNM, O.OBSNM</isEqual> <!-- 관측소별 통계 -->
+            <isEqual property="displaytype" compareValue="MGTCD">D.DTORD, D.MGTCOMMENT</isEqual> <!-- 관리단별 통계 -->
+            <isNotEqual property="stype" compareValue="I">, SUBSTR(RET.OBSDT,0,$dlen$) DESC</isNotEqual> 
+    </select>
+    <!-- 검보정통계 사용하지 않음!!!!!!!!!!!!!!!!!! -->
+    <select id="GetVerifyStatList" resultClass="HashTable" parameterClass="HashTable" remapResults="true">
+      SELECT SUBSTR(RF.OBSDHM, 0, 6), 
+          COUNT(CASE WHEN RF.DAMCD = '2403201' THEN 1 END) AS AAA,
+          COUNT(CASE WHEN RF.DAMCD = '201108' THEN 1 END) AS BBB,
+          COUNT(*) AS TCNT
+      FROM HM_EXRFHIST RF
+      WHERE  OBSDT BETWEEN #sdate#||'0000' AND #edate#||'2400'
+      GROUP BY SUBSTR(RF.OBSDHM, 0, 6)
+    </select>
+    
+    <!-- 수위 설비상태통계 -->
+    <select id="GetEquipWLStatList" resultClass="HashTable" parameterClass="HashTable" remapResults="true">
+      SELECT 
+          <isEmpty property="displaytype" >D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">D.DAMCD, D.DAMNM, O.WLOBSCD, O.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">M.MGTCD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotNull property="excdlist">   <!-- 원하는 항목만 표시 -->
+            <iterate prepend="," property="excdlist" open="" close="" conjunction=",">
+                SUM($excdlist[]$) AS $excdlist[]$
+            </iterate>
+          </isNotNull>
+          ,SUBSTR(MAX(RET.OBSDT),0,$dlen$) OBSDT
+          ,SUBSTR(MIN(RET.OBSDT),0,$dlen$) STARTDT
+          ,'WL' OBSTP
+          ,SUM(ECNT) ECNT 
+      FROM 
+          (
+              SELECT DD.DAMCD, ES.OBSCD, ES.OBSDT
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 표시 -->
+                    <iterate prepend="," property="excdlist" open="" close="" conjunction=",">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 합계에 표시 -->
+                    <iterate prepend="," property="excdlist" open="(" close=") ECNT" conjunction="+">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+              FROM HM_EQUIPWLSTAT ES, DUBWLOBSIF@TECH.WORLD DD
+              WHERE ES.OBSCD=DD.WLOBSCD
+              AND CLSDV = '0'
+              AND ES.OBSDT BETWEEN #sdate# AND #edate#
+              <isNotNull property="damcdList">
+                  <iterate property="damcdList"  open="AND DD.DAMCD IN (" close=")" conjunction=",">
+                      #damcdList[]#
+                  </iterate>
+              </isNotNull>
+              <isNotNull property="obscdList">
+                  <iterate property="obscdList"  open="AND DD.WLOBSCD IN (" close=")" conjunction=",">
+                      #obscdList[]#
+                  </iterate>
+              </isNotNull>
+          ) RET, DUBWLOBSIF@TECH.WORLD O, DUBDAMSPC@TECH.WORLD D
+          <isNotEqual property="displaytype" compareValue="MGTCD">, HM_DAMMST M, HM_DAMTYPE DT</isNotEqual> <!--관리단별을 제외한 항목-->
+          <isEqual property="displaytype" compareValue="MGTCD">, HM_DAMMST M, HM_DAMMGT MN, HM_DAMTYPE DT</isEqual> <!-- 관리단별 -->
+      WHERE RET.DAMCD=O.DAMCD 
+          AND RET.OBSCD = O.WLOBSCD 
+          AND O.DAMCD = D.DAMCD 
+          <!-- 관리단 제외 조인-->
+          <isNotEqual property="displaytype" compareValue="MGTCD">AND D.DAMCD = M.DAMCD AND M.DAMTYPE = DT.DAMTYPE</isNotEqual> 
+          <!-- 관리단 조인 -->
+          <isEqual property="displaytype" compareValue="MGTCD">AND D.DAMCD = M.DAMCD AND M.MGTCD = MN.MGTCD AND M.DAMTYPE = DT.DAMTYPE</isEqual> 
+          <isNotNull property="damcdList">
+              <iterate property="damcdList"  open="AND D.DAMCD IN (" close=")" conjunction=",">
+                  #damcdList[]#
+              </iterate>
+          </isNotNull>
+          <isNotNull property="obscdList">
+              <iterate property="obscdList"  open="AND O.WLOBSCD IN (" close=")" conjunction=",">
+                  #obscdList[]#
+              </iterate>
+          </isNotNull>
+      GROUP BY 
+          <isEmpty property="displaytype" >DT.ORD, D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">DT.ORD, D.DAMCD, D.DAMNM, O.WLOBSCD, O.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">DT.ORD, M.MGTCD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotEqual prepend="," property="stype" compareValue="I">SUBSTR(RET.OBSDT,0,$dlen$)</isNotEqual>     
+      ORDER BY 
+          <isEmpty property="displaytype" >DT.ORD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">DT.ORD, D.DAMNM, O.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">DT.ORD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotEqual prepend="," property="stype" compareValue="I">SUBSTR(RET.OBSDT,0,$dlen$) DESC</isNotEqual> 
+    </select>
+      
+    <!-- 우량 설비상태통계 -->
+    <select id="GetEquipRFStatList" resultClass="HashTable" parameterClass="HashTable" remapResults="true">
+      SELECT 
+          <isEmpty property="displaytype" >D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">D.DAMCD, D.DAMNM, O.RFOBSCD, O.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">M.MGTCD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotNull property="excdlist">   <!-- 원하는 항목만 표시 -->
+            <iterate prepend="," property="excdlist" open="" close="" conjunction=",">
+                SUM($excdlist[]$) AS $excdlist[]$
+            </iterate>
+          </isNotNull>
+          ,SUBSTR(MAX(RET.OBSDT),0,$dlen$) OBSDT
+          ,SUBSTR(MIN(RET.OBSDT),0,$dlen$) STARTDT
+          ,'RF' OBSTP
+          ,SUM(ECNT) ECNT           
+      FROM 
+          (
+              SELECT DD.DAMCD, ES.OBSCD, ES.OBSDT
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 표시 -->
+                    <iterate prepend="," property="excdlist" open="" close="" conjunction=",">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 합계에 표시 -->
+                    <iterate prepend="," property="excdlist" open="(" close=") ECNT" conjunction="+">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+              FROM HM_EQUIPRFSTAT ES, DUBRFOBSIF@TECH.WORLD DD
+              WHERE ES.OBSCD=DD.RFOBSCD
+              AND CLSDV = 0
+              AND ES.OBSDT BETWEEN #sdate# AND #edate#
+              <isNotNull property="damcdList">
+                  <iterate property="damcdList"  open="AND DD.DAMCD IN (" close=")" conjunction=",">
+                      #damcdList[]#
+                  </iterate>
+              </isNotNull>
+              <isNotNull property="obscdList">
+                  <iterate property="obscdList"  open="AND DD.RFOBSCD IN (" close=")" conjunction=",">
+                      #obscdList[]#
+                  </iterate>
+              </isNotNull>
+          ) RET, DUBRFOBSIF@TECH.WORLD O, DUBDAMSPC@TECH.WORLD D, HM_DAMMST M, HM_DAMTYPE DT
+          <isEqual property="displaytype" compareValue="MGTCD">, HM_DAMMGT MN</isEqual> <!-- 관리단별 -->
+      WHERE RET.DAMCD=O.DAMCD
+          AND RET.OBSCD = O.RFOBSCD 
+          AND O.DAMCD = D.DAMCD 
+          <!-- 댐구분 조인 -->
+          AND D.DAMCD = M.DAMCD 
+          AND M.DAMTYPE = DT.DAMTYPE
+          <!-- 관리단 조인 -->
+          <isEqual property="displaytype" compareValue="MGTCD">AND M.MGTCD = MN.MGTCD</isEqual> 
+          <isNotNull property="damcdList">
+              <iterate property="damcdList"  open="AND D.DAMCD IN (" close=")" conjunction=",">
+                  #damcdList[]#
+              </iterate>
+          </isNotNull>
+          <isNotNull property="obscdList">
+              <iterate property="obscdList"  open="AND O.RFOBSCD IN (" close=")" conjunction=",">
+                  #obscdList[]#
+              </iterate>
+          </isNotNull>
+      GROUP BY 
+          <isEmpty property="displaytype" >DT.ORD, D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">DT.ORD, D.DAMCD, D.DAMNM, O.RFOBSCD, O.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">DT.ORD, M.MGTCD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotEqual prepend="," property="stype" compareValue="I">SUBSTR(RET.OBSDT,0,$dlen$)</isNotEqual>     
+      ORDER BY 
+          <isEmpty property="displaytype" >DT.ORD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">DT.ORD, D.DAMNM, O.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">DT.ORD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotEqual prepend="," property="stype" compareValue="I">SUBSTR(RET.OBSDT,0,$dlen$) DESC</isNotEqual> 
+    </select>
+    
+    <select id="GetEquipStatList" resultClass="HashTable" parameterClass="HashTable" remapResults="true">
+      SELECT 
+          <isEmpty property="displaytype" >D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">D.DAMCD, D.DAMNM, RET.OBSCD, RET.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">M.MGTCD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotNull property="excdlist">   <!-- 원하는 항목만 표시 -->
+            <iterate prepend="," property="excdlist" open="" close="" conjunction=",">
+                SUM($excdlist[]$) AS $excdlist[]$
+            </iterate>
+          </isNotNull>
+          ,SUBSTR(MAX(RET.OBSDT),0,$dlen$) OBSDT
+          ,SUBSTR(MIN(RET.OBSDT),0,$dlen$) STARTDT
+          ,'WR' OBSTP
+          ,SUM(ECNT) ECNT
+      FROM 
+          (
+            SELECT DAMCD, OBSCD, OBSNM, OBSDT
+              <isNotNull property="excdlist">       <!-- 원하는 항목만 표시 -->
+                <iterate prepend="," property="sumlist" open="" close="" conjunction=",">
+                  $sumlist[]$
+                </iterate>
+              </isNotNull>
+              , SUM(ECNT) ECNT
+            FROM (
+              SELECT DD.DAMCD, ES.OBSCD, DD.OBSNM, ES.OBSDT
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 표시 -->
+                    <iterate prepend="," property="excdlist" open="" close="" conjunction=",">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 합계에 표시 -->
+                    <iterate prepend="," property="excdlist" open="(" close=") ECNT" conjunction="+">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+              FROM HM_EQUIPRFSTAT ES, DUBRFOBSIF@TECH.WORLD DD
+              WHERE ES.OBSCD=DD.RFOBSCD
+              AND CLSDV = 0
+              AND ES.OBSDT BETWEEN #sdate# AND #edate#
+              <isNotNull property="damcdList">
+                  <iterate property="damcdList"  open="AND DD.DAMCD IN (" close=")" conjunction=",">
+                    #damcdList[]#
+                  </iterate>
+                </isNotNull>
+                <isNotNull property="obscdList">
+                  <iterate property="obscdList"  open="AND DD.RFOBSCD IN (" close=")" conjunction=",">
+                    #obscdList[]#
+                  </iterate>
+                </isNotNull>
+              UNION ALL
+              SELECT DD.DAMCD, ES.OBSCD, DD.OBSNM, ES.OBSDT
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 표시 -->
+                    <iterate prepend="," property="excdlist" open="" close="" conjunction=",">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+                  <isNotNull property="excdlist">       <!-- 원하는 항목만 합계에 표시 -->
+                    <iterate prepend="," property="excdlist" open="(" close=") ECNT" conjunction="+">
+                        $excdlist[]$
+                    </iterate>
+                  </isNotNull>
+              FROM HM_EQUIPWLSTAT ES, DUBWLOBSIF@TECH.WORLD DD
+              WHERE ES.OBSCD=DD.WLOBSCD
+              AND CLSDV = '0'
+              AND ES.OBSDT BETWEEN #sdate# AND #edate#
+              <isNotNull property="damcdList">
+                <iterate property="damcdList"  open="AND DD.DAMCD IN (" close=")" conjunction=",">
+                  #damcdList[]#
+                </iterate>
+              </isNotNull>
+              <isNotNull property="obscdList">
+                <iterate property="obscdList"  open="AND DD.WLOBSCD IN (" close=")" conjunction=",">
+                  #obscdList[]#
+                </iterate>
+              </isNotNull>
+            ) GROUP BY DAMCD, OBSCD, OBSNM, OBSDT
+          ) RET, DUBDAMSPC@TECH.WORLD D, HM_DAMMST M, HM_DAMTYPE DT
+          <isEqual property="displaytype" compareValue="MGTCD">, HM_DAMMGT MN</isEqual> <!-- 관리단별 -->
+      WHERE RET.DAMCD = D.DAMCD
+          <!-- 댐구분 조인 -->
+          AND D.DAMCD = M.DAMCD 
+          AND M.DAMTYPE = DT.DAMTYPE
+          <!-- 관리단 조인 -->
+          <isEqual property="displaytype" compareValue="MGTCD">AND M.MGTCD = MN.MGTCD</isEqual> 
+          <isNotNull property="damcdList">
+              <iterate property="damcdList"  open="AND D.DAMCD IN (" close=")" conjunction=",">
+                  #damcdList[]#
+              </iterate>
+          </isNotNull>
+          <isNotNull property="obscdList">
+            <iterate property="obscdList"  open="AND RET.OBSCD IN (" close=")" conjunction=",">
+              #obscdList[]#
+            </iterate>
+          </isNotNull>
+      GROUP BY 
+          <isEmpty property="displaytype" >DT.ORD, D.DAMCD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">DT.ORD, D.DAMCD, D.DAMNM, RET.OBSCD, RET.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">DT.ORD, M.MGTCD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotEqual prepend="," property="stype" compareValue="I">SUBSTR(RET.OBSDT,0,$dlen$)</isNotEqual>     
+      ORDER BY 
+          <isEmpty property="displaytype" >DT.ORD, D.DAMNM</isEmpty> <!-- 댐별 통계 -->
+          <isEqual property="displaytype" compareValue="OBSCD">DT.ORD, D.DAMNM, RET.OBSNM</isEqual> <!-- 댐별 통계의 경우 관측소를 푱시안함 -->
+          <isEqual property="displaytype" compareValue="MGTCD">DT.ORD, MN.MGTCOMMENT</isEqual> <!-- 관리단별 -->
+          <isNotEqual prepend="," property="stype" compareValue="I">SUBSTR(RET.OBSDT,0,$dlen$) DESC</isNotEqual> 
+    </select>
+    
+    <!-- 댐운영자료통계 -->
+    <!-- 보정건수를 오결측으로 변경 (2012.04.05 박범석 요청)-->
+    <select id="GetDamDataStatList" resultClass="HashTable" parameterClass="HashTable" remapResults="true">
+      SELECT MAX(DAMCD) AS DAMCD, MAX(DAMNM) AS DAMNM
+      , SUM(TCNT) AS TCNT
+      , SUM(TCNT)-SUM(ECNT) AS NCNT
+      , SUM(ACNT) AS ACNT
+      , SUM(ECNT) AS ECNT
+      , SUM(RWL) AS RWL, SUM(OSPILWL) AS OSPILWL
+      , SUM(ETCIQTY2) AS ETCIQTY2, SUM(EDQTY) AS EDQTY
+      , SUM(ETCEDQTY) AS ETCEDQTY, SUM(SPDQTY) AS SPDQTY
+      , SUM(ETCDQTY1) AS ETCDQTY1, SUM(ETCDQTY2) AS ETCDQTY2
+      , SUM(ETCDQTY3) AS ETCDQTY3, SUM(OTLTDQTY) AS OTLTDQTY
+      , SUM(ITQTY1) AS ITQTY1, SUM(ITQTY2) AS ITQTY2
+      , SUM(ITQTY3) AS ITQTY3
+      , FN_CONV_CHAR(TRUNC((SUM(TCNT)-SUM(ECNT))/SUM(TCNT)*100,1)) AS TPERC
+      , SUBSTR(MAX(OBSDT),1,$dlen$) AS OBSDT
+      , SUBSTR(MIN(OBSDT),1,$dlen$) AS STARTDT
+      FROM (
+      SELECT 
+      <isEmpty property="disptp">AA.DAMCD, BB.DAMNM</isEmpty> <!-- 댐별 통계 -->
+      <isEqual property="disptp" compareValue="MGTCD">BB.MGTCD AS DAMCD, DD.MGTCOMMENT AS DAMNM</isEqual> <!-- 관리단별 통계 -->
+      , AA.OBSDT, TCNT
+      <isNotEmpty property="excd">
+          <iterate property="excdlist" open=", (TCNT - (" close=")) AS NCNT" conjunction=" +">$excdlist[]$</iterate>
+          <iterate property="excdlist" open=", (" close=") AS ACNT" conjunction=" +">$excdlist[]$</iterate>
+        </isNotEmpty>
+        <isEmpty property="excd">, NCNT, ACNT</isEmpty>
+        , ECNT
+        , RWL, OSPILWL, ETCIQTY2, EDQTY, ETCEDQTY, SPDQTY
+        , ETCDQTY1, ETCDQTY2, ETCDQTY3, OTLTDQTY, ITQTY1, ITQTY2, ITQTY3
+        , DT.ORD DAMORD
+        FROM HM_DAMSTAT AA, 
+            <isEmpty property="disptp">DUBDAMSPC@TECH.WORLD BB</isEmpty>
+            <isEqual property="disptp" compareValue="MGTCD">HM_DAMMST BB, HM_DAMMGT DD</isEqual>
+            , VM_DAMCODE CC, HM_DAMTYPE DT
+        WHERE AA.DAMCD=BB.DAMCD
+        AND BB.DAMCD=CC.DAMCD
+        AND CC.DAMTYPE = DT.DAMTYPE
+        <isEqual property="disptp" compareValue="MGTCD">AND BB.MGTCD=DD.MGTCD</isEqual> <!-- 관리단명 조인 -->
+        AND AA.OBSDT BETWEEN #sdate# AND #edate#
+        <isNotEmpty property="damcd">
+        <iterate property="damcdlist"  open="AND BB.DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+        </isNotEmpty>
+      )
+      WHERE 1=1
+      <isEqual property="stattp" compareValue="D">
+        GROUP BY DAMCD, DAMORD, DAMNM, OBSDT
+        ORDER BY DAMORD, DAMNM, OBSDT DESC
+      </isEqual>
+      <isEqual property="stattp" compareValue="M">
+        GROUP BY DAMCD, DAMNM, DAMORD, SUBSTR(OBSDT,1,6)
+        ORDER BY DAMORD, DAMNM, SUBSTR(OBSDT,1,6) DESC
+      </isEqual>
+      <isEqual property="stattp" compareValue="I">
+        GROUP BY DAMCD, DAMORD, DAMNM
+        ORDER BY DAMORD, DAMNM
+      </isEqual>
+    </select>
+      
+    <select id="GetDam1mStatList" resultClass="HashTable" parameterClass="HashTable">
+      <isEqual property="datatp" compareValue="1">
+          SELECT 
+              <isEqual property="disptp" compareValue="DAMCD">
+                BB.DAMCD, BB.DAMNM
+              </isEqual>
+              <isEqual property="disptp" compareValue="MGTCD">
+                CC.MGTCD, CC.MGTCOMMENT      
+              </isEqual>
+              <iterate property="datelist" open="," close="" conjunction=",">$datelist[]$</iterate>
+              , NVL(SUM(MSCNT),0) AS TOTAL
+              , '$datatp$' AS DATATP
+              , '$sdate$' AS SDATE
+              , '$edate$' AS EDATE
+          FROM 
+              (
+                  SELECT DAMCD, OBSDT, MSCNT
+                  FROM HM_DAM1MSTAT
+                  WHERE OBSDT BETWEEN #sdate# AND #edate#
+                  <isNotEmpty property="damcd">
+                      <iterate property="damcdlist" open="AND DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+                  </isNotEmpty>
+              ) AA, HM_DAMMST BB, HM_DAMMGT CC, HM_DAMTYPE DT
+          WHERE AA.DAMCD(+)=BB.DAMCD
+              AND BB.MGTCD = CC.MGTCD
+              AND BB.DAMTYPE = DT.DAMTYPE
+              AND BB.DAMYN='Y'
+              AND CC.MGTLVL=3
+              <isEqual property="disptp" compareValue="MGTCD">
+                AND BB.MGTCD IS NOT NULL    
+              </isEqual>
+              <isNotEmpty property="damcd">
+                  <iterate property="damcdlist" open="AND BB.DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+              </isNotEmpty>
+          GROUP BY 
+              <isEqual property="disptp" compareValue="DAMCD">
+                DT.ORD, BB.DAMCD, BB.DAMNM
+              </isEqual>
+              <isEqual property="disptp" compareValue="MGTCD">
+                DT.ORD, CC.MGTCD, CC.MGTCOMMENT
+              </isEqual>
+          ORDER BY 
+              <isEqual property="disptp" compareValue="DAMCD">
+                DT.ORD, BB.DAMNM
+              </isEqual>
+              <isEqual property="disptp" compareValue="MGTCD">
+                DT.ORD, CC.MGTCOMMENT
+              </isEqual>
+      </isEqual>
+      <isEqual property="datatp" compareValue="WL30">
+          SELECT 
+            <isEqual property="disptp" compareValue="MGTCD">
+                DD.MGTCD, DD.MGTCOMMENT
+            </isEqual>
+            <isEqual property="disptp" compareValue="DAMCD">
+                CC.DAMCD, CC.DAMNM
+            </isEqual>
+            <isEqual property="disptp" compareValue="OBSCD">
+                CC.DAMCD, CC.DAMNM, BB.WLOBSCD OBSCD, BB.OBSNM
+            </isEqual>
+            <iterate property="datelist" open="," close="" conjunction=",">$datelist[]$</iterate>
+            , NVL(SUM(MSCNT),0) AS TOTAL
+            , '$datatp$' AS DATATP
+            , '$sdate$' AS SDATE
+            , '$edate$' AS EDATE
+          FROM 
+            (
+                SELECT DAMCD, OBSCD, OBSTP, OBSDT, MSCNT
+                FROM HM_MISSSTAT
+                WHERE OBSDT BETWEEN #sdate# AND #edate#
+                AND OBSTP = 'WL'
+                <isNotEmpty property="damcd">
+                    <iterate property="damcdlist" open="AND DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+                </isNotEmpty>
+                <isNotEmpty property="obscd">
+                    <iterate property="obscdlist" open="AND OBSCD IN (" close=")" conjunction=",">#obscdlist[]#</iterate>
+                </isNotEmpty>
+            ) AA, DUBWLOBSIF@TECH.WORLD BB, HM_DAMMST CC, HM_DAMMGT DD, HM_DAMTYPE DT
+          WHERE AA.OBSCD(+)=BB.WLOBSCD
+              AND BB.DAMCD = CC.DAMCD
+              AND CC.MGTCD = DD.MGTCD
+              AND CC.DAMTYPE = DT.DAMTYPE
+              AND BB.CLSDV = '0'
+              AND CC.DAMYN='Y'
+              <isEqual property="disptp" compareValue="MGTCD">
+                AND CC.MGTCD IS NOT NULL    
+              </isEqual>
+              <isNotEmpty property="damcd">
+                <iterate property="damcdlist" open="AND CC.DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+              </isNotEmpty>
+              <isNotEmpty property="obscd">
+                <iterate property="obscdlist" open="AND BB.WLOBSCD IN (" close=")" conjunction=",">#obscdlist[]#</iterate>
+              </isNotEmpty>
+          GROUP BY 
+            <isEqual property="disptp" compareValue="MGTCD">
+                DT.ORD, DD.MGTCD, DD.MGTCOMMENT
+            </isEqual>
+            <isEqual property="disptp" compareValue="DAMCD">
+                DT.ORD, CC.DAMCD, CC.DAMNM
+            </isEqual>
+            <isEqual property="disptp" compareValue="OBSCD">
+                DT.ORD, CC.DAMCD, CC.DAMNM, BB.WLOBSCD, BB.OBSNM
+            </isEqual>
+          ORDER BY 
+            <isEqual property="disptp" compareValue="MGTCD">
+                DT.ORD, DD.MGTCOMMENT
+            </isEqual>
+            <isEqual property="disptp" compareValue="DAMCD">
+                DT.ORD, CC.DAMNM
+            </isEqual>
+            <isEqual property="disptp" compareValue="OBSCD">
+                DT.ORD, CC.DAMNM, BB.OBSNM
+            </isEqual>
+      </isEqual>
+      <isEqual property="datatp" compareValue="RF30">
+         SELECT 
+            <isEqual property="disptp" compareValue="MGTCD">
+                DD.MGTCD, DD.MGTCOMMENT
+            </isEqual>
+            <isEqual property="disptp" compareValue="DAMCD">
+                CC.DAMCD, CC.DAMNM
+            </isEqual>
+            <isEqual property="disptp" compareValue="OBSCD">
+                CC.DAMCD, CC.DAMNM, BB.RFOBSCD OBSCD, BB.OBSNM
+            </isEqual>
+            <iterate property="datelist" open="," close="" conjunction=",">$datelist[]$</iterate>
+            , NVL(SUM(MSCNT),0) AS TOTAL
+            , '$datatp$' AS DATATP
+            , '$sdate$' AS SDATE
+            , '$edate$' AS EDATE
+          FROM 
+            (
+                SELECT DAMCD, OBSCD, OBSTP, OBSDT, MSCNT
+                FROM HM_MISSSTAT
+                WHERE OBSDT BETWEEN #sdate# AND #edate#
+                AND OBSTP = 'RF'
+                <isNotEmpty property="damcd">
+                    <iterate property="damcdlist" open="AND DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+                </isNotEmpty>
+                <isNotEmpty property="obscd">
+                    <iterate property="obscdlist" open="AND OBSCD IN (" close=")" conjunction=",">#obscdlist[]#</iterate>
+                </isNotEmpty>
+            ) AA, DUBRFOBSIF@TECH.WORLD BB, HM_DAMMST CC, HM_DAMMGT DD, HM_DAMTYPE DT
+          WHERE AA.OBSCD(+)=BB.RFOBSCD
+              AND BB.DAMCD = CC.DAMCD
+              AND CC.MGTCD = DD.MGTCD
+              AND CC.DAMTYPE = DT.DAMTYPE
+              AND BB.CLSDV = '0'
+              AND CC.DAMYN='Y'
+              <isEqual property="disptp" compareValue="MGTCD">
+                AND CC.MGTCD IS NOT NULL    
+              </isEqual>
+              <isNotEmpty property="damcd">
+                <iterate property="damcdlist" open="AND CC.DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+              </isNotEmpty>
+              <isNotEmpty property="obscd">
+                <iterate property="obscdlist" open="AND BB.RFOBSCD IN (" close=")" conjunction=",">#obscdlist[]#</iterate>
+              </isNotEmpty>
+          GROUP BY 
+            <isEqual property="disptp" compareValue="MGTCD">
+                DT.ORD, DD.MGTCD, DD.MGTCOMMENT
+            </isEqual>
+            <isEqual property="disptp" compareValue="DAMCD">
+                DT.ORD, CC.DAMCD, CC.DAMNM
+            </isEqual>
+            <isEqual property="disptp" compareValue="OBSCD">
+                DT.ORD, CC.DAMCD, CC.DAMNM, BB.RFOBSCD, BB.OBSNM
+            </isEqual>
+          ORDER BY 
+            <isEqual property="disptp" compareValue="MGTCD">
+                DT.ORD, DD.MGTCOMMENT
+            </isEqual>
+            <isEqual property="disptp" compareValue="DAMCD">
+                DT.ORD, CC.DAMNM
+            </isEqual>
+            <isEqual property="disptp" compareValue="OBSCD">
+                DT.ORD, CC.DAMNM, BB.OBSNM
+            </isEqual>
+      </isEqual>
+    </select>
+
+    <!-- 알람현황통계 -->
+    <select id="GetAlarmStatList" resultClass="HashTable" parameterClass="HashTable" remapResults="true" >
+        SELECT 
+            <isEqual property="disptp" compareValue="MGTCD">
+                BB.MGTCD, BB.MGTCOMMENT
+            </isEqual>
+            <isNotEqual property="disptp" compareValue="MGTCD">
+                BB.DAMCD, BB.DAMNM
+            </isNotEqual>
+            ,BB.OBSDT, AA.STARTDT
+            <isNotEmpty property="alarmcd">
+              <iterate property="alarmcols" open="," conjunction="," close="">$alarmcols[]$</iterate>
+            </isNotEmpty>
+            , NVL(TOTAL, 0) TOTAL
+        FROM (
+            <!-- 실제 알람 현황을 가져오는 부분 -->
+          SELECT 
+              <isEqual property="disptp" compareValue="MGTCD">
+                  BB.MGTCD, BB.MGTCOMMENT
+              </isEqual>
+              <isNotEqual property="disptp" compareValue="MGTCD">
+                  BB.DAMCD, BB.DAMNM
+              </isNotEqual>
+              <isEqual property="stattp" compareValue="D">
+                ,SUBSTR(MAX(OBSDT),1,8) AS OBSDT, SUBSTR(MIN(OBSDT),1,8) AS STARTDT
+              </isEqual>
+              <isEqual property="stattp" compareValue="M">
+                ,SUBSTR(MAX(OBSDT),1,6) AS OBSDT, SUBSTR(MIN(OBSDT),1,6) AS STARTDT
+              </isEqual>
+              <isEqual property="stattp" compareValue="I">
+                ,SUBSTR(MAX(OBSDT),1,8) AS OBSDT, SUBSTR(MIN(OBSDT),1,8) AS STARTDT
+              </isEqual>
+              <isNotEmpty property="alarmcd">
+                  <iterate property="alarmcdlist" open="," conjunction="," close="">$alarmcdlist[]$</iterate>
+              </isNotEmpty>
+              , COUNT(ERR_CD) TOTAL
+          FROM DTBALARM AA, VM_DAMCODE BB
+          WHERE BB.DAMYN='Y'
+              AND AA.DAMCD = BB.DAMCD
+              AND OBSDT BETWEEN #sdate#||'000000' AND #edate#||'240000'
+               <isNotEmpty property="alarmcd">
+                  <iterate property="errorcdlist"  open="AND AA.ERR_CD IN (" close=")" conjunction=",">#errorcdlist[]#</iterate>
+              </isNotEmpty>
+              <isNotEmpty property="damcd">
+                  <iterate property="damcdlist"  open="AND AA.DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+              </isNotEmpty>
+              <isEqual property="disptp" compareValue="MGTCD">
+                  AND BB.MGTCD IS NOT NULL
+              </isEqual>
+          GROUP BY 
+              <isEqual property="disptp" compareValue="MGTCD">
+                  BB.MGTCD, BB.MGTCOMMENT
+              </isEqual>
+              <isNotEqual property="disptp" compareValue="MGTCD">
+                  BB.DAMCD, BB.DAMNM
+              </isNotEqual>
+              <isEqual property="stattp" compareValue="D">
+                ,SUBSTR(OBSDT,1,8)
+              </isEqual>
+              <isEqual property="stattp" compareValue="M">
+                ,SUBSTR(OBSDT,1,6)
+              </isEqual>
+        ) AA, (
+            <!-- 일시을 계산하는 부분 -->
+            <isEqual property="stattp" compareValue="D">
+              <![CDATA[
+              SELECT BB.MGTCD, BB.MGTCOMMENT, BB.DAMCD, BB.DAMNM, AA.T_DAY OBSDT, BB.DAMTYPE
+              FROM (
+                  SELECT TO_CHAR((TO_DATE(#sdate#, 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+                  FROM DUAL
+                  CONNECT BY LEVEL <= ((TO_DATE(#edate#, 'YYYYMMDD') - TO_DATE(#sdate#, 'YYYYMMDD')) + 1)
+              ) AA, VM_DAMCODE BB
+              WHERE BB.DAMYN='Y'
+              ]]>
+            </isEqual>
+            <isEqual property="stattp" compareValue="M">
+              <![CDATA[
+              SELECT BB.MGTCD, BB.MGTCOMMENT, BB.DAMCD, BB.DAMNM, AA.T_DAY OBSDT, BB.DAMTYPE
+              FROM (
+                  SELECT TO_CHAR(ADD_MONTHS(TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'), (LEVEL - 1)), 'YYYYMM') T_DAY
+                  FROM DUAL
+                  CONNECT BY LEVEL <= MONTHS_BETWEEN(TO_DATE(SUBSTR(#edate#,1,6), 'YYYYMM'),TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'))+1
+              ) AA, VM_DAMCODE BB
+              WHERE BB.DAMYN='Y'
+              ]]>
+            </isEqual>
+            <isEqual property="stattp" compareValue="I">
+              <![CDATA[
+              SELECT BB.MGTCD, BB.MGTCOMMENT, BB.DAMCD, BB.DAMNM, BB.DAMTYPE, SUBSTR('$edate$',1,8) OBSDT
+              FROM VM_DAMCODE BB
+              WHERE BB.DAMYN='Y'
+              ]]>
+            </isEqual>
+            <isNotEmpty property="damcd">
+              <iterate property="damcdlist"  open="AND BB.DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+            </isNotEmpty>
+            <isEqual property="disptp" compareValue="MGTCD">
+              AND BB.MGTCD IS NOT NULL
+            </isEqual>
+        ) BB, HM_DAMTYPE DT
+        WHERE 
+            <isEqual property="disptp" compareValue="MGTCD">
+                BB.MGTCD=AA.MGTCD(+)
+            </isEqual>
+            <isNotEqual property="disptp" compareValue="MGTCD">
+                BB.DAMCD=AA.DAMCD(+)        
+            </isNotEqual>
+            <isNotEqual property="stattp" compareValue="I">
+                AND BB.OBSDT=AA.OBSDT(+)
+            </isNotEqual>
+            AND BB.DAMTYPE = DT.DAMTYPE
+        ORDER BY 
+            DT.ORD, 
+            <isEqual property="disptp" compareValue="MGTCD">
+                BB.MGTCOMMENT
+            </isEqual>
+            <isNotEqual property="disptp" compareValue="MGTCD">
+               BB.DAMNM
+            </isNotEqual>
+            ,BB.OBSDT DESC
+
+
+
+
+<!--
+      <isEqual property="stattp" compareValue="M">
+        SELECT BB.DAMCD, BB.DAMNM, BB.OBSDT, BB.OBSDT STARTDT
+        <isNotEmpty property="alarmcd">
+          <iterate property="alarmcols" open="," conjunction="," close="">$alarmcols[]$</iterate>
+        </isNotEmpty>
+        FROM (
+          SELECT DAMCD,SUBSTR(OBSDT,1,6) AS OBSDT
+          <isNotEmpty property="alarmcd">
+            <iterate property="alarmcdlist" open="," conjunction="," close="">$alarmcdlist[]$</iterate>
+          </isNotEmpty>
+          FROM DTBALARM
+          WHERE 1=1
+          AND OBSDT BETWEEN #sdate#||'000000' AND #edate#||'240000'
+          <isNotEmpty property="damcd">
+            <iterate property="damcdlist"  open="AND DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+          </isNotEmpty>
+          GROUP BY DAMCD, SUBSTR(OBSDT,1,6)
+        ) AA, (
+          <![CDATA[
+          SELECT BB.DAMCD, BB.DAMNM, AA.T_DAY OBSDT, BB.WKORD
+          FROM (
+              SELECT TO_CHAR(ADD_MONTHS(TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'), (LEVEL - 1)), 'YYYYMM') T_DAY
+              FROM DUAL
+              CONNECT BY LEVEL <= MONTHS_BETWEEN(TO_DATE(SUBSTR(#edate#,1,6), 'YYYYMM'),TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'))+1
+          ) AA, VM_DAMCODE BB
+          WHERE BB.DAMYN='Y'
+         ]]>
+          <isNotEmpty property="damcd">
+            <iterate property="damcdlist"  open="AND BB.DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+          </isNotEmpty>
+        ) BB
+        WHERE BB.DAMCD=AA.DAMCD(+)
+        AND BB.OBSDT=AA.OBSDT(+)
+        ORDER BY BB.WKORD, BB.DAMNM, BB.OBSDT
+      </isEqual>
+      <isEqual property="stattp" compareValue="I">
+        SELECT BB.DAMCD, BB.DAMNM, #edate# OBSDT, #sdate# STARTDT
+        <isNotEmpty property="alarmcd">
+          <iterate property="alarmcols" open="," conjunction="," close="">$alarmcols[]$</iterate>
+        </isNotEmpty>
+        FROM (
+          SELECT DAMCD
+          <isNotEmpty property="alarmcd">
+            <iterate property="alarmcdlist" open="," conjunction="," close="">$alarmcdlist[]$</iterate>
+          </isNotEmpty>
+          FROM DTBALARM
+          WHERE 1=1
+          AND OBSDT BETWEEN #sdate#||'000000' AND #edate#||'240000'
+          <isNotEmpty property="damcd">
+            <iterate property="damcdlist"  open="AND DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+          </isNotEmpty>
+          GROUP BY DAMCD
+        ) AA, (
+            SELECT DAMCD, DAMNM, WKORD
+            FROM VM_DAMCODE
+            WHERE DAMYN='Y'
+            <isNotEmpty property="damcd">
+              <iterate property="damcdlist"  open="AND DAMCD IN (" close=")" conjunction=",">#damcdlist[]#</iterate>
+            </isNotEmpty>
+        ) BB
+        WHERE BB.DAMCD=AA.DAMCD(+)
+        ORDER BY BB.WKORD, BB.DAMNM
+        
+      </isEqual>
+        -->
+    </select>
+    <!-- 전댐보고서및 관리단별 보고서-->
+    <!-- MGTCD, MGTNM, STARTDT, ENDDT, STATTP-->
+    <select id="GetAutoStatList" resultClass="AutoStatModel" parameterClass="HashTable">
+      SELECT DAMTYPE, MGTCD, MGTNM, OBSDT, '$stattp$' STATTP
+      FROM (
+      <isEqual property="stattp" compareValue="M">
+        <isEmpty property="damtp">
+        SELECT AA.DAMTYPE, AA.MGTCD, AA.MGTNM, '0' WKORD, BB.OBSDT
+        FROM (
+          SELECT '' DAMTYPE, 'alldams' MGTCD, '전 댐' MGTNM
+          FROM DUAL
+          UNION ALL
+          SELECT 'D,W,E' DAMTYPE, 'alldams' MGTCD, '전 댐(보 제외)' MGTNM
+          FROM DUAL
+        ) AA, (
+        <![CDATA[
+          SELECT TO_CHAR(ADD_MONTHS(TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'), (LEVEL - 1)), 'YYYYMM') OBSDT
+          FROM DUAL
+          CONNECT BY LEVEL <= MONTHS_BETWEEN(TO_DATE(SUBSTR(#edate#,1,6), 'YYYYMM'),TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'))+1
+        ]]>
+        ) BB
+        UNION ALL
+        </isEmpty>
+        SELECT AA.DAMTYPE, AA.MGTCD, AA.MGTNM, AA.WKORD, BB.OBSDT
+        FROM (
+          SELECT '' DAMTYPE, MGTCD, MGTNM, WKORD
+          FROM VM_DAMMGT
+          WHERE 1=1
+          <isNotEmpty property="damtp">
+            <iterate property="damtplist"  open="AND DAMTP IN (" close=")" conjunction=",">#damtplist[]#</iterate>
+          </isNotEmpty>
+          <isNotEmpty property="mgtcd">
+            <iterate property="mgtcdlist"  open="AND MGTCD IN (" close=")" conjunction=",">#mgtcdlist[]#</iterate>
+          </isNotEmpty>
+        ) AA, (
+        <![CDATA[
+          SELECT TO_CHAR(ADD_MONTHS(TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'), (LEVEL - 1)), 'YYYYMM') OBSDT
+          FROM DUAL
+          CONNECT BY LEVEL <= MONTHS_BETWEEN(TO_DATE(SUBSTR(#edate#,1,6), 'YYYYMM'),TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'))+1
+        ]]>
+        ) BB
+      </isEqual>
+      <isEqual property="stattp" compareValue="Q">
+        <isEmpty property="damtp">
+        SELECT AA.DAMTYPE, AA.MGTCD, AA.MGTNM, '0' WKORD, BB.OBSDT
+        FROM (
+          SELECT '' DAMTYPE, 'alldams' MGTCD, '전 댐' MGTNM
+          FROM DUAL
+          UNION ALL
+          SELECT 'D,W,E' DAMTYPE, 'alldams' MGTCD, '전 댐(보 제외)' MGTNM
+          FROM DUAL
+        ) AA, (
+        <![CDATA[
+          SELECT T_DAY OBSDT
+          FROM (
+              SELECT TO_CHAR(ADD_MONTHS(TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'), (LEVEL - 1)), 'YYYYQ') T_DAY
+              FROM DUAL
+              CONNECT BY LEVEL <= MONTHS_BETWEEN(TO_DATE(SUBSTR(#edate#,1,6), 'YYYYMM'),TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'))+1
+          ) 
+          GROUP BY T_DAY
+          ORDER BY T_DAY
+        ]]>
+        ) BB
+        UNION ALL
+        </isEmpty>
+        SELECT AA.DAMTYPE, AA.MGTCD, AA.MGTNM, AA.WKORD, BB.OBSDT
+        FROM (
+          SELECT '' DAMTYPE, MGTCD, MGTNM, WKORD
+          FROM VM_DAMMGT
+          WHERE 1=1
+          <isNotEmpty property="damtp">
+            <iterate property="damtplist"  open="AND DAMTP IN (" close=")" conjunction=",">#damtplist[]#</iterate>
+          </isNotEmpty>
+          <isNotEmpty property="mgtcd">
+            <iterate property="mgtcdlist"  open="AND MGTCD IN (" close=")" conjunction=",">#mgtcdlist[]#</iterate>
+          </isNotEmpty>
+        ) AA, (
+        <![CDATA[
+          SELECT T_DAY OBSDT
+          FROM (
+              SELECT TO_CHAR(ADD_MONTHS(TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'), (LEVEL - 1)), 'YYYYQ') T_DAY
+              FROM DUAL
+              CONNECT BY LEVEL <= MONTHS_BETWEEN(TO_DATE(SUBSTR(#edate#,1,6), 'YYYYMM'),TO_DATE(SUBSTR(#sdate#,1,6), 'YYYYMM'))+1
+          ) 
+          GROUP BY T_DAY
+          ORDER BY T_DAY
+        ]]>
+        ) BB
+      </isEqual>
+      ) ORDER BY WKORD, MGTNM, OBSDT DESC
+    </select>
+
+    <!--수위30분 결측 검정 리스트 가져오기 시작-->
+    <select id="GetWL30MissList" resultClass="WaterLevelModel" parameterClass="HashTable">
+        SELECT B.DAMNM, A.DAMCD, C.OBSNM, A.WLOBSCD AS OBSCD, A.OBSDHM OBSDT, A.TRMDV, FN_CONV_CHAR(A.WL) WL, FN_CONV_CHAR(A.FLW) FLW
+        FROM DUBMMWL@TECH.WORLD A, VM_DAMCODE B, DUBWLOBSIF@TECH.WORLD C, HM_DAMTYPE DT
+        WHERE 1=1
+            AND A.DAMCD = B.DAMCD
+            AND A.WLOBSCD = C.WLOBSCD
+            AND B.DAMTYPE = DT.DAMTYPE
+            <!-- AND C.CLSDV = '0' -->
+            <!-- AND C.WLOBSCD NOT IN (SELECT OBSCD FROM HM_OBSMST WHERE OBSTP='WL' AND REPORTYN='N') -->
+            AND A.EDEXLVL >= 1000000000
+            AND A.TRMDV='30'
+            AND A.OBSDHM BETWEEN #StartDt# AND #EndDt#
+            <isNotEmpty prepend="AND" property="MgtCd">
+                B.MGTCD = #MgtCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="DamCd">
+                A.DAMCD = #DamCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ObsCd">
+                A.WLOBSCD = #ObsCd#
+            </isNotEmpty>
+        ORDER BY DT.ORD, B.DAMNM, C.OBSNM, A.OBSDHM
+    </select>
+    <!--수위30분 결측 검정 리스트 가져오기 시작-->
+      
+    <!--우량30분 결측 검정 리스트 가져오기 시작-->
+    <select id="GetRF30MissList" resultClass="RainFallModel" parameterClass="HashTable">
+        SELECT B.DAMNM, A.DAMCD, C.OBSNM, A.RFOBSCD AS OBSCD, A.OBSDHM OBSDT, A.TRMDV, FN_CONV_CHAR(A.ACURF) ACURF, FN_CONV_CHAR(A.RF) RF
+        FROM DUBMMRF@TECH.WORLD A, VM_DAMCODE B, DUBRFOBSIF@TECH.WORLD C, HM_DAMTYPE DT
+        WHERE 1=1
+            AND A.DAMCD = B.DAMCD
+            AND A.RFOBSCD = C.RFOBSCD
+            AND B.DAMTYPE = DT.DAMTYPE
+            <!-- AND C.CLSDV = 0 -->
+            <!-- AND C.WLOBSCD NOT IN (SELECT OBSCD FROM HM_OBSMST WHERE OBSTP='WL' AND REPORTYN='N') -->
+            AND A.EDEXLVL >= 1000000000
+            AND A.TRMDV='30'
+            AND A.OBSDHM BETWEEN #StartDt# AND #EndDt#
+            <isNotEmpty prepend="AND" property="MgtCd">
+                B.MGTCD = #MgtCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="DamCd">
+                A.DAMCD = #DamCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ObsCd">
+                A.RFOBSCD = #ObsCd#
+            </isNotEmpty>
+        ORDER BY DT.ORD, B.DAMNM, C.OBSNM, A.OBSDHM
+    </select>
+    <!--우량30분 결측 검정 리스트 가져오기 시작-->
+
+    <!--댐 운영자료 검정 리스트 가져오기 시작-->
+    <select id="GetDamModifiedDataList" resultClass="DamDataModel" parameterClass="HashTable">
+        SELECT A.ID, A.OBSDT, A.DAMCD, A.DAMNM, FN_CONV_CHAR(A.RWL) RWL
+            , FN_CONV_CHAR(A.RSQTY) RSQTY, FN_CONV_CHAR(A.RSRT) RSRT, FN_CONV_CHAR(A.IQTY) IQTY
+            , FN_CONV_CHAR(A.OSPILWL) OSPILWL, FN_CONV_CHAR(A.ETCIQTY1) ETCIQTY1
+            , FN_CONV_CHAR(A.ETCIQTY2) ETCIQTY2, FN_CONV_CHAR(A.ETQTY) ETQTY, FN_CONV_CHAR(A.TDQTY) TDQTY
+            , FN_CONV_CHAR(A.EDQTY) EDQTY, FN_CONV_CHAR(A.ETCEDQTY) ETCEDQTY
+            , FN_CONV_CHAR(A.SPDQTY) SPDQTY, FN_CONV_CHAR(A.ETCDQTY1) ETCDQTY1, FN_CONV_CHAR(A.ETCDQTY2) ETCDQTY2, FN_CONV_CHAR(A.ETCDQTY3) ETCDQTY3
+            , FN_CONV_CHAR(A.OTLTDQTY) OTLTDQTY, FN_CONV_CHAR(A.ITQTY1) ITQTY1, FN_CONV_CHAR(A.ITQTY2) ITQTY2, FN_CONV_CHAR(A.ITQTY3) ITQTY3
+            , FN_CONV_CHAR(A.DAMBSARF) DAMBSARF, A.CGEMPNO, A.CGEMPNM, A.CGDT, A.CHKEMPNO, A.CHKEMPNM, A.CHKDT
+            , '' CNRSN, '' CNDS, '' EDEXLVL, '' EDEXWAY
+            , FN_CONV_CHAR(PRWL) PRWL, '$DataTp$' TRMDV
+            , A.RWL_CK, A.OSPILWL_CK, A.ETCIQTY2_CK, A.EDQTY_CK, A.ETCEDQTY_CK, A.SPDQTY_CK, A.ETCDQTY1_CK, A.ETCDQTY2_CK, A.ETCDQTY3_CK, A.OTLTDQTY_CK, A.ITQTY1_CK, A.ITQTY2_CK, A.ITQTY3_CK 
+        FROM (
+            SELECT VDATA.DAMCD||'_'||VDATA.OBSDT AS ID, 
+                    VDATA.OBSDT, 
+                    VDATA.DAMCD, 
+                    DAM.DAMNM, 
+                    VDATA.RWL, 
+                    VDATA.RSQTY,
+                    VDATA.RSRT,
+                    VDATA.IQTY,
+                    VDATA.OSPILWL, 
+                    VDATA.ETCIQTY1, 
+                    VDATA.ETCIQTY2,
+                    VDATA.ETQTY,
+                    VDATA.TDQTY,
+                    VDATA.EDQTY,
+                    VDATA.ETCEDQTY,
+                    VDATA.SPDQTY,
+                    VDATA.ETCDQTY1,
+                    VDATA.ETCDQTY2,
+                    VDATA.ETCDQTY3,
+                    VDATA.OTLTDQTY,
+                    VDATA.ITQTY1,
+                    VDATA.ITQTY2,
+                    VDATA.ITQTY3,
+                    VDATA.DAMBSARF,
+                    D.CGEMPNO AS CGEMPNO,
+                    D.CGEMPNM AS CGEMPNM, 
+                    D.CGDT AS CGDT,
+                    '' AS CHKEMPNO, '' AS CHKEMPNM, '' AS CHKDT
+                    , PRWL
+                    , CK.RWL_CK, CK.OSPILWL_CK, CK.ETCIQTY2_CK, CK.EDQTY_CK, CK.ETCEDQTY_CK, CK.SPDQTY_CK, CK.ETCDQTY1_CK, CK.ETCDQTY2_CK, CK.ETCDQTY3_CK, CK.OTLTDQTY_CK, CK.ITQTY1_CK, CK.ITQTY2_CK, CK.ITQTY3_CK 
+              FROM  (
+			        SELECT MD.DAMCD, MD.OBSDHM AS OBSDT, 
+                    MD.RWL, 
+                    MD.RSQTY,
+                    MD.RSRT,
+                    MD.IQTY,
+                    MD.OSPILWL, 
+                    MD.ETCIQTY1, 
+                    MD.ETCIQTY2,
+                    MD.ETQTY,
+                    MD.TDQTY,
+                    MD.EDQTY,
+                    MD.ETCEDQTY,
+                    MD.SPDQTY,
+                    MD.ETCDQTY1,
+                    MD.ETCDQTY2,
+                    MD.ETCDQTY3,
+                    MD.OTLTDQTY,
+                    MD.ITQTY1,
+                    MD.ITQTY2,
+                    MD.ITQTY3,
+                    MD.DAMBSARF,
+                    MD.TRMDV
+			        FROM    <!--  F R O M  --> 
+                        DUBMMDAMIF@TECH.WORLD MD
+                        <isNotEmpty prepend="," property="MgtCd">
+                            HM_DAMMST MG
+                        </isNotEmpty>
+			        WHERE   <!--  W H E R E  --> 
+                        MD.TRMDV = '10'
+                        <isNotEmpty property="MgtCd">
+                            AND MD.DAMCD = MG.DAMCD
+                            AND MG.MGTCD = #MgtCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="DamCd">
+                            MD.DAMCD = #DamCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="StartDt">
+                            MD.OBSDHM BETWEEN #StartDt# AND #EndDt#
+                        </isNotEmpty>
+                      ) VDATA, DUBDAMSPC@TECH.WORLD DAM, DUBMMDAMIFCK CK,
+                (       <!-- 히스토리 -->
+                  SELECT DAMCD, OBSDHM, TRMDV, PRWL, CGDT, CGEMPNO, CGEMPNM
+                  FROM (
+                      SELECT A.DAMCD, A.OBSDHM, A.TRMDV
+                      , TO_CHAR(A.CGDT,'YYYYMMDDHHMISS') CGDT, A.CGEMPNO, B.KORNAME CGEMPNM  
+                      , ROW_NUMBER() OVER (PARTITION BY A.DAMCD, A.OBSDHM, A.TRMDV ORDER BY A.CGDT DESC) ROW_NUM
+                      , LAG(RWL) OVER(PARTITION BY A.DAMCD, A.OBSDHM, A.TRMDV ORDER BY A.CGDT DESC) PRWL
+                      FROM DUBMMDAMIFHT@TECH.WORLD A, DTB_USERINFO B
+                      WHERE A.CGEMPNO = B.EMPNO 
+                      AND A.TRMDV='10'
+                      <isNotEmpty prepend="AND" property="DamCd">
+                          A.DAMCD=#DamCd#
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="StartDt">
+                          A.OBSDHM BETWEEN  #StartDt# AND #EndDt# 
+                      </isNotEmpty>
+                  ) WHERE ROW_NUM=1  
+                ) D
+              WHERE DAM.DAMCD = VDATA.DAMCD
+              AND VDATA.DAMCD = CK.DAMCD
+              AND VDATA.OBSDT = CK.OBSDHM
+              AND VDATA.TRMDV = CK.TRMDV
+              AND VDATA.DAMCD = D.DAMCD
+              AND VDATA.OBSDT = D.OBSDHM 
+              AND VDATA.TRMDV = D.TRMDV
+              AND CK.OBSDHM BETWEEN #StartDt# AND #EndDt#
+              <isNotEmpty property="ExCd">
+                  <iterate property="ExCdList" prepend="AND"  open="(" close=")" conjunction="OR">
+                    $ExCdList[]$_CK = 'Y'
+                  </iterate>
+              </isNotEmpty>
+              ORDER BY DAM.DAMNM, VDATA.OBSDT DESC 
+        ) A
+
+    </select>
+    <!--댐 운영자료 검정 리스트 가져오기 끝-->
+    
+    <!-- 설비상태 모니터링 리스트 가져오기 
+    <select id="GetEquipAbnormList" resultClass="MainEquipModel">
+        SELECT ID, DAMCD, OBSCD, ABCOLUMN, OBSTP,
+        DAMNM, OBSNM, OBSDT, ABCONT, 'false' CHKYN
+        FROM (    
+            SELECT 
+              A.DAMCD, B.DAMNM, A.OBSCD, C.OBSNM, A.ABCOLUMN, A.OBSTP, A.OBSDT, A.CHKEMPNO, D.ABCONT
+            FROM HM_EQUIPMON A, DUBDAMSPC@TECH.WORLD B
+              , VM_OBSCODE3 C, HM_EQUIPCODE D, HM_DAMMST E
+            WHERE A.DAMCD=B.DAMCD
+            AND A.DAMCD=C.DAMCD
+            AND A.OBSCD=C.OBSCD
+            AND A.OBSTP=C.OBSTP
+            AND A.ABCOLUMN=D.ABCOLUMN
+            AND B.DAMCD=E.DAMCD
+            AND E.USE_FLAG='Y'
+            <isNotEmpty prepend="AND" property="StartDt" >
+                A.OBSDT BETWEEN #StartDt# || '00' AND #EndDt#|| '00'
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="MgtCd">
+                E.MGTCD = #MgtCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="DamCd">
+                A.DAMCD = #DamCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ObsCd" >
+                A.OBSCD = #ObsCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="AbColumn">
+                A.ABCOLUMN = #AbColumn#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ObsTp">
+                A.OBSTP = #ObsTp#
+            </isNotEmpty>      
+            ORDER BY A.OBSDT DESC
+        )
+    </select>-->
+
+    <!-- 설비상태 모니터링 리스트 가져오기 -->
+    <select id="GetEquipAbnormList" resultClass="EquipModel">
+        SELECT 
+            OBSDT, OBSCD, OBSNM,
+            FN_CONV_CHAR(BATTVOLT) AS BATTVOLT, 
+            FN_CONV_CHAR(BATTSTS) AS BATTSTS, 
+            FN_CONV_CHAR(DOORSTS) AS DOORSTS, 
+            FN_CONV_CHAR(PWRSTS) AS PWRSTS, 
+            FN_CONV_CHAR(WL_SEN) AS WL_SEN, 
+            FN_CONV_CHAR(RF_SEN) AS RF_SEN,
+            FN_CONV_CHAR(WQ_SEN) AS WQ_SEN, 
+            FN_CONV_CHAR(ETC_SEN) AS ETC_SEN, 
+            FN_CONV_CHAR(RTU_MEMORY) AS RTU_MEMORY, 
+            FN_CONV_CHAR(RTU_RESET) AS RTU_RESET,
+            FN_CONV_CHAR(WDT_RESET) AS WDT_RESET, 
+            FN_CONV_CHAR(LAN_PORT) AS LAN_PORT,
+            FN_CONV_CHAR(CDMA_MODEM) AS CDMA_MODEM,
+            FN_CONV_CHAR(VSAT_PORT) AS VSAT_PORT, 
+            FN_CONV_CHAR(CDMA_PORT) AS CDMA_PORT,
+            FN_CONV_CHAR(WIRE_PORT) AS WIRE_PORT, 
+            FN_CONV_CHAR(MULTICAST_SOCKET) AS MULTICAST_SOCKET, 
+            FN_CONV_CHAR(VSAT_EVENT) AS VSAT_EVENT, 
+            FN_CONV_CHAR(CDMA_EVENT) AS CDMA_EVENT, 
+            FN_CONV_CHAR(WIRE_EVENT) AS WIRE_EVENT, 
+            FN_CONV_CHAR(UDP_EVENT) AS UDP_EVENT, 
+            FN_CONV_CHAR(IDU_PING) AS IDU_PING, 
+            FN_CONV_CHAR(SNR) AS SNR, 
+            FN_CONV_CHAR(PRIMARY_DATA) AS PRIMARY_DATA, 
+            FN_CONV_CHAR(SECONDARY_CALL) AS SECONDARY_CALL, 
+            FN_CONV_CHAR(DATA_STATUS) AS DATA_STATUS,
+            FN_CONV_CHAR(GATHERING_TIME) AS GATHERING_TIME
+        FROM (
+        <isNotEqual property="ObsTp" compareValue="RF"> <!-- WL 또는 WR 인경우-->
+            SELECT 
+                A.OBSDT, A.WLOBSCD AS OBSCD, C.OBSNM,
+                A.BATTVOLT, 
+                A.BATTSTS, A.DOORSTS, A.PWRSTS, 
+                A.WL_SEN, A.RF_SEN,
+                A.WQ_SEN, 
+                A.ETC_SEN, A.RTU_MEMORY, 
+                A.RTU_RESET,
+                A.WDT_RESET, A.LAN_PORT,
+                A.CDMA_MODEM,
+                A.VSAT_PORT, A.CDMA_PORT,
+                A.WIRE_PORT, 
+                A.MULTICAST_SOCKET, 
+                A.VSAT_EVENT, 
+                A.CDMA_EVENT, 
+                A.WIRE_EVENT, 
+                A.UDP_EVENT, 
+                A.IDU_PING, 
+                A.SNR, 
+                A.PRIMARY_DATA, 
+                A.SECONDARY_CALL, 
+                A.DATA_STATUS,
+                A.GATHERING_TIME
+            FROM DTB1MWLIF A, DUBDAMSPC@TECH.WORLD B, DUBWLOBSIF@TECH.WORLD C, HM_DAMMST D
+            WHERE 1=1
+            AND A.DAMCD = B.DAMCD 
+            AND A.WLOBSCD = C.WLOBSCD
+            AND B.DAMCD = D.DAMCD(+)
+            AND SUBSTR(OBSDT,11,2) IN ('00','10','20','30','40','50')
+            <isNotEmpty prepend="AND" property="StartDt" >
+                A.OBSDT BETWEEN #StartDt# || '00' AND #EndDt#|| '00'
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="MgtCd">
+                D.MGTCD = #MgtCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="DamCd">
+                B.DAMCD = #DamCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ObsCd" >
+                A.WLOBSCD = #ObsCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="AbColumn">
+                <isEqual property="AbColumn" compareValue="BATTVOLT">
+                    BATTVOLT <![CDATA[<=]]> 0
+                </isEqual>
+                <isEqual property="AbColumn" compareValue="SECONDARY_CALL">
+                    SECONDARY_CALL <![CDATA[>]]> 0
+                </isEqual>
+                <isNotEqual property="AbColumn" compareValue="BATTVOLT"><isNotEqual property="AbColumn" compareValue="SECONDARY_CALL">
+                    $AbColumn$ = 1
+                </isNotEqual></isNotEqual>
+            </isNotEmpty>
+        </isNotEqual>
+        <isEmpty property="ObsTp"> <!-- WR 인경우-->
+            UNION ALL
+        </isEmpty>
+        <isNotEqual property="ObsTp" compareValue="WL"> <!-- RF 또는 WR 인경우-->
+            SELECT 
+                A.OBSDT, A.RFOBSCD AS OBSCD, C.OBSNM,
+                A.BATTVOLT, 
+                A.BATTSTS, A.DOORSTS, A.PWRSTS, 
+                A.WL_SEN, A.RF_SEN,
+                A.WQ_SEN, 
+                A.ETC_SEN, A.RTU_MEMORY, 
+                A.RTU_RESET,
+                A.WDT_RESET, A.LAN_PORT,
+                A.CDMA_MODEM,
+                A.VSAT_PORT, A.CDMA_PORT,
+                A.WIRE_PORT, 
+                A.MULTICAST_SOCKET, 
+                A.VSAT_EVENT, 
+                A.CDMA_EVENT, 
+                A.WIRE_EVENT, 
+                A.UDP_EVENT, 
+                A.IDU_PING, 
+                A.SNR, 
+                A.PRIMARY_DATA, 
+                A.SECONDARY_CALL, 
+                A.DATA_STATUS,
+                A.GATHERING_TIME
+            FROM DTB1MRFIF A, DUBDAMSPC@TECH.WORLD B, DUBRFOBSIF@TECH.WORLD C, HM_DAMMST D
+            WHERE 1=1
+            AND A.DAMCD = B.DAMCD 
+            AND A.RFOBSCD = C.RFOBSCD
+            AND B.DAMCD = D.DAMCD(+)
+            AND SUBSTR(OBSDT,11,2) IN ('00','10','20','30','40','50')
+            <isNotEmpty prepend="AND" property="StartDt" >
+                A.OBSDT BETWEEN #StartDt# || '00' AND #EndDt#|| '00'
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="MgtCd">
+                D.MGTCD = #MgtCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="DamCd">
+                B.DAMCD = #DamCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ObsCd" >
+                A.RFOBSCD = #ObsCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="AbColumn">
+                <isEqual property="AbColumn" compareValue="BATTVOLT">
+                    BATTVOLT <![CDATA[<=]]> 0
+                </isEqual>
+                <isEqual property="AbColumn" compareValue="SECONDARY_CALL">
+                    SECONDARY_CALL <![CDATA[>]]> 0
+                </isEqual>
+                <isNotEqual property="AbColumn" compareValue="BATTVOLT"><isNotEqual property="AbColumn" compareValue="SECONDARY_CALL">
+                    $AbColumn$ = 1
+                </isNotEqual></isNotEqual>
+            </isNotEmpty>
+        </isNotEqual>
+        )
+        WHERE 1=1
+        ORDER BY OBSNM, OBSDT
+    </select>
+      
+    <!-- 알람현황모니터링 리스트 가져오기 -->
+    <select id="getAlarmList" resultClass="MainDamoperModel">
+        SELECT A.OBSDT || '_' || A.DAMCD || '_' || A.OBSCD || '_' || A.ERR_CD ID, 
+            A.DAMCD, C.DAMNM, FN_CONV_DATE(ERR_DT) EVENTTIME,
+            ERR_CONT POPUP_SEE, 'false' CHKYN, 
+            A.OBSDT, A.OBSCD, A.ERR_CD 
+        FROM DTBALARM A, HM_ALARMCODE B, VM_DAMCODE C
+        WHERE A.ERR_CD=B.ALARMCD
+        AND A.ERR_DT IS NOT NULL
+        AND A.DAMCD=C.DAMCD
+        <isNotEmpty prepend="AND" property="MGTCD">
+            C.MGTCD = #MGTCD#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="DAMCD">
+            A.DAMCD = #DAMCD#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="STARTDT">
+            A.OBSDT BETWEEN #STARTDT# || '00' AND #ENDDT# || '00'
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="ERR_CD">
+            A.ERR_CD = #ERR_CD#                  
+        </isNotEmpty>
+        ORDER BY ERR_DT DESC         
+    </select>
+      
+      
+    <!--우량 이상자료2 리스트 가져오기 시작-->  
+    <select id="GetRfModifiedDataList" resultClass="RFDataSearchModel" parameterClass="HashTable">
+      SELECT
+      RET.ID, RET.OBSDT, RET.DAMCD, RET.OBSCD, RET.OBSNM, RET.TRMDV, FN_CONV_CHAR(RET.RF) RF, FN_CONV_CHAR(RET.ACURF) ACURF, FN_CONV_CHAR(RET.EXRF) EXRF, FN_CONV_CHAR(RET.EXVL) EXVL, RET.EXCD, EC2.EXCOLOR, RET.CHKEMPNO, RET.CHKDT, 
+      RET.CHKEMPNM, RET.CGEMPNO, TO_CHAR(RET.CGDT, 'YYYYMMDDHH24MI') CGDT, RET.CGEMPNM, EDEXWAY, FN_CONV_CHAR(EDEXLVL) EDEXLVL, RET.EDEXWAYCONT
+      FROM (
+            SELECT
+                NVDATA.RFOBSCD||'_'||NVDATA.OBSDHM AS ID,
+                NVDATA.OBSDHM OBSDT,
+                NVDATA.DAMCD,
+                NVDATA.RFOBSCD OBSCD, OC.OBSNM,
+                NVDATA.TRMDV,
+                NVDATA.RF RF,
+                NVDATA.ACURF ACURF,
+                NVDATA.RF EXRF,
+                NVL(ABN.EXVL, NVDATA.ACURF) EXVL,
+                NVL(ABN.EXCD, '0100') EXCD,
+                HT.EDEXWAY, 
+                HT.EDEXLVL,
+                ABN.CHKEMPNO,
+                ABN.CHKDT CHKDT,
+                ABN.KORNAME CHKEMPNM,
+                HT.CGEMPNO,
+                HT.CGDT CGDT,
+                UIE.KORNAME CGEMPNM,
+                WAY.EDEXWAYCONT
+            FROM 
+                (
+                 SELECT A.DAMCD, A.RFOBSCD, A.TRMDV, A.OBSDHM, A.ACURF, A.RF, A.EDEXLVL
+                 FROM dubmmrf@tech.world A, dubmmrfck B
+                 WHERE 1=1
+                    AND A.TRMDV = B.TRMDV
+                    AND A.RFOBSCD = B.RFOBSCD
+                    AND A.OBSDHM = B.OBSDHM
+                    AND A.trmdv = '10'
+                        <isNotEmpty prepend="AND" property="DamCd">
+                            A.DAMCD=#DamCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="ObsCd">
+                            A.RFOBSCD=#ObsCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="StartDt">
+                            A.OBSDHM BETWEEN  #StartDt# AND #EndDt#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="ExRsn">
+                            B.EXRSN = #ExRsn#
+                        </isNotEmpty>
+                ) NVDATA
+                , (
+                    <!-- 검정코드 & 확인자명 조인 -->
+                    SELECT A.DAMCD, A.OBSCD, A.OBSDT, A.OBSTP, A.OBVL, A.EXVL, A.EXCD, A.CHKEMPNO, A.CHKDT, B.KORNAME
+                    FROM HM_ABNORMSTAT A, DTB_USERINFO B
+                    WHERE 1=1
+                        AND A.CHKEMPNO = B.EMPNO(+)
+                        AND A.OBSTP = 'RF'
+                        <isNotEmpty prepend="AND" property="DamCd">
+                            A.DAMCD=#DamCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="ObsCd">
+                            A.OBSCD=#ObsCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="StartDt">
+                            A.OBSDT BETWEEN  #StartDt# AND #EndDt#
+                        </isNotEmpty>
+                ) ABN
+                , (
+                    <!-- 보정방법을 조회하기위해 필요 -->                
+                    SELECT OBSDHM, DAMCD, RFOBSCD, EDEXWAY, EDEXLVL, CGEMPNO, CGDT, TRMDV
+                    FROM (
+                        SELECT OBSDHM, DAMCD, RFOBSCD, EDEXWAY, EDEXLVL, CGEMPNO, CGDT, TRMDV,
+                               ROW_NUMBER() OVER (PARTITION BY OBSDHM, RFOBSCD, TRMDV ORDER BY CGDT DESC) ROW_NUM
+                        FROM DUBMMRFHT@TECH.WORLD OC
+                        WHERE TRMDV='10'
+                        <isNotEmpty prepend="AND" property="DamCd">
+                            DAMCD=#DamCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="ObsCd">
+                            RFOBSCD=#ObsCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="StartDt">
+                            OBSDHM BETWEEN  #StartDt# AND #EndDt#
+                        </isNotEmpty>
+                    ) WHERE ROW_NUM=1
+                ) HT
+                , DUBRFOBSIF@TECH.WORLD OC
+                , HM_DAMMST MGT
+                , DTB_USERINFO UIE
+                , HM_EDCODE WAY
+            WHERE 1=1
+                <!-- 이상자료(추정자료) 조인 -->    
+                AND NVDATA.DAMCD=ABN.DAMCD(+)
+                AND NVDATA.RFOBSCD=ABN.OBSCD(+)
+                AND NVDATA.OBSDHM=ABN.OBSDT(+)
+                <!-- 수정이력 조인 -->
+                AND NVDATA.DAMCD=HT.DAMCD
+                AND NVDATA.RFOBSCD=HT.RFOBSCD
+                AND NVDATA.OBSDHM=HT.OBSDHM
+                AND NVDATA.TRMDV=HT.TRMDV
+                <!-- 관측국 조인 -->
+                AND NVDATA.RFOBSCD=OC.RFOBSCD
+                <!-- 관리단 조인 (조건을 추가히가 위해서) -->
+                AND NVDATA.DAMCD = MGT.DAMCD
+                <!-- 보정자명 조인 -->
+                AND HT.CGEMPNO=UIE.EMPNO(+)
+                <!-- 보정등급 조인 -->
+                AND HT.EDEXWAY=WAY.EDEXWAY(+)
+                AND 'RF'=WAY.EDTP(+)
+                <!-- 조건문 -->
+                AND NVDATA.TRMDV='10'
+                AND OC.CLSDV = 0
+                <isNotEmpty prepend="AND" property="MgtCd">
+                    MGT.MgtCd=#MgtCd#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="DamCd">
+                    NVDATA.DAMCD=#DamCd#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="ObsCd">
+                    NVDATA.RFOBSCD=#ObsCd#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="StartDt">
+                    NVDATA.OBSDHM BETWEEN  #StartDt# AND #EndDt#
+                </isNotEmpty>
+        ) RET, HM_EXCODE EC2
+        WHERE RET.EXCD=EC2.EXCD <!-- 품질등급 색깔 조인2 -->
+        AND EC2.EXTP IN ('R','C')
+        ORDER BY RET.OBSNM, RET.OBSDT DESC
+    </select>
+    <!--우량 이상자료2 리스트 가져오기 종료-->
+      
+
+    <!--수위 이상자료2 리스트 가져오기 시작-->
+    <select id="GetWlModifiedDataList" resultClass="WLDataSearchModel" parameterClass="HashTable">
+        SELECT RET.ID, RET.OBSDT, RET.DAMCD, RET.OBSCD, RET.OBSNM, RET.TRMDV, FN_CONV_CHAR(RET.WL) WL, FN_CONV_CHAR(RET.FLW) FLW, FN_CONV_CHAR(RET.EXVL) EXVL
+        , RET.EXCD, EC2.EXCOLOR, RET.EDEXWAY, FN_CONV_CHAR(RET.EDEXLVL) EDEXLVL, RET.CHKEMPNO, RET.CHKDT
+        , RET.CHKEMPNM, RET.CGEMPNO, TO_CHAR(RET.CGDT, 'YYYYMMDDHH24MI') CGDT, RET.CGEMPNM, RET.EDEXWAYCONT
+        FROM (
+        <isEqual property="DataTp" compareValue="10">
+            SELECT
+                NVDATA.WLOBSCD||'_'||NVDATA.OBSDHM AS ID,
+                NVDATA.OBSDHM OBSDT, NVDATA.DAMCD,
+                NVDATA.WLOBSCD OBSCD, OC.OBSNM,
+                NVDATA.TRMDV, NVDATA.WL WL, 
+                NVDATA.FLW, NVL(ABN.EXVL, NVDATA.WL) EXVL,
+                NVL(ABN.EXCD, '0100') EXCD,  HT.EDEXWAY, 
+                HT.EDEXLVL,  
+                ABN.CHKEMPNO, 
+                ABN.CHKDT CHKDT, 
+                ABN.KORNAME CHKEMPNM, 
+                HT.CGEMPNO, HT.CGDT,
+                UIE.KORNAME CGEMPNM,WAY.EDEXWAYCONT
+            FROM (
+					SELECT A.DAMCD, B.WLOBSCD, B. OBSDHM, '10' TRMDV, A.WL, A.FLW, A.EDEXLVL, A.CONTROLDT
+                    FROM DUBMMWL@TECH.WORLD A, DUBMMWLCK B
+                    WHERE 1=1
+                      AND B.TRMDV = A.TRMDV
+                      AND B.WLOBSCD = A.WLOBSCD
+                      AND B.OBSDHM = A.OBSDHM
+                      AND A.TRMDV='10'
+						<isNotEmpty prepend="AND" property="DamCd">
+                            A.DAMCD=#DamCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="ObsCd">
+                            A.WLOBSCD=#ObsCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="StartDt">
+                            A.OBSDHM BETWEEN  #StartDt# AND #EndDt#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="ExRsn">
+                            B.EXRSN = #ExRsn#
+                        </isNotEmpty>
+                ) NVDATA
+                , (
+                    <!-- 검정코드 & 확인자명 조인 -->
+                    SELECT A.DAMCD, A.OBSCD, A.OBSDT, A.OBVL, A.EXVL, A.EXCD, A.EXMTD, A.CHKEMPNO, A.CHKDT, A.OBSTP, B.KORNAME
+                    FROM HM_ABNORMSTAT A, DTB_USERINFO B
+                    WHERE 1=1
+                      AND A.CHKEMPNO = B.EMPNO(+)
+					  AND A.OBSTP = 'WL'
+                        <isNotEmpty prepend="AND" property="DamCd">
+                            A.DAMCD=#DamCd#
+                        </isNotEmpty>
+						<isNotEmpty prepend="AND" property="ObsCd">
+                            A.OBSCD=#ObsCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="StartDt">
+                            A.OBSDT BETWEEN  #StartDt# AND #EndDt#
+                        </isNotEmpty>
+                ) ABN
+                , (
+                    SELECT OBSDHM, WLOBSCD, EDEXWAY, EDEXLVL, CGEMPNO, CGDT, TRMDV
+                    FROM (
+                        SELECT OBSDHM, WLOBSCD, EDEXWAY, EDEXLVL, CGEMPNO, CGDT, TRMDV,
+                               ROW_NUMBER() OVER (PARTITION BY OBSDHM, WLOBSCD, TRMDV ORDER BY CGDT DESC) ROW_NUM
+                        FROM DUBMMWLHT@TECH.WORLD OC
+                        WHERE 1=1
+                          AND TRMDV='10'
+                        <isNotEmpty prepend="AND" property="DamCd">
+                            DAMCD=#DamCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="ObsCd">
+                            WLOBSCD=#ObsCd#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="StartDt">
+                            OBSDHM BETWEEN  #StartDt# AND #EndDt#
+                        </isNotEmpty>
+                    ) WHERE ROW_NUM=1
+                ) HT, 
+                DUBWLOBSIF@TECH.WORLD OC, 
+                HM_DAMMST MGT,
+                DTB_USERINFO UIE,
+                HM_EDCODE WAY
+            WHERE 1=1
+            <!-- 이상자료(추정자료) 조인 -->  
+            AND NVDATA.DAMCD=ABN.DAMCD(+)
+            AND NVDATA.WLOBSCD=ABN.OBSCD(+)
+            AND NVDATA.OBSDHM=ABN.OBSDT(+)
+            <!-- 수정이력 조인 -->
+            AND NVDATA.WLOBSCD=HT.WLOBSCD
+            AND NVDATA.OBSDHM=HT.OBSDHM
+            AND NVDATA.TRMDV=HT.TRMDV
+            <!-- 관측국 조인 -->
+            AND NVDATA.WLOBSCD=OC.WLOBSCD
+            <!-- 관리단 조인 (조건을 추가히가 위해서) -->
+            AND NVDATA.DAMCD = MGT.DAMCD
+            <!-- 보정자명 조인 -->
+            AND HT.CGEMPNO=UIE.EMPNO(+)
+            <!-- 보정등급 조인 -->
+            AND HT.EDEXWAY=WAY.EDEXWAY(+)
+            AND 'WL'=WAY.EDTP(+)
+            <!-- 조건문 -->
+            AND NVDATA.TRMDV='10'
+            AND OC.CLSDV = '0'
+            <isNotEmpty prepend="AND" property="MgtCd">
+                MGT.MgtCd=#MgtCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="DamCd">
+                NVDATA.DAMCD=#DamCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ObsCd">
+                NVDATA.WLOBSCD=#ObsCd#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="StartDt">
+                NVDATA.OBSDHM BETWEEN  #StartDt# AND #EndDt#
+            </isNotEmpty>
+        </isEqual>
+        ) RET, HM_EXCODE EC2
+        WHERE RET.EXCD=EC2.EXCD
+        AND EC2.EXTP IN ('W','C')
+        ORDER BY RET.OBSNM, RET.OBSDT DESC
+    </select>
+    <!--수위 이상자료2 리스트 가져오기 종료-->
+      
+    <!-- 스케쥴러 로그등록 -->
+    <insert id="InsertSchedulerMonitor" parameterClass="Hashtable">
+        INSERT INTO HM_SCHEDULERMON(SHTP, STARTDT, NOTE, IP) VALUES (#SHTP#, #STARTDT#, #NOTE#, #IP#)
+    </insert>
+    <update id="UpdateSchedulerMonitor" parameterClass="Hashtable">
+        UPDATE HM_SCHEDULERMON SET ENDDT=#ENDDT# WHERE SHTP=#SHTP# AND STARTDT=#STARTDT# AND NOTE = #NOTE# AND IP = #IP# AND ENDDT IS NULL
+    </update>
+      
+    <!-- 댐운영자료 스케쥴러 -->
+    <statement id="SP_STAT_EXDAM" parameterClass="Hashtable">
+        BEGIN PKG_STATISTICS.SP_STAT_EXDAM(#OBSDT#); END;
+    </statement>
+    <!-- 우량 스케쥴러 -->
+    <statement id="SP_STAT_EXRF" parameterClass="Hashtable">
+        BEGIN PKG_STATISTICS.SP_STAT_EXRF(#OBSDT#); END;
+    </statement>
+    <!-- 수위 스케쥴러 -->
+    <statement id="SP_STAT_EXWL" parameterClass="Hashtable">
+        BEGIN PKG_STATISTICS.SP_STAT_EXWL(#OBSDT#); END;
+    </statement>
+      
+  </statements>
+</sqlMap>

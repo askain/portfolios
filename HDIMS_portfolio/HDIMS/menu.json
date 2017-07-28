@@ -1,0 +1,73 @@
+﻿[
+	{text:'Home', link:'/Test', id: '0010', leaf:false, expanded:true,
+		children:[
+			{text:'실시간 모니터링', link:'/Main/RealMonitor', id:'0011',leaf:true},
+			{text:'설비상태 모니터링', link:'/Main/TeleMonitor', id:'0012',leaf:true}
+		 ]
+	},
+	{text:'수문자료 이력조회',link:'',id:'0020',leaf:false, expanded:true,
+	 children:[
+		{text:'수위자료 이력조회', link:'/DataSearch/WaterLevelSearch', id:'0021',leaf:true},
+		{text:'우량자료 이력조회', link:'/DataSearch/RainFallSearch', id:'0022',leaf:true},
+		{text:'설비상태 이력조회', link:'/DataSearch/EquipSearch', id:'0023',leaf:true}
+	 ]
+	},
+	{text:'수문자료 검정', link:'',id:'0030',leaf:false, expanded:true,
+		children:[
+			{text:'수위자료 검정', link:'/Verify/WaterLevelVerify', id:'0031',leaf:true},
+			{text:'우량자료 검정', link:'/Verify/RainFallVerify', id:'0032',leaf:true},
+			{text:'댐운영자료 검정', link:'/Verify/DamDataVerify', id:'0033',leaf:true}
+		]
+	},
+	{text:'분석및 통계', link:'',id:'0040',leaf:false, expanded:true,
+		children:[
+			{text:'수위자료 통계', link:'/Statistics/WaterLevelStat', id:'0041',leaf:true},
+			{text:'우량자료 통계', link:'/Statistics/RainFallStat', id:'0042',leaf:true},
+			{text:'검보정 통계', link:'/Statistics/VerifyStat', id:'0043',leaf:true},
+			{text:'설비상태 통계', link:'/Statistics/EquipStat', id:'0044',leaf:true},
+			{text:'댐운영자료 통계', link:'/Statistics/DamDataStat', id:'0045',leaf:true}
+		]
+	},
+	{text:'보고서', link:'',id:'0050',leaf:false, expanded:true,
+		children:[
+			{text:'수위자료 보고서', link:'/Report/WaterLevelReport', id:'0051',leaf:true},
+			{text:'우량자료 보고서', link:'/Report/RainFallReport', id:'0052',leaf:true},
+			{text:'검보정 보고서', link:'/Report/VerifyReport', id:'0053',leaf:true},
+			{text:'설비상태 보고서', link:'/Report/EquipReport', id:'0054',leaf:true},
+			{text:'댐운영자료 보고서', link:'/Report/DamDataReport', id:'0055',leaf:true}
+		]
+	},
+	{text:'시스템관리', link:'',id:'0600',leaf:false, expanded:true,
+		children:[
+			{text:'댐/관측국 조회', link:'',id:'0610',leaf:false, expanded:false,
+				children:[
+					{text:'댐/관측국 조회', link:'', id:'0611',leaf:true}
+				]
+			},
+			{text:'담당자/권한관리', link:'',id:'0620',leaf:false, expanded:false,
+				children:[
+					{text:'담당자 관리', link:'', id:'0621',leaf:true},
+					{text:'권한 관리', link:'', id:'0622',leaf:true}
+				]
+			},
+			{text:'코드관리', link:'',id:'0630',leaf:false, expanded:false,
+				children:[
+					{text:'이상기준치 관리', link:'/Code/WLBaselineManagement', id:'0631',leaf:true},
+					{text:'인근관측국 관리', link:'/Code/WLObsManagement', id:'0632',leaf:true},
+					{text:'품질등급 관리', link:'/Code/ExamManagement', id:'0633',leaf:true},
+					{text:'설비상태 관리', link:'/Code/EquipManagement', id:'0634',leaf:true},
+					{text:'댐운영자료 알람관리', link:'/Code/AlarmManagement', id:'0635',leaf:true},
+					{text:'기타범례 관리', link:'/Code/EtcManagement', id:'0636',leaf:true}
+				]
+			},
+			{text:'통계현황', link:'',id:'0640',leaf:false, expanded:false,
+				children:[
+					{text:'로그인 통계', link:'', id:'0641',leaf:true},
+					{text:'메뉴별 통계', link:'', id:'0642',leaf:true},
+					{text:'사용자별 통계', link:'', id:'0643',leaf:true},
+					{text:'검보정 이력조회', link:'', id:'0644',leaf:true}
+				]
+			}
+		]
+	}
+]

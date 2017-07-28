@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="ManAuthMng"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="AuthModel" type="HDIMS.Models.Domain.ManAuthMng.AuthModel, HDIMS" />
+    <typeAlias alias="MenuNodeCountModel" type="HDIMS.Models.Domain.ManAuthMng.MenuNodeCountModel, HDIMS" />
+    <typeAlias alias="MenuMngModel" type="HDIMS.Models.Domain.ManAuthMng.MenuMngModel, HDIMS" />
+    <typeAlias alias="ManModel" type="HDIMS.Models.Domain.ManAuthMng.ManModel, HDIMS" />
+  </alias>
+
+  <statements>
+
+    <!--담당자관리 조회 시작-->
+    <select id="GetManCount" resultClass="int">
+      SELECT COUNT(*)
+      FROM DTB_USERINFO A, HM_AUTH_MASTER C, HM_DAMMGT D
+      WHERE 1=1
+      AND A.AUTHCODE = C.AUTHCODE(+)
+      AND A.MGTCD = D.MGTCD(+)
+      <isNotEmpty property="AUTHCODE" prepend="AND">
+        A.AUTHCODE = #AUTHCODE#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="EMPNO" >
+        TO_CHAR(A.EMPNO) like '%$EMPNO$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="EMPNM" >
+        A.KORNAME like '%$EMPNM$%'
+      </isNotEmpty>
+    </select>
+    <select id="GetManList" resultClass="ManModel" parameterClass="HashTable">
+      SELECT * FROM (
+      SELECT ROWNUM ROW_NUM, A.* FROM (
+      SELECT A.EMPNO, TRIM(A.PASSWD) PASSWD, A.KORNAME, A.DEPT, A.AUTHCODE, NVL(C.AUTHNAME,'전체사용자') AUTHNAME, A.EMAIL, A.HPTEL, D.MGTCD, D.MGTNM
+      FROM DTB_USERINFO A, HM_AUTH_MASTER C, HM_DAMMGT D
+      WHERE 1=1
+      AND A.AUTHCODE = C.AUTHCODE(+)
+      AND A.MGTCD = D.MGTCD(+)
+          <isNotEmpty property="AUTHCODE" prepend="AND">
+            A.AUTHCODE = #AUTHCODE#
+          </isNotEmpty>
+          <isEqual property="TERM" compareValue="ALL">
+            AND (A.EMPNO LIKE '%' || #TXT# || '%' OR A.KORNAME LIKE '%' || #TXT# || '%' OR A.DEPT LIKE '%' || #TXT# || '%')
+          </isEqual>
+          <isEqual property="TERM" compareValue="EMPNO">
+            AND A.EMPNO LIKE '%' || #TXT# || '%'
+          </isEqual>
+          <isEqual property="TERM" compareValue="KORNAME">
+            AND A.KORNAME LIKE '%' || #TXT# || '%'
+          </isEqual>
+          <isEqual property="TERM" compareValue="DEPT">
+            AND A.DEPT LIKE '%' || #TXT# || '%'
+          </isEqual>
+          <isNull property="SORTPROPERTY" >
+            ORDER BY C.AUTHNAME, A.DEPT, A.KORNAME
+          </isNull>
+          <isNotNull property="SORTPROPERTY" >
+            ORDER BY $SORTPROPERTY$ $SORTDIRECTION$
+          </isNotNull>
+      ) A
+      )
+      WHERE ROW_NUM BETWEEN $START$ AND $START$ + $LIMIT$
+    </select>
+    <!--담당자관리 조회 종료-->
+
+    <!--담당자 관리 사원별 권한 조회 시작-->
+    <select id="GetAuthUserList" resultClass="ManModel" parameterClass="ManModel">
+      SELECT AUTHCODE, EMPNO
+      FROM HM_AUTH_USER
+      WHERE EMPNO = #EMPNO#
+      ORDER BY EMPNO
+    </select>
+    <!--담당자 관리 사원별 권한 조회 종료-->
+
+    <!--담당자 관리 사원별 권한 수정 시작-->
+    <update id="UpdateAuthUser" parameterClass="ManModel">
+      UPDATE HM_AUTH_USER SET AUTHCODE = #AUTHCODE#
+      WHERE EMPNO = #EMPNO#
+    </update>
+    <!--담당자 관리 사원별 권한 수정 종료-->
+
+    <!--담당자 관리 사원별 권한 추가 시작-->
+    <insert id="InsertAuthUser" parameterClass="ManModel">
+      INSERT INTO HM_AUTH_USER (AUTHCODE, EMPNO) VALUES(#AUTHCODE#, #EMPNO#)
+    </insert>
+    <!--담당자 관리 사원별 권한 추가 종료-->
+
+    <!--담당자 관리 사원별 조회 시작-->
+    <select id="GetMan" resultClass="ManModel" parameterClass="ManModel">
+      SELECT EMPNO, PASSWD, MGTCD, EMAIL, HPTEL
+      FROM HM_USERINFO
+      WHERE TRIM(EMPNO) = TRIM(#EMPNO#)
+    </select>
+    <!--담당자 관리 사원별 조회 종료-->
+    <!--담당자 관리 사원별 수정 시작-->
+    <update id="UpdateMan" parameterClass="ManModel">
+      UPDATE HM_USERINFO SET 
+        MGTCD = #MGTCD# 
+        <isNotEmpty prepend="," property="PASSWD" >PASSWD = #PASSWD#</isNotEmpty>
+        <isNotEmpty prepend="," property="EMAIL" >EMAIL = #EMAIL#</isNotEmpty>
+        <isNotEmpty prepend="," property="HPTEL" >HPTEL = #HPTEL#</isNotEmpty>
+      WHERE EMPNO = #EMPNO#
+    </update>
+    <!--담당자 관리 사원별 수정 종료-->
+    <!--담당자 관리 사원별 추가 시작-->
+    <insert id="InsertMan" parameterClass="ManModel">
+      INSERT INTO HM_USERINFO (EMPNO, MGTCD
+        <isNotEmpty prepend="," property="PASSWD" >PASSWD</isNotEmpty>
+        <isNotEmpty prepend="," property="EMAIL" >EMAIL</isNotEmpty>
+        <isNotEmpty prepend="," property="HPTEL" >HPTEL</isNotEmpty>
+        , EMAIL, HPTEL) VALUES(#EMPNO#, #MGTCD#
+        <isNotEmpty prepend="," property="PASSWD" >#PASSWD#</isNotEmpty>
+        <isNotEmpty prepend="," property="EMAIL" >#EMAIL#</isNotEmpty>
+        <isNotEmpty prepend="," property="HPTEL" >#HPTEL#</isNotEmpty>
+      )
+    </insert>
+    <!--담당자 관리 사원별 추가 종료-->
+    <!--담당자의 홈페이지 수정 시작-->
+    <update id="UpdateHome" parameterClass="ManModel">
+      UPDATE HM_USERINFO SET HOME = #HOME#
+      WHERE EMPNO = #EMPNO#
+    </update>
+    <!--담당자의 홈페이지 수정 종료-->
+    <!--담당자의 홈페이지 추가 시작-->
+    <insert id="InsertHome" parameterClass="ManModel">
+      INSERT INTO HM_USERINFO (EMPNO, HOME) VALUES(#EMPNO#, #HOME#)
+    </insert>
+    <!--담당자의 홈페이지 추가 종료-->      
+    
+
+    <!--메뉴 관리 수정 시작-->
+    <update id="UpdateMenu" parameterClass="HashTable">
+      UPDATE HM_MENU_MASTER SET MENU_NAME = #MENU_NAME#, USE_FLAG= #USE_FLAG#, MENU_ORD = #MENU_ORD#, MENU_URI=#MENU_URI#
+      WHERE MENU_ID = #MENU_ID#
+    </update>
+    <!--메뉴 관리 수정 종료-->
+
+    <!--메뉴 관리 추가 시작-->
+    <insert id="InsertMenu" parameterClass="HashTable">
+      INSERT INTO HM_MENU_MASTER(MENU_ID, MENU_NAME, MENU_URI, MENU_LVL, USE_FLAG, PARENT_ID, MENU_ORD, MENU_DATE)
+      VALUES(SEQ_HM_MENU_MASTER.NEXTVAL, #MENU_NAME#, #MENU_URI#, #MENU_LVL#, #USE_FLAG#, #PARENT_ID#, #MENU_ORD#, TO_CHAR(SYSDATE, 'YYYYMMDDHH24SS'))
+    </insert>
+    <!--메뉴 관리 추가 종료-->
+
+    <!--메뉴 관리 자식 노드 카운트 조회 시작-->
+    <select id="SelectNodeCount" resultClass="MenuNodeCountModel" parameterClass="HashTable">
+      SELECT COUNT(*) NODECOUNT
+      FROM HM_MENU_MASTER
+      <isEqual property="MENU_ID" compareValue="root">
+        WHERE PARENT_ID IS NULL
+      </isEqual>
+      <isNotEqual property="MENU_ID" compareValue="root">
+        WHERE PARENT_ID=#MENU_ID#
+      </isNotEqual>
+    </select>
+    <!--메뉴 관리 자식 노드 카운트 조회 시작-->
+
+
+    <!--권한관리 조회 시작-->
+    <select id="GetAuthList" resultClass="AuthModel" parameterClass="AuthModel">
+      SELECT AUTHCODE, AUTHNAME, AUTHEXPLAN
+      FROM HM_AUTH_MASTER
+      <isNotEmpty property="AUTHCODE">
+        WHERE AUTHCODE = #AUTHCODE#
+      </isNotEmpty>
+      ORDER BY AUTHCODE
+    </select>
+    <!--권한관리 조회 종료-->
+
+    <!--권한 콤보 조회 시작-->
+    <select id="GetAuthCombo" resultClass="AuthModel">
+      SELECT '' AUTHCODE, '전체' AUTHNAME FROM DUAL
+      UNION ALL
+      SELECT AUTHCODE, AUTHNAME
+      FROM HM_AUTH_MASTER
+      ORDER BY AUTHCODE DESC
+    </select>
+    <!--권한 콤보 조회 종료-->
+
+    <!--권한관리 추가 시작-->
+    <insert id="InsertAuth" parameterClass="AuthModel">
+      INSERT INTO HM_AUTH_MASTER (AUTHCODE, AUTHNAME, AUTHEXPLAN)
+      VALUES(#AUTHCODE#, #AUTHNAME#, #AUTHEXPLAN#)
+    </insert>
+    <!--권한관리 추가 종료-->
+
+    <!--권한관리 수정 시작-->
+    <update id="UpdateAuth" parameterClass="AuthModel">
+      UPDATE HM_AUTH_MASTER SET AUTHNAME = #AUTHNAME#, AUTHEXPLAN = #AUTHEXPLAN#
+      WHERE AUTHCODE = #AUTHCODE#
+    </update>
+    <!--권한관리 수정 종료-->
+
+    <!--권한관리 삭제 시작-->
+    <delete id="DeleteAuth" parameterClass="AuthModel">
+      DELETE FROM HM_AUTH_MASTER
+      WHERE AUTHCODE = #AUTHCODE#
+    </delete>
+    <!--권한관리 삭제 종료-->
+
+
+    <!--권한관리 메뉴 리스트 조회 시작-->
+    <select id="GetMenuMngList" resultClass="MenuMngModel" parameterClass="HashTable">
+      SELECT
+      (SELECT B.MENU_NAME FROM HM_MENU_MASTER B WHERE B.MENU_ID = A.PARENT_ID ) B_MENU_NAME, A.MENU_ID, A.MENU_NAME
+      FROM HM_MENU_MASTER A
+      WHERE A.USE_FLAG = 'Y'
+      AND A.MENU_LVL > 1
+      AND A.MENU_URI IS NOT NULL
+      AND A.MENU_ID NOT IN (
+      SELECT MENU_ID
+      FROM HM_AUTH_MENU
+      WHERE AUTHCODE = #AUTHCODE#
+      )
+      ORDER BY A.PARENT_ID, A.MENU_ORD
+    </select>
+    <!--권한관리 메뉴 리스트 조회 종료-->
+
+    <!--권한관리 등록된 메뉴 리스트 조회 시작-->
+    <select id="GetRegMenuMngList" resultClass="MenuMngModel" parameterClass="HashTable">
+      SELECT
+      (SELECT B.MENU_NAME FROM HM_MENU_MASTER B WHERE B.MENU_ID = A.PARENT_ID ) B_MENU_NAME
+      , A.MENU_ID, A.MENU_NAME, B.AUTHCODE, B.MENU_ID||'_'||B.AUTHCODE AS ID
+      FROM HM_MENU_MASTER A, HM_AUTH_MENU B
+      WHERE A.MENU_ID = B.MENU_ID
+      AND A.USE_FLAG = 'Y'
+      AND A.MENU_LVL > 1
+      AND A.MENU_URI IS NOT NULL
+      <isNotEmpty property="AUTHCODE">
+        AND B.AUTHCODE = #AUTHCODE#
+      </isNotEmpty>
+      <isNotEmpty property="MENU_ID">
+        AND B.MENU_ID = #MENU_ID#
+      </isNotEmpty>
+      ORDER BY A.PARENT_ID, A.MENU_ORD
+    </select>
+    <!--권한관리 등록된 메뉴 리스트 조회 종료-->
+
+    <!--권한관리 등록된 메뉴리스트(권한에 따른 등록메뉴) 추가 시작-->
+    <insert id="InsertAuthMenu" parameterClass="MenuMngModel">
+      INSERT INTO HM_AUTH_MENU(AUTHCODE, MENU_ID)
+      VALUES(#AUTHCODE#, #MENU_ID#)
+    </insert>
+    <!--권한관리 등록된 메뉴리스트(권한에 따른 등록메뉴) 추가 종료-->
+
+    <!--권한관리 등록된 메뉴리스트(권한에 따른 등록메뉴) 삭제 시작-->
+    <delete id="DeleteAuthMenu" parameterClass="MenuMngModel">
+      DELETE FROM HM_AUTH_MENU
+      WHERE AUTHCODE = #AUTHCODE#
+      AND MENU_ID = #MENU_ID#
+    </delete>
+    <!--권한관리 등록된 메뉴리스트(권한에 따른 등록메뉴) 삭제 종료-->
+
+  </statements>
+
+</sqlMap>

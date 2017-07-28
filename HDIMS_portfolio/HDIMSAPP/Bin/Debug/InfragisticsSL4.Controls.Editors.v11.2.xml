@@ -1,0 +1,2212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsSL4.Controls.Editors.v11.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Utils">
+            <summary>
+            The Utils class contains some specific methods for internal use
+            </summary>
+        </member>
+        <member name="M:Infragistics.Utils.GetTimeSeparator(System.String)">
+            <summary>
+            Locates the first instance of a TimeSeperator in a time mask
+            </summary>
+            <param name="input">The mask to be processed.</param>
+            <returns>The character that represents the time seperator.</returns>
+        </member>
+        <member name="M:Infragistics.Utils.GetDateSeparator(System.String)">
+            <summary>
+            Locates the first instance of a DateSeparator in a time mask
+            </summary>
+            <param name="input">The mask to be processed.</param>
+            <returns>The character that represents the date seperator.</returns>
+        </member>
+        <member name="M:Infragistics.Utils.NumericMasks(System.String,System.Int64,System.String,System.Boolean)">
+            <summary>
+            Creates numeric masks
+            </summary>
+            <param name="symbol">Numeric mask symbol</param>
+            <param name="length">Number of numeric symbols</param>
+            <param name="thousandsSeparatorSymbol">Toudands separator symbol</param>
+            <param name="isFraction">Specifies if the result will represent the fraction part of the number</param>
+            <returns>Numeric masks</returns>        
+        </member>
+        <member name="P:Infragistics.Utils.MaskTypes">
+            <summary>
+            Gets all mask types 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Utils.DefaultNumericType">
+            <summary>
+            Gets the default numeric type.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Utils.DefaultMaxValue">
+            <summary>
+            Gets the default max value .
+            </summary>
+        </member>
+        <member name="P:Infragistics.Utils.DefaultMinValue">
+            <summary>
+            Gets the default min value .
+            </summary>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer">
+            <summary>
+            An automation peer for <see cref="T:Infragistics.Controls.Editors.XamMaskedEditor"/> allowing screenreaders and programatic user interaction.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer.#ctor(Infragistics.Controls.Editors.XamMaskedEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> that this automation peer controls.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer.GetClassNameCore">
+            <summary>
+            Overrides the framework invocation requesting a string that describes this control.
+            </summary>
+            <returns>A string describing the name of this control.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer.GetNameCore">
+            <summary>
+            Gets the text label of the <see cref="T:System.Windows.Controls.TextBox"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.TextBoxAutomationPeer"/>. Called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Gets the control pattern for the <see cref="T:System.Windows.Controls.TextBox"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.TextBoxAutomationPeer"/>.
+            </summary>
+            <param name="patternInterface">One of the enumeration values.</param>
+            <returns>
+            The object that implements the pattern interface, or null if the specified pattern interface is not implemented by this peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer.SetValue(System.String)">
+            <summary>
+            Sets the value of a control.
+            </summary>
+            <param name="value">The value to set. The provider is responsible for converting the value to the appropriate data type.</param>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer.IsReadOnly">
+            <summary>
+            Gets a value that indicates whether the value of a control is read-only.
+            </summary>
+            <value></value>
+            <returns>true if the value is read-only; false if it can be modified. </returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamMaskedEditorAutomationPeer.Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer.#ctor(Infragistics.Controls.Editors.XamMaskedEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> that this automation peer controls.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer.GetClassNameCore">
+            <summary>
+            Overrides the framework invocation requesting a string that describes this control.
+            </summary>
+            <returns>A string describing the name of this control.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer.SetValue(System.String)">
+            <summary>
+            Sets the value of a control.
+            </summary>
+            <param name="value">The value to set. The provider is responsible for converting the value to the appropriate data type.</param>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer.IsReadOnly">
+            <summary>
+            Gets a value that indicates whether the value of a control is read-only.
+            </summary>
+            <value></value>
+            <returns>true if the value is read-only; false if it can be modified. </returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamNumericEditorAutomationPeer.Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.Primitives.CharConverter">
+            <summary>
+            Converts from a string to a char by taking the first character.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.Primitives.CharConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns if this converter can convert a given type.
+            </summary>
+            <param name="context">This parameter is not used.</param>
+            <param name="sourceType">The type that needs to be converted.</param>
+            <returns>Returns true if sourceType is a string.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.Primitives.CharConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts from a string to a character, by using the first char in the string.
+            </summary>
+            <param name="context">This parameter is not used.</param>
+            <param name="culture">This paramater is not used.</param>
+            <param name="value">The string to convert to a char.</param>
+            <returns>The first character of the string given.</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.Primitives.StringToDoubleConverter">
+            <summary>
+            Type converter to convert strings to double at design time.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.Primitives.StringToDoubleConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Determines whether this converter can convert an object of the specified type.
+            </summary>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+            <param name="sourceType">The type that you want to convert from.</param>
+            <returns>true if sourceType is a <see cref="T:System.String"/> or of the specified type.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.Primitives.StringToDoubleConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts the specified string to a double.
+            </summary>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The object to covert to the Nullable enum type.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.Primitives.ValueTypeConverter">
+            <summary>
+            Converts string to a .net type
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.Primitives.ValueTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns if this converter can convert a given type.
+            </summary>
+            <param name="context">This parameter is not used.</param>
+            <param name="sourceType">The type that needs to be converted.</param>
+            <returns>Returns true if sourceType is a string.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.Primitives.ValueTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts from a string to a character, by using the first char in the string.
+            </summary>
+            <param name="context">This parameter is not used.</param>
+            <param name="culture">This paramater is not used.</param>
+            <param name="value">The string to convert to a char.</param>
+            <returns>The first character of the string given.</returns>
+        </member>
+        <member name="T:Infragistics.MaskManager">
+            <summary>
+            A class for internal use used for managing of the masks. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskManager.#ctor(System.String,System.Globalization.CultureInfo,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskManager"/> class.
+            </summary>
+            <param name="masks">A string representing the specified masks by the user</param>
+            <param name="cultureInfo">The specified control's Culture property</param>                
+            <param name="insertMode">Specifies the editing mode (insert or overstrike)</param>
+        </member>
+        <member name="M:Infragistics.MaskManager.InitializeMasks">
+            <summary>
+            Initialize all mask objects
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskManager.TextPresentation(System.Boolean,Infragistics.Controls.Editors.MaskMode,System.Char,System.Char,System.String@)">
+            <summary>
+            Generates text presentation of the control's value
+            </summary>
+            <param name="isInEditMode">Specifies if the control is in an edit mode</param>
+            <param name="maskMode">Specifies the mask mode</param>
+            <param name="padChar">Specifies the PadChar symbol</param>
+            <param name="promptChar">Specifies the PromptChar symbol</param>
+            <param name="textPresentation">A container for the generated text presentation of the control's value</param>
+            <returns>Returns True if there is at least one mask that has a value</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.ValuePresentation(Infragistics.Controls.Editors.MaskMode,System.Type,System.Char,System.Char,System.Object@)">
+            <summary>
+            Generates value presentation
+            </summary>
+            <param name="dataMode">Used for specifying the mode to be applied when creating the control's value from a masked editor.</param>
+            <param name="valueType">Specifies the type of the value</param>
+            <param name="padChar">Specifies the PadChar symbol</param>
+            <param name="promptChar">Specifies the PromptChar symbol</param>
+            <param name="value">A container for the generated value presentation</param>
+            <returns>Specifies if the value is valid</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.GetMaskLiterals">
+            <summary>
+            Gets all literal masks
+            </summary>
+            <returns>Returns all literal masks</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.Delete(System.Int32)">
+            <summary>
+            Change the text value of the control when the user delete a symbol
+            </summary>
+            <param name="selectionStart">Specifies the current caret position</param>        
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.Backspace(System.Int32)">
+            <summary>
+            Change the text value of the control when the user press the Backspace button
+            </summary>
+            <param name="selectionStart">Specifies the current caret position</param>        
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.Cut(System.Int32,System.Int32)">
+            <summary>
+            Change the text value of the control when the user cut the whole or a part of the text
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="previousSelectionLength">Specifies the previous SelectionLength</param>
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.NewSymbol(System.Int32,System.String)">
+            <summary>
+            Change the text value of the control when the user adds a new symbol 
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="value">Specifies the whole text value of the control</param>        
+            <returns>Returns the new cart position</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.Paste(System.Int32,System.Int32,System.String)">
+            <summary>
+            Change the text value of the control when the user paste a new string in the control
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="previousCaretPosition">Specifies the previous caret position</param>        
+            <param name="value">Specifies the whole text value of the control</param>        
+            <returns>Returns the new cart position</returns>
+        </member>
+        <member name="M:Infragistics.MaskManager.ApplyChanges">
+            <summary>
+            Commit all changes to all masks
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskManager.RejectChanges">
+            <summary>
+            Reject all changes to all masks
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskManager.IsValid">
+            <summary>
+            Gets a value indicating whether the all masks's criteria are meet
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskManager.InsertMode">
+            <summary>
+            Gets or sets a value indicating whether the control is in InsertMode mode (insert or overstrike).         
+            </summary>        
+        </member>
+        <member name="P:Infragistics.MaskManager.FirstEditableMaskPosition">
+            <summary>
+            Gets the position of the first editable mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskManager.Culture">
+            <summary>
+            Gets or sets the Culture associated with the Cultured edit control.  
+            </summary>      
+        </member>
+        <member name="T:Infragistics.Controls.Editors.MaskMode">
+            <summary>
+            Used for specifying the mode to be applied when getting text from a masked editor.
+            </summary>        
+        </member>
+        <member name="F:Infragistics.Controls.Editors.MaskMode.Raw">
+            <summary>
+            (Default) Raw Data Mode. Only significant characters will be
+            returned. Any prompt characters or literals will be excluded 
+            from the text.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.MaskMode.IncludeLiterals">
+            <summary>
+            Include Literal Characters. Data and literal characters will 
+            be returned. Prompt characters will be omitted.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.MaskMode.IncludePromptChars">
+            <summary>
+            Include Prompt Characters. Data and prompt characters will be 
+            returned. Literals will be omitted.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.MaskMode.IncludeBoth">
+            <summary>
+            Include both Prompt Characters and Literals. Text will be 
+            returned exactly as it appears in the object when a cell is
+            in edit mode. Data, prompt character and literals will all be 
+            included.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.MaskMode.IncludeLiteralsWithPadding">
+            <summary>
+            Include Literals With Padding. Prompt characters will be 
+            converted into pad characters (by default they are spaces,
+            which are then included with literals and data when text 
+            is returned.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.TabNavigationMode">
+            <summary>
+            Specifies whether to tab between sections when Tab and Shift+Tab keys are pressed. The default value is NextControl.  
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.TabNavigationMode.NextSection">
+            <summary>
+            Tab to the next section or to the next control if focus is in the last section. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.TabNavigationMode.NextControl">
+            <summary>
+            Tab to the next control 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.ValidationMode">
+            <summary>
+            Specifies if the validation is initiated on TextChange or on LostFocus event.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.ValidationMode.Always">
+            <summary>
+            Performes validation on every key down.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.ValidationMode.LostFocus">
+            <summary>
+            Performes validation when the focus is lost.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.XamNumericEditorCommand">
+            <summary>
+            An enumeration of available commands for the <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> control.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditorCommand.Increase">
+            <summary>
+            Increase the numeric value of the <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> control.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditorCommand.Decrease">
+            <summary>
+            Decrease the numeric value of the <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> control.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.UserAction">
+            <summary>
+            Specifies what action has been made by the user
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.UserAction.NewSymbol">
+            <summary>
+            A new symbol has been added 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.UserAction.Paste">
+            <summary>
+            Some symbols have been added (paste)
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.UserAction.Delete">
+            <summary>
+            The Delete button has been pressed
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.UserAction.Backspace">
+            <summary>
+            The Backspace button has been pressed
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.UserAction.Cut">
+            <summary>
+            Some symbols have been cut
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.UserAction.None">
+            <summary>
+            No action has been made
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.LetterCase">
+            <summary>
+            Specifies the case of a letter
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.LetterCase.None">
+            <summary>
+            No case modifier is used
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.LetterCase.UpperCase">
+            <summary>
+            An upper case modifier is used
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.LetterCase.LowerCase">
+            <summary>
+            An lower case modifier is used
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.TextInteraction">
+            <summary>
+            Specifies if the TextChange event is initiated by the user or by an internal process
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.TextInteraction.Keyboard">
+            <summary>
+            The Text property's value has been changed by the user pressing a keyboard button.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.TextInteraction.TextPropertyChanged">
+            <summary>
+            The Text property's value has been set by the user.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.TextInteraction.Internal">
+            <summary>
+            The Text property's value has been changed by an internal process.
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskAlphanumericOptional">
+            <summary>
+            Alphanumeric character placeholder. For example: a-z, A-Z, or 0-9. Character entry is not required. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskBase">
+            <summary>
+            An abstract class that will be inherited from to provide mask anaylsis for a given input.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskBase.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="M:Infragistics.MaskBase.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="M:Infragistics.MaskBase.PresentText(System.Boolean,Infragistics.Controls.Editors.MaskMode,System.Char,System.Char,Infragistics.Controls.Editors.LetterCase)">
+            <summary>
+            Generate the text presentation of the mask
+            </summary>
+            <param name="isInEditMode">Specify if the control is in edit mode</param>
+            <param name="maskMode">Specify the MaskMode of the control</param>
+            <param name="padChar">Specify the PadChar symbol</param>
+            <param name="promptChar">Specify the PromptChar symbol</param>
+            <param name="letterCase">Specify the case of the letters</param>
+            <returns>The generated text presentation</returns>
+        </member>
+        <member name="M:Infragistics.MaskBase.ApplyChanges">
+            <summary>
+            Commit all changes to the mask's value
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskBase.RejectChanges">
+            <summary>
+            Rollback temporary changes to the mask's value
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskBase.InitializeCharList">
+            <summary>
+            Initialize the mask's char list
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.IsEditable">
+            <summary>
+            Gets a value indicating whether the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.IsVisible">
+            <summary>
+            Gets a value indicating whether the mask has a presentation
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.IsLiteral">
+            <summary>
+            Gets a value indicating whether the mask represent a literal
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.IsRequired">
+            <summary>
+            Gets a value indicating whether the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.RequiredValueLength">
+            <summary>
+            Gets the length of the required value
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.MaskTemplateValue">
+            <summary>
+            Gets or sets the current value of the mask template. For the MaskLiteral class this value is different from the MaskTemplate.
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.TemplateLength">
+            <summary>
+            Gets the template's length
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.HasValue">
+            <summary>
+            Gets or sets a value indicating whether the mask has value
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.CultureInfo">
+            <summary>
+            Gets or sets the Culture of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.CharList">
+            <summary>
+            Gets or sets the internal presentation of the text value
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskBase.NewCharList">
+            <summary>
+            Gets or sets the internal presentation of the text value containing the new values
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskAlphanumericOptional.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskAlphanumericOptional"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskAlphanumericOptional.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="P:Infragistics.MaskAlphanumericOptional.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskDoubleNumberRequired">
+            <summary>
+            Placeholder for a mask that allows floating point input.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskDoubleNumberRequired.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskDoubleNumberRequired"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskDoubleNumberRequired.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="P:Infragistics.MaskDoubleNumberRequired.IsMinusAllowed">
+            <summary>
+            Gets or sets a value indicating whether the number could be negative
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskDoubleNumberRequired.I">
+            <summary>
+            Gets or sets the positions before the floating point
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskDoubleNumberRequired.F">
+            <summary>
+            Gets or sets the positions after the floating point
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskDoubleNumberRequired.FormatProvider">
+            <summary>
+            Gets or sets FormatProvider used for converting between value and text. 
+            </summary>        
+        </member>
+        <member name="P:Infragistics.MaskDoubleNumberRequired.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskEscape">
+            <summary>
+            Treat the next character in the mask string as a literal. 
+            This allows you to include the '#', 'A', and '?' as well as other characters with special meanings in the mask. 
+            This character is treated as a literal for masking purposes. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskEscape.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskEscape"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskEscape.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskEscape.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskEscape.IsVisible">
+            <summary>
+            Gets if the mask has a presentation
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskHexadecimalLowerCaseRequired">
+            <summary>
+            Hexadecimal digit placeholder. Character must be a hexadecimal digit (0-9 or a-f). 
+            The entry is required. A-F digits will be converted to lower case. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskHexadecimalUpperCaseRequired">
+            <summary>
+            Hexadecimal digit placeholder. Character must be a hexadecimal digit (0-9 or a-f). 
+            The entry is required. A-F digits will be converted to upper case. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskHexadecimalUpperCaseRequired.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskHexadecimalUpperCaseRequired"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskHexadecimalUpperCaseRequired.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="P:Infragistics.MaskHexadecimalUpperCaseRequired.IsRequired">
+            <summary>
+            Gets if the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskHexadecimalUpperCaseRequired.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskHexadecimalLowerCaseRequired.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskHexadecimalLowerCaseRequired"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskHexadecimalLowerCaseRequired.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLetterOptional">
+            <summary>
+            Letter placeholder. For example: a-z or A-Z. Character entry is not required. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLetterOptional.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLetterOptional"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLetterOptional.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="P:Infragistics.MaskLetterOptional.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLetterRequired">
+            <summary>
+            Letter placeholder. For example: a-z or A-Z. Character entry is required. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLetterRequired.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLetterRequired"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLetterRequired.IsRequired">
+            <summary>
+            Gets if the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLetterRequired.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLiteral">
+            <summary>
+            Represent a literal in the mask
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteral.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLiteral"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteral.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="P:Infragistics.MaskLiteral.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteral.IsLiteral">
+            <summary>
+            Gets if the mask represent a literal
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteral.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLiteralCurrencySymbol">
+            <summary>
+            Represent currency placeholder.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralCurrencySymbol.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLiteralCurrencySymbol"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralCurrencySymbol.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="P:Infragistics.MaskLiteralCurrencySymbol.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralCurrencySymbol.IsLiteral">
+            <summary>
+            Gets if the mask represent a literal
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralCurrencySymbol.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralCurrencySymbol.CultureInfo">
+            <summary>
+            Gets, sets the Culture of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLiteralDateSeparator">
+            <summary>
+            Date separator. The actual character used is the one specified as the date separator by the system's international settings. 
+            This character is treated as a literal for masking purposes.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralDateSeparator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLiteralDateSeparator"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralDateSeparator.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDateSeparator.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDateSeparator.IsLiteral">
+            <summary>
+            Gets if the mask represent a literal
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDateSeparator.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDateSeparator.CultureInfo">
+            <summary>
+            Gets, sets the Culture of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLiteralDecimalSeparator">
+            <summary>
+            Decimal placeholder. The actual character used is the one specified as the decimal placeholder by the system's international settings. 
+            This character is treated as a literal for masking purposes.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralDecimalSeparator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLiteralDecimalSeparator"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralDecimalSeparator.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDecimalSeparator.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDecimalSeparator.IsLiteral">
+            <summary>
+            Gets if the mask represent a literal
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDecimalSeparator.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralDecimalSeparator.CultureInfo">
+            <summary>
+            Gets, sets the Culture of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLiteralThousandsSeparator">
+            <summary>
+            Thousands separator. The actual character used is the one specified as the thousands separator by the system's international settings. 
+            This character is treated as a literal for masking purposes.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralThousandsSeparator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLiteralThousandsSeparator"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralThousandsSeparator.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="P:Infragistics.MaskLiteralThousandsSeparator.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralThousandsSeparator.IsLiteral">
+            <summary>
+            Gets if the mask represent a literal
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralThousandsSeparator.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralThousandsSeparator.CultureInfo">
+            <summary>
+            Gets, sets the Culture of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskLiteralTimeSeparator">
+            <summary>
+            Time separator. The actual character used is the one specified as the time separator by the system's international settings. 
+            This character is treated as a literal for masking purposes.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralTimeSeparator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskLiteralTimeSeparator"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskLiteralTimeSeparator.ContainsMask(System.String)">
+            <summary>
+            Returns the position of the next value to be processed.
+            </summary>
+            <param name="mask">The mask that is currently being evaluated</param>
+            <returns>The offset of the first character that the mask cannot handle.</returns>
+        </member>
+        <member name="P:Infragistics.MaskLiteralTimeSeparator.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralTimeSeparator.IsLiteral">
+            <summary>
+            Gets if the mask represent a literal
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralTimeSeparator.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskLiteralTimeSeparator.CultureInfo">
+            <summary>
+            Gets, sets the Culture of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskNumberOptional">
+            <summary>
+            Digit placeholder. Character must be numeric (0-9) but entry is not required. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskNumberOptional.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskNumberOptional"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskNumberOptional.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="P:Infragistics.MaskNumberOptional.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskNumberOrSignOptional">
+            <summary>
+            Digit and sign placeholder. Character must be numeric (0-9) and the signs (-,+) but entry is not required. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskNumberOrSignOptional.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskNumberOrSignOptional"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskNumberOrSignOptional.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="P:Infragistics.MaskNumberOrSignOptional.IsRequired">
+            <summary>
+            Gets if the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskNumberOrSignOptional.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskNumberRequired">
+            <summary>
+            Digit placeholder. Character must be numeric (0-9) and entry is required. Example: (###)-###-####.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskNumberRequired.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskNumberRequired"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskNumberRequired.IsRequired">
+            <summary>
+            Gets if the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskNumberRequired.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskSignOptional">
+            <summary>
+            Represent a sign placeholder.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskSignOptional.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskSignOptional"/> class. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskSignOptional.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="P:Infragistics.MaskSignOptional.IsRequired">
+            <summary>
+            Gets if the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskSignOptional.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskSymbolOptional">
+            <summary>
+            Character or space placeholder. Character entry is not required. 
+            This operates exactly like the MaskSymbolRequired mask, and ensures compatibility with Microsoft Access. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskSymbolOptional.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskSymbolOptional"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskSymbolOptional.Parse(System.String)">
+            <summary>
+            Parse the given symbols against the current mask.
+            </summary>
+            <param name="value">Specify the rest of the mask symbols</param>        
+            <returns>A ParseResult object containing information about the parsing process</returns>
+        </member>
+        <member name="P:Infragistics.MaskSymbolOptional.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskSymbolRequired">
+            <summary>
+            Character placeholder. 
+            Valid values for this placeholder are ANSI characters in the following ranges: 32-126 and 128-255 (keyboard and foreign symbol characters). 
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskSymbolRequired.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskSymbolRequired"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskSymbolRequired.IsRequired">
+            <summary>
+            Gets if the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskSymbolRequired.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskToLowerCase">
+            <summary>
+            Convert all the characters that follow to lowercase. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.MaskToUpperCase">
+            <summary>
+            Convert all the characters that follow to uppercase.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MaskToUpperCase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MaskToUpperCase"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskToUpperCase.IsVisible">
+            <summary>
+            Gets if the mask has a presentation
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskToUpperCase.IsEditable">
+            <summary>
+            Gets if the value of the mask is editable 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskToUpperCase.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskToUpperCase.RequiredValueLength">
+            <summary>
+            Gets the length of the required value
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskToLowerCase.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.MEMaskManager">
+            <summary>
+            A class for internal use used for managing of the masks. 
+            It's used by MaskEditor control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.#ctor(System.String,System.Globalization.CultureInfo,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.MEMaskManager"/> class.
+            </summary>
+            <param name="mask">A string representing the specified mask by the user</param>
+            <param name="cultureInfo">The specified control's Culture property</param>                
+            <param name="insertMode">Specifies the editing mode (insert or overstrike)</param>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.Delete(System.Int32)">
+            <summary>
+            Change the text value of the control when the user delete a symbol
+            </summary>
+            <param name="selectionStart">Specifies the current caret position</param>        
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.Backspace(System.Int32)">
+            <summary>
+            Change the text value of the control when the user press the Backspace button
+            </summary>
+            <param name="selectionStart">Specifies the current caret position</param>        
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.Cut(System.Int32,System.Int32)">
+            <summary>
+            Change the text value of the control when the user cut the whole or a part of the text
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="previousSelectionLength">Specifies the previous SelectionLength</param>
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.NewSymbol(System.Int32,System.String)">
+            <summary>
+            Change the text value of the control when the user adds a new symbol 
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="value">Specifies the whole text value of the control</param>        
+            <returns>Returns the new cart position</returns>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.Paste(System.Int32,System.Int32,System.String)">
+            <summary>
+            Change the text value of the control when the user pastes a new string in the control
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="previousCaretPosition">Specifies the previous caret position</param>        
+            <param name="value">Specifies the whole text value of the control</param>        
+            <returns>Returns the new cart position</returns>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.TextPresentation(System.Boolean,Infragistics.Controls.Editors.MaskMode,System.Char,System.Char,System.String@)">
+            <summary>
+            Generates text presentation of the control's value
+            </summary>
+            <param name="isInEditMode">Specifies if the control is in an edit mode</param>
+            <param name="maskMode">Specifies the mask mode</param>
+            <param name="padChar">Specifies the PadChar symbol</param>
+            <param name="promptChar">Specifies the PromptChar symbol</param>
+            <param name="textPresentation">A container for the generated text presentation of the control's value</param>
+            <returns>Returns True if there is at least one mask that has a value. This flag is used by NullText property.</returns>
+        </member>
+        <member name="M:Infragistics.MEMaskManager.ValuePresentation(Infragistics.Controls.Editors.MaskMode,System.Type,System.Char,System.Char,System.Object@)">
+            <summary>
+            Generates value presentation
+            </summary>
+            <param name="dataMode">Used for specifying the mode to be applied when creating the control's value from a masked editor.</param>
+            <param name="valueType">Specifies the type of the value</param>
+            <param name="padChar">Specifies the PadChar symbol</param>
+            <param name="promptChar">Specifies the PromptChar symbol</param>
+            <param name="value">A container for the generated value presentation</param>
+            <returns>Specifies if the value is valid</returns>
+        </member>
+        <member name="T:Infragistics.MaskAlphanumericRequired">
+            <summary>
+            Alphanumeric character placeholder. For example: a-z, A-Z, or 0-9. Character entry is required. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskAlphanumericRequired.IsRequired">
+            <summary>
+            Gets if the placeholder is optional or mandatory. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.MaskAlphanumericRequired.MaskTemplate">
+            <summary>
+            Gets the template of the mask
+            </summary>
+        </member>
+        <member name="T:Infragistics.NEMaskManager">
+            <summary>
+            A class for internal use used for managing of the masks. 
+            It's used by NumericEditor control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.#ctor(System.String,System.Globalization.CultureInfo,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.NEMaskManager"/> class.
+            </summary>
+            <param name="masks">A string representing the specified masks by the user</param>
+            <param name="cultureInfo">The specified control's Culture property</param>                
+            <param name="insertMode">Specifies the editing mode (insert or overstrike)</param>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.TextPresentation(System.Boolean,Infragistics.Controls.Editors.MaskMode,System.Char,System.Char,System.String@)">
+            <summary>
+            Generates a text presentation of the control's value
+            </summary>
+            <param name="isInEditMode">Specifies if the control is in an edit mode</param>
+            <param name="maskMode">Specifies the mask mode</param>
+            <param name="padChar">Specifies the PadChar symbol</param>
+            <param name="promptChar">Specifies the PromptChar symbol</param>
+            <param name="textPresentation">A container for the generated text presentation of the control's value</param>
+            <returns>Returns True if there is at least one mask that has a value. This flag is used by NullText property.</returns>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.ValuePresentation(Infragistics.Controls.Editors.MaskMode,System.Type,System.Char,System.Char,System.Object@)">
+            <summary>
+            Generates a value presentation
+            </summary>
+            <param name="dataMode">Used for specifying the mode to be applied when creating the control's value from a masked editor.</param>
+            <param name="valueType">Specifies the type of the value</param>
+            <param name="padChar">Specifies the PadChar symbol</param>
+            <param name="promptChar">Specifies the PromptChar symbol</param>
+            <param name="value">A container for the generated value presentation</param>
+            <returns>Specifies if the value is valid</returns>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.ApplyChanges">
+            <summary>
+            Commit all changes to all masks
+            </summary>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.Delete(System.Int32)">
+            <summary>
+            Change the text value of the control when the user delete a symbol
+            </summary>
+            <param name="selectionStart">Specifies the current caret position</param>        
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.Backspace(System.Int32)">
+            <summary>
+            Change the text value of the control when the user press the Backspace button
+            </summary>
+            <param name="selectionStart">Specifies the current caret position</param>        
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.Cut(System.Int32,System.Int32)">
+            <summary>
+            Change the text value of the control when the user cut the whole or a part of the text
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="previousSelectionLength">Specifies the previous SelectionLength</param>
+            <returns>Returns the new caret position</returns>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.NewSymbol(System.Int32,System.String)">
+            <summary>
+            Change the text value of the control when the user adds a new symbol 
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="value">Specifies the whole text value of the control</param>        
+            <returns>Returns the new cart position</returns>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.NewSymbol(System.Int32,System.String,System.String)">
+            <summary>
+            Change the text value of the control when the user adds a new symbol 
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="value">Specifies the whole text value of the control</param>   
+            <param name="newSymbol">Specifies the new added symbol</param>   
+            <returns>Returns the new cart position</returns>
+        </member>
+        <member name="M:Infragistics.NEMaskManager.Paste(System.Int32,System.Int32,System.String)">
+            <summary>
+            Change the text value of the control when the user pastes a new string in the control
+            </summary>
+            <param name="selectionStart">Specifies the current position of the caret</param>
+            <param name="previousCaretPosition">Specifies the previous caret position</param>        
+            <param name="value">Specifies the whole text value of the control</param>        
+            <returns>Returns the new cart position</returns>
+        </member>
+        <member name="P:Infragistics.NEMaskManager.PointPosition">
+            <summary>
+            Gets or sets the position of the decimal point
+            </summary>
+        </member>
+        <member name="P:Infragistics.NEMaskManager.HasNumericSign">
+            <summary>
+            Gets a value indicating whether the number can have a numeric sign
+            </summary>
+        </member>
+        <member name="P:Infragistics.NEMaskManager.MinLeftCaretPosition">
+            <summary>
+            Gets the minimum allowed caret position on the left
+            </summary>
+        </member>
+        <member name="P:Infragistics.NEMaskManager.MaskLength">
+            <summary>
+            Gets the length of all masks
+            </summary>
+        </member>
+        <member name="T:Infragistics.NumericType">
+            <summary>
+            A class for internal use describing a numeric type
+            </summary>
+        </member>
+        <member name="M:Infragistics.NumericType.TryParse(System.Globalization.CultureInfo,System.String,System.Object@)">
+            <summary>
+            Converts the string representation of a number to its number type equivelent.
+            A return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="culture">The specified control's Culture property</param>
+            <param name="s">A string containing a number to convert.</param>
+            <param name="result">A numeric value</param>
+            <returns>true if s was converted successfully; otherwise, false.</returns>
+        </member>
+        <member name="P:Infragistics.NumericType.NumberType">
+            <summary>
+            Gets the numeric type
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.Name">
+            <summary>
+            Gets the type's name
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.MaxValue">
+            <summary>
+            Gets the type's MaxValue
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.MinValue">
+            <summary>
+            Gets the type's MinValue
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.Precision">
+            <summary>
+            Gets the standard numeric precision
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.DefaultPrecision">
+            <summary>
+            Gets the current numeric precision
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.HasFloatPoint">
+            <summary>
+            Gets a value indicating whether the numeric type has a float point
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.DefaultMaxValue">
+            <summary>
+            Gets the default MaxValue. 
+            Some of the numeric types have too big max and min values for representation, that is why default values are used.
+            This property is used for Single and Double value types.
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.DefaultMinValue">
+            <summary>
+            Gets the current MinValue
+            Some of the numeric types have too big max and min values for representation, that is why default values are used.
+            This property is used for Single and Double value types.
+            </summary>
+        </member>
+        <member name="P:Infragistics.NumericType.MaxPositions">
+            <summary>
+            Gets or sets the maximum allowed numeric positions before the decimal point.
+            This property is used for restriction when a numeric mask is specified.
+            </summary>
+        </member>
+        <member name="T:Infragistics.ParseResult">
+            <summary>
+            A class that contains information about the parsing process
+            </summary>
+        </member>
+        <member name="M:Infragistics.ParseResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.ParseResult"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.ParseResult.IsValid">
+            <summary>
+            Gets or sets a value indicating whether the value can be parsed or not
+            </summary>
+        </member>
+        <member name="T:Infragistics.Section">
+            <summary>
+            Representst a section of one or more not literal masks. A section consists of some masks surrounded by literal masks.
+            This class is used for Tab navigation.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Section.StartPosition">
+            <summary>
+            Gets or sets the start position of the section in the whole text value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Section.Length">
+            <summary>
+            Gets or sets the length of the section 
+            </summary>
+        </member>
+        <member name="T:Infragistics.SectionManager">
+            <summary>
+            An internal class used for managing of the control's sections. It is used mainly for Tab navigation.
+            </summary>
+        </member>
+        <member name="M:Infragistics.SectionManager.#ctor(Infragistics.MaskManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.SectionManager"/> class.
+            </summary>
+            <param name="maskManager">SectionManager uses initialized MaskManager object for initialization</param>
+        </member>
+        <member name="M:Infragistics.SectionManager.#ctor(Infragistics.MaskManager,System.Collections.Generic.List{System.Type})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.SectionManager"/> class.
+            </summary>
+            <param name="maskManager">SectionManager uses initialized MaskManager object for initialization</param>
+            <param name="acceptedLiteralMasks">List of literal masks that are used for sections creation.</param>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.Primitives.TextBoxEx">
+            <summary>
+            A base class used for detecting if IME mode is used.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.Primitives.TextBoxEx.IsInIMEMode">
+            <summary>
+            Gets or sets a value indicating whether IME mode is used.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.XamNumericEditorCommandSource">
+            <summary>
+            The command source object for <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> object.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditorCommandSource.ResolveCommand">
+            <summary>
+            Generates the <see cref="T:System.Windows.Input.ICommand"/> object that will execute the command.
+            </summary>
+            <returns>
+            The resolve command.
+            </returns>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditorCommandSource.CommandType">
+            <summary>
+            Gets or sets the XamNumericEditorCommand which is to be executed by the command.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.XamNumericEditorCommandBase">
+            <summary>
+            Base class for all commands that deal with a <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditorCommandBase.CanExecute(System.Object)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="parameter">The object that the command will be executed against.</param>
+            <returns>True if the object can support this command.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditorCommandBase.Execute(System.Object)">
+            <summary>
+            Executes the command 
+            </summary>
+            <param name="parameter">The <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> object that will be executed against.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditorCommandBase.ExecuteCommand(Infragistics.Controls.Editors.XamNumericEditor)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/>
+            </summary>
+            <param name="xamWebNumericEditor">The numeric editor</param>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditorCommandBase.CanExecuteCommand(Infragistics.Controls.Editors.XamNumericEditor)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/>
+            </summary>
+            <param name="xamWebNumericEditor">
+            The numeric editor
+            </param>
+            <returns>
+            The can execute command.
+            </returns>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.IncreaseCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that will be increased.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.IncreaseCommand.ExecuteCommand(Infragistics.Controls.Editors.XamNumericEditor)">
+            <summary>
+            Increases a XamNumericEditor's Value property.
+            </summary>
+            <param name="xamWebNumericEditor">A <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> object whose Value property will be increased.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.IncreaseCommand.CanExecuteCommand(Infragistics.Controls.Editors.XamNumericEditor)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/>
+            </summary>
+            <param name="xamWebNumericEditor">The numeric editor</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.DecreaseCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that will be decreased.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.DecreaseCommand.ExecuteCommand(Infragistics.Controls.Editors.XamNumericEditor)">
+            <summary>
+            Decreases a XamNumericEditor's Value property.
+            </summary>
+            <param name="xamWebNumericEditor">A <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> object whose Value property will be increased.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.DecreaseCommand.CanExecuteCommand(Infragistics.Controls.Editors.XamNumericEditor)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/>
+            </summary>
+            <param name="xamWebNumericEditor">The numeric editor</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.XamMaskedEditor">
+            <summary>
+            Represents a control that can be used for displaying and editing data based on a mask.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Editors.XamMaskedEditor"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OnApplyTemplate">
+            <summary>
+            Called when the template is applied.
+            </summary>
+            <remarks>
+            <p class="body">
+            OnApplyTemplate is a .NET framework method exposed by the FrameworkElement. This class overrides
+            it to get the focus site from the control template whenever template gets applied to the control.
+            </p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OnCreateAutomationPeer">
+            <summary>
+            Returns a <see cref="T:System.Windows.Automation.Peers.TextBoxAutomationPeer"/> for use by the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            A <see cref="T:System.Windows.Automation.Peers.TextBoxAutomationPeer"/> for the <see cref="T:System.Windows.Controls.TextBox"/> object.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OnGotFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when this control gains focus.
+            </summary>
+            <param name="e">Data on the focus event.</param>
+            <remarks>
+            <p class="body">
+            OnGotFocus is a .NET framework method exposed by the FrameworkElement. This class overrides
+            it to change from the unfocused padding to the focused placeholders.
+            </p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OnLostFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when this control loses focus.
+            </summary>
+            <param name="e">Data on the focus event.</param>
+            <remarks>
+            <p class="body">
+            OnLostFocus is a .NET framework method exposed by the FrameworkElement. This class overrides
+            it to change from the focused placeholders to the unfocused padding.
+            </p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Called when a key is pressed while this control has focus.
+            </summary>
+            <param name="e">Data on the keydown event.</param>
+            <remarks>
+            <p class="body">
+            OnKeyDown is a .NET framework method exposed by the FrameworkElement. This class overrides
+            it to change the tab key to go to the next user entry section.
+            </p>
+            </remarks>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.MaskProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.Mask"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.PadCharProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.PadChar"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.PromptCharProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.PromptChar"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.ValueProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.Value"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.IsValueValidProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.IsValueValid"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.IsAlwaysInEditModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.IsAlwaysInEditMode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.IsInEditModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.IsInEditMode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.DisplayModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.DisplayMode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.DataModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.DataMode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.IsFocusWithinProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.IsFocusWithin"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.NullTextProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.NullText"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.CultureProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.Culture"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.TabNavigationModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.TabNavigationMode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.InsertModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.InsertMode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.ValueTypeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.ValueType"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.ValidationModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.ValidationMode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.ErrorMessageProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.ErrorMessage"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamMaskedEditor.MaskRequirementsErrorMessageProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamMaskedEditor.MaskRequirementsErrorMessage"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.ApplyMaskToText(System.String,Infragistics.Controls.Editors.TextInteraction)">
+            <summary>
+            Applies the masks on the new text
+            </summary>
+            <param name="text">The inserted text.</param>
+            <param name="lastInteraction">The last user interaction.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.GenerateValuePresentation">
+            <summary>
+            Generates the value presentation
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.ToRowText(System.String)">
+            <summary>
+            Remove all literals from the text
+            </summary>
+            <param name="input">A string to be cleared</param>
+            <returns>Text value without literals</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.InitializeManagers">
+            <summary>
+            Initializes the managers
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.SelectionChange">
+            <summary>
+            Sets the new caret position
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.ValueTypeChange">
+            <summary>
+            Sets the new value type
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.MaskChange">
+            <summary>
+            It is invoked when the Mask property is changed
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.ValueIsSet(Infragistics.Controls.Editors.XamMaskedEditor,System.Object)">
+            <summary>
+            This method is invoked when a new value is set. It is for internal usage.
+            </summary>
+            <param name="editor">The editor object</param>
+            <param name="newValue">The new value</param>        
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.ValueIsSet(Infragistics.Controls.Editors.XamMaskedEditor,System.Object,System.Boolean)">
+            <summary>
+            This method is invoked when a new value is set. It is for internal usage.
+            </summary>
+            <param name="editor">The editor object</param>
+            <param name="newValue">The new value</param>  
+            <param name="isLoaded">Specifies if the control is loaded</param>  
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.GenerateTextPresentation">
+            <summary>
+            Genereate the text presentation
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OverwriteSelectedTextSelectionStart(System.Int32,System.Int32)">
+            <summary>
+            Returns the new caret position when a selected text is overwrited.
+            </summary>
+            <param name="selectionStart">Selection start</param>
+            <param name="selectionLength">Selection length</param>
+            <returns>The new caret position</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OverwriteSelectedTextPreviousPosition(System.Int32,System.Int32)">
+            <summary>
+            Returns the previous caret position when a selected text is overwrited.
+            </summary>
+            <param name="selectionStart">Selection start</param>
+            <param name="selectionLength">Selection length</param>
+            <returns>The previous caret position</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.RegisterResources(System.String,System.Reflection.Assembly)">
+            <summary>
+            Adds an additonal Resx file in which the control will pull its resources from.
+            </summary>
+            <param name="name">The name of the embedded resx file that contains the resources to be used.</param>
+            <param name="assembly">The assembly in which the resx file is embedded.</param>
+            <remarks>Don't include the extension of the file, but prefix it with the default Namespace of the assembly.</remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.UnregisterResources(System.String)">
+            <summary>
+            Removes a previously registered resx file.
+            </summary>
+            <param name="name">The name of the embedded resx file that was used for registration.</param>
+            <remarks>
+            Note: this won't have any effect on controls that are already in view and are already displaying strings.
+            It will only affect any new controls created.
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.OnValueChanged(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the ValueChanged event when the Value has changed.
+            </summary>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamMaskedEditor.FinishedLoadingPersistence">
+            <summary>
+            Allows an object to perform an operation, after it's been loaded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.MaxLength">
+            <summary>
+            Gets or sets the value that determines the maximum number of characters allowed for user input.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.Mask">
+            <summary>
+            Gets or sets the mask associated with the masked edit control.  
+            </summary>               
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.PadChar">
+            <summary>
+            Gets or sets the character that will be used as the pad character. Default is space character (' ').
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.PromptChar">
+            <summary>
+            Gets or sets the prompt character. The default prompt character is the underscore (_).
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.Value">
+            <summary>
+            Gets or sets the value of the editor.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.IsValueValid">
+            <summary>
+            Gets or sets a value indicating whether the current value of the editor is valid. 
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.IsAlwaysInEditMode">
+            <summary>
+            Gets or sets a value indicating whether this editor is always in edit mode. Default value is False.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.IsInEditMode">
+            <summary>
+            Gets or sets a value indicating whether this editor is in edit mode. 
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.DisplayMode">
+            <summary>
+            Gets or sets a value that determines how the control's contents will be displayed when the control is not in edit mode and data masking is enabled.  
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.DataMode">
+            <summary>
+            Gets or sets a value that determines how the control's contents will be stored by the data source when data masking is enabled.  
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.IsFocusWithin">
+            <summary>
+            Gets or sets a value indicating whether the focus is within this element. 
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.NullText">
+            <summary>
+            Gets or sets the text to display when the value of the editor is null and the editor is not in edit mode. The default value is null. 
+            </summary>               
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.Culture">
+            <summary>
+            Gets or sets the Culture associated with the Cultured edit control.  
+            </summary>  
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.TabNavigationMode">
+            <summary>
+            Gets or sets whether to tab between sections when Tab and Shift+Tab keys are pressed. The default value is NextControl.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.InsertMode">
+            <summary>
+            Gets or sets a value indicating whether the control is in InsertMode mode (insert or overstrike). 
+            When this property is set to True, characters typed will be inserted at the current caret position and any following characters will be shifted. 
+            When set to False, typing at an insertion point that contains an existing character will replace that character. 
+            The value of this property also affects how characters are deleted using either The Delete key or the Backspace key. 
+            When in insert mode, characters after the character being deleted will be shifted by one to the left within the section.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.ValueType">
+            <summary>
+            Gets or sets the type of values that this editor manipulates. 
+            </summary>                
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.ValidationMode">
+            <summary>
+            Gets or sets if the validation is initiated when a TextChange or LostFocus event is fired.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.ErrorMessage">
+            <summary>
+            Gets or sets the error message that will be desplayed when the entered text doesn't meet any of the masks.
+            </summary>               
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.IsInternalValueChange">
+            <summary>
+            Gets or sets a value indicating whether the Value is set internally or by the user (false by default).
+            When this flag is True, no additional internal actions are initiated when Value property is set.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.TemporaryIsValueValid">
+            <summary>
+            Gets or sets a value indicating whether the temporary value is valid. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.TemporaryValue">
+            <summary>
+            Gets or sets the temporary Value. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.TextInteractions">
+            <summary>
+            Gets a TextInteraction value
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.PreviousText">
+            <summary>
+            Gets or sets the previous text value
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.MManager">
+            <summary>
+            Gets or sets a MaskManager object
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.SManager">
+            <summary>
+            Gets or sets a SectionManager object 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.PreviousCaretPosition">
+            <summary>
+            Gets or sets the previous position of the caret
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.IsLoaded">
+            <summary>
+            Gets or sets a value indicating whether the control is loaded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.PreviousSelectionLength">
+            <summary>
+            Gets or sets the previous SelectionLength
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.InitialValue">
+            <summary>
+            Gets or sets the initial value.
+            Contains the initial value when the Value property is bound to an object.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.IsThereValidationError">
+            <summary>
+            Gets or sets a value indicating whether there is a validation error and if the control is in invalid state
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.MaskRequirementsErrorMessage">
+            <summary>
+            Gets or sets the error ToolTip's message is bound to this property.
+            </summary>               
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.VisualState">
+            <summary>
+            Gets or sets the current Visual state
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.DefaultMask">
+            <summary>
+            Gets the default mask that will be assigned to the control in the constructor.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Editors.XamMaskedEditor.ValueChanged">
+            <summary>
+            Occurs when the Value changes.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.PropertiesToIgnore">
+            <summary>
+            Gets a List of properties that shouldn't be saved when the PersistenceManager goes to save them.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamMaskedEditor.PriorityProperties">
+            <summary>
+            Gets a List of properties that should be applied, before even trying to look at any other property on the object.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Editors.XamNumericEditor">
+            <summary>
+            Represents a control that can be used for displaying and editing numeric data.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Editors.XamNumericEditor"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.OnCreateAutomationPeer">
+            <summary>
+            When implemented in a derived class, returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            The class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> subclass to return.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.OnGotFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when this control gains focus.
+            </summary>
+            <param name="e">Data on the focus event.</param>
+            <remarks>
+            <p class="body">
+            OnGotFocus is a .NET framework method exposed by the FrameworkElement. This class overrides
+            it to change from the unfocused padding to the focused placeholders.
+            </p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.InitializeManagers">
+            <summary>
+            Initializes the managers
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.SelectionChange">
+            <summary>
+            Sets the new caret position
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.ValueTypeChange">
+            <summary>
+            Sets the new value type
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.MaskChange">
+            <summary>
+            It is invoked when the Mask property is changed
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.ValueIsSet(Infragistics.Controls.Editors.XamMaskedEditor,System.Object,System.Boolean)">
+            <summary>
+            This method is invoked when a new value is set. It is for internal usage.
+            </summary>
+            <param name="editor">The editor object</param>
+            <param name="newValue">The new value</param>       
+            <param name="isLoaded">Specifies if the control is loaded</param>  
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.GenerateValuePresentation">
+            <summary>
+            Generates the value presentation
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditor.ShowButtonsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamNumericEditor.ShowButtons"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditor.IntervalProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamNumericEditor.Interval"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditor.DelayProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamNumericEditor.Delay"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditor.IncrementProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamNumericEditor.Increment"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditor.MaximumProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamNumericEditor.Maximum"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Editors.XamNumericEditor.MinimumProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Editors.XamNumericEditor.Minimum"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.IncreaseValue">
+            <summary>
+            Increases the value of Value property with the value of Increment property.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.DecreaseValue">
+            <summary>
+            Decreases the value of Value property with the value of Increment property.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.CreateNumericMask">
+            <summary>
+            Creates the numeric mask
+            </summary>
+            <returns>Returns string representation of the mask</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.SyncronizeNumericRestrictions">
+            <summary>
+            Syncronizes all restrictions
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.OverwriteSelectedTextPreviousPosition(System.Int32,System.Int32)">
+            <summary>
+            Returns the previous caret position when a selected text is overwrited.
+            </summary>
+            <param name="selectionStart">Selection start</param>
+            <param name="selectionLength">Selection length</param>
+            <returns>The previous caret position</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.GetParameter(Infragistics.Controls.CommandSource)">
+            <summary>
+            Returns the object that defines the parameters necessary to execute the command.
+            </summary>
+            <param name="source">The CommandSource object which defines the command to be executed.</param>
+            <returns>The object necessary for the command to complete.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Editors.XamNumericEditor.SupportsCommand(System.Windows.Input.ICommand)">
+            <summary>
+            Returns if the object will support a given command type.
+            </summary>
+            <param name="command">The command to be validated.</param>
+            <returns>
+            True if the object recognizes the command as actionable against it.
+            </returns>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.ShowButtons">
+            <summary>
+            Gets or sets a value indicating whether the spin buttons are shown.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.Interval">
+            <summary>
+            Gets or sets the time interval in millisecons between two incremental steps when a spin button is pressed.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.Delay">
+            <summary>
+            Gets or sets the time delay before the first incremental step when a spin button is pressed.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.Increment">
+            <summary>
+            Gets or sets the value that will be added/subtracted when a spin button is pressed.
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.Maximum">
+            <summary>
+            Gets or sets the maximum allowed numeric value 
+            </summary>        
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.Minimum">
+            <summary>
+            Gets or sets the minimum allowed numeric value
+            </summary>                
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.Value">
+            <summary>
+            Gets or sets the value of the editor.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Editors.XamNumericEditor.DefaultMask">
+            <summary>
+            Gets the default mask that will be assigned to the control in the constructor.
+            </summary>
+        </member>
+    </members>
+</doc>

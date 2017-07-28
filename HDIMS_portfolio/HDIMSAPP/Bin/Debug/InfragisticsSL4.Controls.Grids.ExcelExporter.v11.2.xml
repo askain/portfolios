@@ -1,0 +1,1303 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsSL4.Controls.Grids.ExcelExporter.v11.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Controls.Grids.ExcelExportRange">
+            <summary>
+            An enum describing which rows should be exported by the writer.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.ExcelExportRange.All">
+            <summary>
+            All data rows, regardless of page, should be exported.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.ExcelExportRange.CurrentPage">
+            <summary>
+            Only the current page of data will be exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.ExcelExporterCellExportingEventArgs">
+            <summary>
+            Base class for cell based events which need a CellFormat
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.ExcelExporterEventArgs">
+            <summary>
+            Event parameters used as a base class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.ExcelExporterEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.ExcelExporterEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.ExcelExporterEventArgs.XamGrid">
+            <summary>
+            Gets the <see cref="P:Infragistics.Controls.Grids.ExcelExporterEventArgs.XamGrid"/> which is being exported.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.ExcelExporterCellExportingEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.ExcelExporterCellExportingEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.ExcelExporterCellExportingEventArgs.CellFormat">
+            <summary>
+            Gets the <see cref="T:Infragistics.Documents.Excel.IWorksheetCellFormat"/> object that will be used to style the cell.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.XamGridRequested"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs.XamGrid">
+            <summary>
+            Gets / sets the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs.XamGrid"/> instance that should be copied to.  If null a default <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs.XamGrid"/> will be created during export.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.ExcelExportStartedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.ExportStarted"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.ExcelExportStartedEventArgs.#ctor(Infragistics.Controls.Grids.XamGrid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.ExcelExportEndingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.ExportEnding"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.ExcelExportEndingEventArgs.#ctor(Infragistics.Controls.Grids.XamGrid,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.ExcelExportEndingEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.ExcelExportEndingEventArgs.Canceled">
+            <summary>
+            True if exporting process was canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.RowExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.#ctor(Infragistics.Controls.Grids.ColumnLayout,Infragistics.Controls.Grids.RowBase)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs"/> class.
+            </summary>
+            <param name="columnLayout"></param>
+            <param name="row"></param>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.SkipRow">
+            <summary>
+            Gets / sets if this row should be exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.SkipDescendents">
+            <summary>
+            Gets / sets if this row's children should be exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.CancelExport">
+            <summary>
+            Gets / sets if this export should be terminated.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.Row">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Grids.RowBase"/> which is currently being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.RowType">
+            <summary>
+            Gets the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.RowType"/> of the <see cref="T:Infragistics.Controls.Grids.RowBase"/> that is currently being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.ColumnLayout">
+            <summary>
+            Gets the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.ColumnLayout"/> of the <see cref="T:Infragistics.Controls.Grids.RowBase"/> that is currently being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs.CellFormat">
+            <summary>
+            Gets the <see cref="T:Infragistics.Documents.Excel.IWorksheetCellFormat"/> object that will be used to style the cell.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.CellExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs.Column">
+            <summary>
+            Returns the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs.Column"/> related to the <see cref="T:Infragistics.Controls.Grids.Cell"/>.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs.Row">
+            <summary>
+            Returns the <see cref="T:Infragistics.Controls.Grids.RowBase"/> containing the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs.ExportObject">
+            <summary>
+            Gets or sets the value to export for the cell.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.ExcelExportCancelEventArgs">
+            <summary>
+            Event parameters used as a base class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.ExcelExportCancelEventArgs.XamGrid">
+            <summary>
+            Gets the <see cref="P:Infragistics.Controls.Grids.ExcelExportCancelEventArgs.XamGrid"/> which is being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.ExcelExportCancelEventArgs.CellFormat">
+            <summary>
+            Gets the <see cref="T:Infragistics.Documents.Excel.IWorksheetCellFormat"/> object that will be used to style the cell.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporterSummaryCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.SummaryCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterSummaryCellExportingEventArgs.Summary">
+            <summary>
+            Returns the summary being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterSummaryCellExportingEventArgs.SummaryLevel">
+            <summary>
+            Returns the 0-based index of the current summary record.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterSummaryCellExportingEventArgs.SummaryLabel">
+            <summary>
+            Gets / sets the value that will be exported as the summary label.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterSummaryCellExportingEventArgs.SummaryValue">
+            <summary>
+            Gets / sets the value that will be exported as the summary value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterSummaryCellExportingEventArgs.CellFormat">
+            <summary>
+            Gets the <see cref="T:Infragistics.Documents.Excel.IWorksheetCellFormat"/> object that will be used to style the cell.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporterSummaryRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.SummaryRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterSummaryRowExportingEventArgs.Summaries">
+            <summary>
+            Returns the collection of summary values that are being exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporterColumnLayoutHeaderRowCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.CellExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterColumnLayoutHeaderRowCellExportingEventArgs.ColumnLayout">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Grids.ColumnLayout"/> associated with this event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterColumnLayoutHeaderRowCellExportingEventArgs.Value">
+            <summary>
+            Gets or sets the value to export for the cell.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporterGroupByRowCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.GroupByRowCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterGroupByRowCellExportingEventArgs.Record">
+            <summary>
+            Returns the record containing the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporterGroupByRowCellExportingEventArgs.Value">
+            <summary>
+            Gets or sets the value to export for the cell.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.strings.GroupByData_Display">
+            <summary>
+              Looks up a localized string similar to {0}:  ({1}).
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.strings.LE_MismatchWorksheetWorkBook">
+            <summary>
+              Looks up a localized string similar to The given workbook and worksheet are not connected.  Please ensure that the worksheet belongs to the workbook..
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.strings.LE_NonValidStream">
+            <summary>
+              Looks up a localized string similar to A XamGrid object must be passed in for the export to complete..
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.strings.LE_NoXamGrid">
+            <summary>
+              Looks up a localized string similar to A viable stream object must be passed in for the export to execute.  The inputted stream was either null or cannot be written to..
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.strings.LR_DefaultSheetName">
+            <summary>
+              Looks up a localized string similar to Sheet1.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.WorkbookFontSettings">
+            <summary>
+            Represents a font for the cell in the related context.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.WorkbookFontSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.WorkbookFontSettings"/> class.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.BoldProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.Bold"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.ColorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.Color"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.HeightProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.Height"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.ItalicProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.Italic"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.NameProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.Name"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.StrikeoutProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.Strikeout"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.SuperscriptSubscriptStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.SuperscriptSubscriptStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorkbookFontSettings.UnderlineStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorkbookFontSettings.UnderlineStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.Bold">
+            <summary>
+            Gets or sets the value which indicates whether the font is bold.
+            </summary>                
+            <value>The value which indicates whether the font is bold.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.Color">
+            <summary>
+            Gets or sets the foreground color of the font.
+            </summary>
+            <value>The foreground color of the font.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.Height">
+            <summary>
+            Gets or sets the font height in twips (1/20th of a point).
+            </summary>
+            <remarks>
+            <p class="body">
+            A negative value indicates the default font height, in which case the <see cref="P:Infragistics.Documents.Excel.Workbook.DefaultFontHeight"/> is used.
+            </p>
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The value assigned is positive and outside the valid font height range of 20 and 8180.
+            </exception>
+            <value>The font height in twips (1/20th of a point).</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.Italic">
+            <summary>
+            Gets or sets the value which indicates whether the font is italic.
+            </summary>
+            <value>The value which indicates whether the font is italic.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.Name">
+            <summary>
+            Gets or sets the font family name.
+            </summary>
+            <value>The font family name.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.Strikeout">
+            <summary>
+            Gets or sets the value which indicates whether the font is struck out.
+            </summary>
+            <value>The value which indicates whether the font is struck out.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.SuperscriptSubscriptStyle">
+            <summary>
+            Gets or sets the value which indicates whether the font is superscript or subscript.
+            </summary>
+            <value>The value which indicates whether the font is superscript or subscript.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorkbookFontSettings.UnderlineStyle">
+            <summary>
+            Gets or sets the underline style of the font.
+            </summary>
+            <value>The underline style of the font.</value>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings">
+            <summary>
+            A proxy object that will be used to create <see cref="T:Infragistics.Documents.Excel.IWorksheetCellFormat"/> objects for Excel.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.WorksheetCellFormatSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> class.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.AlignmentProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Alignment"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPattern"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternBackgroundColorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternBackgroundColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternForegroundColorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternForegroundColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FormatStringProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FormatString"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.IndentProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Indent"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LockedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Locked"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RotationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Rotation"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.ShrinkToFitProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.ShrinkToFit"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.VerticalAlignmentProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.VerticalAlignment"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.WorksheetCellFormatSettings.WrapTextProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.WrapText"/> dependency property. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Alignment">
+            <summary>
+            Gets or sets the horizontal alignment of the content in a cell.
+            </summary>        
+            <value>The horizontal alignment of the content in a cell.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.VerticalAlignment"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor">
+            <summary>
+            Gets or sets the bottom border color.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border color is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/> is set to Default, 
+            it will be resolved to Thin.
+            </p>
+            </remarks>
+            <value>The bottom border color.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle">
+            <summary>
+            Gets or sets the bottom border style.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border style is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/> is default (Color.Empty), 
+            it will be resolved to Color.Black.
+            </p>
+            </remarks>
+            <value>The bottom border style.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPattern">
+            <summary>
+            Gets or sets the fill pattern in the cell.
+            </summary>
+            <remarks>
+            <p class="body">
+            If fill pattern is set to Solid, the cell is filled using just the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternForegroundColor"/>. For all other patterns, 
+            both FillPatternForegroundColor and <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternBackgroundColor"/> are used.
+            </p>
+            </remarks>
+            <value>The fill pattern in the cell.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternForegroundColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternBackgroundColor"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternBackgroundColor">
+            <summary>
+            Gets or sets the background color of the fill pattern.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the background color is set to a non-default value and <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPattern"/> is set to Default, resolved fill pattern style is 
+            Gray50percent.
+            </p>
+            </remarks>
+            <value>The background color of the fill pattern.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPattern"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternForegroundColor"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternForegroundColor">
+            <summary>
+            Gets or sets the foreground color of the fill pattern.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the foreground color is set to a non-default value and <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPattern"/> is set to Default, resolved fill pattern style is 
+            Solid. There, a solid cell color can easily be applied by setting only the FillPatternForegroundColor.
+            </p>
+            </remarks>
+            <value>The foreground color of the fill pattern.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPattern"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FillPatternBackgroundColor"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.FormatString">
+            <summary>
+            Gets or sets the number format string.
+            </summary>
+            <remarks>
+            <p class="body">For more information on excel format strings, consult Microsoft Excel help.</p>
+            </remarks>
+            <value>The number format string.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Font">
+            <summary>
+            Gets or sets the default font formatting.
+            </summary>
+            <remarks>
+            <p class="body">
+            This font formatting is just the default font used in the cell. This can be overridden by strings on a character by character basis by
+            using the <see cref="T:Infragistics.Documents.Excel.FormattedString"/> class.
+            </p>
+            </remarks>
+            <value>The default font formatting.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Indent">
+            <summary>
+            Gets or sets the indent in units of average character widths.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The assigned value is outside the valid indent level range of 0 and 15.
+            </exception>
+            <value>The indent in units of average character widths.</value>	
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor">
+            <summary>
+            Gets or sets the left border color.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border color is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/> is set to Default, 
+            it will be resolved to Thin.
+            </p>
+            </remarks>
+            <value>The left border color.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle">
+            <summary>
+            Gets or sets the left border style.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border style is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/> is default (Color.Empty), 
+            it will be resolved to Color.Black.
+            </p>
+            </remarks>
+            <value>The left border style.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Locked">
+            <summary>
+            Gets or sets the valid which indicates whether the cell is locked in protected mode.
+            </summary>
+            <remarks>
+            <p class="body">The Locked valid is used in Excel file only if the associated <see cref="T:Infragistics.Documents.Excel.Worksheet"/> or <see cref="T:Infragistics.Documents.Excel.Workbook"/> 
+            is protected. Otherwise the value is ignored.
+            </p>
+            </remarks>
+            <value>The valid which indicates whether the cell is locked in protected mode.</value>
+            <seealso cref="P:Infragistics.Documents.Excel.Workbook.Protected"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor">
+            <summary>
+            Gets or sets the right border color.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border color is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/> is set to Default, 
+            it will be resolved to Thin.
+            </p>
+            </remarks>
+            <value>The right border color.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle">
+            <summary>
+            Gets or sets the right border style.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border style is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/> is default (Color.Empty), 
+            it will be resolved to Color.Black.
+            </p>
+            </remarks>
+            <value>The right border style.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Rotation">
+            <summary>
+            Gets or sets the rotation of the cell content in degrees.
+            </summary>
+            <remarks>
+            <p class="body">
+            Cell text rotation, in degrees; 0 – 90 is up 0 – 90 degrees, 91 – 180 is down 1 – 90 degrees, and 255 is vertical.
+            </p>
+            </remarks>
+            <value>The rotation of the cell content in degrees.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.ShrinkToFit">
+            <summary>
+            Gets or sets the value indicating whether the cell content will shrink to fit the cell.
+            </summary>
+            <remarks>
+            <p class="body">
+            If True, the size of the cell font will shrink so all data fits within the cell.
+            </p>
+            </remarks>
+            <value>The value indicating whether the cell content will shrink to fit the cell.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor">
+            <summary>
+            Gets or sets the top border color.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border color is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/> is set to Default, 
+            it will be resolved to Thin.
+            </p>
+            </remarks>
+            <value>The top border color.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderStyle">
+            <summary>
+            Gets or sets the top border style.
+            </summary>
+            <remarks>
+            <p class="body">
+            If the border style is set to a non-default value and the <see cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/> is default (Color.Empty), 
+            it will be resolved to Color.Black.
+            </p>
+            </remarks>
+            <value>The top border style.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.BottomBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.LeftBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderColor"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.RightBorderStyle"/>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.TopBorderColor"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.VerticalAlignment">
+            <summary>
+            Gets or sets the vertical alignment of the content in a cell.
+            </summary>
+            <value>The vertical alignment of the content in a cell.</value>
+            <seealso cref="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.Alignment"/>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.WorksheetCellFormatSettings.WrapText">
+            <summary>
+            Gets or sets the value which indicates whether text will wrap in a cell.
+            </summary>
+            <remarks>
+            <p class="body">
+            If True, and the row associated with the cell has a default <see cref="P:Infragistics.Documents.Excel.WorksheetRow.Height"/>, the row's
+            height will automatically be increased to fit wrapped content.
+            </p>
+            </remarks>        
+            <value>The value which indicates whether text will wrap in a cell.</value>
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExporter">
+            <summary>
+            Exports a <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to an excel workbook.
+            </summary>
+            <summary>
+            Exports a <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to an excel workbook.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.XamGridExcelExporter"/> class.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeSummariesProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeSummaries"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeSortProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeSort"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeFiltersProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeFilters"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeGroupByProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeGroupBy"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeHiddenColumnsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeHiddenColumns"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeFixedColumnsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeFixedColumns"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeTemplateColumnsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeTemplateColumns"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeUnboundColumnsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeUnboundColumns"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeExpandedLayoutsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeExpandedLayouts"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeColumnValueConverterProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeColumnValueConverter"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeColumnFormatStringProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeColumnFormatString"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ExportRangeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExportRange"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnPropertyChanged(System.String)">
+            <summary>
+            Invoked when a property changes on the <see cref="T:Infragistics.Controls.Grids.XamGridExcelExporter"/> object.
+            </summary>
+            <param propertyName="name">The propertyName of the property that has changed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.ExportAsync(Infragistics.Controls.Grids.XamGrid,Infragistics.Documents.Excel.Workbook,Infragistics.Documents.Excel.PackageFactory)">
+            <summary>
+            Exports the inputted <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to the <see cref="T:Infragistics.Documents.Excel.Workbook"/> provided in an asynchronous manner.
+            </summary>
+            <param name="workBook">The <see cref="T:Infragistics.Documents.Excel.Workbook"/> which will be exported to.</param>
+            <param name="grid">The <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to be exported.</param>
+            <param name="pf">The PackageFactory to be used by the exporter. </param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.ExportAsync(Infragistics.Controls.Grids.XamGrid,Infragistics.Documents.Excel.Workbook)">
+            <summary>
+            Exports the inputted <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to the <see cref="T:Infragistics.Documents.Excel.Workbook"/> provided in an asynchronous manner.
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to be exported.</param>
+            <param name="workBook">The <see cref="T:Infragistics.Documents.Excel.Workbook"/> which will be exported to.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.Export(Infragistics.Controls.Grids.XamGrid,Infragistics.Documents.Excel.Workbook,Infragistics.Documents.Excel.PackageFactory)">
+            <summary>
+            Exports the inputted <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to the <see cref="T:Infragistics.Documents.Excel.Workbook"/> provided.
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to be exported.</param>
+            <param name="workBook">The <see cref="T:Infragistics.Documents.Excel.Workbook"/> which will be exported to.</param>
+            <param name="pf">The PackageFactory to be used by the exporter. </param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.Export(Infragistics.Controls.Grids.XamGrid,Infragistics.Documents.Excel.Workbook)">
+            <summary>
+            Exports the inputted <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to the <see cref="T:Infragistics.Documents.Excel.Workbook"/> provided.
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to be exported.</param>
+            <param name="workBook">The <see cref="T:Infragistics.Documents.Excel.Workbook"/> which will be exported to.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.Export(Infragistics.Controls.Grids.XamGrid,Infragistics.Documents.Excel.Workbook,Infragistics.Documents.Excel.Worksheet,Infragistics.Documents.Excel.PackageFactory)">
+            <summary>
+            Exports the inputted <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to the <see cref="T:Infragistics.Documents.Excel.Workbook"/> provided.
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to be exported.</param>
+            <param name="workBook">The <see cref="T:Infragistics.Documents.Excel.Workbook"/> which will be exported to.</param>
+            <param name="pf">The PackageFactory to be used by the exporter. </param>
+            <param name="workSheet">The <see cref="T:Infragistics.Documents.Excel.Worksheet"/> which should be written to.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.Export(Infragistics.Controls.Grids.XamGrid,Infragistics.Documents.Excel.Workbook,Infragistics.Documents.Excel.Worksheet,Infragistics.Documents.Excel.PackageFactory,System.Boolean)">
+            <summary>
+            Exports the inputted <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to the <see cref="T:Infragistics.Documents.Excel.Workbook"/> provided.
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Controls.Grids.XamGrid"/> to be exported.</param>
+            <param name="workBook">The <see cref="T:Infragistics.Documents.Excel.Workbook"/> which will be exported to.</param>
+            <param name="pf">The PackageFactory to be used by the exporter. </param>
+            <param name="useAsync">True if we should export asynchronously.</param>
+            <param name="workSheet"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnXamGridRequested(Infragistics.Controls.Grids.XamGridExcelExporterRequestedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Grids.XamGridExcelExporter.XamGridRequested"/> event.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnExportStarted(Infragistics.Controls.Grids.ExcelExportStartedEventArgs)">
+            <summary>
+            Called before grid export starts.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnEndingExport(Infragistics.Controls.Grids.ExcelExportEndingEventArgs)">
+            <summary>
+            Called after grid export is finished but not finalized.
+            </summary>
+            <param name="e">An object containing information about the final status of the export process.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnEndedExport">
+            <summary>
+            Called after the export is finished.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnRowExporting(Infragistics.Controls.Grids.XamGridExcelExporterRowExportingEventArgs)">
+            <summary>
+            Called before a record is exported to Excel.
+            </summary>
+            <param name="e">An object providing information about the record, or allowing the export to be cancelled.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnCellExporting(Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs)">
+            <summary>
+            Called before grid cell is exported to excel.
+            </summary>
+            <param name="e">An object containing information about the cell being exported.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnHeaderCellExporting(Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs)">
+            <summary>
+            Called before header cell is exported to excel.
+            </summary>
+            <param name="e">An object containing information about the header cell being exported.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnFooterCellExporting(Infragistics.Controls.Grids.XamGridExcelExporterCellExportingEventArgs)">
+            <summary>
+            Called before header cell is exported to excel.
+            </summary>
+            <param name="e">An object containing information about the header cell being exported.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnSummaryRowExporting(Infragistics.Controls.Grids.XamGridExcelExporterSummaryRowExportingEventArgs)">
+            <summary>
+            Called before summary record is exported to excel.
+            </summary>
+            <param name="e">An object containing information about the summary record being exported.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnSummaryCellExporting(Infragistics.Controls.Grids.XamGridExcelExporterSummaryCellExportingEventArgs)">
+            <summary>
+            Called before summary cell is exported to excel.
+            </summary>
+            <param name="e">An object containing information about the summary cell being exported.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnColumnLayoutHeaderRowCellExporting(Infragistics.Controls.Grids.XamGridExcelExporterColumnLayoutHeaderRowCellExportingEventArgs)">
+            <summary>
+            Called before grid cell is exported to excel.
+            </summary>
+            <param name="e">An object containing information about the cell being exported.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.OnGroupByRowCellExporting(Infragistics.Controls.Grids.XamGridExcelExporterGroupByRowCellExportingEventArgs)">
+            <summary>
+            Called before grid cell is exported to excel.
+            </summary>
+            <param name="e">An object containing information about the cell being exported.</param>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.HeaderRowWorksheetCellFormatOverrideProperty">
+            <summary>
+            Identifies the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.HeaderRowWorksheetCellFormatOverrideProperty"/> attached property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.SetHeaderRowWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnBase,Infragistics.Controls.Grids.WorksheetCellFormatSettings)">
+            <summary>
+            Sets the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.HeaderRowWorksheetCellFormatOverrideProperty"/> attached property on the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> object to the given <see cref="T:Infragistics.Documents.Excel.IWorksheetCellFormat"/> value.
+            </summary>
+            <param name="element">The object which will host the attached property.</param>
+            <param name="key">The value to be assigned to the attached property.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.GetHeaderRowWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnBase)">
+            <summary>
+            Gets the <see cref="T:Infragistics.Documents.Excel.IWorksheetCellFormat"/> value off of the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> for styling the cells of a <see cref="T:Infragistics.Controls.Grids.Primitives.HeaderRow"/>.
+            </summary>
+            <param name="element">The object that hosts the value.</param>
+            <returns>The value that was assigned to this attached property.</returns>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.DataRowCellFormatOverrideProperty">
+            <summary>
+            Identifies the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.DataRowCellFormatOverrideProperty"/> attached property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.SetDataRowCellFormatOverride(Infragistics.Controls.Grids.ColumnBase,Infragistics.Controls.Grids.WorksheetCellFormatSettings)">
+            <summary>
+            Sets the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.DataRowCellFormatOverrideProperty"/> attached property on the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> object to the given <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value.
+            </summary>
+            <param name="element">The object which will host the attached property.</param>
+            <param name="key">The value to be assigned to the attached property.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.GetDataRowCellFormatOverride(Infragistics.Controls.Grids.ColumnBase)">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value off of the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> for styling the cells of a <see cref="T:Infragistics.Controls.Grids.Row"/>.
+            </summary>
+            <param name="element">The object that hosts the value.</param>
+            <returns>The value that was assigned to this attached property.</returns>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.FooterRowCellWorksheetCellFormatOverrideProperty">
+            <summary>
+            Identifies the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.FooterRowCellWorksheetCellFormatOverrideProperty"/> attached property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.SetFooterRowCellWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnBase,Infragistics.Controls.Grids.WorksheetCellFormatSettings)">
+            <summary>
+            Sets the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.FooterRowCellWorksheetCellFormatOverrideProperty"/> attached property on the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> object to the given <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value.
+            </summary>
+            <param name="element">The object which will host the attached property.</param>
+            <param name="key">The value to be assigned to the attached property.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.GetFooterRowCellWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnBase)">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value off of the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> for styling the cells of a <see cref="T:Infragistics.Controls.Grids.Primitives.FooterRow"/>.
+            </summary>
+            <param name="element">The object that hosts the value.</param>
+            <returns>The value that was assigned to this attached property.</returns>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.GroupByRowCellWorksheetCellFormatOverrideProperty">
+            <summary>
+            Identifies the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.GroupByRowCellWorksheetCellFormatOverrideProperty"/> attached property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.SetGroupByRowCellWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnBase,Infragistics.Controls.Grids.WorksheetCellFormatSettings)">
+            <summary>
+            Sets the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.GroupByRowCellWorksheetCellFormatOverrideProperty"/> attached property on the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> object to the given <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value.
+            </summary>
+            <param name="element">The object which will host the attached property.</param>
+            <param name="key">The value to be assigned to the attached property.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.GetGroupByRowCellWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnBase)">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value off of the <see cref="T:Infragistics.Controls.Grids.ColumnBase"/> object for styling the cells of a <see cref="T:Infragistics.Controls.Grids.Primitives.GroupByRow"/>.
+            </summary>
+            <param name="element">The object that hosts the value.</param>
+            <returns>The value that was assigned to this attached property.</returns>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.ColumnLayoutHeaderRowCellWorksheetCellFormatOverrideProperty">
+            <summary>
+            Identifies the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.ColumnLayoutHeaderRowCellWorksheetCellFormatOverrideProperty"/> attached property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.SetColumnLayoutHeaderRowCellWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnLayout,Infragistics.Controls.Grids.WorksheetCellFormatSettings)">
+            <summary>
+            Sets the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.ColumnLayoutHeaderRowCellWorksheetCellFormatOverrideProperty"/> attached property on the <see cref="T:Infragistics.Controls.Grids.ColumnLayout"/> object to the given <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value.
+            </summary>
+            <param name="element">The object which will host the attached property.</param>
+            <param name="key">The value to be assigned to the attached property.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.GetColumnLayoutHeaderRowCellWorksheetCellFormatOverride(Infragistics.Controls.Grids.ColumnLayout)">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> value off of the <see cref="T:Infragistics.Controls.Grids.ColumnLayout"/> object for styling the Column Layout Header Row..
+            </summary>
+            <param name="element">The object that hosts the value.</param>
+            <returns>The value that was assigned to this attached property.</returns>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExporter.IgnoreColumnProperty">
+            <summary>
+            Identifies the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.IgnoreColumnProperty"/> attached property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.SetIgnoreColumn(Infragistics.Controls.Grids.Column,System.Boolean)">
+            <summary>
+            Sets the <see cref="F:Infragistics.Controls.Grids.XamGridExcelExporter.IgnoreColumnProperty"/> attached property on the <see cref="T:Infragistics.Controls.Grids.Column"/> object to the given <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="element">The object which will host the attached property.</param>
+            <param name="key">The value to be assigned to the attached property.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExporter.GetIgnoreColumn(Infragistics.Controls.Grids.Column)">
+            <summary>
+            Gets the <see cref="T:System.Boolean"/> value off of the <see cref="T:Infragistics.Controls.Grids.Column"/> object which determines if the <see cref="T:Infragistics.Controls.Grids.Column"/> should be exported.
+            </summary>
+            <param name="element">The object that hosts the value.</param>
+            <returns>The value that was assigned to this attached property.</returns>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExportLayoutSettings">
+            <summary>
+            Gets / sets an object which contains settings properties for the exporter.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeSummaries">
+            <summary>
+            Gets / sets if summaries which are applied to the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeSort">
+            <summary>
+            Gets / sets if sorts which are applied to the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeFilters">
+            <summary>
+            Gets / sets if filters which are applied to the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeGroupBy">
+            <summary>
+            Gets / sets if group by groups which are applied to the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeHiddenColumns">
+            <summary>
+            Gets / sets if hidden columns which are applied to the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeFixedColumns">
+            <summary>
+            Gets / sets if fixed columns which are applied to the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeTemplateColumns">
+            <summary>
+            Gets / sets if <see cref="T:Infragistics.Controls.Grids.TemplateColumn"/> which are included in the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeUnboundColumns">
+            <summary>
+            Gets / sets if <see cref="T:Infragistics.Controls.Grids.UnboundColumn"/> which are included in the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeExpandedLayouts">
+            <summary>
+            Gets / sets if childbands in the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> should be included in the exported document.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeColumnValueConverter">
+            <summary>
+            Gets / sets if columns which have a value converter applied to them should export the converted value or the original raw value.
+            </summary>
+            <remarks>If false, then the value will be converted prior to writing to the export stream.  If true, the raw value will be exported.
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExcludeColumnFormatString">
+            <summary>
+            Gets / set if the format string of the column should be applied to the value being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExporter.ExportRange">
+            <summary>
+            Gets / set the <see cref="T:Infragistics.Controls.Grids.ExcelExportRange"/> value which determines which rows would be exported.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.PropertyChanged">
+            <summary>
+            Fired when a property changes on the <see cref="T:Infragistics.Controls.Grids.XamGridExcelExporter"/>.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.XamGridRequested">
+            <summary>
+            Event raised during the exporting process when a new instance of the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> is going to be created to replicate the
+            <see cref="T:Infragistics.Controls.Grids.XamGrid"/> which is being exported.
+            </summary>
+            <remarks>
+            During the exporting process a new <see cref="T:Infragistics.Controls.Grids.XamGrid"/> is created to control the exporting.  The type of the <see cref="T:Infragistics.Controls.Grids.XamGrid"/> that is created
+            must be the same as the one being exported.  This event is raised so that a new instance of the grid can be provided, in cases where the exported grid
+            is a derived grid.
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.ExportStarted">
+            <summary>
+            Occurs at the beginning of the export process.  The <see cref="T:Infragistics.Controls.Grids.XamGrid"/> has been initialized but the data source has not yet been set.
+            </summary>
+            <remarks>
+            <p class="body">The <i>XamGrid</i> argument returns a reference to the cloned object that is about to be exported.</p>                       
+            </remarks>        
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.ExportEnding">
+            <summary>
+            Occurs after the exporting process is finished but prior to documentaion finalization.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Canceled</i> argument is true if exporting process was been canceled.</p>        
+            <p class="body">This event is fired after exporting process is finished and is fired after all other events. Use this event for any post processing of exporter.</p>
+            </remarks>        
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.ExportEnded">
+            <summary>
+            Occurs after the exporter is finished.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.RowExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.RowBase"/> is exported to Excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Row</i> argument returns a reference to record being exported.</p>        
+            <p class="body">This event is fired before the row is processed. Use Cancel argument to cancel row exporting.</p>
+            </remarks>        
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.CellExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.Cell"/> is exported to Excel.
+            </summary>             
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.HeaderCellExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.Primitives.HeaderCell"/> is exported to Excel.
+            </summary>        
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.FooterCellExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.Primitives.FooterCell"/> is exported to Excel.
+            </summary>        
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.SummaryCellExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.Primitives.SummaryRowCell"/> is exported to Excel.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.SummaryRowExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.Primitives.SummaryRow"/> is exported to Excel.
+            </summary>        
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.ColumnLayoutHeaderRowCellExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.Cell"/> is exported to Excel.
+            </summary>   
+        </member>
+        <member name="E:Infragistics.Controls.Grids.XamGridExcelExporter.GroupByRowCellExporting">
+            <summary>
+            Occurs before a <see cref="T:Infragistics.Controls.Grids.Primitives.GroupByCell"/> is exported to Excel.
+            </summary>         
+        </member>
+        <member name="T:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings">
+            <summary>
+            A settings object which sets properties for excel exporting.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings"/> class.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.HeaderRowCellFormatProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.HeaderRowCellFormat"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.DataRowCellFormatProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.DataRowCellFormat"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.FooterRowCellFormatProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.FooterRowCellFormat"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.GroupByRowCellFormatProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.GroupByRowCellFormat"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.ColumnLayoutHeaderRowCellFormatProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.ColumnLayoutHeaderRowCellFormat"/> dependency property. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.HeaderRowCellFormat">
+            <summary>
+            Gets / sets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> which will style header cells.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.DataRowCellFormat">
+            <summary>
+            Gets / sets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> which will style data cells.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.FooterRowCellFormat">
+            <summary>
+            Gets / sets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> which will style footer cells.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.GroupByRowCellFormat">
+            <summary>
+            Gets / sets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> which will style groupby row cells.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Grids.XamGridExcelExportLayoutSettings.ColumnLayoutHeaderRowCellFormat">
+            <summary>
+            Gets / sets the <see cref="T:Infragistics.Controls.Grids.WorksheetCellFormatSettings"/> which will style column layout header row cells.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,108 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+<style type="text/css">
+@import "/Scripts/jquery.loadmask.css";
+@import "/Scripts/dojo/resources/dojo.css";
+@import "/Scripts/dijit/themes/claro/claro.css";
+@import "/Scripts/dojox/layout/resources/GridContainer.css";
+@import "/Scripts/dojox/layout/resources/ExpandoPane.css";
+@import "/Scripts/dojox/grid/resources/claroGrid.css";
+@import "/Scripts/dojox/grid/enhanced/resources/claro/EnhancedGrid.css";
+
+html,body{
+    overflow:hidden;
+    margin:0; padding:0; 
+    width:100%; height:100%;
+}
+
+.wsComboBox
+{
+    font-size: 12px;
+    height: 20px;
+    vertical-align:middle;
+}
+
+.wslabel
+{
+    font-size: 12px;
+    font-weight:bold;
+     vertical-align:middle;
+}
+
+#preloader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%; 
+	height: 100%; 
+	margin:0; 
+	padding:0;
+	background:#fff;				
+	z-index:999;
+	text-align:center;
+	vertical-align:middle;
+}
+
+#loadPopupMask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%; 
+	height: 100%; 
+	margin:0; 
+	padding:0;			
+	z-index:10000;
+	text-align:center;
+	vertical-align:middle;
+	display:none;
+}
+
+.isHR, .isHR .dojoxGridCell {
+     background      : #E0FFE0;
+}
+
+.isMidnight, .isMidnight .dojoxGridCell {
+     background      : #E9D4FF;
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="/Scripts/jquery.multiselect.css" />
+<link rel="stylesheet" type="text/css" href="/Scripts/redmond/jquery-ui-1.8.16.custom.css" />
+<style type="text/css">
+.title_box {border:0px; background-image:url(/Images/title_bg.gif);background-repeat:no-repeat; width:170px; height:26px; text-align:center; padding-top:5px; margin-bottom:10px; cursor:pointer;}
+.title_box2 {border:0px; background-image:url(/Images/title_bg.gif); background-repeat:no-repeat; width:170px; height:26px; text-align:center; padding-top:5px; margin-bottom:10px;cursor:pointer;}
+</style>
+<asp:ContentPlaceHolder ID="PreHeadContent" runat="server"/>
+<script type="text/javascript" src="/Common/UserInfoJs"></script>
+<script type="text/javascript" src="/Scripts/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.multiselect.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.loadmask.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.popupWindow.js"></script>
+<script type="text/javascript" src="/Scripts/swfobject.js"></script>
+<script type="text/javascript" src="/Scripts/common/chart.js"></script>
+<script type="text/javascript" src="/Scripts/common/code.js"></script>
+<script type="text/javascript" src="/Common/Code2Js"></script>
+<script type="text/javascript" src="/Scripts/common/staticCode.js"></script>
+<script type="text/javascript" src="/Scripts/common/function.js"></script>
+<script type="text/javascript" src="/Scripts/dojo/dojo.js" djConfig="isDebug: false, parseOnLoad: true"></script>
+<asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
+</head>
+<body class="claro" onselectstart="return false">
+<div id="preloader">
+<table width="100%" height="100%">
+<tr>
+<td width="100%" height="100%" align="center" valign="middle" style="cursor:wait;">
+<img src="/Images/loading.gif" align="top"> 로딩중....
+</td>
+</tr>
+</table>
+</div>
+<div id="loadPopupMask"></div>
+<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+</body>
+</html>

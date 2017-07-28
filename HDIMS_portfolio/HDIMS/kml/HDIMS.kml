@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+
+<Folder>
+	<open>1</open>
+	<LookAt>
+		<longitude>127.09</longitude>
+		<latitude>37.52</latitude>
+		<altitude>0</altitude>
+		<heading>0</heading>
+		<tilt>0</tilt>
+		<range>837700</range>
+    <minAltitude>1024</minAltitude>
+    <maxAltitude>837700</maxAltitude>
+	</LookAt>
+  <Style id="youngLine">
+    <LineStyle>
+      <color>ffff33ff</color>
+      <width>2</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>ffff33ff</color>
+    </PolyStyle>
+  </Style>
+  <NetworkLink>
+    <Link>
+      <!--댐, 보 라벨 무 버전-->
+      <href>dambo_mui.kml</href>
+    </Link>
+  </NetworkLink>
+
+  <NetworkLink>
+    <Link>
+      <!--댐, 보 라벨 유 버전-->
+      <href>dambo_you.kml</href>
+    </Link>
+  </NetworkLink>
+  
+</Folder>
+</kml>

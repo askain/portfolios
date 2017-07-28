@@ -1,0 +1,19 @@
+﻿<xapCache source="D:\hdims\HDIMS\HDIMSMAIN\Bin\Debug\HDIMSMAIN.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="2015-02-22 오후 7:11:42">
+  <file source="D:\hdims\HDIMS\HDIMSMAIN\obj\Debug\HDIMSMAIN.dll" archivePath="HDIMSMAIN.dll" lastWriteTime="2015-02-22 오후 7:11:41" />
+  <file source="D:\Program Files (x86)\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Grids.XamGrid.v11.2.dll" archivePath="InfragisticsSL4.Controls.Grids.XamGrid.v11.2.dll" lastWriteTime="2011-11-09 오후 1:47:38" />
+  <file source="D:\Program Files (x86)\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Interactions.XamDialogWindow.v11.2.dll" archivePath="InfragisticsSL4.Controls.Interactions.XamDialogWindow.v11.2.dll" lastWriteTime="2011-11-09 오후 1:47:20" />
+  <file source="C:\Program Files (x86)\Infragistics\NetAdvantage 2011.2\SilverlightCommon\Bin\SLOnly\InfragisticsSL4.v11.2.dll" archivePath="InfragisticsSL4.v11.2.dll" lastWriteTime="2011-11-09 오후 1:47:16" />
+  <file source="D:\hdims\HDIMS\HDIMSAPP\Lib\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="2015-02-20 오후 3:20:40" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Json.dll" archivePath="System.Json.dll" lastWriteTime="2010-08-26 오전 2:17:48" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Controls.dll" archivePath="System.Windows.Controls.dll" lastWriteTime="2010-08-26 오전 2:17:48" />
+  <file source="D:\hdims\HDIMS\HDIMSMAIN\Bin\Debug\System.Windows.Controls.Toolkit.dll" archivePath="System.Windows.Controls.Toolkit.dll" lastWriteTime="2015-02-20 오후 3:22:15" />
+  <file source="D:\Program Files (x86)\Infragistics\NetAdvantage 2011.2\Silverlight\Bin\SharedXAML\InfragisticsSL4.Controls.Menus.XamMenu.v11.2.dll" archivePath="InfragisticsSL4.Controls.Menus.XamMenu.v11.2.dll" lastWriteTime="2011-11-09 오후 1:47:22" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Data.dll" archivePath="System.Windows.Data.dll" lastWriteTime="2010-08-26 오전 2:17:48" />
+  <file source="D:\hdims\HDIMS\HDIMSMAIN\Bin\Debug\System.Windows.Controls.Toolkit.Internals.dll" archivePath="System.Windows.Controls.Toolkit.Internals.dll" lastWriteTime="2015-02-20 오후 3:22:15" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.Windows.Controls.Navigation.dll" archivePath="System.Windows.Controls.Navigation.dll" lastWriteTime="2010-08-26 오전 2:17:48" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\ko\System.Json.resources.dll" archivePath="ko\System.Json.resources.dll" lastWriteTime="2010-08-26 오전 5:33:36" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\ko\System.Windows.Controls.resources.dll" archivePath="ko\System.Windows.Controls.resources.dll" lastWriteTime="2010-08-26 오전 5:33:38" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\ko\System.Windows.Data.resources.dll" archivePath="ko\System.Windows.Data.resources.dll" lastWriteTime="2010-08-26 오전 5:33:38" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\ko\System.Windows.Controls.Navigation.resources.dll" archivePath="ko\System.Windows.Controls.Navigation.resources.dll" lastWriteTime="2010-08-26 오전 5:33:38" />
+  <file source="D:\hdims\HDIMS\HDIMSMAIN\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="2015-02-22 오후 7:11:41" />
+</xapCache>

@@ -1,0 +1,10 @@
+C:\Users\kijung\Downloads\FileUploaderExample\Vci.FileUploader\bin\Debug\Vci.FileUploader.dll
+C:\Users\kijung\Downloads\FileUploaderExample\Vci.FileUploader\bin\Debug\Vci.FileUploader.pdb
+C:\Users\kijung\Downloads\FileUploaderExample\Vci.FileUploader\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\kijung\Downloads\FileUploaderExample\Vci.FileUploader\obj\Debug\Vci.FileUploader.dll
+C:\Users\kijung\Downloads\FileUploaderExample\Vci.FileUploader\obj\Debug\Vci.FileUploader.pdb
+C:\Projects\HDIMS\Vci.FileUploader\bin\Debug\Vci.FileUploader.dll
+C:\Projects\HDIMS\Vci.FileUploader\bin\Debug\Vci.FileUploader.pdb
+C:\Projects\HDIMS\Vci.FileUploader\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\HDIMS\Vci.FileUploader\obj\Debug\Vci.FileUploader.dll
+C:\Projects\HDIMS\Vci.FileUploader\obj\Debug\Vci.FileUploader.pdb

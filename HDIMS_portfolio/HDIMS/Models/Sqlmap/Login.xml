@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Login"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="LoginModel" type="HDIMS.Models.Domain.Login.LoginModel, HDIMS" />
+  </alias>
+
+  <statements>
+    <!--사원번호 체크 시작-->
+    <select id="ChkEmpNo" resultClass="LoginModel" parameterClass="HashTable">
+      SELECT
+            EMPNO, KORNAME EMPNM, PASSWD,
+            DEPT, ORGLEVEL, EMAIL,
+            WEATHER_AREA, DEFUI, TO_CHAR(REGDT,'YYYY-MM-DD HH24:MI') REGDT,
+            DEFUI_KOR, HPTEL, HOMETEL,
+            OFFICETEL, AUTHORITY_ADMIN, AUTHORITY_EQPCHK,
+            AUTHORITY_SIMU, AUTHORITY_COMM, DEPTID,
+            ETC, MGTDAM, SCREENWIDTH, MGTCD
+      FROM DTB_USERINFO
+      WHERE TRIM(EMPNO) = TRIM(#EmpNo#)
+      ORDER BY KORNAME
+    </select>
+    <!--사원번호 체크 종료-->
+
+    <!--비밀번호 체크 시작-->
+    <select id="ChkPassWD" resultClass="LoginModel" parameterClass="HashTable">
+        SELECT A.EMPNO, KORNAME EMPNM, PASSWD,
+        DEPT, ORGLEVEL, EMAIL,
+        WEATHER_AREA, DEFUI, TO_CHAR(REGDT,'YYYY-MM-DD HH24:MI') REGDT,
+        DEFUI_KOR, HPTEL, HOMETEL,
+        OFFICETEL, AUTHORITY_ADMIN, AUTHORITY_EQPCHK,
+        AUTHORITY_SIMU, AUTHORITY_COMM, DEPTID,
+        ETC, SCREENWIDTH, A.AUTHCODE, C.AUTHNAME,
+        D.LONGITUDE, D.LATITUDE, D.RANGE, A.MGTCD
+        ,CASE WHEN A.MGTCD='0000' THEN 'MAIN'   <!-- 권한 댐을 가져옴 -->
+        WHEN TRIM(A.MGTCD)='' OR A.MGTCD IS NULL THEN '담당댐없음'
+        ELSE
+        (
+            SELECT substr(xmlagg(xmlelement(damcd,',' || damcd)).extract('//text()'),2) MGTDAM
+            FROM (
+              SELECT DAMCD,WKORD, DAMORD, DAMNM
+              FROM HM_DAMMST
+              WHERE MGTCD IN (
+                  SELECT MGTCD 
+                  FROM HM_DAMMGT A
+                  START WITH MGTCD = (SELECT MGTCD FROM DTB_USERINFO WHERE EMPNO=TRIM(#EmpNo#) AND ROWNUM =1)
+                  CONNECT BY PRIOR MGTLVL=MGTLVL-1 AND PRIOR MGTCD=PARCD
+              )
+              ORDER BY WKORD,DAMORD, DAMNM
+            )
+        )               
+        END AS MGTDAM
+        , (SELECT DAMTP FROM VM_DAMMGT WHERE MGTCD = (SELECT MGTCD FROM DTB_USERINFO WHERE EMPNO=TRIM(#EmpNo#) AND ROWNUM =1)) AS DAMTP
+        , A.HOME
+        FROM DTB_USERINFO A, HM_AUTH_MASTER C, HM_DAMPOINT D<!-- 권한이 없는 유저의 경우 NORMAL 권한  -->
+        WHERE 1=1
+        AND A.AUTHCODE = C.AUTHCODE(+)
+        AND A.MGTDAM = D.DAMCD(+)
+        AND TRIM(A.EMPNO)  = TRIM(#EmpNo#)
+        AND A.PASSWD = #PassWD#
+        ORDER BY KORNAME
+    </select>
+    <!--비밀번호 체크 종료-->
+
+    <!--로그인 정보 입력 시작-->
+    <insert id="InsertLoginInfo" parameterClass="HashTable">
+      INSERT INTO HM_LOGIN_INFO(EMPNO, LOGIN_DATE, LOGOUT_DATE, IP) VALUES (#EMPNO#, #LOGIN_DATE#, '', #IP#)
+    </insert>
+    <!--로그인 정보 입력 종료-->
+
+    <!--로그인 정보 수정 시작-->
+    <update id="UpdateLoginInfo" parameterClass="HashTable">
+      UPDATE HM_LOGIN_INFO SET LOGOUT_DATE = #LOGOUT_DATE#
+      WHERE EMPNO = #EMPNO#
+      and LOGIN_DATE = #LOGIN_DATE#
+    </update>
+    <!--로그인 정보 입력 종료-->
+    
+  </statements>
+
+</sqlMap>

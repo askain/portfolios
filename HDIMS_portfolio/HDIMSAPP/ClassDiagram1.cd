@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HDIMSAPP.MainPage" Collapsed="true">
+    <Position X="39.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEECAAACDgAgAAAAAAAIIECAACAgIAAAAAREgBABg=</HashCode>
+      <FileName>MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Home" Collapsed="true">
+    <Position X="32.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Views\Home.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Common.Behavior.ChartCrosshairVisibilityBehavior" Collapsed="true">
+    <Position X="43" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAABABAAAAAAAAggAACAAIAAAQAAAAIBAAAAAAA=</HashCode>
+      <FileName>Common\Behavior\ChartBehaviors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Common.Behavior.ChartExtension" Collapsed="true">
+    <Position X="25.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Behavior\ChartBehaviors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Common.Behavior.ChartItemInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAEghAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Behavior\ChartBehaviors.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Behavior.SeriesItemInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="39.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAEgBAAAAAAAABgAAAAAAE=</HashCode>
+      <FileName>Common\Behavior\ChartBehaviors.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.ConditionalFormatRule.ExCodeContionalFormatRuleProxy" Collapsed="true">
+    <Position X="30.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ConditionalFormatRule\ExCodeConditionalFormatRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.AutoStatTypeConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="37.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\AutoStatConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.VisibilityConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\ChartConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.ColorConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\ColorConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.DamAreaFontWeightConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="43" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\DamAreaConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.DamAreaForegroundConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\DamAreaConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.DamDataConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\DamDataConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.DamDataForVerifyingConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\DamDataForVerifyingConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.DateTimeConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="34.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\DateTimeConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.EquipConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="37.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\EquipConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.NumericConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\NumericConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.ObsDtConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="39.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\ObsDtConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.ObsDtKorConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="41.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\ObsDtKorConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.RainFallConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\RainFallConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.NoRainFallConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="34.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\RainFallConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.DictionaryConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="37.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\UnboundConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.WsSummaryFormatStringConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\WsSummaryFormatStringConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Converter.ZeroValueConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Converter\ZeroValueConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HDIMSAPP.Common.Styles.DamDataStyle" Collapsed="true">
+    <Position X="34.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACgAAAAEAAAAIAIggAAABAAAAAAQAAAAQAAFAAAAAAA=</HashCode>
+      <FileName>Common\Styles\DamDataStyle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Controls.DoubleClickDataGrid" Collapsed="true">
+    <Position X="39.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAABAAYAAAAAAAAAAAIAAIlAQCAAQAQAiAAAEAAAA=</HashCode>
+      <FileName>Controls\DoubleClickDataGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Controls.DataGridRowClickedArgs" Collapsed="true">
+    <Position X="25.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAGAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\DoubleClickDataGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Controls.DataGridCellClickedArgs" Collapsed="true">
+    <Position X="41.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAGAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\DoubleClickDataGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Controls.DataGridExtensions" Collapsed="true">
+    <Position X="43" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\DoubleClickDataGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.AlarmCode" Collapsed="true">
+    <Position X="25.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAECAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Common\AlarmCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.Code" Collapsed="true">
+    <Position X="29" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQEQAAAAAQAAAAIAAABAAAAAAAAAAAgBAEACBIAA=</HashCode>
+      <FileName>Models\Common\Code.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.DamCode" Collapsed="true">
+    <Position X="32.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAQIABAAAAQAAQEAACABAAoAAAAAAAAgAAAAAGAAA=</HashCode>
+      <FileName>Models\Common\DamCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.DamColType" Collapsed="true">
+    <Position X="34.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEQBAAAABAAAAAAQAAAAACEAAAAAAAAAAAAAAgEAA=</HashCode>
+      <FileName>Models\Common\DamColType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.DamType" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgCAAAAAAAA=</HashCode>
+      <FileName>Models\Common\DamType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.DataPoint" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAABAgAAAAAAAAAAAACAEAAAAAAAA=</HashCode>
+      <FileName>Models\Common\DataPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.DataSettings" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\Common\DataSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.EquipCode" Collapsed="true">
+    <Position X="29" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAEAAAAAAAAAAAAIBAgAAAEAAAQAAAA=</HashCode>
+      <FileName>Models\Common\EquipCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.ExCode" Collapsed="true">
+    <Position X="27.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAgAAAAAAAgAIIAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\Common\ExCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.LinkModel" Collapsed="true">
+    <Position X="37.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Models\Common\LinkModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.MenuModel" Collapsed="true">
+    <Position X="41.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAQAAIAAAAAACCAAAIIIAAAAIAAAAkA=</HashCode>
+      <FileName>Models\Common\MenuModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.MgtCode" Collapsed="true">
+    <Position X="43" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAACAAAAAAAAAAAAAgAAAAACAAA=</HashCode>
+      <FileName>Models\Common\MgtCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.ObsCode" Collapsed="true">
+    <Position X="37.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQEQAAAAAQAAAAAAAAAAAAAAAAAAAAgAAAACAIAA=</HashCode>
+      <FileName>Models\Common\ObsCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Common.ObservableModel" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAQAIKAAAAAAAgAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\ObservableModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HDIMSAPP.Models.Constants" Collapsed="true">
+    <Position X="34.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIABAAgAAAEAAAAAAAAAAABAAAAAAAQAEA=</HashCode>
+      <FileName>Models\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.EmpData" Collapsed="true">
+    <Position X="27.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAIAIAAIQQCQAyAAIAAASAAEQAAAAAgygAEQCACEQA=</HashCode>
+      <FileName>Models\EmpData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.JsonModel&lt;T&gt;" Collapsed="true">
+    <Position X="34.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAJAAAAxAAAQAAAAAABJAAEwAAAAAAAA=</HashCode>
+      <FileName>Models\JsonModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.KeyValue&lt;T&gt;" Collapsed="true">
+    <Position X="36" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAgAAAAAAI=</HashCode>
+      <FileName>Models\KeyValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.PostModel&lt;T&gt;" Collapsed="true">
+    <Position X="43" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PostModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.ElectricModel" Collapsed="true">
+    <Position X="2" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAAAEAACAAABAEAAAAAPwPQAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataSearch\ElectricModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.EquipColumnCollection" Collapsed="true">
+    <Position X="32.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\DataSearch\EquipColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.EquipColumn" Collapsed="true">
+    <Position X="30.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQACCAAAEQAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataSearch\EquipColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.EquipModel" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQCCAAigAAAEAgCACgBBAACAYJEAiEBBgAAwBAAA=</HashCode>
+      <FileName>Models\DataSearch\EquipModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.NetworkModel" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAQAAAAAAAEAACAAAhAEAAAAAAAAAABAAAABECA=</HashCode>
+      <FileName>Models\DataSearch\NetworkModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.QualityColumnCollection" Collapsed="true">
+    <Position X="27.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\DataSearch\QualityColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.QualityColumn" Collapsed="true">
+    <Position X="25.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAACAAAEQAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataSearch\QualityColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.DataSearch.WaterQuality" Collapsed="true">
+    <Position X="39.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAQAAACAACACEAgCBAABCGAAFAAAQEQABAAABBAAA=</HashCode>
+      <FileName>Models\DataSearch\WaterQuality.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Main.EquipMonitor" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAARyCEAigBAAAAgCACgBBAMCAYJEAiEBBgAIyBABA=</HashCode>
+      <FileName>Models\Main\EquipMonitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Statistics.AutoStatModel" Collapsed="true">
+    <Position X="36" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACACAAAAAAAAAAAAAgAAACACAAA=</HashCode>
+      <FileName>Models\Statistics\AutoStatModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.DamData" Collapsed="true">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>XQC/VLUNXANAnWVSSaHS8dqGGiggMhhgAIAoWF3scQk=</HashCode>
+      <FileName>Models\Verify\DamData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.DamDataSettings" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Verify\DamDataCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.DamDataColumnCollection" Collapsed="true">
+    <Position X="39.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEQBAAFAAAACAAAAAAAAAAAAAAAAAAoAABQAAA=</HashCode>
+      <FileName>Models\Verify\DamDataColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.DamDataColumn" Collapsed="true">
+    <Position X="37.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAQACCAIAEEAAACAAABAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Verify\DamDataColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.DamDataForVerifying" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAQAgYIBABIAAICAQAAAEAABCAAQACQAAAAYEA=</HashCode>
+      <FileName>Models\Verify\DamDataForVerifying.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.DAMLinearInterpolationResultModel" Collapsed="true">
+    <Position X="39.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAgQAACAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Verify\DAMLinearInterpolationResultModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.Data" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAACAAAAAAAAAAAAAAQIABAAAAAAA=</HashCode>
+      <FileName>Models\Verify\Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.RainFallData" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>jUAAUAg0AAAYgSUAAIQAgEgOKAgAEAAAAIBgAFRFAAE=</HashCode>
+      <FileName>Models\Verify\RainFallData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.WaterLevelData" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hUAAUAo0AQAQgSUAAIAAgAgcAAgAEAAAAIBgABRFABE=</HashCode>
+      <FileName>Models\Verify\WaterLevelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Models.Verify.WaterLevelDataForVerifying" Collapsed="true">
+    <Position X="32.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAgAAACAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Verify\WaterLevelDataForVerifying.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.CommonUtil" Collapsed="true">
+    <Position X="32.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAgAAAAAAAiAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\CommonUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.DataSourceCreator" Collapsed="true">
+    <Position X="27.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQQggAACAAAAQAQAAAAAQAAQBAgAAAAIBA=</HashCode>
+      <FileName>Utils\DataSourceCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.DataSourceUtil" Collapsed="true">
+    <Position X="29" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\DataSourceUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.DateUtil" Collapsed="true">
+    <Position X="36" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAIAAoAAgANAAAAAAAABAAAEAAAAAAgAIAAAAIFAAA=</HashCode>
+      <FileName>Utils\DateUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.ExcelUtil" Collapsed="true">
+    <Position X="25.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAIAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Utils\ExcelUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.MinMaxCalculator" Collapsed="true">
+    <Position X="25.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAQAAgIBAAAAAAGAAAQEAIAAAAABgBEAQQEIIAQAA=</HashCode>
+      <FileName>Utils\MinMaxCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.NetworkUtil" Collapsed="true">
+    <Position X="32.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\NetworkUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.SilverlightUtil" Collapsed="true">
+    <Position X="43" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Utils\SilverlightUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Utils.ValidationHandler" Collapsed="true">
+    <Position X="29" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEABAAACAAAAAAAAAAABAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Utils\ValidationHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.DataSearch.EquipSearch" Collapsed="true">
+    <Position X="39.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAiA0BgwAYCBAABYKg4mCIQAwYBCEIAQEQAANBAIYDA=</HashCode>
+      <FileName>Views\DataSearch\EquipSearch.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.DataSearch.NetworkSearch" Collapsed="true">
+    <Position X="30.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAiAEBg4AYCFAAFQLg4mCISAwYBCEIAQMQAANBAYZBA=</HashCode>
+      <FileName>Views\DataSearch\NetworkSearch.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.DataSearch.QueryBrowser" Collapsed="true">
+    <Position X="29" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgCAAIAAAQAAAAAAAAAAAAAIBAAAAA=</HashCode>
+      <FileName>Views\DataSearch\QueryBrowser.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.DataSearch.WaterQualitySearch" Collapsed="true">
+    <Position X="41.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACAABAgAYCAAABQKAoAAAQAwYBCAIAQEAAANBAYBCA=</HashCode>
+      <FileName>Views\DataSearch\WaterQualitySearch.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Main.TeleMonitor" Collapsed="true">
+    <Position X="27.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAoQAAABUCAAABAQAggRCAAAQEAAAJIEABBA=</HashCode>
+      <FileName>Views\Main\TeleMonitor.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Statistics.Dam1mStat" Collapsed="true">
+    <Position X="37.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACAABEoAIAgAABYKBoiOBQAyaRCAAAQEGAANBAYRBI=</HashCode>
+      <FileName>Views\Statistics\Dam1mStat.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Statistics.DamDataStat" Collapsed="true">
+    <Position X="32.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACAABAoAIAgAABQKBoiEJQByaRCAAAQEAAANBAYBAI=</HashCode>
+      <FileName>Views\Statistics\DamDataStat.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Statistics.EquipStat" Collapsed="true">
+    <Position X="41.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IADAABEoAIAgAABYKBoyOJQAyaRCAAAQEAAANBBYTBI=</HashCode>
+      <FileName>Views\Statistics\EquipStat.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Statistics.RainFallStat" Collapsed="true">
+    <Position X="34.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACBABEoAIAgAABYKBoiOJQAyaRCAAAQGAQCNBAYRBI=</HashCode>
+      <FileName>Views\Statistics\RainFallStat.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Verify.DamDataVerify" Collapsed="true">
+    <Position X="37.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAiAEZgQQaABAUFUIp4E8oQA0cxSEBSQMAUENIAYpBI=</HashCode>
+      <FileName>Views\Verify\DamDataVerify.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Verify.RainFallSearch" Collapsed="true">
+    <Position X="32.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQjAFLgQg4ABAUFYio4EmIQAwaxCUBAQFEEBNAAYZBA=</HashCode>
+      <FileName>Views\Verify\RainFallSearch.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Verify.WaterLevelSearch" Collapsed="true">
+    <Position X="34.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQiAFJgQg4ABAUFYio4EmIQAwaxCUBAQFEEBNAAYZBA=</HashCode>
+      <FileName>Views\Verify\WaterLevelSearch.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HDIMSAPP.Views.Verify.XamGridTest" Collapsed="true">
+    <Position X="30.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAICAAAAACAAABCABAAACEAgAQIABA=</HashCode>
+      <FileName>Views\Verify\XamGridTest.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

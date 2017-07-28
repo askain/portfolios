@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <series>
+    <value xid="0"></value>
+  </series>
+  <graphs>
+    <graph gid="1">
+      <value xid="0" description="(V)"></value>
+    </graph>
+    <graph gid="2">
+      <value xid="0"  description="(EL.m)"></value>
+    </graph>
+  </graphs>
+</chart>

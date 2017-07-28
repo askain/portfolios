@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="SysStats"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="LoginStatsModel" type="HDIMS.Models.Domain.SysStats.LoginStatsModel, HDIMS" />
+    <typeAlias alias="UserStatsModel" type="HDIMS.Models.Domain.SysStats.UserStatsModel, HDIMS" />
+    <typeAlias alias="MenuStatsModel" type="HDIMS.Models.Domain.SysStats.MenuStatsModel, HDIMS" />
+    <typeAlias alias="SchedulerMonitorModel" type="HDIMS.Models.Domain.SysStats.SchedulerMonitorModel, HDIMS" />
+    <typeAlias alias="ExamMonitorModel" type="HDIMS.Models.Domain.SysStats.ExamMonitorModel, HDIMS" />
+  </alias>
+
+  <statements>
+    <!-- 사용자별 통계 조회 시작-->
+    <select id="GetUserStatsList" resultClass="UserStatsModel" parameterClass="HashTable">
+      SELECT  A.EMPNO, A.KORNAME, COUNT(B.LOGIN_DATE) CNT
+      FROM DTB_USERINFO A, HM_LOGIN_INFO B
+      WHERE A.EMPNO = B.EMPNO(+)
+      AND B.LOGIN_DATE(+) BETWEEN #STARTDT# AND #ENDDT#
+      GROUP BY A.EMPNO, A.KORNAME
+      ORDER BY A.KORNAME
+    </select>
+    <!-- 사용자별 통계 조회 종료-->
+
+    <!-- 사용자별 통계 TOTALCOUNT 조회 시작-->
+    <select id="GetUserStatsTotCnt" resultClass="UserStatsModel" parameterClass="HashTable">
+      SELECT SUM(CNT) TOT_CNT
+      FROM
+      (
+        SELECT  A.EMPNO, A.KORNAME, COUNT(B.LOGIN_DATE) CNT
+        FROM DTB_USERINFO A, HM_LOGIN_INFO B
+        WHERE A.EMPNO = B.EMPNO(+)
+        AND B.LOGIN_DATE(+) BETWEEN #STARTDT# AND #ENDDT#
+        GROUP BY A.EMPNO, A.KORNAME
+      )
+    </select>
+    <!-- 사용자별 통계 TOTALCOUNT 조회 종료-->
+
+
+    <!-- 로그인 통계 월별 조회 시작-->
+    <select id="GetLoginStatsMonth" resultClass="LoginStatsModel" parameterClass="Hashtable">
+      <![CDATA[
+      SELECT  A.MONTH, COUNT(B.MONTH) CNT
+      FROM  (SELECT LPAD(ROWNUM, 2, '0') MONTH FROM DUAL CONNECT BY LEVEL <= 12) A,
+            (SELECT SUBSTR(LOGIN_DATE,5,2) MONTH FROM HM_LOGIN_INFO 
+             WHERE SUBSTR(LOGIN_DATE,1,4) = SUBSTR(#DT#,1,4)) B
+      WHERE A.MONTH = B.MONTH(+)
+      GROUP BY A.MONTH
+      ORDER BY MONTH
+      ]]>
+    </select>
+    <!-- 로그인 통계 월별 조회 종료-->
+
+    <!-- 로그인 통계 일별 조회 시작-->
+    <select id="GetLoginStatsDay" resultClass="LoginStatsModel" parameterClass="Hashtable">
+      <![CDATA[
+      SELECT A.DAY, COUNT(B.DAY) CNT
+      FROM
+          (SELECT LPAD(ROWNUM, 2, '0') DAY FROM DUAL 
+          CONNECT BY LEVEL <= TO_CHAR(LAST_DAY(TO_DATE(#DT#,'YYYYMM')),'DD')) A,
+          (SELECT SUBSTR(LOGIN_DATE,7,2) DAY FROM HM_LOGIN_INFO WHERE SUBSTR(LOGIN_DATE,1,6) = #DT#) B
+      WHERE A.DAY = B.DAY(+)
+      GROUP BY A.DAY
+      ORDER BY DAY
+      ]]>
+    </select>
+    <!-- 로그인 통계 일별 조회 종료-->
+
+    <!-- 로그인 통계 월별/일별 TotalCount 조회 시작-->
+    <select id="GetLoginStatsTotCnt" resultClass="LoginStatsModel" parameterClass="Hashtable">
+      <isEqual property="TYPE" compareValue="month">
+        <![CDATA[
+        SELECT SUM(CNT) TOT_CNT FROM
+        (
+          SELECT  A.MONTH, COUNT(B.MONTH) CNT
+          FROM  (SELECT LPAD(ROWNUM, 2, '0') MONTH FROM DUAL CONNECT BY LEVEL <= 12) A,
+                (SELECT SUBSTR(LOGIN_DATE,5,2) MONTH FROM HM_LOGIN_INFO WHERE SUBSTR(LOGIN_DATE,1,4) = SUBSTR(#DT#,1,4)) B
+          WHERE A.MONTH = B.MONTH(+)
+          GROUP BY A.MONTH
+          ORDER BY MONTH
+        )
+        ]]>
+      </isEqual>
+      <isEqual property="TYPE" compareValue="day">
+        <![CDATA[
+        SELECT SUM(CNT) TOT_CNT FROM
+        (
+          SELECT A.DAY, COUNT(B.DAY) CNT
+          FROM
+              (SELECT LPAD(ROWNUM, 2, '0') DAY FROM DUAL 
+              CONNECT BY LEVEL <= TO_CHAR(LAST_DAY(TO_DATE(#DT#,'YYYYMM')),'DD')) A,
+              (SELECT SUBSTR(LOGIN_DATE,7,2) DAY FROM HM_LOGIN_INFO B WHERE SUBSTR(B.LOGIN_DATE,1,6) = #DT#) B
+          WHERE A.DAY = B.DAY(+)
+          GROUP BY A.DAY
+          ORDER BY DAY
+        )
+        ]]>
+      </isEqual>
+    </select>
+    <!-- 로그인 통계 일별 TotalCount 조회 종료-->
+
+
+    <!-- 메뉴 통계 조회 시작-->
+    <select id="GetMenuStatsList" resultClass="MenuStatsModel" parameterClass="Hashtable">
+      SELECT SYS_CONNECT_BY_PATH(MENU_NAME, '|') FULL_PATH, MENU_NAME, MENU_URI, MENU_ID, PARENT_ID, ORD, CNT
+      FROM 
+        (
+          SELECT BB.MENU_ID, BB.MENU_NAME, BB.PARENT_ID, BB.MENU_ORD ORD, BB.MENU_URI, NVL(AA.CNT,0) CNT
+          FROM 
+            (
+              SELECT
+              MENU_ID, SUBSTR(ACC_DATE,1,8) ACC_DATE, COUNT(*) CNT
+              FROM HM_MENU_ACCESS
+              WHERE ACC_DATE BETWEEN #STARTDT# AND #ENDDT#
+              GROUP BY MENU_ID, SUBSTR(ACC_DATE,1,8)
+            ) AA, 
+            HM_MENU_MASTER BB
+          WHERE BB.MENU_ID=AA.MENU_ID(+)
+          AND BB.USE_FLAG = 'Y'
+        )
+      START WITH PARENT_ID IS NULL
+      CONNECT BY PRIOR MENU_ID=PARENT_ID
+      ORDER SIBLINGS BY ORD
+    </select>
+    <!-- 메뉴 통계 조회 종료-->
+
+    <!-- 메뉴 통계 TOTALCOUNT 조회 시작-->
+    <select id="GetMenuStatsTotCnt" resultClass="MenuStatsModel" parameterClass="HashTable">
+      SELECT SUM(CNT) TOT_CNT
+      FROM
+      (
+        SELECT TEXT, LINK, COUNT(MENU_ID) CNT
+        FROM
+        (
+          SELECT MENU_NAME TEXT, NVL(MENU_URI,'') LINK, TO_CHAR(MENU_ID) ID,
+            (
+            SELECT COUNT(*) FROM HM_MENU_MASTER
+            WHERE PARENT_ID=TT.MENU_ID
+            AND USE_FLAG='Y'
+            ) LEAF
+            , DECODE(MENU_URI,NULL,'TRUE','FALSE') EXPANDED,
+            FN_CONV_CHAR(MENU_LVL) DEPTH, FN_CONV_CHAR(MENU_ORD) ORD, MENU_DATE, USE_FLAG FLAG, FN_CONV_CHAR(PARENT_ID) PARENTID
+          FROM HM_MENU_MASTER TT
+          WHERE USE_FLAG='Y'
+          AND MENU_URI IS NOT NULL
+          START WITH PARENT_ID IS NULL
+          CONNECT BY PRIOR MENU_ID=PARENT_ID
+          ORDER SIBLINGS BY ORD
+        ) A,
+        HM_MENU_ACCESS B
+        WHERE A.ID = B.MENU_ID(+)
+        AND B.ACC_DATE(+) BETWEEN #STARTDT# AND #ENDDT#
+        GROUP BY TEXT, LINK
+      )
+    </select>
+    <!-- 메뉴 통계 TOTALCOUNT 조회 종료-->
+
+    <!-- 메뉴 통계 추가 시작-->
+    <insert id="InsertMenuStats" parameterClass="Hashtable">
+      INSERT INTO HM_MENU_ACCESS(MENU_ID, ACC_DATE, IP) VALUES(#MENU_ID#, #ACC_DATE#, #IP#)
+    </insert>
+    <!-- 메뉴 통계 추가 종료-->
+      
+    <!-- 스케줄러 모니터링 이력 조회 -->
+    <select id="GetSchedulerLogList" resultClass="SchedulerMonitorModel" parameterClass="Hashtable" >
+      SELECT 
+        CASE WHEN SHTP='RADA' THEN '레이더영상'
+            WHEN SHTP='TISS' THEN '티센망'
+            WHEN SHTP='D1ST' THEN '일단위 결측 통계'
+            WHEN SHTP='D2ST' THEN '월단위 결측 통계'
+            WHEN SHTP='EQWL' THEN '수위설비 통계'
+            WHEN SHTP='EQRF' THEN '우량설비 통계'
+            WHEN SHTP='EQST' THEN '설비상태 모니터링'
+            WHEN SHTP='EXDM' THEN '댐 통계'
+            WHEN SHTP='EXWL' THEN '수위 통계'
+            WHEN SHTP='EXRF' THEN '우량 통계'
+            WHEN SHTP='SESS' THEN '유저세션'
+            ELSE SHTP END AS SHTPNM
+        ,SHTP, STARTDT, ENDDT, NOTE
+      FROM HM_SCHEDULERMON
+      WHERE STARTDT BETWEEN #sdate# AND #edate#
+      ORDER BY STARTDT DESC
+    </select>
+      
+    <!-- 검보정기 모니터링 이력 조회 -->
+    <select id="GetExamLogList" resultClass="ExamMonitorModel" parameterClass="Hashtable" >
+      SELECT
+        CASE WHEN EXTP='WL' THEN '수위'
+        WHEN EXTP='RF' THEN '우량'
+        WHEN EXTP='DM' THEN '댐운영자료'
+        WHEN EXTP='MD' THEN '결측자료처리'
+        ELSE EXTP END AS EXTPNM
+        ,EXTP, STARTDT, ENDDT, NOTE
+      FROM HM_EXAMMON
+      WHERE STARTDT BETWEEN #sdate# AND #edate#
+      ORDER BY STARTDT DESC
+    </select>
+  </statements>
+</sqlMap>

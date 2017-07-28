@@ -1,0 +1,2162 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsSL4.Controls.Menus.XamOutlookBar.v11.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer">
+            <summary>
+            Exposes OutlookBarGroup types to UI Automation.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.#ctor(Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.RaiseIsSelectedPropertyChangedEvent(System.Boolean,System.Boolean)">
+            <summary>
+            Raises the IsSelectedPropertyChangedEvent.
+            </summary>
+            <param name="oldValue">if set to <c>true</c> The old value.</param>
+            <param name="newValue">if set to <c>true</c> The new value.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.OwningOutlookBarGroup_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles the PropertyChanged event of the OwningOutlookBarGroup property as XamOutlookBar.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Returns the control type for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetAutomationControlType"/>.
+            </summary>
+            <returns>A value of the enumeration.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.GetClassNameCore">
+            <summary>
+            Returns the name of the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetClassName"/>.
+            </summary>
+            <returns>
+            The name of the owner type that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. See Remarks.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Returns the control pattern for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>.
+            </summary>
+            <param name="patternInterface">One of the enumeration values.</param>
+            <returns>See Remarks.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.AddToSelection">
+            <summary>
+            Adds the current element to the collection of selected items.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.RemoveFromSelection">
+            <summary>
+            Removes the current element from the collection of selected items.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.Select">
+            <summary>
+            Clears any existing selection and then selects the current element.
+            </summary>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.IsSelected">
+            <summary>
+            Gets a value indicating whether an item is selected.
+            </summary>
+            <value></value>
+            <returns>true if the element is selected; otherwise, false.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.OutlookBarGroupAutomationPeer.SelectionContainer">
+            <summary>
+            Gets the UI automation provider that implements <see cref="T:System.Windows.Automation.Provider.ISelectionProvider"/> and acts as the container for the calling object.
+            </summary>
+            <value></value>
+            <returns>The UI automation provider.</returns>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer">
+            <summary>
+            Exposes XamOutlookBar types to UI Automation.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.#ctor(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.RaiseExpandCollapseStatePropertyChangedEvent(System.Windows.Automation.ExpandCollapseState,System.Windows.Automation.ExpandCollapseState)">
+            <summary>
+            Raises the ExpandCollapseStatePropertyChangedEvent.
+            </summary>
+            <param name="oldValue">if set to <c>true</c> The old value.</param>
+            <param name="newValue">if set to <c>true</c> The new value.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Returns the control type for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetAutomationControlType"/>.
+            </summary>
+            <returns>A value of the enumeration.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.GetClassNameCore">
+            <summary>
+            Returns the name of the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetClassName"/>.
+            </summary>
+            <returns>
+            The name of the owner type that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. See Remarks.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Returns the control pattern for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>.
+            </summary>
+            <param name="patternInterface">One of the enumeration values.</param>
+            <returns>See Remarks.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.OwningOutlookBar_NavigationPaneMinimized(System.Object,System.EventArgs)">
+            <summary>
+            Handles the NavigationPaneMinimized event of the OwningOutlookBar property as XamOutlookBar.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.OwningOutlookBar_NavigationPaneExpanded(System.Object,System.EventArgs)">
+            <summary>
+            Handles the NavigationPaneExpanded event of the OwningOutlookBar property as XamOutlookBar.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.Collapse">
+            <summary>
+            Hides all nodes, controls, or content that are descendants of the control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.Expand">
+            <summary>
+            Displays all child nodes, controls, or content of the control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.GetSelection">
+            <summary>
+            Retrieves a UI automation provider for each child element that is selected.
+            </summary>
+            <returns>An array of UI automation providers.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.ExpandCollapseState">
+            <summary>
+            Gets the state (expanded or collapsed) of the control.
+            </summary>
+            <value></value>
+            <returns>The state (expanded or collapsed) of the control.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.CanSelectMultiple">
+            <summary>
+            Gets a value indicating whether the UI automation provider allows more than one child element to be selected concurrently.
+            </summary>
+            <value></value>
+            <returns>true if multiple selection is allowed; otherwise, false.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamOutlookBarAutomationPeer.IsSelectionRequired">
+            <summary>
+            Gets a value indicating whether the UI automation provider requires at least one child element to be selected.
+            </summary>
+            <value></value>
+            <returns>true if selection is required; otherwise, false.</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.OutlookBarGroupLocation">
+            <summary>
+            Specifies the location of an <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.OutlookBarGroup.Location"/>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroupLocation.None">
+            <summary>
+            The <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> is not positioned anywhere within the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroupLocation.NavigationGroupArea">
+            <summary>
+            The <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>  is located on the navigation area.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroupLocation.OverflowArea">
+            <summary>
+            The <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>  is located on the overflow area.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroupLocation.OverflowContextMenu">
+            <summary>
+            The <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> will be displayed inside overflow context menu.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.PopupLocation">
+            <summary>
+            Specifies the location of a popup with the content of the selected group when <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> is minimized.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.PopupLocation.Left">
+            <summary>
+            Popup opens on the left side of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.PopupLocation.Right">
+            <summary>
+            Popup opens on the right side of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommand">
+            <summary>
+            An enumeration of available commands for the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommand.MoveSelectedDown">
+            <summary>
+            Moves the selected OutlookBarGroup group down in the NavigationPaneOptionsControl.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommand.MoveSelectedUp">
+            <summary>
+            Moves the selected OutlookBarGroup group up in the NavigationPaneOptionsControl.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommand.CommitChangesAndClose">
+            <summary>
+            Commits changes made in the NavigationPaneOptionsControl and closes parent window.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommand.ResetGroupSequenceAndVisibility">
+            <summary>
+            Resets group's order and visibility to the initial state and raises GroupsReset event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.XamOutlookBarCommand">
+            <summary>
+            An enumeration of available commands for the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBarCommand.ShowPopup">
+            <summary>
+            Shows content of the selected group as popup when XamOutlookBar.IsMinimized is true.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBarCommand.ShowFewerButtons">
+            <summary>
+            Shows fewer OutlookBarGroups in the Navigation Area of the XamOutlookBar.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBarCommand.ShowMoreButtons">
+            <summary>
+            Shows more OutlookBarGroups in the Navigation Area of the XamOutlookBar.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBarCommand.ShowOptions">
+            <summary>
+            Displays the NavigationPaneOptionsControl which lets the user set the visibility and position of the groups.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBarCommand.SelectGroup">
+            <summary>
+            Selects an <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            Supply the <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> to be selected via a command Parameter .
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBarCommand.ToggleGroupVisibility">
+            <summary>
+            Changes Visibility of an <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> from Collapsed to Visible and vice versa.
+            Supply the <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> via a Parameter.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs">
+            <summary>
+            Event arguments for <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanged"/> event of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs.#ctor(Infragistics.Controls.Menus.OutlookBarGroup,Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs"/> class.
+            </summary>
+            <param name="previousSelectedOutlookBarGroup">The previous selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.</param>
+            <param name="newSelectedOutlookBarGroup">The new selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.</param>
+            <remarks>See <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanged"/> for more information.</remarks>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs.NewSelectedOutlookBarGroup">
+            <summary>
+            The new selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs.PreviousSelectedOutlookBarGroup"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs.PreviousSelectedOutlookBarGroup">
+            <summary>
+            The previous selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs.NewSelectedOutlookBarGroup"/>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs">
+            <summary>
+            Event arguments for <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanging"/> event of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            </summary>
+            <remarks>See <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanging"/> for more information.</remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs.#ctor(Infragistics.Controls.Menus.OutlookBarGroup,Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs"/> class
+            </summary>
+            <param name="currentSelectedOutlookBarGroup">The currently selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/></param>
+            <param name="newSelectedOutlookBarGroup">The new selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/></param>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs.CurrentSelectedOutlookBarGroup">
+            <summary>
+            The currently selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs.NewSelectedOutlookBarGroup"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs.NewSelectedOutlookBarGroup">
+            <summary>
+            The new selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs.CurrentSelectedOutlookBarGroup"/>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.SelectedGroupPopupClosedEventArgs">
+            <summary>
+            Event arguments for <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosed"/> event of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.SelectedGroupPopupClosedEventArgs.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs"/> class.
+            </summary>
+            <param name="popupWidth">The width of the popup.</param>
+            <remarks>See <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosed"/> for more information.</remarks>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.SelectedGroupPopupClosedEventArgs.PopupWidth">
+            <summary>
+            Gets the width of the popup.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.GroupHeaderConverter">
+            <summary>
+            A converter used to prevent errors when OutlookBarGroup.Header is UIElement. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.GroupHeaderConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the source data before passing it to the target for display in the UI.
+            </summary>
+            <param name="value">The source data being passed to the target (the Header of an OutlookBarGroup).</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            input value, if the value is not an UIElement, otherwise returns value.ToString().
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.GroupHeaderConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Not implemented. Do not use.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            NotImplementedException.
+            </returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.GroupOverflowArea">
+            <summary>
+            Defines an area that displays <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>s that cannot fit in the navigation area of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.GroupOverflowArea.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Menus.Primitives.GroupOverflowArea"/> 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.GroupOverflowArea.OnApplyTemplate">
+            <summary>
+            Invoked when the template for the element has been applied.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.GroupOverflowArea.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Positions child elements and determines a size for this element.
+            </summary>
+            <param name="finalSize">The size available to this element for arranging its children.</param>
+            <returns>The <see cref="T:System.Windows.Size"/> used by this element to arrange its children.</returns>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.Primitives.GroupOverflowArea.OutlookBarProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.Primitives.GroupOverflowArea.OutlookBar"/> dependency property
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.GroupOverflowArea.OutlookBar">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> parent of GroupOverflowArea. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.GroupsItemsSource.#ctor(Infragistics.Controls.Menus.OutlookBarGroupCollection,Infragistics.Controls.Menus.XamOutlookBar,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.GroupsItemsSource"/> class.
+            </summary>
+            <param name="groups">The groups.</param>
+            <param name="xob">The OutlookBar.</param>
+            <param name="updateSource">if set to <c>true</c> control updates ItemsControl.ItemsSource property.</param>
+        </member>
+        <member name="M:Infragistics.GroupsItemsSource.OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Invoked when the <see cref="P:System.Windows.Controls.ItemsControl.Items"/> property changes.
+            </summary>
+            <param name="e">Information about the change.</param>
+        </member>
+        <member name="P:Infragistics.GroupsItemsSource.OutlookBar">
+            <summary>
+            Gets/sets the outlook bar.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl">
+            <summary>
+            A control used to present options that provide control over the visibility and order of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>s in the navigation area of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> 
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.OnApplyTemplate">
+            <summary>
+            Called when the template is applied.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Called before the System.Windows.UIElement.KeyDown event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.CommitChangesAndClose">
+            <summary>
+            Commits changes made in the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> and closes parent.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.MoveSelectedDown">
+            <summary>
+            Moves the selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> group down in the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.MoveSelectedUp">
+            <summary>
+            Moves the selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> group up in the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.ResetGroupSequenceAndVisibility">
+            <summary>
+            Commits changes made in the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> and closes parent.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.CloseParent">
+            <summary>
+            Hides parent element of the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.GetParameter(Infragistics.Controls.CommandSource)">
+            <summary>
+            Returns the object that defines the parameters necessary to execute the command.
+            </summary>
+            <param name="source">The CommandSource object which defines the command to be executed.</param>
+            <returns>The object necessary for the command to complete.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.SupportsCommand(System.Windows.Input.ICommand)">
+            <summary>
+            Returns if the object will support a given command type.
+            </summary>
+            <param name="command">The command to be validated.</param>
+            <returns>
+            True if the object recognizes the command as actionable against it.
+            </returns>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl.OutlookBar">
+            <summary>
+            Gets/sets the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> control that the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> is presenting options for.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommandSource">
+            <summary>
+            The command source object for <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommandSource.ResolveCommand">
+            <summary>
+            Generates the <see cref="T:System.Windows.Input.ICommand"/> object that will execute the command.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommandSource.CommandType">
+            <summary>
+            Gets/sets the <see cref="T:Infragistics.Controls.Menus.NavigationPaneOptionsControlCommand"/> which is to be executed by the command.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControlCommandBase">
+            <summary>
+            Base class for all commands that deal with a <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControlCommandBase.CanExecute(System.Object)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="parameter">The object that the command will be executed against.</param>
+            <returns>True if the object can support this command.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControlCommandBase.Execute(System.Object)">
+            <summary>
+            Executes the command 
+            </summary>
+            <param name="parameter">The <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object that will be executed against.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControlCommandBase.ExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+            </summary>
+            <param name="optionsControl"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControlCommandBase.CanExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="optionsControl"></param>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.MoveSelectedDownCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that moves the selected OutlookBarGroup group down in the NavigationPaneOptionsControl.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.MoveSelectedDownCommand.ExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Moves the selected OutlookBarGroup group down in the NavigationPaneOptionsControl
+            /// </summary>
+            <param name="optionsControl">A <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.MoveSelectedDownCommand.CanExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Reports if the MoveSelectedDownCommand command can be executed on the object inputted.
+            </summary>
+            <param name="optionsControl">A <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.MoveSelectedUpCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that moves the selected OutlookBarGroup group up in the NavigationPaneOptionsControl.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.MoveSelectedUpCommand.ExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Moves the selected OutlookBarGroup group up in the NavigationPaneOptionsControl
+            /// </summary>
+            <param name="optionsControl">A <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.MoveSelectedUpCommand.CanExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Reports if the MoveSelectedUpCommand command can be executed on the object inputted.
+            </summary>
+            <param name="optionsControl">A <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.CommitChangesAndCloseCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that commits changes made in the NavigationPaneOptionsControl and closes parent window.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.CommitChangesAndCloseCommand.ExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Commits changes made in the NavigationPaneOptionsControl and closes parent window.
+            </summary>
+            <param name="optionsControl">A <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object that will be maximized.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.CommitChangesAndCloseCommand.CanExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Reports if the CommitChangesAndCloseCommand command can be executed on the object inputted.
+            </summary>
+            <param name="optionsControl"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.ResetGroupSequenceAndVisibilityCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that resets group's order and visibility to the initial state and raises GroupsReset event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ResetGroupSequenceAndVisibilityCommand.ExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Resets group's order and visibility to the initial state and raises GroupsReset event.
+            </summary>
+            <param name="optionsControl">A <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> object that will be maximized.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ResetGroupSequenceAndVisibilityCommand.CanExecuteCommand(Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl)">
+            <summary>
+            Reports if the ResetGroupSequenceAndVisibiltyCommand command can be executed on the object inputted.
+            </summary>
+            <param name="optionsControl"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.OutlookBarGroup">
+            <summary>
+            Represents a headered content area in a <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> (commonly referred to as a 'group') that displays image and text in the header and developer-supplied content in the content area.
+            </summary>
+            <remarks>
+            OutlookBarGroups can appear in any of 3 locations in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> control: the navigation area, the overflow area and the overflow context menu.  When displayed in one of these areas,
+            only the OutlookBarGroup's header is shown.  When an OutlookBarGroup is selected, its header (with image and/or text) and content also appear in the selected group area.  
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.#ctor">
+            <summary>
+            Initializes a new OutlookBarGroup
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnApplyTemplate">
+            <summary>
+            Invoked when the template for the element has been applied.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnCreateAutomationPeer">
+            <summary>
+            When implemented in a derived class, returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            The class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> subclass to return.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Invoked when an unhandled Mouse.MouseDown attached event reaches an element in its route that is derived from this class. 
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Input.MouseEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnMouseEnter(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Invoked when an unhandled Mouse.MouseEnter attached event is raised on this element
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Invoked when an unhandled MouseLeftButtonUp routed event reaches an element in its route that is derived from this class
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/> that contains the event data. The event data reports that the left mouse button was released</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnMouseLeave(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Invoked when an unhandled Mouse.MouseLeave attached event is raised on this element
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnMouseMove(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Invoked when an unhandled Mouse.MouseMove attached event reaches an element in its route that is derived from this class
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroup.HeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.Header"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroup.HeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.HeaderTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroup.IsSelectedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.IsSelected"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.OutlookBarGroup.ToolTipProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.ToolTip"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroup.OnPropertyChanged(System.String)">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.Header">
+            <summary>
+            Gets/sets the Header of OutlookBarGroup. 
+            </summary>
+            <remarks>The best way to change the appearance of the Header is to use <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.HeaderTemplate"/>.</remarks>
+            <seealso cref="F:Infragistics.Controls.Menus.OutlookBarGroup.HeaderProperty"/>
+            <seealso cref="P:Infragistics.Controls.Menus.OutlookBarGroup.HeaderTemplate"/>
+            <seealso cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.HeaderTemplate">
+            <summary>
+            Gets/sets a data template used to display the content of the control's header. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.OutlookBarGroup.HeaderTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.IsSelected">
+            <summary>
+            Gets/sets the IsSelected of OutlookBarGroup. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.OutlookBarGroup.IsSelectedProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.Key">
+            <summary>
+            Gets/sets a key associated with this <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>. Though not required, if specified this key can be used to access the <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> in the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/> collection.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplate">
+            <summary>
+            Gets/sets the LargeIconTemplate of OutlookBarGroup. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.Location">
+            <summary>
+            Gets/sets the Location of OutlookBarGroup.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplate">
+            <summary>
+            Gets/sets the SmallIcon of OutlookBarGroup. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplateResolved">
+            <summary>
+            Gets the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplate"/> if it has been set, otherwise returns a default small image for the OutlookBarGroup.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplate"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultLargeIconTemplate"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplateResolved">
+            <summary>
+            Gets the <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplate"/> if it has been set, otherwise returns a default small image for the OutlookBarGroup.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplate"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultSmallIconTemplate"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.ToolTip">
+            <summary>
+            Gets/sets the tool-tip object that is displayed for this element in the user interface (UI). 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.OutlookBarGroup.ToolTipProperty"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.ShowToolTips"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.ShowGroupHeaderAsToolTip"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.OutlookBar">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> parent of OutlookBarGroup. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.OutlookBarGroup.IsGenerated">
+            <summary>
+            Gets/sets a value indicating whether this group is generated from data.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.OutlookBarGroup.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.OutlookBarGroupCollection">
+            <summary>
+            Represents a modifiable collection of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> objects.
+            </summary>
+            <remarks>The <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>s in OutlookBarGroupCollection can be accessed either via key or integer index.</remarks>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroupCollection.#ctor">
+            <summary>
+            Initialize a new OutlookBarGroupCollection
+            </summary>
+            <remarks>
+            <p class="note"><b>Note: </b>An instance of this class is automatically created by the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>. You do not normally need to create an instance of this class.</p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroupCollection.InsertItem(System.Int32,Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Inserts a new <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> at the specified index in the collection.
+            </summary>
+            <param name="index">The index at which to insert the OutlookBarGroup/&gt;</param>
+            <param name="item">The OutlookBarGroup to insert in the collection</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroupCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes an  <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> at the specified index.
+            </summary>
+            <param name="index">The index of the item in the collection to be removed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroupCollection.SetItem(System.Int32,Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Replaces an item at the specified index in the collection 
+            </summary>
+            <param name="index">Index of the item to replace</param>
+            <param name="item">The item to insert into the collection.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroupCollection.ClearItems">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.OutlookBarGroupCollection.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Raises the CollectionChanged event
+            </summary>
+            <param name="e">The argument providing information about the collection change</param>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.ReadOnlyOutlookBarGroupCollection">
+            <summary>
+            A read-only collection of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>s used in the navigation, overflow and context menu areas of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.OverflowAreaGroups"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationAreaGroups"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.ContextMenuGroups"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.ReadOnlyOutlookBarGroupCollection.#ctor(System.Collections.ObjectModel.ObservableCollection{Infragistics.Controls.Menus.OutlookBarGroup})">
+            <summary>
+            Creates a readonly Collection of OutlookBarGroup items from source collection
+            </summary>
+            <param name="sourceCollection">Source OutlookBarGroupCollection</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.ReadOnlyOutlookBarGroupCollection.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.ReadOnlyOutlookBarGroupCollection.CollectionChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.ReadOnlyOutlookBarGroupCollection.CollectionChanged">
+            <summary>
+            Occurs when the items list of the collection has changed, or the collection is reset.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy">
+            <summary>
+            This class is used as a proxy for <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>s in the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/> and in the overflow menu.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.XamMenu"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.#ctor(Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Creates a OutlookBarGroupProxy from the specified  <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+            </summary>
+            <param name="group"></param>
+            <remarks>
+            <p class="note"><b>Note: </b>An instance of this class is automatically created by the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>. You do not normally need to create an instance of this class.</p>
+            </remarks>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.IsSelectedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.IsSelected"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.OnPropertyChanged(System.String)">
+            <summary>
+            Called when a property value changes.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.Group">
+            <summary>
+            Gets the source <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.IsSelected">
+            <summary>
+            Gets/sets whether the underlying <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> is selected. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.IsSelectedProperty"/>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.Primitives.OutlookBarGroupProxy.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.OverflowPanel">
+            <summary>
+            Arranges child elements into a single horizontally oriented line.
+            Use OverflowPanel to position and arrange OutlookBarGroups in GroupOverflowArea
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.OverflowPanel.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the Measure pass of Silverlight layout. Classes can override this method to define their own measure pass behavior.
+            </summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>
+            The size that this object determines it needs during layout, based on its calculations of child object allotted sizes.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.OverflowPanel.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the "arrange" pass of Silverlight layout. Classes can override this method to define their own arrange pass behavior.
+            </summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>
+            The actual size used once the element is arranged.
+            </returns>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.OverflowPanel.FreeSpace">
+            <summary>
+            Returns the amount of free space that can be used to position new children.
+            </summary>
+            <value>The free space.</value>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.RotationCenterConverter">
+            <summary>
+            A class used to calculate position of a control on Canvas. 
+            Return value is used to set Canvas.Left and Canvas.Top, so point (0,0) to be a center of the control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.RotationCenterConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the source data before passing it to the target for display in the UI.
+            </summary>
+            <param name="value">The source data being passed to the target.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the target dependency property.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.RotationCenterConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the source object.
+            </returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.SelectedGroupContent">
+            <summary>
+            A control used to present the content of SelectedGroup in <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.#ctor">
+            <summary>
+            Initializes a new SelectedGroupContent
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.OutlookBarProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.OutlookBar"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Positions child elements and determines a size for this element.
+            </summary>
+            <param name="finalSize">The size available to this element for arranging its children.</param>
+            <returns>The <see cref="T:System.Windows.Size"/> used by this element to arrange its children.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.OnApplyTemplate">
+            <summary>
+            Invoked when the template for the element has been applied.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.OnLostFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            Called before the System.Windows.UIElement.LostFocus event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.PopupIsOpenProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.PopupIsOpen"/> dependency property
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.OutlookBar">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> parent of SelectedGroupContent. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.PopupIsOpen">
+            <summary>
+            Gets/sets whether the popup currently displaying on the screen . 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.Primitives.SelectedGroupContent.PopupIsOpenProperty"/>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.SelectedGroupHeader">
+            <summary>
+            A control used to present the selected group header in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectedGroupHeader.#ctor">
+            <summary>
+            Initializes a new instance of SelectedGroupHeader
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.Primitives.SelectedGroupHeader.OutlookBarProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.Primitives.SelectedGroupHeader.OutlookBar"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectedGroupHeader.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectedGroupHeader.SetVisualState">
+            <summary>
+            Sets the correct the visual state of control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.Primitives.SelectedGroupHeader.OutlookBar">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> parent of SelectedGroupHeader. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.StringSettings">
+            <summary>
+            An object that contains strings for different areas in UI (buttons, tooltips, menu headers, etc.) of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.StringSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Menus.StringSettings"/> class.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedTooltipProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedTooltip"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedTextProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedText"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.MinimizeButtonMinimizeTooltipProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.MinimizeButtonMinimizeTooltip"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.MinimizeButtonExpandTooltipProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.MinimizeButtonExpandTooltip"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.ShowMoreButtonsMenuItemHeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.ShowMoreButtonsMenuItemHeader"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.ShowFewerButtonsMenuItemHeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.ShowFewerButtonsMenuItemHeader"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.AddOrRemoveButtonsMenuItemHeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.AddOrRemoveButtonsMenuItemHeader"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationAreaOptionsMenuItemHeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationAreaOptionsMenuItemHeader"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.OverflowMenuButtonTooltipProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.OverflowMenuButtonTooltip"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveUpButtonProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveUpButton"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveDownButtonProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveDownButton"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlResetButtonProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlResetButton"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlCancelButtonProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlCancelButton"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOkButtonProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOkButton"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOrderLabelProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOrderLabel"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsDialogTitleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsDialogTitle"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.StringSettings.GetString(System.String)">
+            <summary>
+            Returns the resource string.
+            </summary>
+            <param name="resourceName">Name of the resource.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedTooltip">
+            <summary>
+            Gets/set the tooltip that appears in navigation area of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> in minimized state. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedTooltipProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedText">
+            <summary>
+            Gets/set the tooltip that appears in navigation area of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> in minimized state.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneMinimizedTextProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.MinimizeButtonMinimizeTooltip">
+            <summary>
+            Gets/sets a <see cref="T:System.String"/> instance for the tooltip of the minimize button in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.MinimizeButtonMinimizeTooltipProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.MinimizeButtonExpandTooltip">
+            <summary>
+            Gets/sets a <see cref="T:System.String"/> instance for the tooltip of the minimize button in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> in minimized state.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.MinimizeButtonExpandTooltipProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.ShowMoreButtonsMenuItemHeader">
+            <summary>
+            Gets/set the string for the header of the "Show More Buttons" menu item in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.XamMenuItem"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.ShowMoreButtonsCommand"/>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.ShowMoreButtonsMenuItemHeaderProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.ShowFewerButtonsMenuItemHeader">
+            <summary>
+            Gets/set the string for the header of the "Show Fewer Buttons" menu item in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.XamMenuItem"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.ShowFewerButtonsCommand"/>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.ShowFewerButtonsMenuItemHeaderProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.AddOrRemoveButtonsMenuItemHeader">
+            <summary>
+            Gets/set the string for the header of the "Add or Remove Buttons" menu item in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.XamMenuItem"/>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.AddOrRemoveButtonsMenuItemHeaderProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationAreaOptionsMenuItemHeader">
+            <summary>
+            Gets/set the string for the header of the "Navigation Pane Options" menu item in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.XamMenuItem"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.ShowOptionsCommand"/>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationAreaOptionsMenuItemHeaderProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.OverflowMenuButtonTooltip">
+            <summary>
+            Gets/set the string for the tooltip of main overflow menu item in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.OverflowMenuButtonTooltipProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveUpButton">
+            <summary>
+            Gets/set the string that appears in "Move Up" button in the <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.MoveSelectedUpCommand"/>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveUpButtonProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveDownButton">
+            <summary>
+            Gets/set the string that appears in "Move Down" button in the <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.MoveSelectedDownCommand"/>        
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlMoveDownButtonProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlResetButton">
+            <summary>
+            Gets/set the string that appears in "Reset" button in the <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.ResetGroupSequenceAndVisibilityCommand"/>        
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlResetButtonProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlCancelButton">
+            <summary>
+            Gets/set the string that appears in "Cancel" button in the <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlCancelButtonProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOkButton">
+            <summary>
+            Gets/set the string that appears in "OK" button in the <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.CommitChangesAndCloseCommand"/>        
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOkButtonProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOrderLabel">
+            <summary>
+            Gets/set the text for the label in the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsControlOrderLabelProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsDialogTitle">
+            <summary>
+            Gets/set the text for the header of the <see cref="T:Infragistics.Controls.Interactions.XamDialogWindow"/> that contains <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.ShowOptionsCommand"/>
+            <seealso cref="T:Infragistics.Controls.Interactions.XamDialogWindow"/> 
+            <seealso cref="F:Infragistics.Controls.Menus.StringSettings.NavigationPaneOptionsDialogTitleProperty"/>
+        </member>
+        <member name="T:Infragistics.OutlookBarGroupVisualStates.CommonStates">
+            <summary>
+            Specifies  visual states in CommonStates VisualStateGroup
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.CommonStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains common states
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.CommonStates.Normal">
+            <summary>
+            Normal view of a group
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.CommonStates.Selected">
+            <summary>
+            The group is selected. 
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.OutlookBarGroup.IsSelected"/>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.CommonStates.Pressed">
+            <summary>
+            The group is pressed or mouse move occurs when it is selected. 
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.OutlookBarGroup.IsSelected"/>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.CommonStates.MouseOverGroup">
+            <summary>
+            Mouse is over the group 
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.OutlookBarGroup.IsSelected"/>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.CommonStates.HoverAndSelected">
+            <summary>
+            Mouse is over a group which is currently <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.IsSelected"/>
+            </summary>
+        </member>
+        <member name="T:Infragistics.OutlookBarGroupVisualStates.DisplayStates">
+            <summary>
+            Specifies  visual states in ImageAndHeader VisualStateGroup
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.DisplayStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains image and header display modes
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.DisplayStates.IconAndHeader">
+            <summary>
+            Default view of OutlookBarGroup shows LargeIcon and Header
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.DisplayStates.SmallIconOnly">
+            <summary>
+            When OutlookBarGroup Location is OverflowArea
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.DisplayStates.LargeIconOnly">
+            <summary>
+            When OutlookBarGroup Location is NavigationArea and OutlookBar is minimized
+            </summary>
+        </member>
+        <member name="T:Infragistics.OutlookBarGroupVisualStates.LargeIconSpaceStates">
+            <summary>
+            Specifies  visual states in  VisualStateGroup
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.LargeIconSpaceStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains LargeIcon display modes
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.LargeIconSpaceStates.ReserveSpace">
+            <summary>
+            Reserve space for LargeIcon when LargeIcon is empty
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarGroupVisualStates.LargeIconSpaceStates.NoSpace">
+            <summary>
+            No space for LargeIcon when LargeIcon is empty
+            </summary>
+        </member>
+        <member name="T:Infragistics.OutlookBarVisualStates.MinimizedStates">
+            <summary>
+            Specifies visual states in MinimizedStates VisualStateGroup
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.MinimizedStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains common states
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.MinimizedStates.Expanded">
+            <summary>
+            Expanded (normal) state of OutlookBar
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.MinimizedStates.Minimized">
+            <summary>
+            Minimized state of OutlookBar
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/>
+        </member>
+        <member name="T:Infragistics.OutlookBarVisualStates.PopupStates">
+            <summary>
+            Specifies visual states in PopupStates VisualGroup (states of popup that shows the content of selected group in minimized mode). 
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.PopupStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains common states
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.PopupStates.PopupOpened">
+            <summary>
+            The popup is opened
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.PopupStates.PopupClosed">
+            <summary>
+            The popup is closed
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/>
+        </member>
+        <member name="T:Infragistics.OutlookBarVisualStates.PopupLocationStates">
+            <summary>
+            Specifies visual states in PopupStates VisualGroup (states of popup that shows the content of selected group in minimized mode). 
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.PopupLocationStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains popup location states
+            </summary>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.PopupLocationStates.PopupRight">
+            <summary>
+            Popup opens on the left side of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.PopupLocation"/>
+        </member>
+        <member name="F:Infragistics.OutlookBarVisualStates.PopupLocationStates.PopupLeft">
+            <summary>
+            Popup opens on the right side of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.PopupLocation"/>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.XamOutlookBar">
+            <summary>
+            The XamOutlookBar is a Silverlight Component that provides the UI and functionality 
+            of the navigation bar /strip in the applications /Like MS Outlook 2003 or later versions/  
+            </summary>
+            <remarks> XamOutlookBar is a Silverlight version of the existing Infragistics XamOutlookBar element. The Silverlight version of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> . It is not backward-compatible with the XamOutlookBar control.
+            To use the XamOutlookBar in the application developers must add references to Infragistics.Silverlight, <seealso cref="T:Infragistics.Controls.Menus.XamMenu"/> and <seealso cref="T:Infragistics.Controls.Interactions.XamDialogWindow"/> assemblies.
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnApplyTemplate">
+            <summary>
+            Invoked when the template for the element has been applied.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnCreateAutomationPeer">
+            <summary>
+            When implemented in a derived class, returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            The class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> subclass to return.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the "measure" pass of Silverlight layout. Classes can override this method to define their own measure pass behavior.
+            </summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>
+            The size that this object determines it needs during layout, based on its calculations of child object allotted sizes.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Positions child elements and determines a size for this element.
+            </summary>
+            <param name="finalSize">The size available to this element for arranging its children.</param>
+            <returns>The <see cref="T:System.Windows.Size"/> used by this element to arrange its children.</returns>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.AllowMinimizedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.AllowMinimized"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.DefaultLargeIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultSmallIconTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.DefaultSmallIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultSmallIconTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.GroupsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupsSource"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.GroupContainerStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupContainerStyle"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.GroupContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupContentTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.GroupHeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupHeaderTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.DefaultGroupsContainerProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultGroupsContainer"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.HorizontalSplitterStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.HorizontalSplitterStyle"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.IsMinimizedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.MinimizedWidthProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.MinimizedWidth"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.MinimizeToggleButtonStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.MinimizeToggleButtonStyle"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneToggleButtonStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneToggleButtonStyle"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.NavigationAreaMaxGroupsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationAreaMaxGroups"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneOptionsControlStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneOptionsControlStyle"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.PopupLocationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.PopupLocation"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.ReserveSpaceForLargeImageProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.ReserveSpaceForLargeImage"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.SelectedAreaMinHeightProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedAreaMinHeight"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroup"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.ShowGroupHeaderAsToolTipProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.ShowGroupHeaderAsToolTip"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.ShowFewerButtonsIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.ShowFewerButtonsIconTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.ShowMoreButtonsIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.ShowMoreButtonsIconTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.ShowToolTipsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.ShowToolTips"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamOutlookBar.StringSettingsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.StringSettings"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.GroupMoveDown(Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Moves specified <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> backward into the Groups collection.
+            </summary>
+            <param name="group">An <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> which changes its position</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.GroupMoveUp(Infragistics.Controls.Menus.OutlookBarGroup)">
+            <summary>
+            Moves specified <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> forward into the Groups collection.
+            </summary>
+            <param name="group">An <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> which changes its position</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.RegisterResources(System.String,System.Reflection.Assembly)">
+            <summary>
+            Adds an additonal Resx file in which the control will pull its resources from.
+            </summary>
+            <param name="name">The name of the embedded resx file that contains the resources to be used.</param>
+            <param name="assembly">The assembly in which the resx file is embedded.</param>
+            <remarks>Don't include the extension of the file, but prefix it with the default Namespace of the assembly.</remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.UnregisterResources(System.String)">
+            <summary>
+            Removes a previously registered resx file.
+            </summary>
+            <param name="name">The name of the embedded resx file that was used for registration.</param>
+            <remarks>
+            Note: this won't have any effect on controls that are already in view and are already displaying strings.
+            It will only affect any new controls created.
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnGroupsReset(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.GroupsReset"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.GroupsReset"/>
+            <seealso cref="T:System.EventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnNavigationPaneExpanding(Infragistics.CancellableEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneExpanding"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneExpanding"/>
+            <seealso cref="T:Infragistics.CancellableEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnNavigationPaneExpanded(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneExpanded"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneExpanded"/>
+            <seealso cref="T:System.EventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnNavigationPaneMinimizing(Infragistics.CancellableEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneMinimizing"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneMinimizing"/>
+            <seealso cref="T:Infragistics.CancellableEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnNavigationPaneMinimized(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneMinimized"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneMinimized"/>
+            <seealso cref="T:System.EventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnSelectedGroupChanging(Infragistics.Controls.Menus.SelectedGroupChangingEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanging"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanging"/>
+            <seealso cref="T:Infragistics.Controls.Menus.SelectedGroupChangingEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnSelectedGroupChanged(Infragistics.Controls.Menus.SelectedGroupChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanged"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanged"/>
+            <seealso cref="T:Infragistics.Controls.Menus.SelectedGroupChangedEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnSelectedGroupPopupClosed(Infragistics.Controls.Menus.SelectedGroupPopupClosedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosed"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosed"/>
+            <seealso cref="T:System.EventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnSelectedGroupPopupClosing(Infragistics.CancellableEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosing"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosing"/>
+            <seealso cref="T:Infragistics.CancellableEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnSelectedGroupPopupOpened(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupOpened"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupOpened"/>
+            <seealso cref="T:System.EventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.OnSelectedGroupPopupOpening(Infragistics.CancellableEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupOpening"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupOpening"/>
+            <seealso cref="T:Infragistics.CancellableEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.GetParameter(Infragistics.Controls.CommandSource)">
+            <summary>
+            Returns the object that defines the parameters necessary to execute the command.
+            </summary>
+            <param name="source">The CommandSource object which defines the command to be executed.</param>
+            <returns>The object necessary for the command to complete.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.SupportsCommand(System.Windows.Input.ICommand)">
+            <summary>
+            Returns if the object will support a given command type.
+            </summary>
+            <param name="command">The command to be validated.</param>
+            <returns>
+            True if the object recognizes the command as actionable against it.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBar.FinishedLoadingPersistence">
+            <summary>
+            Allows an object to perform an operation, after it's been loaded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.AllowMinimized">
+            <summary>
+            Gets/sets the possibility of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> to be minimized.  
+            </summary>
+            <remarks>
+            <p class="body">By default, <b>AllowMinimized</b> is true. Set this property to false 
+            to prevent minimizing of <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.</p>
+            </remarks>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.AllowMinimizedProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.ContextMenuGroups">
+            <summary>
+            Gets a read only collection of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> items in the overflow context menu of XamOutlookBar.
+            </summary>
+            <remarks>
+            <p class="body">The groups in the <b>ContextMenuGroups</b> collection will be displayed inside overflow context menu of XamOutlookBar. 
+            The <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.Location"/> of each group in this collection is set to <b>OutlookBarGroupLocation.OverflowContextMenu</b>.</p>
+            </remarks>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroupLocation"/>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultLargeIconTemplate">
+            <summary>
+            Gets/sets the DefaultLargeIconTemplate of XamOutlookBar. 
+            </summary>
+            <remarks>
+            <p class="body">The XamOutlookBar displays large icon of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> when the group is in the navigation area. 
+            If <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.LargeIconTemplate"/> is null,  the XamOutlookBar uses <b>DefaultLargeIconTemplate</b>.</p>
+            </remarks>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.DefaultSmallIconTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultSmallIconTemplate">
+            <summary>
+            Gets/sets the DefaultSmallIconTemplate of XamOutlookBar. 
+            </summary>
+            <remarks>
+            <p class="body">The XamOutlookBar displays small icon of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> when the group is in the overflow area. 
+            If <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.SmallIconTemplate"/> is null,  the XamOutlookBar uses <b>DefaultSmallIconTemplate</b>.</p>
+            </remarks>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.DefaultSmallIconTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.Groups">
+            <summary>
+            Gets a modifiable collection of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> items.
+            </summary>
+            <remarks>
+            <p class="body"> The developer can use only one of <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/> or <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupsSource"/> properties to add groups to the control.
+            Each <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> in the <b>Groups</b> belongs to one of readonly collectons:
+            <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationAreaGroups"/>
+            <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.OverflowAreaGroups"/>
+            <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.ContextMenuGroups"/>
+            </p>
+            </remarks>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupsSource"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.GroupsSource">
+            <summary>
+            Gets or sets a collection used to generate the content of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>. 
+            </summary>
+            <remarks>
+            <p class="body"> The developer can use only one of <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/> or <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupsSource"/> properties to add groups to the control.
+            This allows the Groups collection to be populated via a binding on the GroupsSource property.
+            When <b>GroupsSource</b> is in use, setting this property to null will remove
+            the collection and restore use to <b>Groups</b> (which will be an empty collection).</p>
+            </remarks>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.GroupsSourceProperty"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupContainerStyle"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupHeaderTemplate"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupContentTemplate"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultGroupsContainer"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.GroupContainerStyle">
+            <summary>
+            Gets/sets the style that is used when rendering the item containers when the Groups collection is populated via a binding on the GroupsSource property. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.GroupContainerStyleProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.GroupContentTemplate">
+            <summary>
+            Gets/sets the DataTemplate used to display the content of each group in XamOutlookBar when the Groups collection is populated via a binding on the GroupsSource property. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.GroupContentTemplateProperty"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.GroupsSource"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.GroupHeaderTemplate">
+            <summary>
+            Gets/sets the DataTemplate used to display the header of each group in XamOutlookBar when the Groups collection is populated via a binding on the GroupsSource property. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.GroupHeaderTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.DefaultGroupsContainer">
+            <summary>
+            Gets or sets a DataTemplate that will be used as a container when the items are being generated. 
+            </summary>
+            <remarks>
+            <p class="body">
+            This property takes effect only to the items that are <b>not</b> native containers of the control.</p> 
+            <p class="note">The root element of the template provided by <b>DefaultGroupsContainer</b> should be the native
+            container of the control - <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            If the root content of the DataTemplate is not an OutlookBarGroup, the property will be ignored and 
+            an Empty OutlookBarGroup will be used instead</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.HorizontalSplitterStyle">
+            <summary>
+            Gets/sets the ControlTemplate for a Thumb used to represent a horizontal splitter. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.HorizontalSplitterStyleProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized">
+            <summary>
+            Gets/sets the IsMinimized of XamOutlookBar. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.IsMinimizedProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.MinimizedWidth">
+            <summary>
+            Gets/sets the width of XamOutlookBar in minimized state. 
+            </summary>
+            <remarks>XamOutlookBar changes its state to minimized when the width is less than MinimizedWidth and viceversa.</remarks>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.MinimizedWidthProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.MinimizeToggleButtonStyle">
+            <summary>
+            Gets/sets the Style of MinimizeToggleButton of XamOutlookBar. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.MinimizeToggleButtonStyleProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneToggleButtonStyle">
+            <summary>
+            Gets/sets the ControlTemplate for NavigationPaneToggleButtonof of XamOutlookBar used to show popup with content of the selected <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneToggleButtonStyleProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationAreaGroups">
+            <summary>
+            Gets a readonly collection of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> items in the navigation area of the XamOutlookBar
+            </summary>
+            <remarks>
+            <p class="body">The groups in the <b>NavigationAreaGroups</b> collection are displayed inside navigation area of <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>. 
+            The <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.Location"/> of each group in this collection is set to <see cref="T:Infragistics.Controls.Menus.OutlookBarGroupLocation"/>.NavigationGroupArea.</p>
+            </remarks>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroupLocation"/>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationAreaMaxGroups">
+            <summary>
+            Gets/sets desired number of groups in the navigation area of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>. 
+            </summary>
+            <remarks>
+            <p class="body">By default, <b>NavigationAreaMaxGroups</b> is -1 which meaning that XamOutlookBar will put as much as possible groups in the navigation area depending on available space. The value of NavigationAreaMaxGroups can be changed by dragging horizontal splitter or by selecting ShowMore/Fewer Buttons from overflow menu. </p>
+            </remarks>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.NavigationAreaMaxGroupsProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneOptionsControlStyle">
+            <summary>
+            Gets/sets the NavigationPaneOptionsControlStyle of XamOutlookBar. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneOptionsControlStyleProperty"/>
+            <seealso cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.OverflowAreaGroups">
+            <summary>
+            Gets a readonly collection of <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> items in the XamOutlookBar overflow area
+            </summary>
+            <remarks>
+            <p class="body">The groups in the <b>OverflowAreaGroups</b> collection are displayed inside overflow area of XamOutlookBar. 
+            The <see cref="P:Infragistics.Controls.Menus.OutlookBarGroup.Location"/> of each group in this collection is set to <b>OutlookBarGroupLocation.OverflowArea</b>.</p>
+            </remarks>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroupLocation"/>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.Groups"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.PopupLocation">
+            <summary>
+            Gets/sets the location of a popup with the content of the selected group when <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>is minimized.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.PopupLocationProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.ReserveSpaceForLargeImage">
+            <summary>
+            Gets/sets whether the space exists for the LargeImage of an <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.ReserveSpaceForLargeImageProperty"/>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedAreaMinHeight">
+            <summary>
+            Gets/sets the minimum height constraint of an area that XamOutlookBar displays the content of the selected group. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.SelectedAreaMinHeightProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroup">
+            <summary>
+            Gets/sets the currently selected group in the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>. 
+            </summary>
+            <remarks>
+            <p class="body">The content of <b>SelectedGroup</b> is displayed in the selected group content area of <b>XamOutlookBar</b>. The amount of space allocated is determined by the <b>SelectedAreaMinHeight</b> property.</p>
+            </remarks>
+            <seealso cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.ShowGroupHeaderAsToolTip">
+            <summary>
+            Gets/sets the possibility to show OutlookBarGroup header in the overflow area as ToolTip. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.ShowGroupHeaderAsToolTipProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.ShowFewerButtonsIconTemplate">
+            <summary>
+            A DataTemplate used to identify the icon for the "Show Fewer Buttons" menu option. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.ShowFewerButtonsIconTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.ShowMoreButtonsIconTemplate">
+            <summary>
+            A DataTemplate used to identify the icon for the "Show More Buttons" menu option. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.ShowMoreButtonsIconTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.ShowToolTips">
+            <summary>
+            Gets/sets the possibility of the tooltip appearance for the group in the overflow area. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.ShowToolTipsProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.StringSettings">
+            <summary>
+            Gets/set the StringSettings object which allows to set custom strings in XamOutlookBar.
+            </summary>
+            <remarks>Use the StringSettings when you need to change only string in OutlookBar UI like tooltips, menu headers etc.</remarks>
+            <seealso cref="P:Infragistics.Controls.Menus.XamOutlookBar.StringSettings"/>
+            <seealso cref="F:Infragistics.Controls.Menus.XamOutlookBar.StringSettingsProperty"/>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.GroupsReset">
+            <summary>
+            Occurs after reseting the visibility and the order of the groups in their initial state by the <see cref="T:Infragistics.Controls.Menus.Primitives.NavigationPaneOptionsControl"/>.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneExpanding">
+            <summary>
+            Occurs before <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> has been restored to a normal(not minimized) state.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneExpanded">
+            <summary>
+            Raises after completing the XamOutlookBar expansion.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneMinimizing">
+            <summary>
+            Raises before completing the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> minimization.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.NavigationPaneMinimized">
+            <summary>
+            Occurs after <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> has been minimized.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanging">
+            <summary>
+            Raises before completing the change of the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroup"/> in the XamOutlookBar.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupChanged">
+            <summary>
+            Occurs after <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroup"/> has been changed.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosed">
+            <summary>
+            Occurs when the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/> property of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> is true and the popup for the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroup"/> has closed up.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupClosing">
+            <summary>
+            Occurs before closing the popup.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupOpened">
+            <summary>
+            Occurs when the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.IsMinimized"/> property of the <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> is true and the popup for the <see cref="P:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroup"/> has been opened.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamOutlookBar.SelectedGroupPopupOpening">
+            <summary>
+            Occurs when the popup is about to be displayed to the end user.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.PropertiesToIgnore">
+            <summary>
+            Gets a List of properties that shouldn't be saved when the PersistenceManager goes to save them.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBar.PriorityProperties">
+            <summary>
+            Gets a List of properties that should be applied, before even trying to look at any other property on the object.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.XamOutlookBarCommandSource">
+            <summary>
+            The command source object for <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamOutlookBarCommandSource.ResolveCommand">
+            <summary>
+            Generates the <see cref="T:System.Windows.Input.ICommand"/> object that will execute the command.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamOutlookBarCommandSource.CommandType">
+            <summary>
+            Gets/sets the <see cref="T:Infragistics.Controls.Menus.XamOutlookBarCommand"/> which is to be executed by the command.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.XamOutlookBarCommandBase">
+            <summary>
+            Base class for all commands that deal with a <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.XamOutlookBarCommandBase.CanExecute(System.Object)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="parameter">The object that the command will be executed against.</param>
+            <returns>True if the object can support this command.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.XamOutlookBarCommandBase.Execute(System.Object)">
+            <summary>
+            Executes the command 
+            </summary>
+            <param name="parameter">The <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object that will be executed against.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.XamOutlookBarCommandBase.ExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/>
+            </summary>
+            <param name="outlookBar"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.XamOutlookBarCommandBase.CanExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="outlookBar"></param>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.ShowPopupCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that shows content of the selected group as popup when XamOutlookBar.IsMinimized is true.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowPopupCommand.ExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Shows content of the selected group as popup when XamOutlookBar.IsMinimized is true.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowPopupCommand.CanExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Reports if the ShowPopupCommand command can be executed on the object inputted.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.ShowFewerButtonsCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that shows fewer OutlookBarGroups in the Navigation Area of the XamOutlookBar.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowFewerButtonsCommand.ExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Shows fewer OutlookBarGroups in the Navigation Area of the XamOutlookBar.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowFewerButtonsCommand.CanExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Reports if the ShowFewerButtonsCommand command can be executed on the object inputted.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.ShowMoreButtonsCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that shows more OutlookBarGroups in the Navigation Area of the XamOutlookBar.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowMoreButtonsCommand.ExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Shows more OutlookBarGroups in the Navigation Area of the XamOutlookBar.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowMoreButtonsCommand.CanExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Reports if the ShowFewerButtonsCommand command can be executed on the object inputted.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.ShowOptionsCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that displays the NavigationPaneOptionsControl which lets the user set the visibility and position of the groups
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowOptionsCommand.ExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Displays the NavigationPaneOptionsControl which lets the user set the visibility and position of the groups
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ShowOptionsCommand.CanExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Reports if the ShowOptionsCommand command can be executed on the object inputted.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.SelectGroupCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that select an <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectGroupCommand.ExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Selects an <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/>.
+            Supply the <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> to be selected via a Parameter.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.SelectGroupCommand.CanExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Reports if the SelectGroupCommand command can be executed on the object inputted.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.ToggleGroupVisibilityCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that displays the add or remove menu item which lets the user set the visibility of the groups.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ToggleGroupVisibilityCommand.ExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Changes Visibility of an <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> from Collapsed to Visible and vice versa.
+            Supply the <see cref="T:Infragistics.Controls.Menus.OutlookBarGroup"/> via a Parameter.
+            </summary>        
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.ToggleGroupVisibilityCommand.CanExecuteCommand(Infragistics.Controls.Menus.XamOutlookBar)">
+            <summary>
+            Reports if the ToggleGroupVisibilityCommand command can be executed on the object inputted.
+            </summary>
+            <param name="outlookBar">A <see cref="T:Infragistics.Controls.Menus.XamOutlookBar"/> object.</param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+    </members>
+</doc>

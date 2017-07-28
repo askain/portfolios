@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Evaluation"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="EvaluationModel" type="HDIMS.Models.Domain.Evaluation.EvaluationModel, HDIMS" />
+  </alias>
+
+  <statements>
+
+    <!-- 확인 갯수 조회 시작-->
+    <select id="GetEvaluationCount" resultClass="int" parameterClass="HashTable">
+        SELECT
+            COUNT(*) CNT
+        FROM 
+            HM_ABNORMCHK
+        WHERE 1=1
+        <isNotEmpty prepend="AND" property="OBSDT">
+            OBSDT = #OBSDT#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="DAMCD">
+            DAMCD = #DAMCD#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="DATATP">
+            DATATP = #DATATP#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="STARTDT">
+            OBSDT BETWEEN #STARTDT# AND #ENDDT#
+        </isNotEmpty>
+    </select>
+    <!-- 확인 갯수 조회 종료-->
+      
+    <!-- 확인 리스트 조회 시작-->
+    <select id="GetEvaluationList" resultClass="EvaluationModel" parameterClass="HashTable">
+        SELECT 
+            OBSDT, DAMCD, DATATP, EMPNO, CHKYN, CHKOBSDT, NOTE, DAMNM, EMPNM
+        FROM
+        (
+            SELECT 
+                ROWNUM AS ROW_NUM,
+                A.OBSDT, A.DAMCD, A.DATATP, A.EMPNO, A.CHKYN, A.CHKOBSDT, A.NOTE,
+                B.DAMNM, C.KORNAME EMPNM
+            FROM 
+                HM_ABNORMCHK A, DUBDAMSPC@TECH.WORLD B, DTB_USERINFO C
+            WHERE 1=1
+                AND A.DAMCD = B.DAMCD
+                AND TRIM(A.EMPNO) = TRIM(C.EMPNO)
+                <isNotEmpty prepend="AND" property="OBSDT">
+                    A.OBSDT = #OBSDT#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="DAMCD">
+                    A.DAMCD = #DAMCD#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="DATATP">
+                    A.DATATP = #DATATP#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="STARTDT">
+                    A.OBSDT BETWEEN #STARTDT# AND #ENDDT#
+                </isNotEmpty>
+                <isNotEmpty property="TXT">
+                    <isEqual property="TERM" compareValue="EMPNO">
+                        AND TRIM(A.EMPNO) LIKE '%' || #TXT# || '%'
+                    </isEqual>
+                    <isEqual property="TERM" compareValue="EMPNM">
+                        AND C.KORNAME LIKE '%' || #TXT# || '%'
+                    </isEqual>
+                </isNotEmpty>
+            ORDER BY 
+                <isNull property="SORTPROPERTY" >
+                    A.OBSDT DESC
+                </isNull>
+                <isNotNull property="SORTPROPERTY" >
+                    $SORTPROPERTY$ $SORTDIRECTION$
+                </isNotNull>
+        )
+        WHERE 1=1
+        <isNotEmpty prepend="AND" property="START">
+            <isNotEmpty property="LIMIT">
+                ROW_NUM BETWEEN $START$ AND $START$ + $LIMIT$
+            </isNotEmpty>
+        </isNotEmpty>
+    </select>
+    <!-- 확인 리스트 조회 종료-->
+
+    <!-- 확인 리스트 조회 시작-->
+    <select id="GetEvaluationListForMgt" resultClass="EvaluationModel" parameterClass="HashTable">
+        SELECT 
+            OBSDT, DAMCD, DATATP, EMPNO, CHKYN, CHKOBSDT, NOTE, DAMNM, EMPNM, ROW_NUM
+        FROM
+        (
+            SELECT 
+                A.OBSDT, A.DAMCD, A.DATATP, A.EMPNO, A.CHKYN, A.CHKOBSDT, A.NOTE,
+                A.DAMNM, A.EMPNM, A.ROW_NUM
+            FROM 
+                (
+			    SELECT DT.OBSDT, DT.DAMCD, DT.DAMNM, DT.DATATP, ABN.EMPNO, ABN.CHKYN, ABN.CHKOBSDT, ABN.NOTE, ABN.EMPNM, DT.ROW_NUM
+			    FROM (
+                   SELECT 
+                       A.OBSDT, A.DAMCD, A.DATATP, A.EMPNO, A.CHKYN, A.CHKOBSDT, A.NOTE, B.KORNAME EMPNM
+                   FROM 
+                       HM_ABNORMCHK A, DTB_USERINFO B
+                   WHERE 1=1
+                       AND TRIM(A.EMPNO) = TRIM(B.EMPNO)
+                       <isNotEmpty prepend="AND" property="OBSDT">
+                           A.OBSDT = #OBSDT#
+                       </isNotEmpty>
+                       <isNotEmpty prepend="AND" property="DAMCD">
+                           A.DAMCD=#DAMCD#
+                       </isNotEmpty>
+                       <isNotEmpty prepend="AND" property="DATATP">
+                           A.DATATP = #DATATP#
+                       </isNotEmpty>
+                       <isNotEmpty property="TXT">
+                           <isEqual property="TERM" compareValue="EMPNO">
+                               AND TRIM(A.EMPNO) LIKE '%' || #TXT# || '%'
+                           </isEqual>
+                           <isEqual property="TERM" compareValue="EMPNM">
+                               AND B.KORNAME LIKE '%' || #TXT# || '%'
+                           </isEqual>
+                       </isNotEmpty>
+                ) ABN,
+                (
+			        SELECT DAM.DAMCD, DAM.DAMNM, TT.OBSDT, TP.DATATP
+                           , ROW_NUMBER() OVER (PARTITION BY TT.OBSDT, DAM.DAMCD, TP.DATATP ORDER BY DAM.DAMNM, TT.OBSDT DESC, TP.DATATP ) ROW_NUM
+			        FROM (
+                        <![CDATA[
+			            SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#STARTDT#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') OBSDT
+					    FROM DUAL
+					    CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#ENDDT#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#STARTDT#), 1, 8), 'YYYYMMDD')) + 1)
+                        ]]>
+			        ) TT, VM_DAMCODE DAM, (
+                        SELECT 'D' DATATP FROM DUAL
+                        UNION ALL
+                        SELECT 'W' DATATP FROM DUAL
+                        UNION ALL
+                        SELECT 'R' DATATP FROM DUAL
+                    ) TP
+			        WHERE 1=1
+                        <isNotEmpty prepend="AND" property="DAMTYPE">
+                            DAM.DAMTYPE=#DAMTYPE#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="DAMCD">
+                            DAM.DAMCD=#DAMCD#
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="DATATP">
+                            TP.DATATP = #DATATP#
+                        </isNotEmpty>
+			    ) DT
+			    WHERE DT.DAMCD = ABN.DAMCD(+)
+			    AND DT.OBSDT = ABN.OBSDT(+)
+                AND DT.DATATP = ABN.DATATP(+)
+            ) A
+            WHERE 1=1
+            ORDER BY 
+                <isNull property="SORTPROPERTY" >
+                    A.OBSDT DESC, A.DAMNM, A.DATATP
+                </isNull>
+                <isNotNull property="SORTPROPERTY" >
+                    $SORTPROPERTY$ $SORTDIRECTION$
+                </isNotNull>
+        )
+        WHERE 1=1
+        <isNotEmpty prepend="AND" property="START">
+            <isNotEmpty property="LIMIT">
+                ROW_NUM BETWEEN $START$ AND $START$ + $LIMIT$
+            </isNotEmpty>
+        </isNotEmpty>
+    </select>
+    <!-- 확인 리스트 조회 종료-->
+      
+    <!-- 확인 리스트 추가 시작-->
+    <insert id="InsertEvaluation" parameterClass="EvaluationModel">
+        INSERT INTO HM_ABNORMCHK (
+            OBSDT, DAMCD, DATATP, EMPNO, CHKYN, CHKOBSDT, NOTE
+        )
+        VALUES (
+            #OBSDT#, #DAMCD#, #DATATP#, #EMPNO#, #CHKYN#, TO_CHAR(SYSDATE, 'YYYYMMDDHH24MI'), #NOTE#
+        )
+    </insert>
+    <!-- 확인 리스트 추가 종료-->
+
+    <!--게시판 리스트 수정 시작-->
+    <update id="UpdateEvaluation" parameterClass="EvaluationModel">
+        UPDATE HM_ABNORMCHK
+        SET    
+            OBSDT    = #OBSDT#,
+            DAMCD    = #DAMCD#,
+            DATATP   = #DATATP#,
+            EMPNO    = #EMPNO#,
+            CHKYN    = #CHKYN#,
+            CHKOBSDT = TO_CHAR(SYSDATE, 'YYYYMMDDHH24MI'),
+            NOTE     = #NOTE#
+        WHERE  
+            OBSDT           = #OBSDT#
+            AND    DAMCD    = #DAMCD#
+            AND    DATATP   = #DATATP#
+    </update>
+    <!--게시판 리스트 수정 종료-->
+
+    <!--게시판 리스트 삭제 시작-->
+    <delete id="DeleteEvaluation" resultClass="EvaluationModel">
+      DELETE FROM HM_ABNORMCHK
+      WHERE 
+        OBSDT       = #OBSDT# 
+        AND DAMCD   = #DAMCD#
+        AND DATATP  = #DATATP#
+    </delete>
+    <!--게시판 리스트 삭제 종료-->
+  
+</statements>
+</sqlMap>
+

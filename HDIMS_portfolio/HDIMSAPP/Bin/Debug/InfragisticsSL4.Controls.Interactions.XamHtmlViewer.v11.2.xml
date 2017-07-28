@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsSL4.Controls.Interactions.XamHtmlViewer.v11.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Controls.Interactions.Utils">
+            <summary>
+            The Utils class contains some specific properties and methods for internal use
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.Utils.EvaluateCloneNode">
+            <summary>
+            Evaluates the javascript function only once
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.Utils.EvaluateFindHtmlElementPosition">
+            <summary>
+            Evaluates the javascript function only once
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.Utils.CloneNodeById(System.String)">
+            <summary>
+            Clones an html element
+            </summary>
+            <param name="idNode">The ID of the html element</param>
+            <returns>Returns the new element</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.Utils.FindHtmlElementPosition(System.Windows.Browser.HtmlElement,System.Double@,System.Double@)">
+            <summary>
+            Returns an html element's coordinates in the browser. 
+            </summary>
+            <param name="element">An html element</param>
+            <param name="posX">Position X</param>
+            <param name="posY">Position Y</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.Utils.GetHtmlElementSize(System.Windows.Browser.HtmlElement)">
+            <summary>
+            Returns the Szie of an HtmlElement object
+            </summary>
+            <param name="element">The HtmlElement object</param>
+            <returns>The Size object</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.Utils.GetParents(System.Windows.FrameworkElement)">
+            <summary>
+            Recursively walks through the visual tree and collects all parents.
+            </summary>
+            <param name="element">The Framework element</param>
+            <returns>A collection of all parents</returns>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.Utils.CloneNode">
+            <summary>
+            Gets javascript function used for cloning an html element
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.Utils.FindHtmlElementPositionCode">
+            <summary>
+            Gets javascript function used for determining the location of an html element on the page
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.Utils.SlAreaSize">
+            <summary>
+            Gets the Silverlight size
+            </summary>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.XamHtmlViewerAutomationPeer">
+            <summary>
+            An automation peer for <see cref="T:Infragistics.Controls.Interactions.XamHtmlViewer"/> allowing screenreaders and programatic user interaction.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamHtmlViewerAutomationPeer.#ctor(Infragistics.Controls.Interactions.XamHtmlViewer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamHtmlViewerAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The <see cref="T:Infragistics.Controls.Interactions.XamHtmlViewer"/> that this automation peer controls.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamHtmlViewerAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Returns the control type for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetAutomationControlType"/>.
+            </summary>
+            <returns>A value of the enumeration.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamHtmlViewerAutomationPeer.GetClassNameCore">
+            <summary>
+            Overrides the framework invocation requesting a string that describes this control.
+            </summary>
+            <returns>A string describing the name of this control.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamHtmlViewerAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="T:Infragistics.Controls.Interactions.XamHtmlViewer">
+            <summary>
+            A control displaying various sources of HTML as an overlay on top of a Silverlight application.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Interactions.XamHtmlViewer"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.MeasureOverride(System.Windows.Size)">
+            <summary>
+             Provides the behavior for the Measure pass of Silverlight layout. Classes
+             can override this method to define their own Measure pass behavior.
+            </summary>
+            <param name="availableSize">
+             The available size that this object can give to child objects. Infinity can
+             be specified as a value to indicate that the object will size to whatever
+             content is available.
+            </param>
+            <returns>
+             The size that this object determines it needs during layout, based on its
+             calculations of child object allotted sizes.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.OnCreateAutomationPeer">
+            <summary>
+            When implemented in a derived class, returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            The class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> subclass to return.
+            </returns>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamHtmlViewer.SourceUriProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Interactions.XamHtmlViewer.SourceUri"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamHtmlViewer.HtmlCodeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Interactions.XamHtmlViewer.HtmlCode"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamHtmlViewer.ElementIdProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Interactions.XamHtmlViewer.ElementId"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamHtmlViewer.InternalVisibilityProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Interactions.XamHtmlViewer.InternalVisibility"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.CalculateClipping(System.Windows.Rect,System.Windows.Point,System.Windows.Rect@)">
+            <summary>
+            Calculates the clipping for each parent object
+            </summary>
+            <param name="clipRegion">Clipped region</param>
+            <param name="point">The location of the control</param>
+            <param name="tempClippedRegion">The final clipped region</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.AddHtmlElement(System.Windows.Browser.HtmlElement@,System.String,System.Int32)">
+            <summary>
+            Creates and adds a new html element to the html page
+            </summary>
+            <param name="htmlElement">Reference to the html element</param>
+            <param name="elementValue">The name of the html element</param>
+            <param name="zIndex">The Z index of the html element</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.UpdateHtmlPresentation(System.Windows.Rect)">
+            <summary>
+            Updates the html container
+            </summary>
+            <param name="clippedRegion">Clipped region of the control that has to be shown</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.InternalVisibilityChanged(System.Windows.Visibility)">
+            <summary>
+            This methods is invoked when the Visibility is changed.
+            </summary>
+            <param name="visibility">The new Visibility value</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.SourcePropertyIsChanged">
+            <summary>
+            This method is invoked when any of SourceUri, HtmlCode or ElementId properties has been changed. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.OnHtmlCodeChanged(System.String,System.String)">
+            <summary>
+            This method is invoked when the HtmlCode property has been changed.
+            </summary>
+            <param name="oldValue">The old Html</param>
+            <param name="newValue">The new Html</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.OnSourceUriChanged(System.Uri,System.Uri)">
+            <summary>
+            This method is invoked when the SourceUri property has been changed.
+            </summary>
+            <param name="oldValue">The old SourceUri</param>
+            <param name="newValue">The new SourceUri</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.OnElementIdChanged(System.String,System.String)">
+            <summary>
+            This method is invoked when the ElementId property has been changed.
+            </summary>
+            <param name="oldValue">The old ElementId</param>
+            <param name="newValue">The new ElementId</param>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamHtmlViewer.PanelLayoutUpdated(System.Object,System.EventArgs)">
+            <summary>
+            This method is invoked when an PanelLayoutUpdated event is fired.
+            </summary>
+            <param name="sender">Sender object</param>
+            <param name="e">Event argument</param>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamHtmlViewer.SourceUri">
+            <summary>
+            Gets or sets a Uri pointing to a web resource. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamHtmlViewer.HtmlCode">
+            <summary>
+            Gets or sets the HTML content as a string. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamHtmlViewer.ElementId">
+            <summary>
+            Gets or sets an ID of an Html element on the containing page.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamHtmlViewer.InternalVisibility">
+            <summary>
+            Gets or sets the InternalVisibility. This is a dependency property.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Interactions.XamHtmlViewer.InternalVisibilityProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamHtmlViewer.IsAttached">
+            <summary>
+            Gets or sets a value indicating whether the control is attached to the VisualTree
+            </summary>
+        </member>
+    </members>
+</doc>

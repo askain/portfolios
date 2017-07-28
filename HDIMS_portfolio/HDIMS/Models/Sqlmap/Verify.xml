@@ -1,0 +1,1275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Verify"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="DamDataModel" type="HDIMS.Models.Domain.Verify.DamDataModel, HDIMS" />
+    <typeAlias alias="WaterLevelModel" type="HDIMS.Models.Domain.Verify.WaterLevelModel, HDIMS" />
+    <typeAlias alias="RainFallModel" type="HDIMS.Models.Domain.Verify.RainFallModel, HDIMS" />
+    <typeAlias alias="WLLinearInterpolationResultModel" type="HDIMS.Models.Domain.Verify.WLLinearInterpolationResultModel, HDIMS" />
+    <typeAlias alias="RFLinearInterpolationResultModel" type="HDIMS.Models.Domain.Verify.RFLinearInterpolationResultModel, HDIMS" />
+    <typeAlias alias="DAMLinearInterpolationResultModel" type="HDIMS.Models.Domain.Verify.DAMLinearInterpolationResultModel, HDIMS" />
+      
+  </alias>
+
+  <statements>
+
+    <!--댐 운영자료 검정 리스트 가져오기 시작-->
+    <select id="getDamDataList" resultClass="HashTable" parameterClass="HashTable" remapResults="true">
+      <isEqual property="DataTp" compareValue="DAY">
+        SELECT A.OBSYMD OBSDT, A.DAMCD, B.DAMNM, A.RWL,
+        A.VYRWL, A.OYRWL, A.MXRWL,
+        A.MXRWLDH, A.MNRWL, A.MNRWLDH,
+        A.RSQTY, A.VYRSQTY, A.OYRSQTY,
+        A.IQTY, A.VYIQTY, A.OYIQTY,
+        A.MXIQTY, A.MXIQTYDH, A.ETCIQTY1,
+        A.ETCIQTY2, A.TDQTY, A.VYTDQTY,
+        A.OYTDQTY, A.MXDQTY, A.MXDQTYDH,
+        A.EDQTY, A.ETCEDQTY, A.SPDQTY,
+        A.ETCDQTY1, A.ETCDQTY2, A.ETCDQTY3,
+        A.OTLTDQTY, A.ITQTY1, A.ITQTY2,
+        A.ITQTY3, A.RF, A.VYRF,
+        A.OYRF, A.PYACURF, A.VYACURF,
+        A.OYAACURF, A.MXRF, A.MXRFDH,
+        A.EDEXLVL, A.RSRT, A.ETQTY,
+        A.HEDQTY, A.GEDQTY, A.GSPDQTY,
+        A.HSPDQTY, A.RF07, A.VYEDQTY,
+        A.VYETCEDQTY, A.VYSPDQTY, A.VYETCDQTY1,
+        A.VYETCDQTY2, A.VYETCDQTY3, A.VYOTLTDQTY1,
+        A.VYITQTY1, A.VYITQTY2, A.VYITQTY3,
+        A.OYEDQTY, A.OYETCEDQTY, A.OYSPDQTY,
+        A.OYETCDQTY1, A.OYETCDQTY2, A.OYETCDQTY3,
+        A.OYOTLTDQTY1, A.OYITQTY1, A.OYITQTY2,
+        A.OYITQTY3, A.OSPILWL, A.ESSSQTY,
+        A.OYETCIQTY1, A.OYETCIQTY2, '$DataTp$' TRMDV
+        FROM DUADTDAMIF@TECH.WORLD A, DUBDAMSPC@TECH.WORLD B
+        WHERE A.DAMCD=B.DAMCD
+        AND A.DAMCD = #DamCd#
+        AND A.OBSYMD BETWEEN SUBSTR(#StartDt#,1,8) AND SUBSTR(#EndDt#,1,8)
+        ORDER BY A.OBSYMD DESC
+      </isEqual>
+      <isNotEqual property="DataTp" compareValue="DAY">
+          SELECT A.ID, A.OBSDT, A.DAMCD, A.DAMNM, FN_CONV_CHAR(A.RWL) RWL
+          , FN_CONV_CHAR(A.RSQTY) RSQTY, FN_CONV_CHAR(A.RSRT) RSRT, FN_CONV_CHAR(A.IQTY) IQTY
+          , FN_CONV_CHAR(A.OSPILWL) OSPILWL, FN_CONV_CHAR(A.ETCIQTY1) ETCIQTY1
+          , FN_CONV_CHAR(A.ETCIQTY2) ETCIQTY2, FN_CONV_CHAR(A.ETQTY) ETQTY, FN_CONV_CHAR(A.TDQTY) TDQTY
+          , FN_CONV_CHAR(A.EDQTY) EDQTY, FN_CONV_CHAR(A.ETCEDQTY) ETCEDQTY
+          , FN_CONV_CHAR(A.SPDQTY) SPDQTY, FN_CONV_CHAR(A.ETCDQTY1) ETCDQTY1, FN_CONV_CHAR(A.ETCDQTY2) ETCDQTY2, FN_CONV_CHAR(A.ETCDQTY3) ETCDQTY3
+          , FN_CONV_CHAR(A.OTLTDQTY) OTLTDQTY, FN_CONV_CHAR(A.ITQTY1) ITQTY1, FN_CONV_CHAR(A.ITQTY2) ITQTY2, FN_CONV_CHAR(A.ITQTY3) ITQTY3
+          , FN_CONV_CHAR(A.DAMBSARF) DAMBSARF, A.CGEMPNO, A.CGEMPNM, A.CGDT, A.CHKEMPNO, A.CHKEMPNM, A.CHKDT
+          , '' CNRSN, '' CNDS, '' EDEXLVL, '' EDEXWAY
+          , FN_CONV_CHAR(PRWL) PRWL, '$DataTp$' TRMDV
+          <isEqual property="DataTp" compareValue="10">
+            , A.RWL_CK, A.OSPILWL_CK, A.ETCIQTY2_CK, A.EDQTY_CK, A.ETCEDQTY_CK, A.SPDQTY_CK, A.ETCDQTY1_CK, A.ETCDQTY2_CK, A.ETCDQTY3_CK, A.OTLTDQTY_CK, A.ITQTY1_CK, A.ITQTY2_CK, A.ITQTY3_CK 
+          </isEqual>
+          FROM (
+          <isEqual property="DataTp" compareValue="1">
+          <![CDATA[
+              SELECT 
+              MD.DAMCD||'_'||MD.OBSDT AS ID, SUBSTR(MD.OBSDT,1,12) OBSDT, MD.DAMCD, DR.DAMNM, MD.RWL, MD.RSQTY, MD.RSRT, MD.IQTY
+              , MD.OSPILWL, MD.ETCIQTY1, MD.ETCIQTY2, MD.PLPFLPBQ AS ETQTY, MD.TDQTY, MD.EDQTY
+              , MD.ETCEDQTY, MD.SPDQTY, MD.ETCDQTY1, MD.ETCDQTY2, MD.ETCDQTY3, MD.OTLTDQTY, MD.ITQTY1, MD.ITQTY2, MD.ITQTY3
+              , MD.DAMBSARF, '' AS CGEMPNO, '' AS CGEMPNM, '' AS CGDT, '' AS CHKEMPNO, '' AS CHKEMPNM, '' AS CHKDT
+              , NULL PRWL
+              FROM DTB1MDIF MD, DUBDAMSPC@TECH.WORLD DR 
+              WHERE MD.DAMCD = DR.DAMCD 
+              AND MD.DAMCD = #DamCd# 
+              AND MD.OBSDT BETWEEN #StartDt# AND #EndDt#
+              ORDER BY MD.OBSDT DESC
+          ]]>
+          </isEqual>
+          <isEqual property="DataTp" compareValue="10">
+            SELECT VDATA.DAMCD||'_'||VDATA.OBSDT AS ID, 
+                    VDATA.OBSDT, 
+                    VDATA.DAMCD, 
+                    DAM.DAMNM, 
+                    VDATA.RWL, 
+                    VDATA.RSQTY,
+                    VDATA.RSRT,
+                    VDATA.IQTY,
+                    VDATA.OSPILWL, 
+                    VDATA.ETCIQTY1, 
+                    VDATA.ETCIQTY2,
+                    VDATA.ETQTY,
+                    VDATA.TDQTY,
+                    VDATA.EDQTY,
+                    VDATA.ETCEDQTY,
+                    VDATA.SPDQTY,
+                    VDATA.ETCDQTY1,
+                    VDATA.ETCDQTY2,
+                    VDATA.ETCDQTY3,
+                    VDATA.OTLTDQTY,
+                    VDATA.ITQTY1,
+                    VDATA.ITQTY2,
+                    VDATA.ITQTY3,
+                    VDATA.DAMBSARF,
+                    D.CGEMPNO AS CGEMPNO,
+                    D.CGEMPNM AS CGEMPNM, 
+                    D.CGDT AS CGDT,
+                    '' AS CHKEMPNO, '' AS CHKEMPNM, '' AS CHKDT
+                    , PRWL
+                    , CK.RWL_CK, CK.OSPILWL_CK, CK.ETCIQTY2_CK, CK.EDQTY_CK, CK.ETCEDQTY_CK, CK.SPDQTY_CK, CK.ETCDQTY1_CK, CK.ETCDQTY2_CK, CK.ETCDQTY3_CK, CK.OTLTDQTY_CK, CK.ITQTY1_CK, CK.ITQTY2_CK, CK.ITQTY3_CK 
+              FROM  (<![CDATA[
+			        SELECT TT.DAMCD, TT.OBSDHM AS OBSDT, 
+                    MD.RWL, 
+                    MD.RSQTY,
+                    MD.RSRT,
+                    MD.IQTY,
+                    MD.OSPILWL, 
+                    MD.ETCIQTY1, 
+                    MD.ETCIQTY2,
+                    MD.ETQTY,
+                    MD.TDQTY,
+                    MD.EDQTY,
+                    MD.ETCEDQTY,
+                    MD.SPDQTY,
+                    MD.ETCDQTY1,
+                    MD.ETCDQTY2,
+                    MD.ETCDQTY3,
+                    MD.OTLTDQTY,
+                    MD.ITQTY1,
+                    MD.ITQTY2,
+                    MD.ITQTY3,
+                    MD.DAMBSARF,
+                    MD.TRMDV
+			        FROM (
+				            SELECT '$DamCd$' DAMCD, OBSDHM
+				            FROM (
+				                SELECT FN_CONV_24DT(AAA.T_DAY || BBB.T_HOUR || CCC.T_MIN) OBSDHM
+				                FROM (
+					                    SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#StartDt#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+					                    FROM DUAL
+					                    CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#EndDt#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#StartDt#), 1, 8), 'YYYYMMDD')) + 1)
+				                    ) AAA, (
+					                    SELECT TRIM(TO_CHAR((LEVEL-1), '00')) T_HOUR
+					                    FROM DUAL CONNECT BY LEVEL <= 24
+				                    ) BBB, (
+					                    SELECT TRIM(TO_CHAR((LEVEL-1) * 10, '00')) T_MIN 
+					                    FROM DUAL CONNECT BY LEVEL <= 6
+				                    ) CCC
+				                )  
+                        WHERE OBSDHM BETWEEN #StartDt# AND DECODE(SUBSTR(#EndDt#,1,8),TO_CHAR(SYSDATE,'YYYYMMDD'),TO_CHAR(SYSDATE,'YYYYMMDDHH24MI'),#EndDt#)
+			        ) TT, DUBMMDAMIF@TECH.WORLD MD
+			        WHERE 
+                    TT.OBSDHM = MD.OBSDHM(+)
+                    AND TT.DAMCD = MD.DAMCD(+)
+                    AND '10' = MD.TRMDV(+)
+                      ]]>) VDATA, DUBDAMSPC@TECH.WORLD DAM,  DUBMMDAMIFCK CK, 
+                (       <!-- 히스토리 -->
+                  SELECT DAMCD, OBSDHM, TRMDV, PRWL, CGDT, CGEMPNO, CGEMPNM
+                  FROM (
+                      SELECT A.DAMCD, A.OBSDHM, A.TRMDV
+                      , TO_CHAR(A.CGDT,'YYYYMMDDHHMISS') CGDT, A.CGEMPNO, B.KORNAME CGEMPNM  
+                      , ROW_NUMBER() OVER (PARTITION BY A.DAMCD, A.OBSDHM, A.TRMDV ORDER BY A.CGDT DESC) ROW_NUM
+                      , LAG(RWL) OVER(PARTITION BY A.DAMCD, A.OBSDHM, A.TRMDV ORDER BY A.CGDT DESC) PRWL
+                      FROM DUBMMDAMIFHT@TECH.WORLD A, DTB_USERINFO B 
+                      WHERE A.CGEMPNO = B.EMPNO 
+                      AND A.TRMDV='10'
+                      AND A.DAMCD=#DamCd#
+                      AND A.OBSDHM BETWEEN  #StartDt# AND #EndDt# 
+                  ) WHERE ROW_NUM=1  
+                ) D
+              WHERE DAM.DAMCD=#DamCd#
+              AND DAM.DAMCD = VDATA.DAMCD
+              AND VDATA.DAMCD = CK.DAMCD(+)
+              AND VDATA.OBSDT = CK.OBSDHM(+)
+              AND VDATA.TRMDV = CK.TRMDV(+)
+              AND VDATA.DAMCD = D.DAMCD(+)
+              AND VDATA.OBSDT = D.OBSDHM(+) 
+              AND VDATA.TRMDV = D.TRMDV(+)
+              ORDER BY VDATA.OBSDT DESC 
+          </isEqual>
+          <isEqual property="DataTp" compareValue="30">
+          SELECT 
+            MD.DAMCD||'_'||MD.OBSDHM AS ID, MD.OBSDHM AS OBSDT, MD.DAMCD, DR.DAMNM, MD.RWL, MD.OSPILWL, MD.RSQTY, MD.RSRT, MD.IQTY
+            , MD.ETCIQTY1, MD.ETCIQTY2, MD.ETQTY ETQTY, MD.TDQTY, MD.EDQTY 
+            , MD.ETCEDQTY, MD.SPDQTY, MD.ETCDQTY1, MD.ETCDQTY2, MD.ETCDQTY3, MD.OTLTDQTY, MD.ITQTY1, MD.ITQTY2, MD.ITQTY3 
+            , MD.DAMBSARF, D.CGEMPNO, D.CGEMPNM, D.CGDT, '' AS CHKEMPNO, '' AS CHKEMPNM, '' AS CHKDT
+            , D.PRWL
+            FROM (<![CDATA[
+			        SELECT TT.DAMCD, TT.OBSDHM, 
+                    MD.RWL, 
+                    MD.RSQTY,
+                    MD.RSRT,
+                    MD.IQTY,
+                    MD.OSPILWL, 
+                    MD.ETCIQTY1, 
+                    MD.ETCIQTY2,
+                    MD.ETQTY,
+                    MD.TDQTY,
+                    MD.EDQTY,
+                    MD.ETCEDQTY,
+                    MD.SPDQTY,
+                    MD.ETCDQTY1,
+                    MD.ETCDQTY2,
+                    MD.ETCDQTY3,
+                    MD.OTLTDQTY,
+                    MD.ITQTY1,
+                    MD.ITQTY2,
+                    MD.ITQTY3,
+                    MD.DAMBSARF,
+                    MD.TRMDV
+			        FROM (
+				            SELECT '$DamCd$' DAMCD, OBSDHM
+				            FROM (
+				                SELECT FN_CONV_24DT(AAA.T_DAY || BBB.T_HOUR || CCC.T_MIN) OBSDHM
+				                FROM (
+					                    SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#StartDt#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+					                    FROM DUAL
+					                    CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#EndDt#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#StartDt#), 1, 8), 'YYYYMMDD')) + 1)
+				                    ) AAA, (
+					                    SELECT TRIM(TO_CHAR((LEVEL-1), '00')) T_HOUR
+					                    FROM DUAL CONNECT BY LEVEL <= 24
+				                    ) BBB, (
+					                    SELECT '00' T_MIN FROM DUAL  UNION ALL SELECT '30' FROM DUAL
+				                    ) CCC
+				                )  
+                        WHERE OBSDHM BETWEEN #StartDt# AND DECODE(SUBSTR(#EndDt#,1,8),TO_CHAR(SYSDATE,'YYYYMMDD'),TO_CHAR(SYSDATE,'YYYYMMDDHH24MI'),#EndDt#)
+			        ) TT, DUBMMDAMIF@TECH.WORLD MD
+			        WHERE 
+                    TT.OBSDHM = MD.OBSDHM(+)
+                    AND TT.DAMCD = MD.DAMCD(+)
+                    AND '30' = MD.TRMDV(+)
+                      ]]>) MD, DUBDAMSPC@TECH.WORLD DR,
+                (
+                  SELECT DAMCD, OBSDHM, TRMDV, PRWL, CGDT, CGEMPNO, CGEMPNM
+                  FROM (
+                      SELECT A.DAMCD, A.OBSDHM, A.TRMDV
+                      , TO_CHAR(A.CGDT,'YYYYMMDDHHMISS') CGDT, A.CGEMPNO, B.KORNAME CGEMPNM  
+                      , ROW_NUMBER() OVER (PARTITION BY A.DAMCD, A.OBSDHM, A.TRMDV ORDER BY A.CGDT DESC) ROW_NUM
+                      , LAG(RWL) OVER(PARTITION BY A.DAMCD, A.OBSDHM, A.TRMDV ORDER BY A.CGDT DESC) PRWL
+                      FROM DUBMMDAMIFHT@TECH.WORLD A, DTB_USERINFO B 
+                      WHERE A.CGEMPNO = B.EMPNO 
+                      AND A.TRMDV='30'
+                      AND A.DAMCD=#DamCd#
+                      AND A.OBSDHM BETWEEN  #StartDt# AND #EndDt# 
+                  ) WHERE ROW_NUM=1  
+                ) D
+            WHERE MD.DAMCD = DR.DAMCD 
+            AND MD.DAMCD = D.DAMCD(+)
+            AND MD.OBSDHM = D.OBSDHM(+) 
+            AND MD.TRMDV = D.TRMDV(+)
+            ORDER BY MD.OBSDHM DESC
+          </isEqual>
+          <isEqual property="DataTp" compareValue="60">
+          SELECT 
+            MD.DAMCD||'_'||MD.OBSDH AS ID, MD.OBSDH AS OBSDT, MD.DAMCD, DR.DAMNM, MD.RWL, MD.OSPILWL, MD.RSQTY, MD.RSRT, MD.IQTY
+            , MD.ETCIQTY1, MD.ETCIQTY2, MD.ETQTY AS ETQTY, MD.TDQTY, MD.EDQTY
+            , MD.ETCEDQTY, MD.SPDQTY, MD.ETCDQTY1, MD.ETCDQTY2, MD.ETCDQTY3, MD.OTLTDQTY, MD.ITQTY1, MD.ITQTY2, MD.ITQTY3
+            , MD.DAMBSARF, D.CGEMPNO, D.CGEMPNM, D.CGDT, '' AS CHKEMPNO, '' AS CHKEMPNM, '' AS CHKDT
+            , D.PRWL
+            FROM  (<![CDATA[
+			        SELECT TT.DAMCD, TT.OBSDH, 
+                    MD.RWL, 
+                    MD.RSQTY,
+                    MD.RSRT,
+                    MD.IQTY,
+                    MD.OSPILWL, 
+                    MD.ETCIQTY1, 
+                    MD.ETCIQTY2,
+                    MD.ETQTY,
+                    MD.TDQTY,
+                    MD.EDQTY,
+                    MD.ETCEDQTY,
+                    MD.SPDQTY,
+                    MD.ETCDQTY1,
+                    MD.ETCDQTY2,
+                    MD.ETCDQTY3,
+                    MD.OTLTDQTY,
+                    MD.ITQTY1,
+                    MD.ITQTY2,
+                    MD.ITQTY3,
+                    MD.DAMBSARF
+			        FROM (
+				            SELECT '$DamCd$' DAMCD, OBSDH
+				            FROM (
+				                SELECT FN_CONV_24DT(AAA.T_DAY || BBB.T_HOUR) OBSDH
+				                FROM (
+					                    SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#StartDt#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+					                    FROM DUAL
+					                    CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#EndDt#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#StartDt#), 1, 8), 'YYYYMMDD')) + 1)
+				                    ) AAA, (
+					                    SELECT TRIM(TO_CHAR((LEVEL-1), '00')) T_HOUR
+					                    FROM DUAL CONNECT BY LEVEL <= 24
+				                    ) BBB
+				                )  
+                        WHERE OBSDH BETWEEN #StartDt# AND DECODE(SUBSTR(#EndDt#,1,8),TO_CHAR(SYSDATE,'YYYYMMDD'),TO_CHAR(SYSDATE,'YYYYMMDDHH24'),#EndDt#)
+			        ) TT, DUBHRDAMIF@TECH.WORLD MD
+			        WHERE 
+                    TT.OBSDH = MD.OBSDH(+)
+                    AND TT.DAMCD = MD.DAMCD(+)
+                      ]]>) MD, DUBDAMSPC@TECH.WORLD DR, 
+                (
+                  SELECT DAMCD, OBSDH, PRWL, CGDT, CGEMPNO, CGEMPNM
+                  FROM (
+                      SELECT A.DAMCD, A.OBSDH
+                      , TO_CHAR(A.CGDT,'YYYYMMDDHHMISS') CGDT, A.CGEMPNO, B.KORNAME CGEMPNM  
+                      , ROW_NUMBER() OVER (PARTITION BY A.DAMCD, A.OBSDH ORDER BY A.CGDT DESC) ROW_NUM
+                      , LAG(RWL) OVER(PARTITION BY A.DAMCD, A.OBSDH ORDER BY A.CGDT DESC) PRWL
+                      FROM DUBHRDAMIFHT@TECH.WORLD A, DTB_USERINFO B 
+                      WHERE A.CGEMPNO = B.EMPNO 
+                      AND A.DAMCD=#DamCd#
+                      AND A.OBSDH BETWEEN  #StartDt# AND #EndDt# 
+                  ) WHERE ROW_NUM=1  
+                ) D
+            WHERE MD.DAMCD = DR.DAMCD 
+            AND MD.DAMCD = D.DAMCD(+)
+            AND MD.OBSDH = D.OBSDH(+) 
+            AND MD.DAMCD = #DamCd# 
+            AND MD.OBSDH BETWEEN #StartDt# AND #EndDt#
+            ORDER BY MD.OBSDH DESC
+          </isEqual>
+
+        ) A
+        WHERE OBSDT BETWEEN #StartDt# AND #EndDt#
+      </isNotEqual>
+    </select>
+    <!--댐 운영자료 검정 리스트 가져오기 끝-->
+      
+    <select id="isAbnormStatExist" resultClass="int" parameterClass="HashTable">
+      SELECT COUNT(*)
+      FROM HM_ABNORMSTAT
+      WHERE
+        DAMCD = #DAMCD#
+        AND OBSCD = #OBSCD#
+        AND OBSDT= #OBSDT#
+        AND OBSTP = #OBSTP#
+    </select>
+    
+    <insert id="insertAbnormStat" parameterClass="HashTable">
+      INSERT INTO HM_ABNORMSTAT
+      VALUES
+      (
+        #DAMCD#,
+        #OBSCD#,
+        #OBSDT#,
+        #OBSTP#,
+        #OBVL#,
+        #EXVL#,
+        #EXCD#,
+        #EXMTD#,
+        #CHKEMPNO#,
+        #CHKDT#,
+        #EXEMPNO#,
+        #EXDT#,
+        #ETCCD#
+      )
+    </insert>
+
+    <update id="updateAbnormStat" parameterClass="HashTable">
+      UPDATE HM_ABNORMSTAT
+      SET
+        OBVL = #OBVL#,
+        EXVL = #EXVL#,
+        EXCD = #EXCD#,
+        EXMTD = #EXMTD#,
+        CHKEMPNO = #CHKEMPNO#,
+        CHKDT = #CHKDT#,
+        EXEMPNO = #EXEMPNO#,
+        EXDT = #EXDT#,
+        ETCCD = #ETCCD#
+      WHERE
+        DAMCD = #DAMCD#
+        AND OBSCD = #OBSCD#
+        AND OBSDT = #OBSDT#
+        AND OBSTP = #OBSTP#
+    </update>
+
+    <select id="isRainfallDataExist" resultClass="int" parameterClass="HashTable">
+      SELECT COUNT(*)
+      FROM TEST_DUBMMRF
+      WHERE
+        OBSDHM = #OBSDHM#
+        AND RFOBSCD = #RFOBSCD#
+        AND TRMDV = #TRMDV#
+    </select>
+
+    <insert id="insertRainfallData" parameterClass="HashTable">
+      INSERT INTO TEST_DUBMMRF
+        (OBSDHM, RFOBSCD, TRMDV, RF, ACURF, DAMCD, EXEMPNO, EXDT)
+      VALUES
+        (#OBSDHM#, #RFOBSCD#, #TRMDV#, #RF#, #ACURF#, #DAMCD#, #EXEMPNO#, #EXDT#)
+    </insert>
+
+    <update id="updateRainfallData" parameterClass="HashTable">
+      UPDATE TEST_DUBMMRF
+      SET
+        RF = #RF#,
+        ACURF = #ACURF#
+      WHERE
+        OBSDHM = #OBSDHM#
+        AND RFOBSCD = #RFOBSCD#
+        AND TRMDV = #TRMDV#
+    </update>
+
+    <select id="isWaterLevelDataExist" resultClass="int" parameterClass="HashTable">
+      SELECT COUNT(*)
+      FROM TEST_DUBMMWL
+      WHERE
+        OBSDHM = #OBSDHM#
+        AND WLOBSCD = #WLOBSCD#
+        AND TRMDV = #TRMDV#
+    </select>
+
+    <insert id="insertWaterLevelData" parameterClass="HashTable">
+      INSERT INTO TEST_DUBMMWL
+        (OBSDHM, WLOBSCD, TRMDV, WL, FLW, DAMCD, EXEMPNO, EXDT)
+      VALUES
+        (#OBSDHM#, #WLOBSCD#, #TRMDV#, #WL#, #FLW#, #DAMCD#, #EXEMPNO#, #EXDT#)
+    </insert>
+
+    <update id="updateWaterLevelData" parameterClass="HashTable">
+      UPDATE TEST_DUBMMWL
+      SET
+        WL = #WL#
+      WHERE
+        OBSDHM = #OBSDHM#
+        AND WLOBSCD = #WLOBSCD#
+        AND TRMDV = #TRMDV#
+    </update>
+
+    <!-- 수위 변경이력 넣기 -->
+    <insert id="selectWaterLevelVerify" resultClass="int" parameterClass="HashTable">
+        SELECT COUNT(*)
+        FROM DUBMMWL@TECH.WORLD
+        WHERE OBSDHM = #OBSDHM#
+        AND WLOBSCD = #OBSCD#
+        AND TRMDV = #TRMDV#
+        AND ROWNUM = 1
+    </insert>
+      
+    <!-- 수위 변경이력 넣기 -->
+    <insert id="insertWaterLevelVerifyHist" parameterClass="HashTable">
+      INSERT INTO DUBMMWLHT@TECH.WORLD
+        SELECT OBSDHM, WLOBSCD, SYSDATE AS CGDT, '$EDEXWAY$' AS EDEXWAY, '$EDEXLVL$' AS EDEXLVL, '$CNRSN$' AS CNRSN, '$CNDS$' AS CNDS, '$EXEMPNO$' AS CGEMPNO, WL, FLW, DAMCD, TRMDV
+        FROM DUBMMWL@TECH.WORLD
+        WHERE OBSDHM = #OBSDHM#
+        AND WLOBSCD = #OBSCD#
+        AND TRMDV = #TRMDV#
+        AND ROWNUM = 1
+    </insert>
+      
+    <!-- 수위 결측의 변경이력 넣기2 -->
+    <insert id="insertWaterLevelVerifyHist2" parameterClass="HashTable">
+      INSERT INTO DUBMMWLHT@TECH.WORLD
+      VALUES (#OBSDHM#, #OBSCD#, SYSDATE, #EDEXWAY#, #EDEXLVL#, #CNRSN#, #CNDS#, #EXEMPNO#, #WL#, #FLW#, #DAMCD#, #TRMDV#)
+    </insert>
+    
+    <!-- 우량이 있는지 확인 -->
+    <select id="selectRainfallVerify" resultClass="int" parameterClass="HashTable">
+        SELECT COUNT(*)
+        FROM DUBMMRF@TECH.WORLD
+        WHERE OBSDHM = #OBSDHM#
+        AND RFOBSCD = #OBSCD#
+        AND TRMDV = #TRMDV#
+        AND ROWNUM = 1
+    </select>
+      
+    <!-- 우량 변경이력 넣기 -->
+    <insert id="insertRainfallVerifyHist" parameterClass="HashTable">
+        INSERT INTO DUBMMRFHT@TECH.WORLD
+          SELECT OBSDHM, RFOBSCD, TRMDV, SYSDATE AS CGDT, '$EDEXWAY$' AS EDEXWAY, '$EDEXLVL$' AS EDEXLVL, '$CNRSN$' AS CNRSN, '$CNDS$' AS CNDS, '$EXEMPNO$' AS CGEMPNO, RF, ACURF, DAMCD
+          FROM DUBMMRF@TECH.WORLD
+          WHERE OBSDHM = #OBSDHM#
+          AND RFOBSCD = #OBSCD#
+          AND TRMDV = #TRMDV#
+          AND ROWNUM = 1
+    </insert>
+      
+    <!-- 우량 결측의 변경이력 넣기2 -->
+    <insert id="insertRainfallVerifyHist2" resultClass="int" parameterClass="HashTable">
+        INSERT INTO DUBMMRFHT@TECH.WORLD
+        VALUES (#OBSDHM#, #OBSCD#, #TRMDV#, SYSDATE, #EDEXWAY#, #EDEXLVL#, #CNRSN#, #CNDS#, #EXEMPNO#, #RF#, #ACURF#, #DAMCD#)
+    </insert>
+
+    <!-- 댐변경이력 넣기 -->
+    <insert id="insertDamVerifyHist" parameterClass="HashTable">
+        INSERT INTO DUBMMDAMIFHT@TECH.WORLD (OBSDHM, DAMCD, TRMDV,  CGDT, EDEXLVL, EDEXWAY, CNRSN, CNDS, CGEMPNO,
+        RWL, OSPILWL, RSQTY, RSRT, IQTY, ETCIQTY1, ETCIQTY2, ETQTY, TDQTY, EDQTY, ETCEDQTY, SPDQTY,
+        ETCDQTY1, ETCDQTY2, ETCDQTY3, OTLTDQTY, ITQTY1, ITQTY2, ITQTY3, DAMBSARF)
+        VALUES (#OBSDHM#, #DAMCD#, #TRMDV#,  SYSDATE, TO_NUMBER(#EDEXLVL#), #EDEXWAY#, #CNRSN#, #CNDS#, #CGEMPNO#,
+        DECODE(TRIM(#RWL_HIST#), '', NULL, TO_NUMBER(#RWL_HIST#)), DECODE(TRIM(#OSPILWL_HIST#),'',NULL,TO_NUMBER(#OSPILWL_HIST#)), DECODE(TRIM(#RSQTY_HIST#),'',NULL,TO_NUMBER(#RSQTY_HIST#)), DECODE(TRIM(#RSRT_HIST#),'',NULL,TO_NUMBER(#RSRT_HIST#)),
+        DECODE(TRIM(#IQTY_HIST#),'',NULL,TO_NUMBER(#IQTY_HIST#)), DECODE(TRIM(#ETCIQTY1_HIST#),'',NULL,TO_NUMBER(#ETCIQTY1_HIST#)), DECODE(TRIM(#ETCIQTY2_HIST#),'',NULL,TO_NUMBER(#ETCIQTY2_HIST#)), DECODE(TRIM(#ETQTY_HIST#),'',NULL,TO_NUMBER(#ETQTY_HIST#)),
+        DECODE(TRIM(#TDQTY_HIST#),'',NULL,TO_NUMBER(#TDQTY_HIST#)), DECODE(TRIM(#EDQTY_HIST#),'',NULL,TO_NUMBER(#EDQTY_HIST#)), DECODE(TRIM(#ETCEDQTY_HIST#),'',NULL,TO_NUMBER(#ETCEDQTY_HIST#)),
+        DECODE(TRIM(#SPDQTY_HIST#),'',NULL,TO_NUMBER(#SPDQTY_HIST#)), DECODE(TRIM(#ETCDQTY1_HIST#),'',NULL,TO_NUMBER(#ETCDQTY1_HIST#)), DECODE(TRIM(#ETCDQTY2_HIST#),'',NULL,TO_NUMBER(#ETCDQTY2_HIST#)),
+        DECODE(TRIM(#ETCDQTY3_HIST#),'',NULL,TO_NUMBER(#ETCDQTY3_HIST#)), DECODE(TRIM(#OTLTDQTY_HIST#),'',NULL,TO_NUMBER(#OTLTDQTY_HIST#)), DECODE(TRIM(#ITQTY1_HIST#),'',NULL,TO_NUMBER(#ITQTY1_HIST#)),
+        DECODE(TRIM(#ITQTY2_HIST#),'',NULL,TO_NUMBER(#ITQTY2_HIST#)), DECODE(TRIM(#ITQTY3_HIST#),'',NULL,TO_NUMBER(#ITQTY3_HIST#)), DECODE(TRIM(#DAMBSARF_HIST#),'',NULL,TO_NUMBER(#DAMBSARF_HIST#)))
+    </insert>
+
+    <!-- 댐 수정CK이 있는지 확인 -->
+    <select id="selectDamVerifyCheck" resultClass="int" parameterClass="HashTable">
+        SELECT COUNT(*)
+        FROM DUBMMDAMIFCK
+        WHERE DAMCD = #DAMCD# 
+        AND OBSDHM = #OBSDHM#  
+        AND TRMDV = #TRMDV#
+    </select>
+    <!-- 댐 수정CK(댐변경이력 넣기 각 항목에대한 수정여부) INSERT UPDATE-->
+    <insert id="insertDamVerifyCheck" parameterClass="HashTable">
+        INSERT INTO DUBMMDAMIFCK(DAMCD, OBSDHM, TRMDV, RWL_CK, OSPILWL_CK, ETCIQTY2_CK, EDQTY_CK, ETCEDQTY_CK, SPDQTY_CK, ETCDQTY1_CK, ETCDQTY2_CK, ETCDQTY3_CK, OTLTDQTY_CK, ITQTY1_CK, ITQTY2_CK, ITQTY3_CK)
+        VALUES (#DAMCD#, #OBSDHM#, #TRMDV#, #RWL_CK#, #OSPILWL_CK#, #ETCIQTY2_CK#, #EDQTY_CK#, #ETCEDQTY_CK#, #SPDQTY_CK#, #ETCDQTY1_CK#, #ETCDQTY2_CK#, #ETCDQTY3_CK#, #OTLTDQTY_CK#, #ITQTY1_CK#, #ITQTY2_CK#, #ITQTY3_CK#)
+    </insert>
+    <update id="updateDamVerifyCheck" parameterClass="HashTable">
+        UPDATE DUBMMDAMIFCK
+        SET
+            RWL_CK  = DECODE(RWL_CK,'Y','Y',#RWL_CK#),
+            OSPILWL_CK = DECODE(OSPILWL_CK,'Y','Y',#OSPILWL_CK#),
+            ETCIQTY2_CK = DECODE(ETCIQTY2_CK,'Y','Y',#ETCIQTY2_CK#),
+            EDQTY_CK = DECODE(EDQTY_CK,'Y','Y',#EDQTY_CK#),
+            ETCEDQTY_CK = DECODE(ETCEDQTY_CK,'Y','Y',#ETCEDQTY_CK#),
+            SPDQTY_CK = DECODE(SPDQTY_CK,'Y','Y',#SPDQTY_CK#),
+            ETCDQTY1_CK = DECODE(ETCDQTY1_CK,'Y','Y',#ETCDQTY1_CK#),
+            ETCDQTY2_CK = DECODE(ETCDQTY2_CK,'Y','Y',#ETCDQTY2_CK#),
+            ETCDQTY3_CK = DECODE(ETCDQTY3_CK,'Y','Y',#ETCDQTY3_CK#),
+            OTLTDQTY_CK = DECODE(OTLTDQTY_CK,'Y','Y',#OTLTDQTY_CK#),
+            ITQTY1_CK = DECODE(ITQTY1_CK,'Y','Y',#ITQTY1_CK#),
+            ITQTY2_CK = DECODE(ITQTY2_CK,'Y','Y',#ITQTY2_CK#),
+            ITQTY3_CK = DECODE(ITQTY3_CK,'Y','Y',#ITQTY3_CK#)
+        WHERE 
+            DAMCD = #DAMCD#  AND OBSDHM = #OBSDHM# AND TRMDV = #TRMDV#
+    </update>
+
+    <!-- 우량 수정CK이 있는지 확인 -->
+    <select id="isExistRainFallVerifyCheck" resultClass="int" parameterClass="HashTable">
+        SELECT COUNT(*)
+        FROM DUBMMRFCK
+        WHERE RFOBSCD = #OBSCD#
+        AND OBSDHM = #OBSDHM#
+        AND TRMDV = #TRMDV#
+    </select>
+    <!-- 우량 수정CK INSERT UPDATE-->
+    <insert id="insertRainFallVerifyCheck" parameterClass="HashTable">
+        INSERT INTO DUBMMRFCK (OBSDHM, RFOBSCD, TRMDV,EXRSN)
+        VALUES ( #OBSDHM#, #OBSCD#, #TRMDV#, #EXRSN#)
+    </insert>
+    <update id="updateRainFallVerifyCheck" parameterClass="HashTable">
+        UPDATE DUBMMRFCK SET EXRSN=#EXRSN# WHERE OBSDHM = #OBSDHM# AND RFOBSCD = #OBSCD# AND TRMDV = #TRMDV#
+    </update>
+    
+    <!-- 수위 수정CK이 있는지 확인 -->
+    <select id="isExistWaterLevelVerifyCheck" resultClass="int" parameterClass="HashTable">
+        SELECT COUNT(*)
+        FROM DUBMMWLCK
+        WHERE WLOBSCD = #OBSCD#
+        AND OBSDHM = #OBSDHM#
+        AND TRMDV = #TRMDV#
+    </select>
+    <!-- 수위 수정CK INSERT UPDATE-->
+    <insert id="insertWaterLevelVerifyCheck" parameterClass="HashTable">
+        INSERT INTO DUBMMWLCK (OBSDHM, WLOBSCD, TRMDV,EXRSN)
+        VALUES ( #OBSDHM#, #OBSCD#, #TRMDV#, #EXRSN#)
+    </insert>
+    <update id="updateWaterLevelVerifyCheck" parameterClass="HashTable">
+        UPDATE DUBMMWLCK SET EXRSN=#EXRSN# WHERE OBSDHM = #OBSDHM# AND WLOBSCD = #OBSCD# AND TRMDV = #TRMDV#
+    </update>
+    
+      
+    <!-- 댐 변경전 데이터 가져오기 -->
+    <select id="getDamDataItem" resultClass="DamDataModel" parameterClass="HashTable">
+      SELECT
+          MD.DAMCD||'_'||MD.OBSDHM AS ID, MD.OBSDHM OBSDT, MD.DAMCD, DR.DAMNM,
+          FN_CONV_CHAR(MD.RWL) RWL,
+          FN_CONV_CHAR(MD.OSPILWL) OSPILWL,
+          FN_CONV_CHAR(MD.RSQTY) RSQTY, 
+          FN_CONV_CHAR(MD.RSRT) RSRT,
+          FN_CONV_CHAR(MD.IQTY) IQTY,
+          FN_CONV_CHAR(MD.ETCIQTY1) ETCIQTY1,
+          FN_CONV_CHAR(MD.ETCIQTY2) ETCIQTY2,
+          FN_CONV_CHAR(MD.ETQTY) ETQTY ,
+          FN_CONV_CHAR(MD.TDQTY) TDQTY,
+          FN_CONV_CHAR(MD.EDQTY) EDQTY,
+          FN_CONV_CHAR(MD.ETCEDQTY) ETCEDQTY,
+          FN_CONV_CHAR(MD.SPDQTY) SPDQTY,
+          FN_CONV_CHAR(MD.ETCDQTY1) ETCDQTY1,
+          FN_CONV_CHAR(MD.ETCDQTY2) ETCDQTY2,
+          FN_CONV_CHAR(MD.ETCDQTY3) ETCDQTY3,
+          FN_CONV_CHAR(MD.OTLTDQTY) OTLTDQTY,
+          FN_CONV_CHAR(MD.ITQTY1) ITQTY1,
+          FN_CONV_CHAR(MD.ITQTY2) ITQTY2,
+          FN_CONV_CHAR(MD.ITQTY3) ITQTY3,
+          FN_CONV_CHAR(MD.DAMBSARF) DAMBSARF   
+      FROM DUBMMDAMIF@TECH.WORLD MD, DUBDAMSPC@TECH.WORLD DR
+      WHERE MD.DAMCD = DR.DAMCD
+      AND MD.DAMCD = #DAMCD#
+      AND MD.OBSDHM = #OBSDHM#
+      AND MD.TRMDV = '10'
+    </select>
+
+      
+    <!-- 우량 인근 관측소에 의한 산출 시작 -->
+    <select id="getRfRds" resultClass="Hashtable" parameterClass="HashTable" remapResults="true">
+        SELECT AA.OBSCD, CC.OBSNM, AA.OBSDHM AS OBSDT, ROUND(AA.EXVL,0) AS EXVL, ROUND(AA.DXVL,0) AS DXVL,
+            <iterate property="obscdcolumnlist"  open="" close="" conjunction=",">
+                $obscdcolumnlist[]$
+            </iterate>
+        FROM (
+            SELECT TT.OBSCD, TT.OBSDHM, TT.RF OBVL, RR.EXVL EXVL, RR.DVAL DXVL
+                FROM (
+                    SELECT OBSDHM, TRUNC(SUM(RVAL),2) EXVL, TRUNC(SUM(RF)/DISTCNT,2) DVAL, DISTCNT
+                    FROM (
+                        SELECT AA.OBSDHM, AA.OBSCD, AA.TRMDV, AA.RF, AA.ACURF
+                          , BB.NRDIST, BB.DISTSUM, BB.DISTCNT, BB.DISTPERC, BB.RDISTPERC
+                          , AA.RF*BB.DISTPERC DVAL, AA.RF*BB.RDISTPERC RVAL
+                        FROM (
+                            SELECT OBSDHM, RFOBSCD OBSCD, TRMDV, RF, ACURF
+                            FROM DUBMMRF@TECH.WORLD
+                            WHERE TRMDV=#datatp# 
+                            <iterate prepend="AND" property="datelist"  open="(" close=")" conjunction="OR">
+                                OBSDHM = #datelist[]#
+                            </iterate>
+                            <iterate prepend="AND" property="obscdlist"  open="RFOBSCD IN (" close=")" conjunction=",">
+                                #obscdlist[]#
+                            </iterate>
+                            
+                        ) AA, (
+                            SELECT OBSCD, NRDIST, DISTSUM, DISTCNT, DISTPERC, DISTPOS, NDISPOS
+                            ,CASE WHEN DISTPOS >= NDISPOS THEN
+                                LAG(DISTPERC, (DISTMM)) OVER (ORDER BY NRDIST DESC)
+                             ELSE
+                                LAG(DISTPERC,(DISTMM)) OVER (ORDER BY NRDIST)
+                             END RDISTPERC
+                            FROM (
+                                SELECT OBSCD, NRDIST, DISTSUM, DISTCNT, DISTPERC, DISTPOS, NDISPOS
+                                ,CASE WHEN DISTPOS>=NDISPOS THEN
+                                    DISTPOS-NDISPOS
+                                 ELSE
+                                    NDISPOS-DISTPOS
+                                 END DISTMM
+                                FROM (
+                                    SELECT MM.NROBCD OBSCD, MM.NRDIST, NN.DISTSUM, NN.DISTCNT, TRUNC(NRDIST/DISTSUM,3) DISTPERC
+                                    , ROW_NUMBER() OVER (ORDER BY NRDIST DESC) DISTPOS
+                                    , ROW_NUMBER() OVER (ORDER BY NRDIST) NDISPOS
+                                    FROM (
+                                      <!--인근관측소의 거리를 구하는 쿼리 시작 -->
+                                      SELECT N.OBSCD NROBCD
+                                      , FN_CONV_CHAR(FN_MAP_DIST(M.LATITUDE,M.LONGITUDE, N.LATITUDE, N.LONGITUDE)) NRDIST
+                                      FROM (
+                                        SELECT OBSCD, MAX(LONGITUDE) LONGITUDE, MAX(LATITUDE) LATITUDE
+                                        FROM (
+                                          SELECT OBSCD, LONGITUDE, LATITUDE
+                                          FROM HM_OBSPOINT
+                                          WHERE OBSCD= #obscd#
+                                          AND OBSTYPE='RF'
+                                          UNION ALL
+                                          SELECT '$obscd$' OBSCD, '' LONGITUDE, '' LATITUDE
+                                          FROM DUAL
+                                        ) GROUP BY OBSCD
+                                      ) M, (
+                                        SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP
+                                        , '' RFOBCD,  '' NROBCD, C.LONGITUDE, C.LATITUDE
+                                        FROM VM_DAMCODE A, VM_OBSCODE2 B, HM_OBSPOINT C
+                                        WHERE A.DAMCD = B.DAMCD
+                                        AND B.OBSTP = 'RF'
+                                        AND B.OBSCD = C.OBSCD(+)
+                                        AND C.OBSTYPE(+) = 'RF'
+                                        <iterate prepend="AND" property="obscdlist"  open="B.OBSCD IN (" close=")" conjunction=",">
+                                            #obscdlist[]#
+                                        </iterate>
+                                      ) N
+                                      <!--인근관측소의 거리를 구하는 쿼리 종료  -->
+                                    ) MM, (
+                                      SELECT SUM(NRDIST) DISTSUM, COUNT(NRDIST) DISTCNT
+                                      FROM (
+                                          SELECT N.OBSCD NROBCD
+                                          , FN_CONV_CHAR(FN_MAP_DIST(M.LATITUDE,M.LONGITUDE, N.LATITUDE, N.LONGITUDE)) NRDIST
+                                          FROM (
+                                            SELECT OBSCD, MAX(LONGITUDE) LONGITUDE, MAX(LATITUDE) LATITUDE
+                                            FROM (
+                                              SELECT OBSCD, LONGITUDE, LATITUDE
+                                              FROM HM_OBSPOINT
+                                              WHERE OBSCD= #obscd#
+                                              AND OBSTYPE='RF'
+                                              UNION ALL
+                                              SELECT '$obscd$' OBSCD, '' LONGITUDE, '' LATITUDE
+                                              FROM DUAL
+                                            ) GROUP BY OBSCD
+                                          ) M, (
+                                            SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP
+                                            , '' RFOBCD,  '' NROBCD, C.LONGITUDE, C.LATITUDE
+                                            FROM VM_DAMCODE A, VM_OBSCODE2 B, HM_OBSPOINT C
+                                            WHERE A.DAMCD = B.DAMCD
+                                            AND B.OBSTP = 'RF'
+                                            AND B.OBSCD = C.OBSCD(+)
+                                            AND C.OBSTYPE(+) = 'RF'
+                                            <iterate prepend="AND" property="obscdlist"  open="B.OBSCD IN (" close=")" conjunction=",">
+                                                #obscdlist[]#
+                                            </iterate>
+                                          ) N
+                                       )
+                                    ) NN
+                                 )
+                            ) ORDER BY NRDIST
+                        ) BB
+                        WHERE AA.OBSCD=BB.OBSCD
+                   )
+                   GROUP BY OBSDHM,DISTCNT
+                ) RR, (
+                    SELECT OBSDHM, RFOBSCD OBSCD, TRMDV, RF, ACURF
+                    FROM DUBMMRF@TECH.WORLD
+                    WHERE TRMDV=#datatp#
+                    AND RFOBSCD=#obscd#
+                    <iterate prepend="AND" property="datelist"  open="(" close=")" conjunction="OR">
+                        OBSDHM = #datelist[]#
+                    </iterate>
+                ) TT
+                WHERE RR.OBSDHM=TT.OBSDHM
+            ) AA, ( <!-- 인근관측소의 각 우량을 수집 -->
+                SELECT OBSDHM, 
+                    <iterate property="obscdcolumnlist"  open="" close="" conjunction=",">
+                        SUM($obscdcolumnlist[]$) AS $obscdcolumnlist[]$
+                    </iterate>
+                FROM 
+                (
+                    SELECT OBSDHM,
+                    <iterate property="obscdcolumnlist"  open="" close="" conjunction=",">
+                        CASE WHEN RFOBSCD=REPLACE(#obscdcolumnlist[]#, 'OBSCD_', '') THEN RF ELSE 0 END AS $obscdcolumnlist[]$
+                    </iterate>
+                    FROM DUBMMRF@TECH.WORLD
+                    WHERE TRMDV=#datatp#
+                    <iterate prepend="AND" property="datelist"  open="(" close=")" conjunction="OR">
+                        OBSDHM = #datelist[]#
+                    </iterate>
+                    <iterate prepend="AND" property="obscdlist"  open="RFOBSCD IN (" close=")" conjunction=",">
+                        #obscdlist[]#
+                    </iterate>
+                )  
+                GROUP BY OBSDHM 
+            ) BB, VM_OBSCODE CC
+        WHERE AA.OBSDHM=BB.OBSDHM
+        AND AA.OBSCD=CC.OBSCD
+        ORDER BY AA.OBSDHM DESC
+
+    </select>
+    <!-- 우량 인근 관측소에 의한 산출 끝   -->
+
+    <!-- 우량 선형보간적용 시작 -->
+    <select id="getRFLinearInterpolationResult" resultClass="RFLinearInterpolationResultModel" parameterClass="HashTable">
+        SELECT ORI.OBSCD, OB.OBSNM, ORI.OBSDHM OBSDT, FN_CONV_CHAR(ORI.ACURF) AS ACURF  <!-- 수정전 우량 -->
+        , FN_CONV_CHAR(TRUNC((ORI.ROW_NUM * BOGAN.MUTIPLIER + BOGAN.STARTVALUE), 0)) AS LINE
+        FROM
+        (
+            SELECT D.OBSDHM, OBSCD, ACURF, ROW_NUM
+            FROM
+            (
+            <![CDATA[
+        	SELECT OBSDHM, ROWNUM -1 AS ROW_NUM 
+			FROM (
+				SELECT FN_CONV_24DT(AAA.T_DAY || BBB.T_HOUR || CCC.T_MIN) OBSDHM
+				FROM (
+					    SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+					    FROM DUAL
+					    CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#edate#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')) + 1)
+				    ) AAA, (
+					    SELECT TRIM(TO_CHAR((LEVEL-1), '00')) T_HOUR
+					    FROM DUAL CONNECT BY LEVEL <= 24
+				    ) BBB, (
+					    SELECT TRIM(TO_CHAR((LEVEL-1) * 10, '00')) T_MIN 
+					    FROM DUAL CONNECT BY LEVEL <= 6
+				    ) CCC
+				)  
+            WHERE OBSDHM BETWEEN #sdate# AND #edate#
+            ]]>
+            ) D,
+            (
+                <!-- 원래 수위 가져오기 -->
+                SELECT RFOBSCD OBSCD, OBSDHM, ACURF
+                FROM DUBMMRF@TECH.WORLD
+                WHERE OBSDHM BETWEEN #sdate# and #edate# 
+                AND RFOBSCD = #obscd# 
+                AND TRMDV = #datatp#
+            ) R
+            WHERE D.OBSDHM = R.OBSDHM(+)
+        ) ORI,
+        (
+            <!-- 보간용 변수 계산해서 가져오기 (전체수, 최초수위, 최후수위) -->
+            SELECT SUM(CNT) AS ALLCOUNT, SUM(STARTVALUE) AS STARTVALUE, SUM(ENDVALUE) AS ENDVALUE, (SUM(ENDVALUE)-SUM(STARTVALUE))/SUM(CNT) MUTIPLIER FROM
+            (
+                SELECT COUNT(*) -1 AS CNT, 0 STARTVALUE, 0 ENDVALUE FROM DUBMMRF@TECH.WORLD WHERE OBSDHM BETWEEN #sdate# and #edate# AND RFOBSCD = #obscd# AND TRMDV = #datatp#
+                UNION ALL
+                SELECT 0 AS CNT, ACURF AS STARTVALUE, 0 AS ENDVALUE FROM DUBMMRF@TECH.WORLD WHERE OBSDHM = #sdate# AND RFOBSCD = #obscd# AND TRMDV = #datatp#
+                UNION ALL
+                SELECT 0 AS CNT, 0 AS STARTVALUE, ACURF AS ENDVALUE FROM DUBMMRF@TECH.WORLD WHERE OBSDHM = #edate# AND RFOBSCD = #obscd# AND TRMDV = #datatp#
+            )
+        ) BOGAN,
+        DUBRFOBSIF@TECH.WORLD OB
+        WHERE OB.RFOBSCD(+) = ORI.OBSCD
+        ORDER BY ORI.OBSDHM DESC
+    </select>
+    <!-- 우량 선형보간적용 끝 -->
+    
+    <!-- 수위 선형보간적용 시작 -->
+    <select id="getWLLinearInterpolationResult" resultClass="WLLinearInterpolationResultModel" parameterClass="HashTable">
+        SELECT ORI.OBSDHM OBSDT, FN_CONV_CHAR(ORI.WL) AS WL
+        FROM
+        (
+              SELECT D.OBSDHM, WL, ROW_NUM
+              FROM 
+              (
+                  <![CDATA[
+                SELECT OBSDHM, ROWNUM -1 AS ROW_NUM 
+                FROM (
+                  SELECT FN_CONV_24DT(AAA.T_DAY || BBB.T_HOUR || CCC.T_MIN) OBSDHM
+                  FROM (
+                        SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+                        FROM DUAL
+                        CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#edate#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')) + 1)
+                      ) AAA, (
+                        SELECT TRIM(TO_CHAR((LEVEL-1), '00')) T_HOUR
+                        FROM DUAL CONNECT BY LEVEL <= 24
+                      ) BBB, (
+                        SELECT TRIM(TO_CHAR((LEVEL-1) * 10, '00')) T_MIN 
+                        FROM DUAL CONNECT BY LEVEL <= 6
+                      ) CCC
+                  )  
+                WHERE OBSDHM BETWEEN #sdate# AND #edate#
+                  ]]>
+              ) D,
+              (
+                  <!-- 원래 수위 가져오기 -->
+                  SELECT OBSDHM, WL
+                  FROM DUBMMWL@TECH.WORLD
+                  WHERE OBSDHM BETWEEN #sdate# and #edate# 
+                  AND WLOBSCD = #obscd# 
+                  AND TRMDV = #datatp#
+              ) R
+              WHERE D.OBSDHM = R.OBSDHM(+)
+          ) ORI
+        ORDER BY ORI.OBSDHM DESC
+    </select>
+    <!-- 수위 선형보간적용 끝 -->
+      
+    <!-- 수위 선형보간적용(                  이제 안씀!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!) 시작 -->
+    <select id="getWLLinearInterpolationResult_OLD" resultClass="WLLinearInterpolationResultModel" parameterClass="HashTable">
+        
+        SELECT ORI.OBSDHM OBSDT, FN_CONV_CHAR(ORI.WL) AS WL  <!-- 수정전 수위 -->
+        , FN_CONV_CHAR(TRUNC((ORI.ROW_NUM * BOGAN.MUTIPLIER + BOGAN.STARTVALUE), 2)) AS EXVL    <!-- 선형보간 -->
+        <!--, FN_CONV_CHAR(LOG(BOGAN.ALLCOUNT+1, ORI.ROW_NUM+1)*(BOGAN.ENDVALUE-BOGAN.STARTVALUE)+BOGAN.STARTVALUE) AS EXVL2   지수곡선보간 수정전(지수가 입력 불가)-->
+        , FN_CONV_CHAR(LOG(#logbase#, ((ORI.ROW_NUM+1)/(BOGAN.ALLCOUNT+1)*#logbase#)) * (BOGAN.ENDVALUE - BOGAN.STARTVALUE) + BOGAN.STARTVALUE) AS EXVL2  <!-- 지수곡선보간(log x) -->
+        , FN_CONV_CHAR(POWER((ori.row_num+1)/(bogan.allcount + 1), #logbase#) * (bogan.endvalue - bogan.startvalue)+ bogan.startvalue) AS EXVL3   <!-- 지수곡선보간(y=x2) -->
+        FROM
+        (
+              SELECT D.OBSDHM, WL, ROW_NUM
+              FROM 
+              (
+                  <![CDATA[
+                SELECT OBSDHM, ROWNUM -1 AS ROW_NUM 
+                FROM (
+                  SELECT FN_CONV_24DT(AAA.T_DAY || BBB.T_HOUR || CCC.T_MIN) OBSDHM
+                  FROM (
+                        SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+                        FROM DUAL
+                        CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#edate#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')) + 1)
+                      ) AAA, (
+                        SELECT TRIM(TO_CHAR((LEVEL-1), '00')) T_HOUR
+                        FROM DUAL CONNECT BY LEVEL <= 24
+                      ) BBB, (
+                        SELECT TRIM(TO_CHAR((LEVEL-1) * 10, '00')) T_MIN 
+                        FROM DUAL CONNECT BY LEVEL <= 6
+                      ) CCC
+                  )  
+                WHERE OBSDHM BETWEEN #sdate# AND #edate#
+                  ]]>
+              ) D,
+              (
+                  <!-- 원래 수위 가져오기 -->
+                  SELECT OBSDHM, WL
+                  FROM DUBMMWL@TECH.WORLD
+                  WHERE OBSDHM BETWEEN #sdate# and #edate# 
+                  AND WLOBSCD = #obscd# 
+                  AND TRMDV = #datatp#
+              ) R
+              WHERE D.OBSDHM = R.OBSDHM(+)
+          ) ORI,
+          (
+              <!-- 보간용 변수 계산해서 가져오기 (전체수, 최초수위, 최후수위) -->
+              SELECT STARTVALUE, ENDVALUE, ALLCOUNT, (ENDVALUE-STARTVALUE)/ALLCOUNT AS MUTIPLIER 
+              FROM (
+                SELECT 
+                    SUM(STARTVALUE) AS STARTVALUE, 
+                    SUM(ENDVALUE) AS ENDVALUE, 
+                    (TO_DATE(#edate#,'YYYYMMDDHH24MI') - TO_DATE(#sdate#,'YYYYMMDDHH24MI'))*1440 AS MINUTE_DIFF,
+                    ((TO_DATE(#edate#,'YYYYMMDDHH24MI') - TO_DATE(#sdate#,'YYYYMMDDHH24MI'))*1440)/10 + 1 AS ALLCOUNT
+                FROM
+                (
+                    SELECT WL AS STARTVALUE, 0 AS ENDVALUE FROM DUBMMWL@TECH.WORLD WHERE OBSDHM = #sdate# AND WLOBSCD = #obscd# AND TRMDV = #datatp#
+                    UNION ALL
+                    SELECT 0 AS STARTVALUE, WL AS ENDVALUE FROM DUBMMWL@TECH.WORLD WHERE OBSDHM = #edate# AND WLOBSCD = #obscd# AND TRMDV = #datatp#
+                )
+              )
+          ) BOGAN
+        ORDER BY ORI.OBSDHM DESC
+
+    </select>
+    <!-- 수위 선형보간적용(                  이제 안씀!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)  끝 -->
+      
+    <!-- 댐 선형보간적용 시작 -->
+    <select id="getDAMLinearInterpolationResult" resultClass="DAMLinearInterpolationResultModel" parameterClass="HashTable">
+        SELECT ORI.OBSDHM OBSDT, FN_CONV_CHAR(ORI.$targetcolumn$) AS ORIGINAL, FN_CONV_CHAR(TRUNC((ORI.ROW_NUM * BOGAN.MUTIPLIER + BOGAN.STARTVALUE), 2)) AS BOGAN
+        , FN_CONV_CHAR(LOG(#logbase#, ((ORI.ROW_NUM+1)/(BOGAN.ALLCOUNT+1)*#logbase#)) * (BOGAN.ENDVALUE - BOGAN.STARTVALUE) + BOGAN.STARTVALUE) AS EXVL2  <!-- 지수곡선보간(log x) -->
+        , FN_CONV_CHAR(POWER((ori.row_num+1)/(bogan.allcount + 1), #logbase#) * (bogan.endvalue - bogan.startvalue)+ bogan.startvalue) AS EXVL3   <!-- 지수곡선보간(y=x2) -->
+        FROM
+        (
+            SELECT D.OBSDHM, $targetcolumn$, ROW_NUM
+            FROM
+            (
+                <![CDATA[
+        	    SELECT OBSDHM, ROWNUM -1 AS ROW_NUM 
+			    FROM (
+				    SELECT FN_CONV_24DT(AAA.T_DAY || BBB.T_HOUR || CCC.T_MIN) OBSDHM
+				    FROM (
+					        SELECT TO_CHAR((TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')  + (LEVEL - 1)), 'YYYYMMDD') T_DAY
+					        FROM DUAL
+					        CONNECT BY LEVEL <= ((TO_DATE(SUBSTR(FN_CONV_HH24(#edate#), 1, 8), 'YYYYMMDD') - TO_DATE(SUBSTR(FN_CONV_HH24(#sdate#), 1, 8), 'YYYYMMDD')) + 1)
+				        ) AAA, (
+					        SELECT TRIM(TO_CHAR((LEVEL-1), '00')) T_HOUR
+					        FROM DUAL CONNECT BY LEVEL <= 24
+				        ) BBB, (
+					        SELECT TRIM(TO_CHAR((LEVEL-1) * 10, '00')) T_MIN 
+					        FROM DUAL CONNECT BY LEVEL <= 6
+				        ) CCC
+				    )  
+                WHERE OBSDHM BETWEEN #sdate# AND #edate#
+                ]]>
+            ) D,
+            (
+                <!-- 원래 수위 가져오기 -->
+                SELECT OBSDHM, $targetcolumn$
+                FROM DUBMMDAMIF@TECH.WORLD
+                WHERE OBSDHM BETWEEN #sdate# and #edate# 
+                AND DAMCD = #damcd#
+                AND TRMDV = #datatp#
+            ) R
+            WHERE D.OBSDHM = R.OBSDHM(+)
+        ) ORI,
+        (
+            <!-- 보간용 변수 계산해서 가져오기 -->
+            SELECT STARTVALUE, ENDVALUE, ALLCOUNT, (ENDVALUE-STARTVALUE)/ALLCOUNT AS MUTIPLIER 
+            FROM (
+                SELECT 
+                    SUM(STARTVALUE) AS STARTVALUE, 
+                    SUM(ENDVALUE) AS ENDVALUE, 
+                    (TO_DATE(#edate#,'YYYYMMDDHH24MI') - TO_DATE(#sdate#,'YYYYMMDDHH24MI'))*1440 AS MINUTE_DIFF,
+                    ((TO_DATE(#edate#,'YYYYMMDDHH24MI') - TO_DATE(#sdate#,'YYYYMMDDHH24MI'))*1440)/10 + 1 AS ALLCOUNT
+                FROM
+                (
+                    SELECT $targetcolumn$ AS STARTVALUE, 0 AS ENDVALUE FROM DUBMMDAMIF@TECH.WORLD WHERE OBSDHM = #sdate# AND DAMCD = #damcd# AND TRMDV = #datatp#
+                    UNION ALL
+                    SELECT 0 AS STARTVALUE, $targetcolumn$ AS ENDVALUE FROM DUBMMDAMIF@TECH.WORLD WHERE OBSDHM = #edate# AND DAMCD = #damcd# AND TRMDV = #datatp#
+                )
+            )
+        ) BOGAN
+        ORDER BY ORI.OBSDHM DESC
+    </select>
+    <!-- 댐 선형보간적용 끝 -->
+
+    <!-- 댐 운영자료 전일 평균 시작 -->
+    <select id="getDamDataAvg" resultClass="string" parameterClass="HashTable">
+        SELECT FN_CONV_CHAR@TECH.WORLD(TRUNC(AVG($targetcolumn$), 2)) AS AVGDATA
+        FROM  DUBMMDAMIF@TECH.WORLD
+        WHERE DAMCD = #damcd#
+        <isNotEmpty prepend="AND" property="sdate">
+            OBSDHM BETWEEN #sdate# AND #edate#
+        </isNotEmpty>
+        <isNotEmpty property="datelist">
+            <iterate prepend="AND" property="datelist"  open="(" close=")" conjunction="OR">
+                OBSDHM = #datelist[]#
+            </iterate>
+        </isNotEmpty>
+    </select>
+    <!-- 댐 운영자료 전일 평균 끝 -->
+
+    <!-- 본댐수위 수위항목 -->
+    <select id="GetAllDamWaterlevelListByRWL" resultClass="HashTable" parameterClass="HashTable">
+      
+      <isEqual property="DataTp" compareValue="1">
+        SELECT OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DTB1MDIF
+        WHERE OBSDT &gt;= #StartDt#
+        AND OBSDT &lt;= #EndDt#
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSDT
+        ORDER BY OBSDT DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="10">
+        SELECT OBSDHM AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DUBMMDAMIF@TECH.WORLD
+        WHERE TRMDV='10'
+        AND OBSDHM &gt;= #StartDt#
+        AND OBSDHM &lt;= #EndDt#
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSDHM
+        ORDER BY OBSDHM DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="30">
+        SELECT OBSDHM AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DUBMMDAMIF@TECH.WORLD
+        WHERE TRMDV='30'
+        AND OBSDHM &gt;= #StartDt#
+        AND OBSDHM &lt;= #EndDt#
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSDHM
+        ORDER BY OBSDHM DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="60">
+        SELECT OBSDH AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DUBHRDAMIF@TECH.WORLD
+        WHERE OBSDH &gt;= SUBSTR(#StartDt#,1,10)
+        AND OBSDH &lt;= SUBSTR(#EndDt#,1,10)
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSDH
+        ORDER BY OBSDH DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="DD">
+        SELECT OBSYMD AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DUADTDAMIF@TECH.WORLD
+        WHERE OBSYMD &gt;= SUBSTR(#StartDt#,1,8)
+        AND OBSYMD &lt;= SUBSTR(#EndDt#,1,8)
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSYMD
+        ORDER BY OBSYMD DESC
+      </isEqual>
+    </select>
+    <!-- 본댐수위 수위차항목 -->
+    <select id="GetAllDamWaterlevelListByRWLD" resultClass="HashTable" parameterClass="HashTable">
+      <isEqual property="DataTp" compareValue="10">
+        SELECT OBSDHM AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM (
+	        SELECT B.OBSDHM,B.DAMCD,(B.RWL-A.RWL)*100 RWL 
+	        FROM DUBMMDAMIF@TECH.WORLD A, DUBMMDAMIF@TECH.WORLD B 
+	        WHERE A.DAMCD=B.DAMCD 
+	        AND A.TRMDV='10' 
+	        AND B.TRMDV='10' 
+	        AND B.OBSDHM &gt;=#StartDt# 
+	        AND B.OBSDHM &lt;=#EndDt#
+          <iterate property="DamCdList" open=" AND B.DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+	        AND A.OBSDHM=(CASE SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDHM,9,4) WHEN '2400' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDHM,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'0000' ELSE B.OBSDHM END , 'YYYYMMDDHH24MI') - 10/1440,'YYYYMMDDHH24MI')),9,4) WHEN '0000' THEN TO_CHAR(TO_DATE(SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDHM,9,4) WHEN '2400' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDHM,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'0000' ELSE B.OBSDHM END , 'YYYYMMDDHH24MI') - 10/1440,'YYYYMMDDHH24MI')),1,8),'YYYYMMDD')-1,'YYYYMMDD')||'2400' ELSE (TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDHM,9,4) WHEN '2400' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDHM,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'0000' ELSE B.OBSDHM END , 'YYYYMMDDHH24MI') - 10/1440,'YYYYMMDDHH24MI')) END)
+        ) 
+        WHERE OBSDHM &gt;=#StartDt#
+        AND OBSDHM &lt;=#EndDt#
+        GROUP BY OBSDHM
+        ORDER BY OBSDHM DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="30">
+        SELECT OBSDHM AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM (
+	        SELECT B.OBSDHM,B.DAMCD,(B.RWL-A.RWL)*100 RWL 
+	        FROM DUBMMDAMIF@TECH.WORLD A, DUBMMDAMIF@TECH.WORLD B 
+	        WHERE A.DAMCD=B.DAMCD 
+	        AND A.TRMDV='30' 
+	        AND B.TRMDV='30' 
+	        AND B.OBSDHM &gt;=#StartDt# 
+	        AND B.OBSDHM &lt;=#EndDt#
+        <iterate property="DamCdList" open=" AND B.DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+	        AND A.OBSDHM=(CASE SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDHM,9,4) WHEN '2400' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDHM,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'0000' ELSE B.OBSDHM END , 'YYYYMMDDHH24MI') - 30/1440,'YYYYMMDDHH24MI')),9,4) WHEN '0000' THEN TO_CHAR(TO_DATE(SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDHM,9,4) WHEN '2400' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDHM,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'0000' ELSE B.OBSDHM END , 'YYYYMMDDHH24MI') - 30/1440,'YYYYMMDDHH24MI')),1,8),'YYYYMMDD')-1,'YYYYMMDD')||'2400' ELSE (TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDHM,9,4) WHEN '2400' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDHM,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'0000' ELSE B.OBSDHM END , 'YYYYMMDDHH24MI') - 30/1440,'YYYYMMDDHH24MI')) END)
+        ) 
+        WHERE OBSDHM &gt;=#StartDt#
+        AND OBSDHM &lt;=#EndDt#
+        GROUP BY OBSDHM
+        ORDER BY OBSDHM DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="60">
+        SELECT OBSDH AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM (
+	        SELECT B.OBSDH,B.DAMCD,(B.RWL-A.RWL)*100 RWL 
+	        FROM DUBHRDAMIF@TECH.WORLD A, DUBHRDAMIF@TECH.WORLD B 
+	        WHERE A.DAMCD=B.DAMCD  
+	        AND B.OBSDH &gt;=#StartDt# 
+	        AND B.OBSDH &lt;=#EndDt# 
+          <iterate property="DamCdList" open=" AND B.DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+	        AND A.OBSDH=(CASE SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDH,9,2) WHEN '24' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDH,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'00' ELSE B.OBSDH END , 'YYYYMMDDHH24') - 1/24,'YYYYMMDDHH24')),9,2) WHEN '00' THEN TO_CHAR(TO_DATE(SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDH,9,2) WHEN '24' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDH,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'00' ELSE B.OBSDH END , 'YYYYMMDDHH24') - 1/24,'YYYYMMDDHH24')),1,8),'YYYYMMDD')-1,'YYYYMMDD')||'24' ELSE (TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDH,9,2) WHEN '24' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDH,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'00' ELSE B.OBSDH END , 'YYYYMMDDHH24') - 1/24,'YYYYMMDDHH24')) END)
+        ) 
+        WHERE OBSDH &gt;=#StartDt#
+        AND OBSDH &lt;=#EndDt#
+        GROUP BY OBSDH
+        ORDER BY OBSDH DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="DD">
+        SELECT OBSDH AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM (
+	        SELECT B.OBSDH,B.DAMCD,(B.RWL-A.RWL)*100 RWL 
+	        FROM DUBHRDAMIF@TECH.WORLD A, DUBHRDAMIF@TECH.WORLD B 
+	        WHERE A.DAMCD=B.DAMCD  
+	        AND B.OBSDH &gt;=#StartDt# 
+	        AND B.OBSDH &lt;=#EndDt#
+          <iterate property="DamCdList" open=" AND B.DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+	        AND A.OBSDH=(CASE SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDH,9,2) WHEN '24' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDH,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'00' ELSE B.OBSDH END , 'YYYYMMDDHH24') - 1,'YYYYMMDDHH24')),9,2) WHEN '00' THEN TO_CHAR(TO_DATE(SUBSTR((TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDH,9,2) WHEN '24' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDH,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'00' ELSE B.OBSDH END , 'YYYYMMDDHH24') - 1,'YYYYMMDDHH24')),1,8),'YYYYMMDD')-1,'YYYYMMDD')||'24' ELSE (TO_CHAR(TO_DATE(CASE SUBSTR(B.OBSDH,9,2) WHEN '24' THEN TO_CHAR(TO_DATE(SUBSTR(B.OBSDH,1,8),'YYYYMMDD')+1,'YYYYMMDD')||'00' ELSE B.OBSDH END , 'YYYYMMDDHH24') - 1,'YYYYMMDDHH24')) END)
+        ) 
+        WHERE OBSDH &gt;=#StartDt#
+        AND OBSDH &lt;=#EndDt#
+        GROUP BY OBSDH
+        ORDER BY OBSDH DESC
+      </isEqual>
+    </select>
+    <!-- 본댐수위 방류량항목 -->
+    <select id="GetAllDamWaterlevelListByTDQTY" resultClass="HashTable" parameterClass="HashTable">
+      <isEqual property="DataTp" compareValue="1">
+      SELECT OBSDT 
+      <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+      FROM DTB1MDIF
+      WHERE OBSDT &gt;=#StartDt#
+      AND OBSDT &lt;= #EndDt#
+      <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+      GROUP BY OBSDT
+      ORDER BY OBSDT DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="10">
+        SELECT OBSDHM AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DUBMMDAMIF@TECH.WORLD
+        WHERE TRMDV='10'
+        AND OBSDHM &gt;=#StartDt#
+        AND OBSDHM &lt;= #EndDt#
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSDHM
+        ORDER BY OBSDHM DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="60">
+        SELECT OBSDH AS OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DUBHRDAMIF@TECH.WORLD
+        WHERE OBSDH &gt;=#StartDt#
+        AND OBSDH &lt;= #EndDt#
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSDH
+        ORDER BY OBSDH DESC
+      </isEqual>
+    </select>
+    <!-- 본댐수위 유입량항목 -->
+    <select id="GetAllDamWaterlevelListByIQTY" resultClass="HashTable" parameterClass="HashTable">
+      <isEqual property="DataTp" compareValue="10">
+      SELECT OBSDHM OBSDT
+      <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+      FROM DUBMMDAMIF@TECH.WORLD
+      WHERE TRMDV='10'
+      AND OBSDHM &gt;= #StartDt#
+      AND OBSDHM &lt;= #EndDt#
+      <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+      GROUP BY OBSDHM
+      ORDER BY OBSDHM DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="30">
+      SELECT OBSDHM OBSDT
+      <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+      FROM DUBMMDAMIF@TECH.WORLD
+      WHERE TRMDV='30'
+      AND OBSDHM &gt;= #StartDt#
+      AND OBSDHM &lt;= #EndDt#
+      <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+      GROUP BY OBSDHM
+      ORDER BY OBSDHM DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="60">
+        SELECT OBSDH OBSDT
+        <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+        FROM DUBHRDAMIF@TECH.WORLD
+        WHERE OBSDH &gt;= #StartDt#
+        AND OBSDH &lt;= #EndDt#
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+        GROUP BY OBSDH
+        ORDER BY OBSDH DESC
+      </isEqual>
+    </select>
+    <!-- 본댐수위 평균우량항목 -->
+    <select id="GetAllDamWaterlevelListByDAMBSARF" resultClass="HashTable" parameterClass="HashTable">
+      <isEqual property="DataTp" compareValue="DD">
+      SELECT SUBSTR(OBSDH,1,8) OBSDT
+      <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+      FROM DUBHRDAMIF@TECH.WORLD
+      WHERE OBSDH &gt;= #StartDt#
+      AND OBSDH &lt;= #EndDt#
+      <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+      GROUP BY SUBSTR(OBSDH,1,8) 
+      ORDER BY SUBSTR(OBSDH,1,8) DESC
+      </isEqual>
+      <isEqual property="DataTp" compareValue="MM">
+      SELECT SUBSTR(OBSDH,1,6) OBSDT
+      <iterate property="QueryList" open="," close="" conjunction=",">$QueryList[]$</iterate>
+      FROM DUBHRDAMIF@TECH.WORLD
+      WHERE OBSDH &gt;= #StartDt#
+      AND OBSDH &lt;= #EndDt#
+        <iterate property="DamCdList" open=" AND DAMCD IN (" close=")" conjunction=",">$DamCdList[]$</iterate>
+      GROUP BY SUBSTR(OBSDH,1,6) 
+      ORDER BY SUBSTR(OBSDH,1,6) DESC
+      </isEqual>
+    </select>
+    <!-- 댐운영자료보정시 테크디비에 날릴 프로시져-->
+    <statement id="KWMS_SPIN_HALF_DAM" parameterClass="Hashtable">
+        BEGIN KWMS_SPIN_HALF_DAM@TECH.WORLD(#OBSDHM#,#DAMCD#,#TRMDV#,#RWL#,#OSPILWL#,#ETCIQTY2#,#EDQTY#,#ETCEDQTY#,#SPDQTY#,#ETCDQTY1#,#ETCDQTY2#,#ETCDQTY3#,#OTLTDQTY#,#ITQTY1#,#ITQTY2#,#ITQTY3#,#EDEXLVL_EMPNO#); END;
+    </statement>
+    <!-- 수위보정시 테크디비에 날릴 프로시져-->
+    <statement id="KWMS_SPIN_HALF_WL" parameterClass="Hashtable">
+        <!--KWMS_SPIN_HALF_WL--><!--@TECH.WORLD-->
+        BEGIN KWMS_SPIN_HALF_WL@TECH.WORLD(#OBSDHM#,#WLOBSCD#,#TRMDV#,#DAMCD#,#WL#,#EDEXLVL#); END;
+    </statement>  
+    
+    <!-- 우량보정시 테크디비에 날릴 프로시져--><!-- 계측우량 수정 -->
+    <statement id="KWMS_SPIN_HALF_RF" parameterClass="Hashtable">        
+        <!--KWMS_SPIN_HALF_RF--><!--@TECH.WORLD-->
+        BEGIN KWMS_SPIN_HALF_RF@TECH.WORLD(#OBSDHM#,#RFOBSCD#,#TRMDV#,#DAMCD#,#ACURF#,#EDEXLVL#); END;
+    </statement>
+    <!-- 시간우량 수정 (기상청, 홍통) -->       
+    <statement id="KWMS_SPIN_HALF_MFRF" parameterClass="Hashtable"> 
+        <!--KWMS_SPIN_HALF_RF--><!--@TECH.WORLD-->
+        BEGIN KWMS_SPIN_HALF_MFRF@TECH.WORLD(#OBSDHM#,#RFOBSCD#,#TRMDV#,#DAMCD#,#RF#,#EDEXLVL#); END;
+    </statement>
+      
+    <statement id="UpdateDamStat" parameterClass="Hashtable">
+      BEGIN SP_UPDATE_DAMSTAT(#DAMCD#, #OBSDT#); END;
+    </statement>
+    <statement id="UpdateRfStat" parameterClass="Hashtable">
+      BEGIN SP_UPDATE_RFSTAT(#OBSCD#, #OBSDT#); END;
+    </statement>
+    <statement id="UpdateWlStat" parameterClass="Hashtable">
+      BEGIN SP_UPDATE_WLSTAT(#OBSCD#, #OBSDT#); END;
+    </statement>
+  </statements>
+  <parameterMaps>
+    <parameterMap id="KWMS_SPIN_HALF_DAM_parameter" class="System.Collections.Hashtable">
+      <parameter property="OBSDHM" column="I_DT12" direction="Input" />
+      <parameter property="DAMCD" column="I_DAMCODE" direction="Input" />
+      <parameter property="TRMDV" column="I_TRMDV" direction="Input" />
+      <parameter property="RWL" column="I_RWL" direction="Input" />
+      <parameter property="OSPILWL" column="I_OSPILWL" direction="Input" />
+      <parameter property="ETCIQTY2" column="I_ETCIQTY2" direction="Input" />
+      <parameter property="EDQTY" column="I_EDQTY" direction="Input" />
+      <parameter property="ETCEDQTY" column="I_ETCEDQTY" direction="Input" />
+      <parameter property="SPDQTY" column="I_SPDQTY" direction="Input" />
+      <parameter property="ETCDQTY1" column="I_ETCDQTY1" direction="Input" />
+      <parameter property="ETCDQTY2" column="I_ETCDQTY2" direction="Input" />
+      <parameter property="ETCDQTY3" column="I_ETCDQTY3" direction="Input" />
+      <parameter property="OTLTDQTY" column="I_OTLTDQTY" direction="Input" />
+      <parameter property="ITQTY1" column="I_ITQTY1" direction="Input" />
+      <parameter property="ITQTY2" column="I_ITQTY2" direction="Input" />
+      <parameter property="ITQTY3" column="I_ITQTY3" direction="Input" />
+      <parameter property="EDEXLVL" column="I_EDEXLVL" direction="Input" />
+    </parameterMap>
+    <parameterMap id="KWMS_SPIN_HALF_WL_parameter" class="System.Collections.Hashtable">
+      <parameter property="OBSDHM" column="I_DT12" direction="Input" />
+      <parameter property="WLOBSCD" column="I_WLCODE" direction="Input" />
+      <parameter property="TRMDV" column="I_TRMDV" direction="Input" />
+      <parameter property="DAMCD" column="I_DAMCD" direction="Input" />
+      <parameter property="WL" column="I_WL" direction="Input" />
+      <parameter property="EDEXLVL" column="I_EDEXLVL" direction="Input" />
+    </parameterMap>
+    <parameterMap id="KWMS_SPIN_HALF_RF_parameter" class="System.Collections.Hashtable">
+      <parameter property="OBSDHM" column="I_DT12" direction="Input" />
+      <parameter property="RFOBSCD" column="I_RFCODE" direction="Input" />
+      <parameter property="TRMDV" column="I_TRMDV" direction="Input" />
+      <parameter property="DAMCD" column="I_DAMCD" direction="Input" />
+      <parameter property="ACURF" column="I_RF" direction="Input" />
+      <parameter property="EDEXLVL" column="I_EDEXLVL" direction="Input" />
+    </parameterMap>
+    
+  </parameterMaps>
+
+</sqlMap>

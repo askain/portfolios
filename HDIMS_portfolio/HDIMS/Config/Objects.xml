@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+
+  <!-- Home -->
+  <import resource="HomeController.xml"/>
+
+  <import resource="RController.xml"/>
+  <!-- Main Domain -->
+  <import resource="MainController.xml"/>
+  <import resource="MainService.xml"/>
+  <import resource="MainDao.xml"/>
+  
+  <!-- DataSerch Domain -->
+  <import resource="DataSearchController.xml"/>
+  <import resource="DataSearchService.xml"/>
+  
+  <!-- Report Domain -->
+  <import resource="ReportController.xml"/>
+  <import resource="ReportService.xml"/>
+  
+  <!-- Statistics Domain -->
+  <import resource="StatisticsController.xml"/>
+  <import resource="StatisticsService.xml"/>
+  
+  <!-- Verify Domain -->
+  <import resource="VerifyController.xml"/>
+  <import resource="VerifyService.xml"/>
+
+  <!-- Common Domain -->
+  <import resource="CommonController.xml"/>
+  <import resource="CommonService.xml"/>
+
+  <!-- Login -->
+  <import resource="LoginController.xml"/>
+  <import resource="LoginService.xml"/>
+
+  <!-- Code -->
+  <import resource="CodeController.xml"/>
+  <import resource="CodeService.xml"/>
+
+  <!-- ManAuthMng -->
+  <import resource="ManAuthMngController.xml"/>
+  <import resource="ManAuthMngService.xml"/>
+
+
+  <!-- ManAuthMng -->
+  <import resource="DamBoObsMngController.xml"/>
+  <import resource="DamBoObsMngService.xml"/>
+
+  
+  <!-- SysStats -->
+  <import resource="SysStatsController.xml"/>
+  <import resource="SysStatsService.xml"/>
+    
+  <!-- MakeJs Scheduler -->
+  <import resource="MakeJsScheduler.xml"/>
+
+  <!-- Board -->
+  <import resource="BoardController.xml"/>
+  <import resource="BoardService.xml"/>
+    
+  <!-- Evaluation -->
+  <import resource="EvaluationController.xml"/>
+  <import resource="EvaluationService.xml"/>
+
+  <!-- FileUploader -->
+  <import resource="FileUploaderController.xml"/>
+  <import resource="FileService.xml"/>
+</objects>
+

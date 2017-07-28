@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Main"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Main" type="HDIMS.Models.Domain.Main.MainModel, HDIMS" />
+    <typeAlias alias="MainAbnormalModel" type="HDIMS.Models.Domain.Main.MainAbnormalModel, HDIMS" />
+    <typeAlias alias="MainAbnormdamModel" type="HDIMS.Models.Domain.Main.MainabnormdamModel, HDIMS" />
+    <typeAlias alias="MainDamoperModel" type="HDIMS.Models.Domain.Main.MainDamoperModel, HDIMS" />
+    <typeAlias alias="MainEquipModel" type="HDIMS.Models.Domain.Main.MainEquipModel, HDIMS" />
+    <typeAlias alias="ObsCode" type="HDIMS.Models.Domain.Main.ObsCode, HDIMS"/>
+  </alias>
+
+  <resultMaps>
+    <resultMap id="MainMap" class="Main">
+      <result property="No" column="T_NO"/>
+      <result property="Title" column="T_TITLE"/>
+      <result property="Regdt" column="T_REGDT"/>
+    </resultMap>
+  </resultMaps>
+
+  <parameterMaps>
+    <parameterMap id="insert-params">
+      <parameter property="Title" column="P_TITLE" dbType="VarChar"/>
+    </parameterMap>
+  </parameterMaps>
+
+  <statements>
+    <!-- 댐별 관측국 코드 가져오기 -->
+    <select id="getObsCodeList" resultClass="ObsCode" parameterClass="HashTable">
+    <![CDATA[
+    SELECT OBSDT, OBSCD, OBSTP, WLVL, RFVL, OBSNM, DAMNM,
+        BATTVOLT, BATTSTS, DOORSTS, PWRSTS, WSPD, SELDV, DAMCD, 
+        WL_SEN, RF_SEN, WQ_SEN, ETC_SEN, RTU_MEMORY, RTU_RESET, WDT_RESET, LAN_PORT, CDMA_MODEM, 
+        VSAT_PORT, CDMA_PORT, WIRE_PORT, MULTICAST_SOCKET, VSAT_EVENT, CDMA_EVENT, WIRE_EVENT, 
+        UDP_EVENT, IDU_PING, SNR, ETC1, ETC2, ETC3,
+        PRIMARY_DATA, SECONDARY_CALL
+        , CASE WHEN PRIMARY_DATA<>0 AND SECONDARY_CALL=0 THEN 1
+          ELSE 0
+          END DATA_STATUS 
+        , DECODE(GATHERING_TIME,NULL,'',FN_CONV_DATE('2011'||GATHERING_TIME)) AS GATHERING_TIME
+    FROM( 
+        SELECT OBSDT, OBSCD, OBSTP, WLVL, RFVL, OBSNM, DAMNM,  
+           BATTVOLT, BATTSTS, DOORSTS, PWRSTS, WSPD, SELDV, DAMCD,
+           WL_SEN, RF_SEN, WQ_SEN, ETC_SEN, RTU_MEMORY, RTU_RESET, WDT_RESET, LAN_PORT, CDMA_MODEM, 
+           VSAT_PORT, CDMA_PORT, WIRE_PORT, MULTICAST_SOCKET, VSAT_EVENT, CDMA_EVENT, WIRE_EVENT, 
+           UDP_EVENT, IDU_PING, SNR, ETC1, ETC2, ETC3, 
+           PRIMARY_DATA, SECONDARY_CALL, DATA_STATUS, GATHERING_TIME
+        FROM(
+            SELECT FN_CONV_DATE(A.OBSDT) OBSDT, A.RFOBSCD AS OBSCD, 'RF' OBSTP, '-' AS WLVL, FN_CONV_CHAR(A.ACURF) AS RFVL, B.OBSNM, C.DAMNM, 
+               A.BATTVOLT, A.BATTSTS, A.DOORSTS, A.PWRSTS, TO_NUMBER(0.0) AS WSPD, A.SELRFDV SELDV, A.DAMCD,
+               A.WL_SEN, A.RF_SEN, A.WQ_SEN, A.ETC_SEN, A.RTU_MEMORY, A.RTU_RESET, A.WDT_RESET, A.LAN_PORT, A.CDMA_MODEM, 
+               A.VSAT_PORT, A.CDMA_PORT, A.WIRE_PORT, A.MULTICAST_SOCKET, A.VSAT_EVENT, A.CDMA_EVENT, A.WIRE_EVENT, 
+               A.UDP_EVENT, A.IDU_PING, A.SNR, A.ETC1, A.ETC2, A.ETC3, 
+               A.PRIMARY_DATA, A.SECONDARY_CALL, A.DATA_STATUS, A.GATHERING_TIME
+            FROM DTR1MRFIF A, DUBRFOBSIF@TECH.WORLD B, DUBDAMSPC@TECH.WORLD C
+            WHERE A.RFOBSCD=B.RFOBSCD
+            AND A.DAMCD=C.DAMCD
+            AND A.DAMCD=#DAMCD#
+            ORDER BY B.OBSNM
+        )        
+        UNION ALL   
+        SELECT OBSDT, OBSCD, OBSTP, WLVL, RFVL, OBSNM, DAMNM,  
+           BATTVOLT, BATTSTS, DOORSTS, PWRSTS, WSPD, SELDV, DAMCD,
+           WL_SEN, RF_SEN, WQ_SEN, ETC_SEN, RTU_MEMORY, RTU_RESET, WDT_RESET, LAN_PORT, CDMA_MODEM, 
+           VSAT_PORT, CDMA_PORT, WIRE_PORT, MULTICAST_SOCKET, VSAT_EVENT, CDMA_EVENT, WIRE_EVENT, 
+           UDP_EVENT, IDU_PING, SNR, ETC1, ETC2, ETC3, 
+           PRIMARY_DATA, SECONDARY_CALL, DATA_STATUS, GATHERING_TIME
+        FROM(
+            SELECT FN_CONV_DATE(A.OBSDT) OBSDT, A.WLOBSCD OBSCD, 'WL' OBSTP, FN_CONV_CHAR(A.WL) WLVL, '-' RFVL, B.OBSNM, C.DAMNM,
+                A.BATTVOLT,A.BATTSTS, A.DOORSTS, A.PWRSTS, A.WSPD, A.SELWLDV SELDV, A.DAMCD, 
+                A.WL_SEN, A.RF_SEN, A.WQ_SEN, A.ETC_SEN, A.RTU_MEMORY, A.RTU_RESET, A.WDT_RESET, A.LAN_PORT, A.CDMA_MODEM, 
+                A.VSAT_PORT, A.CDMA_PORT, A.WIRE_PORT, A.MULTICAST_SOCKET, A.VSAT_EVENT, A.CDMA_EVENT, A.WIRE_EVENT, 
+                A.UDP_EVENT, A.IDU_PING, A.SNR, ETC1, A.ETC2, A.ETC3, 
+                A.PRIMARY_DATA, A.SECONDARY_CALL, A.DATA_STATUS, A.GATHERING_TIME
+            FROM DTR1MWLIF A, DUBWLOBSIF@TECH.WORLD B, DUBDAMSPC@TECH.WORLD C
+            WHERE A.WLOBSCD=B.WLOBSCD
+            AND A.DAMCD=C.DAMCD
+            AND A.DAMCD=#DAMCD#
+            AND A.WLOBSCD<>'9900010'
+            ORDER BY B.OBSNM
+        )
+    )
+    ]]>
+    </select>
+
+    <!-- 플래쉬 이상자료 댐별,관측소별 이상여부 판단 -->
+    <select id="GetFlashAlert" resultClass="HashTable" parameterClass="HashTable">
+      <isNotEmpty property="DAMCD">
+        SELECT OBSCD AS ID, CASE WHEN SUM(CNT)>0 THEN 1 ELSE 0 END AS VAL
+        FROM (
+          SELECT A.DAMCD, A.OBSCD, COUNT(*) CNT
+          FROM HM_ABNORMSTAT A, HM_DAMMST B
+          WHERE A.DAMCD=B.DAMCD
+          AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-7,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+          AND A.DAMCD = #DAMCD#
+          <isNotEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNO IS NULL
+          </isNotEqual>
+          <isEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNOMAIN IS NULL
+          </isEqual>
+          GROUP BY A.DAMCD, A.OBSCD
+          UNION ALL
+          SELECT A.DAMCD, A.OBSCD, COUNT(*) CNT
+          FROM HM_EQUIPMON A, HM_DAMMST B
+          WHERE A.DAMCD=B.DAMCD
+          AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-7,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+          AND A.DAMCD = #DAMCD#
+          <isNotEqual property="MGTDAM" compareValue="MAIN">
+            AND A.CHKEMPNO = 'NNNNNNNN'
+          </isNotEqual>
+          <isEqual property="MGTDAM" compareValue="MAIN">
+            AND A.CHKEMPNOMAIN = 'NNNNNNNN'
+          </isEqual>
+          GROUP BY A.DAMCD, A.OBSCD
+       ) GROUP BY DAMCD, OBSCD  
+      </isNotEmpty>
+      <isEmpty property="DAMCD">
+        SELECT DAMCD AS ID, CASE WHEN SUM(CNT)>0 THEN 1 ELSE 0 END AS VAL
+        FROM (
+          SELECT A.DAMCD, COUNT(*) CNT
+          FROM HM_ABNORMSTAT A, HM_DAMMST B
+          WHERE A.DAMCD=B.DAMCD
+          AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-7,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+          <isNotEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNO IS NULL
+          </isNotEqual>
+          <isEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNOMAIN IS NULL
+          </isEqual>
+          GROUP BY A.DAMCD
+          UNION ALL
+          SELECT A.DAMCD, COUNT(*) CNT
+          FROM HM_ABNORMDAM A, HM_DAMMST B
+          WHERE A.DAMCD=B.DAMCD
+          AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-7,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+          <isNotEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNO IS NULL
+          </isNotEqual>
+          <isEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNOMAIN IS NULL
+          </isEqual>
+          GROUP BY A.DAMCD
+          UNION ALL
+          SELECT A.DAMCD, COUNT(*) CNT
+          FROM HM_EQUIPMON A, HM_DAMMST B
+          WHERE A.DAMCD=B.DAMCD
+          AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-7,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+          <isNotEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNO = 'NNNNNNNN'
+          </isNotEqual>
+          <isEqual property="MGTDAM" compareValue="MAIN">
+          AND A.CHKEMPNOMAIN = 'NNNNNNNN'
+          </isEqual>
+          GROUP BY A.DAMCD
+          UNION ALL
+          SELECT A.DAMCD, COUNT(*) CNT
+          FROM DTBALARM A, HM_ALARMCODE B, HM_DAMMST C
+          WHERE A.ERR_CD=B.ALARMCD
+          AND A.DAMCD=C.DAMCD
+          AND A.ERR_DT IS NOT NULL
+          AND C.DAMYN='Y'
+          AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-7,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+          GROUP BY A.DAMCD
+       ) GROUP BY DAMCD
+      </isEmpty>
+    </select>
+    
+    <!-- 이상자료모니터링 리스트 갯수 가져오기 -->
+    <select id="getabnormalListCount" resultClass="int" parameterClass="HashTable">
+        SELECT COUNT(*)
+        FROM HM_ABNORMSTAT A, HM_DAMMST B
+        WHERE A.OBSDT BETWEEN TO_CHAR (SYSDATE-3,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+        AND A.DAMCD=B.DAMCD
+        AND B.USE_FLAG = 'Y'
+        <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">
+            CHKEMPNO IS NULL
+        </isNotEqual>
+        <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN"> <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+            CHKEMPNOMAIN IS NULL
+        </isEqual>
+        <isNotEmpty prepend="AND" property="DAMCD">
+            <isNotEqual property="DAMCD" compareValue="'MAIN'">
+                A.DAMCD IN ( $DAMCD$ )
+            </isNotEqual>
+            <isEqual property="DAMCD" compareValue="'MAIN'"> <!-- MAIN 인경우 전부 검색 -->
+                1=1 
+            </isEqual>
+        </isNotEmpty>
+        <isNotEmpty  property="OBSCD" >
+          <iterate property="obsCdList" prepend="AND OBSCD IN " open="(" close=")" conjunction=",">
+            $obsCdList[]$
+          </iterate>
+        </isNotEmpty>
+    </select>
+    <!-- 이상자료모니터링 리스트 가져오기 -->
+    <select id="getabnormalList" resultClass="MainAbnormalModel" parameterClass="HashTable">
+        SELECT A.ID, A.DAMCD, C.DAMNM, C.DAMTYPE, A.OBSCD, D.OBSNM, A.OBSTP, A.OBSDT, A.OBVL, A.EXVL, A.EXCD, A.CHKYN, F.EXCONT, F.EXNOTE, F.EXCOLOR
+        FROM (
+            SELECT *
+            FROM (
+                SELECT 
+                    DAMCD || '_' || OBSCD|| '_' || OBSDT || '_' ||  OBSTP ID,
+                    DAMCD, OBSCD, OBSTP, OBSDT, 
+                    NVL(FN_CONV_CHAR(OBVL),'') OBVL, NVL(FN_CONV_CHAR(EXVL),'') EXVL, EXCD, 'false' CHKYN
+                FROM HM_ABNORMSTAT
+                WHERE OBSDT BETWEEN TO_CHAR (SYSDATE-3,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+                  <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">
+                      CHKEMPNO IS NULL
+                  </isNotEqual>
+                  <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN"> <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+                      CHKEMPNOMAIN IS NULL
+                  </isEqual>
+                  <isNotEmpty prepend="AND" property="DAMCD">
+                    <isNotEqual property="DAMCD" compareValue="'MAIN'">
+                      DAMCD IN ( $DAMCD$ )
+                    </isNotEqual>
+                    <isEqual property="DAMCD" compareValue="'MAIN'"> <!-- MAIN 인경우 전부 검색 -->
+                      1=1 
+                    </isEqual>
+                  </isNotEmpty>
+                  <isNotEmpty  property="OBSCD" >
+                    <iterate property="obsCdList" prepend="AND OBSCD IN " open="(" close=")" conjunction=",">
+                      $obsCdList[]$
+                    </iterate>
+                  </isNotEmpty>
+                ORDER BY OBSDT DESC
+            )
+      <![CDATA[
+            WHERE ROWNUM <= 50
+      ]]>
+      ) A
+      , HM_DAMMST C
+      , VM_OBSCODE3 D
+      , HM_EXCODE F
+      WHERE A.DAMCD = C.DAMCD
+      AND A.OBSCD = D.OBSCD
+      AND A.EXCD = F.EXCD
+      AND C.DAMYN = 'Y'
+      ORDER BY A.OBSDT DESC
+    </select>
+    <!-- 이상자료모니터링 확인사항 업로드 -->
+    <update id="updateabnormalData" parameterClass="HashTable">
+      UPDATE HM_ABNORMSTAT
+      SET
+      <isNotEmpty property="CHECKEMPNO">    <!-- 댐관리자가 확인 -->
+        CHKEMPNO = #CHECKEMPNO#, 
+        CHKDT =  To_char(SYSDATE,'YYYYMMDDHH24MISS') 
+      </isNotEmpty>
+      <isEmpty property="CHECKEMPNO">   <!-- 본사사람이 확인 -->
+        CHKEMPNOMAIN = #CHECKEMPNOMAIN#, 
+        CHKDTMAIN =  To_char(SYSDATE,'YYYYMMDDHH24MISS') 
+      </isEmpty>
+      WHERE DAMCD = #DAMCD#
+      AND OBSCD = #OBSCD#
+      AND OBSDT = #OBSDT#
+      AND OBSTP = #OBSTP#
+    </update>
+
+    <!-- 댐운영자료모니터링 리스트 갯수 가져오기 -->
+    <select id="getabnormdamListCount" resultClass="int">
+        SELECT  COUNT(*)
+            FROM HM_ABNORMDAM A, HM_DAMMST B
+        WHERE A.OBSDT BETWEEN TO_CHAR (SYSDATE-3, 'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+        AND A.DAMCD=B.DAMCD
+        AND B.USE_FLAG = 'Y'
+            <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">
+                CHKEMPNO IS NULL
+            </isNotEqual>
+            <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN"> <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+                CHKEMPNOMAIN IS NULL
+            </isEqual>
+            <isNotEmpty prepend="AND" property="DAMCD">
+              <isNotEqual property="DAMCD" compareValue="'MAIN'">
+                A.DAMCD IN ( $DAMCD$ )
+              </isNotEqual>
+              <isEqual property="DAMCD" compareValue="'MAIN'"> <!-- MAIN 인경우 전부 검색 -->
+                1=1 
+              </isEqual>
+            </isNotEmpty>
+    </select>
+    <!-- 댐운영자료모니터링 리스트 가져오기 -->
+    <select id="getabnormdamList" resultClass="MainAbnormdamModel">
+        SELECT ID, DAMCD, DAMNM, EXCOLUMN, EXCOLUMNNM, OBSDT, OBVL, EXVL, EXCONT, EXNOTE, EXCD, EXCOLOR, 'false' CHKYN
+        FROM 
+        (
+        SELECT  A.DAMCD || '_' || OBSDT || '_' || A.EXCOLUMN ID, 
+                A.DAMCD, A.EXCD, A.EXCOLUMN, OBSDT, NVL(FN_CONV_CHAR(OBVL),'') OBVL, 
+                C.EXCOLOR, C.EXNOTE, C.EXCONT, C.EXCOLUMNNM,B.DAMNM,
+                NVL(FN_CONV_CHAR(EXVL),'') EXVL
+        FROM HM_ABNORMDAM A, VM_DAMCODE B, HM_DAMEXCODE C
+        WHERE A.DAMCD=B.DAMCD
+        AND A.EXCD=C.EXCD
+        AND A.EXCOLUMN=C.EXCOLUMN
+        AND OBSDT BETWEEN TO_CHAR (SYSDATE-3,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+        <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">
+            CHKEMPNO IS NULL
+        </isNotEqual>
+        <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN"> <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+            CHKEMPNOMAIN IS NULL
+        </isEqual>
+        <isNotEmpty prepend="AND" property="DAMCD">
+          <isNotEqual property="DAMCD" compareValue="'MAIN'">
+            A.DAMCD IN ( $DAMCD$ )
+          </isNotEqual>
+          <isEqual property="DAMCD" compareValue="'MAIN'"> <!-- MAIN 인경우 전부 검색 -->
+            1=1 
+          </isEqual>
+        </isNotEmpty>
+        ORDER BY OBSDT DESC
+        )
+        <![CDATA[
+        WHERE ROWNUM <= 50
+        ]]>
+    </select>
+    <!-- 댐운영자료모니터링 확인사항 업로드 -->
+    <update id="updateabnormdamData" parameterClass="HashTable">
+      UPDATE HM_ABNORMDAM
+      SET
+      <isNotEmpty property="CHECKEMPNO">    <!-- 댐관리자가 확인 -->
+        CHKEMPNO = #CHECKEMPNO#, 
+        CHKDT =  To_char(SYSDATE,'YYYYMMDDHH24MISS') 
+      </isNotEmpty>
+      <isEmpty property="CHECKEMPNO">   <!-- 본사사람이 확인 -->
+        CHKEMPNOMAIN = #CHECKEMPNOMAIN#, 
+        CHKDTMAIN =  To_char(SYSDATE,'YYYYMMDDHH24MISS') 
+      </isEmpty>
+      WHERE DAMCD = #DAMCD#
+      AND OBSDT = #OBSDT#
+      AND EXCOLUMN = #EXCOLUMN#
+    </update>
+
+    <!-- 알람현황모니터링 리스트 갯수 가져오기 -->
+    <select id="getdamoperListCount" resultClass="int">
+        SELECT COUNT(*)
+        FROM DTBALARM A, HM_ALARMCODE B, HM_DAMMST C
+        WHERE A.ERR_CD=B.ALARMCD
+        AND A.ERR_DT IS NOT NULL
+        AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-3, 'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+        AND A.DAMCD=C.DAMCD
+        AND C.USE_FLAG = 'Y'
+        <isNotEmpty prepend="AND" property="DAMCD">
+            <isNotEqual property="DAMCD" compareValue="'MAIN'">
+                A.DAMCD IN ( $DAMCD$ )
+            </isNotEqual>
+            <isEqual property="DAMCD" compareValue="'MAIN'">
+                <!-- MAIN 인경우 전부 검색 -->
+                1=1
+            </isEqual>
+        </isNotEmpty>
+        <isNotEmpty  property="OBSCD" >
+          <iterate property="obsCdList" prepend="AND A.OBSCD IN " open="(" close=")" conjunction=",">
+            $obsCdList[]$
+          </iterate>
+        </isNotEmpty>
+        AND (A.DAMCD, A.OBSCD, A.OBSDT, A.ERR_CD) NOT IN (
+          SELECT DAMCD, OBSCD, OBSDT, ERR_CD
+          FROM HM_ALARMCHK
+          WHERE 1=1
+          <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">    
+            CHKEMPNO IS NOT NULL
+          </isNotEqual>
+          <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN">   <!-- 01:MASTER -->
+            <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+            CHKEMPNOMAIN IS NOT NULL
+          </isEqual>
+        )
+    </select>
+    <!-- 알람현황모니터링 리스트 가져오기 -->
+    <select id="getdamoperList" resultClass="MainDamoperModel">
+          SELECT ID, DAMCD, DAMNM, EVENTTIME, POPUP_SEE, CHKYN, OBSDT, OBSCD, ERR_CD
+          FROM
+          (
+              SELECT A.OBSDT || '_' || A.DAMCD || '_' || A.OBSCD || '_' || A.ERR_CD ID, 
+                    A.DAMCD, C.DAMNM, FN_CONV_DATE(ERR_DT) EVENTTIME,
+                    ERR_CONT POPUP_SEE, 'false' CHKYN, 
+                    A.OBSDT, A.OBSCD, A.ERR_CD 
+              FROM DTBALARM A, HM_ALARMCODE B, VM_DAMCODE C
+              WHERE A.ERR_CD=B.ALARMCD
+              AND A.ERR_DT IS NOT NULL
+              AND A.OBSDT BETWEEN TO_CHAR (SYSDATE-3, 'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+              AND A.DAMCD=C.DAMCD
+              <isNotEmpty prepend="AND" property="DAMCD">
+                  <isNotEqual property="DAMCD" compareValue="'MAIN'">
+                    A.DAMCD IN ( $DAMCD$ )
+                  </isNotEqual>
+                  <isEqual property="DAMCD" compareValue="'MAIN'"> <!-- MAIN 인경우 전부 검색 -->
+                    1=1 
+                  </isEqual>
+              </isNotEmpty>
+              <isNotEmpty  property="OBSCD" >
+                <iterate property="obsCdList" prepend="AND A.OBSCD IN " open="(" close=")" conjunction=",">
+                  $obsCdList[]$
+                </iterate>
+              </isNotEmpty>
+              AND (A.DAMCD, A.OBSCD, A.OBSDT, A.ERR_CD) NOT IN (
+                SELECT DAMCD, OBSCD, OBSDT, ERR_CD
+                FROM HM_ALARMCHK
+                WHERE 1=1
+                  <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">    
+                    CHKEMPNO IS NOT NULL
+                  </isNotEqual>
+                  <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN">     <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+                    CHKEMPNOMAIN IS NOT NULL
+                  </isEqual>
+              )
+              ORDER BY ERR_DT DESC         
+          )
+          <![CDATA[ 
+          WHERE ROWNUM <= 50
+          ]]>
+    </select>
+    <select id="GetDamOper" resultClass="HashTable" parameterClass="HashTable">
+      SELECT DAMCD, OBSCD, OBSDT, ERR_CD, CHKEMPNO, CHKDT, CHKEMPNOMAIN,CHKDTMAIN
+      FROM HM_ALARMCHK
+      WHERE DAMCD = #DAMCD#
+      AND OBSCD = #OBSCD#
+      AND OBSDT = #OBSDT#
+      AND ERR_CD = #ERR_CD#
+    </select>
+    <insert id="InsertDamOperData" parameterClass="HashTable">
+      INSERT INTO HM_ALARMCHK (DAMCD, OBSCD, OBSDT, ERR_CD, CHKEMPNO, CHKDT, CHKEMPNOMAIN, CHKDTMAIN)
+      VALUES (#DAMCD#,#OBSCD#,#OBSDT#,#ERR_CD#, #CHKEMPNO#, #CHKDT#, #CHKEMPNOMAIN#, #CHKDTMAIN#)
+    </insert>
+    <update id="UpdateDamOperData" parameterClass="HashTable">
+      UPDATE HM_ALARMCHK SET
+        CHKEMPNO = #CHKEMPNO#,
+        CHKDT =  #CHKDT#,
+        CHKEMPNOMAIN = #CHKEMPNOMAIN#,
+        CHKDTMAIN =  #CHKDTMAIN#
+      WHERE DAMCD = #DAMCD#
+      AND OBSCD = #OBSCD#
+      AND OBSDT = #OBSDT#
+      AND ERR_CD = #ERR_CD#
+    </update>
+    <!-- 설비상태 모니터링 리스트 개수 가져오기 -->
+    <select id="getequipListCount" resultClass="int">
+        SELECT COUNT(*)
+        FROM HM_EQUIPMON A, HM_DAMMST B 
+        WHERE A.OBSDT BETWEEN TO_CHAR (SYSDATE-1,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+        AND A.DAMCD=B.DAMCD
+        AND B.USE_FLAG = 'Y'
+        <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">
+          CHKEMPNO = 'NNNNNNNN'
+        </isNotEqual>
+        <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN"> <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+          CHKEMPNOMAIN = 'NNNNNNNN'
+        </isEqual>
+        <isNotEmpty prepend="AND" property="DAMCD">
+          <isNotEqual property="DAMCD" compareValue="'MAIN'">
+            A.DAMCD IN ( $DAMCD$ )
+          </isNotEqual>
+          <isEqual property="DAMCD" compareValue="'MAIN'"> <!-- MAIN 인경우 전부 검색 -->
+            1=1 
+          </isEqual>
+        </isNotEmpty>
+        <isNotEmpty  property="OBSCD" >
+          <iterate property="obsCdList" prepend="AND A.OBSCD IN " open="(" close=")" conjunction=",">
+            $obsCdList[]$
+          </iterate>
+        </isNotEmpty>
+    </select>
+    
+    <!-- 설비상태 모니터링 리스트 가져오기 -->
+    <select id="getequipList" resultClass="MainEquipModel">
+        SELECT ID, DAMCD, OBSCD, ABCOLUMN, OBSTP,
+        DAMNM, OBSNM, OBSDT, ABCONT, 'false' CHKYN
+        FROM (    
+            SELECT A.DAMCD || '_' || A.OBSCD || '_' || A.OBSDT || '_' || A.OBSTP || '_' || A.ABCOLUMN ID, 
+              A.DAMCD, B.DAMNM, A.OBSCD, C.OBSNM, A.ABCOLUMN, A.OBSTP, A.OBSDT, A.CHKEMPNO, D.ABCONT
+            FROM HM_EQUIPMON A, DUBDAMSPC@TECH.WORLD B
+              , VM_OBSCODE3 C, HM_EQUIPCODE D, HM_DAMMST E
+            WHERE A.DAMCD=B.DAMCD
+            AND A.DAMCD=C.DAMCD
+            AND A.OBSCD=C.OBSCD
+            AND A.OBSTP=C.OBSTP
+            AND A.ABCOLUMN=D.ABCOLUMN
+            AND B.DAMCD=E.DAMCD
+            AND E.USE_FLAG='Y'
+            AND OBSDT BETWEEN TO_CHAR (SYSDATE-1,'YYYYMMDDHH24MI')|| '00' AND TO_CHAR (SYSDATE, 'YYYYMMDDHH24MI') || '00'
+            <isNotEqual prepend="AND" property="MGTDAM" compareValue="MAIN">
+              CHKEMPNO = 'NNNNNNNN'
+            </isNotEqual>
+            <isEqual prepend="AND" property="MGTDAM" compareValue="MAIN"> <!-- 본사사람일 경우 본사가 체크 안한 목록만 보여줌 -->
+              CHKEMPNOMAIN = 'NNNNNNNN'
+            </isEqual>
+            <isNotEmpty prepend="AND" property="DAMCD">
+              <isNotEqual property="DAMCD" compareValue="'MAIN'">
+                A.DAMCD IN ( $DAMCD$ )
+              </isNotEqual>
+              <isEqual property="DAMCD" compareValue="'MAIN'"> <!-- MAIN 인경우 전부 검색 -->
+                1=1 
+              </isEqual>
+            </isNotEmpty>
+            <isNotEmpty  property="OBSCD" >
+              <iterate property="obsCdList" prepend="AND A.OBSCD IN " open="(" close=")" conjunction=",">
+                $obsCdList[]$
+              </iterate>
+            </isNotEmpty>
+            ORDER BY A.OBSDT DESC
+        )
+        <![CDATA[
+        WHERE ROWNUM <= 50
+        ]]>
+    </select>
+
+    <!-- 설비상태모니터링 확인사항 업로드 -->
+    <update id="updateequipData" parameterClass="HashTable">
+      UPDATE HM_EQUIPMON
+      SET
+      <isNotEmpty property="CHECKEMPNO">    <!-- 댐관리자가 확인 -->
+        CHKEMPNO = #CHECKEMPNO#, 
+        CHKDT =  To_char(SYSDATE,'YYYYMMDDHH24MISS') 
+      </isNotEmpty>
+      <isEmpty property="CHECKEMPNO">   <!-- 본사사람이 확인 -->
+        CHKEMPNOMAIN = #CHECKEMPNOMAIN#, 
+        CHKDTMAIN =  To_char(SYSDATE,'YYYYMMDDHH24MISS') 
+      </isEmpty>
+      WHERE DAMCD = #DAMCD#
+      AND OBSCD = #OBSCD#
+      AND OBSDT = #OBSDT#
+      AND OBSTP = #OBSTP#
+      AND ABCOLUMN = #ABCOLUMN#
+    </update>
+    
+    <!--리스트 가져오기-->
+    <select id="getList" resultMap="MainMap">
+      SELECT T_NO, T_TITLE, TO_CHAR(T_REGDT,'YYYY-MM-DD') T_REGDT
+      FROM T_TEST
+      ORDER BY T_NO DESC
+    </select>
+
+    <select id="getMain" parameterClass="Main" resultMap="MainMap">
+      SELECT T_NO, T_TITLE, TO_CHAR(T_REGDT,'YYYY-MM-DD') T_REGDT
+      FROM T_TEST
+      WHERE T_NO=#No#
+    </select>
+
+    <!--레이더 시간 가져오기-->
+    <select id="GetRadarTimes" resultClass="HashTable" parameterClass="HashTable">
+      <![CDATA[
+        SELECT OBSDT
+        FROM (
+          SELECT OBSDT FROM HM_RADARIMG
+          WHERE OBSDT BETWEEN TO_CHAR(SYSDATE-1-20/(24*60)+($ModifyTime$/(24)),'YYYYMMDDHH24MI') AND TO_CHAR(SYSDATE-20/(24*60)+($ModifyTime$/(24)),'YYYYMMDDHH24MI')
+          ORDER BY OBSDT DESC
+        ) WHERE ROWNUM <=6
+        ORDER BY OBSDT ASC
+      ]]>
+    </select>
+
+    <!--댐,보,관측국 정보 가져오기-->
+    <select id="GetPopBalloonDate" resultClass="HashTable" parameterClass="HashTable">
+      <isEqual property="Type" compareValue="D">
+        <![CDATA[
+          SELECT B.DAMNM NAME, A.AVGWL AVGWL, A.IQTY IQTY, A.TDQTY, A.RSRT
+          FROM DTR1MDIF A, DUBDAMSPC@TECH.WORLD B 
+          WHERE A.DAMCD=B.DAMCD
+          AND A.DAMCD = #Code#
+        ]]>      
+      </isEqual>
+
+      <isEqual property="Type" compareValue="W">
+        <![CDATA[
+          SELECT 
+              B.DAMNM NAME, A.AVGWL AVGWL, NVL(TO_CHAR (A.IQTY),'-') IQTY, A.TDQTY, A.RSRT
+          FROM DTR1MDIF A, DUBDAMSPC@TECH.WORLD B 
+          WHERE A.DAMCD = #Code#
+          AND A.DAMCD = B.DAMCD
+        ]]>
+      </isEqual>
+
+      <isEqual property="Type" compareValue="B">
+        <![CDATA[
+          SELECT
+              B.DAMNM NAME, A.AVGWL, NVL(TO_CHAR (A.IQTY),'-') IQTY, A.TDQTY TDQTY
+          FROM DTR1MDIF A, DUBDAMSPC@TECH.WORLD B
+          WHERE A.DAMCD = #Code#
+          AND A.DAMCD = B.DAMCD
+        ]]>
+      </isEqual>
+
+      <isEqual property="Type" compareValue="WL">
+        <![CDATA[
+          SELECT 
+              B.DAMNM NAME, A.AVGWL WL, A.IQTY FLW 
+          FROM DTR1MDIF A, DUBDAMSPC@TECH.WORLD B
+          WHERE A.DAMCD = #Code#
+          AND A.DAMCD = B.DAMCD        
+          UNION ALL
+          SELECT 
+              D.OBSNM NAME, C.WL WL, C.FLW FLW 
+          FROM DTR1MWLIF C, DUBWLOBSIF@TECH.WORLD D
+          WHERE C.WLOBSCD = #Code#
+          AND C.WLOBSCD = D.WLOBSCD
+        ]]>
+      </isEqual>
+
+      <isEqual property="Type" compareValue="RF">
+        <![CDATA[
+            SELECT B.OBSNM NAME, TO_CHAR(ACURF,'FM99,999,990.099') ACURF, 
+                TO_CHAR(ACURF - LAG(ACURF) OVER (PARTITION BY A.RFOBSCD ORDER BY OBSDHM),'FM99,999,990.099') ACURF10, 
+                FN_CONV_DATE(FN_CONV_24DT(OBSDHM)) TIME
+            FROM DUBMMRF@TECH.WORLD A, DUBRFOBSIF@TECH.WORLD B
+            WHERE A.RFOBSCD = B.RFOBSCD
+            AND A.RFOBSCD = #Code#
+            AND A.TRMDV='10'            
+            AND A.OBSDHM BETWEEN (CASE WHEN SUBSTR(#ConTime#,9,2)='24'
+                                    THEN TO_CHAR(TO_DATE(TO_CHAR(TO_DATE(SUBSTR(#ConTime#,1,8),'YYYYMMDD') - 1,'YYYYMMDD')||'0000','YYYYMMDDHH24MI') - 1*(70/24/60),'YYYYMMDDHH24MI')
+                                    ELSE TO_CHAR(TO_DATE(#ConTime#,'YYYYMMDDHH24MI') - 1*(70/24/60),'YYYYMMDDHH24MI')
+                                END)   
+            AND #ConTime# 
+            ORDER BY OBSDHM DESC
+          ]]>
+      </isEqual>
+    </select>
+
+    <!--댐 위경도 정보 가져오기-->
+    <select id="GetGoogleEarthDate" resultClass="HashTable" parameterClass="HashTable">
+      <isNotNull property="DamCd">
+        SELECT DAMCD, LONGITUDE, LATITUDE, RANGE
+        FROM HM_DAMPOINT
+        WHERE OUTYN = 'Y'
+        AND DAMCD = #DamCd#
+      </isNotNull>
+    </select>
+
+    <procedure id="insertMain" parameterMap="insert-params">
+      SP_INSERT_Text
+    </procedure>
+    <!--
+    <insert id="insertMain" parameterClass="Main" resultClass="int">
+      INSERT INTO T_Main(T_NO, T_TITLE, T_REGDT)
+      VALUES(SEQ_T_Main.NEXTVAL, #Title#, SYSDATE)
+    </insert>
+  -->
+    <update id="updateMain" parameterClass="Main">
+      UPDATE T_TEST SET T_TITLE=#Title#
+      WHERE T_NO=#No#
+    </update>
+
+    <delete id="deleteMain" parameterClass="Main">
+      DELETE FROM T_TEST WHERE T_NO=#No#
+    </delete>
+
+  </statements>
+
+
+</sqlMap>

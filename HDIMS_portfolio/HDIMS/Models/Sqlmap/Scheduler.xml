@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Scheduler"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Tissen" type="HDIMS.Models.Tissen, HDIMS" />
+  </alias>
+
+  <statements>
+    
+    <select id="GetTissenList" resultClass="Tissen" parameterClass="HashTable">
+      SELECT OBSDHM, DAMCD, RFOBSCD, TO_CHAR(ACURF) P_ACURF, TO_CHAR(P_ACURF) P_ACURF, TO_CHAR(ACURF-P_ACURF) ACURF10
+      FROM (
+        SELECT OBSDHM, DAMCD, RFOBSCD, ACURF, LAG(ACURF) OVER (PARTITION BY DAMCD, RFOBSCD ORDER BY OBSDHM) P_ACURF
+        FROM DUBMMRF
+        WHERE TRMDV='10'
+        AND OBSDHM IN (#ObsDt#, TO_CHAR(TO_DATE(#ObsDt#, 'YYYYMMDDHH24MI')-10/(24*60), 'YYYYMMDDHH24MI')) 
+        <iterate prepend="AND" property="ObsCdList" open=" RFOBSCD IN (" close=")" conjunction=",">
+          #ObsCdList[]#
+        </iterate>
+        ORDER BY DAMCD, RFOBSCD, OBSDHM
+      )
+      WHERE P_ACURF IS NOT NULL
+    </select>
+    
+    <select id="GetRadarImgs" resultClass="HashTable" parameterClass="HashTable">
+      <![CDATA[
+    SELECT OBSDT
+    FROM (
+      SELECT OBSDT FROM HM_RADARIMG
+      WHERE OBSDT BETWEEN TO_CHAR(SYSDATE-1,'YYYYMMDDHH24MI') AND TO_CHAR(SYSDATE,'YYYYMMDDHH24MI')
+      ORDER BY OBSDT DESC
+    ) WHERE ROWNUM <=5
+   ]]>
+    </select>
+    
+    <insert id="InsertRadarImg" parameterClass="HashTable">
+      INSERT INTO HM_RADARIMG(OBSDT, SAVEDT)
+      VALUES(#OBSDT#,SYSDATE)
+    </insert>
+
+    <procedure id="SP_STAT_EQUIP">
+      SP_STAT_EQUIP
+    </procedure>
+  </statements>
+
+</sqlMap>

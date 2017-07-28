@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="DamBoObsMng"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="DamBoModel" type="HDIMS.Models.Domain.DamBoObsMng.DamBoModel, HDIMS" />
+    <typeAlias alias="ObsModel" type="HDIMS.Models.Domain.DamBoObsMng.ObsModel, HDIMS" />
+    <typeAlias alias="DamMgtModel" type="HDIMS.Models.Domain.DamBoObsMng.DamMgtModel, HDIMS" />
+    <typeAlias alias="DamColMgtModel" type="HDIMS.Models.Domain.DamBoObsMng.DamColMgtModel, HDIMS" />
+    <typeAlias alias="DamTypeModel" type="HDIMS.Models.Domain.DamBoObsMng.DamTypeModel, HDIMS" />
+  </alias>
+
+  <statements>
+    <select id="GetDamColMgt" resultClass="DamColMgtModel" parameterClass="HashTable">
+      SELECT  DAMCD, RWL, RSQTY, RSRT, OSPILWL, IQTY, ETCIQTY1, ETCIQTY2, ETQTY, TDQTY, EDQTY, ETCEDQTY, SPDQTY, OTLTDQTY
+      , ETCDQTY1, ETCDQTY2, ETCDQTY3, ITQTY1, ITQTY2, ITQTY3
+      FROM HM_DAMCOLMGT
+      WHERE DAMCD=#DAMCD#
+    </select>
+    <!-- 댐보저장항목 조회 -->
+    <select id="GetDamColMgtList" resultClass="DamColMgtModel" parameterClass="HashTable">
+      SELECT  A.DAMCD, C.DAMNM, B.RWL, B.RSQTY, B.RSRT, B.OSPILWL, B.IQTY, B.ETCIQTY1, B.ETCIQTY2, B.ETQTY, B.TDQTY
+      , B.EDQTY, B.ETCEDQTY, B.SPDQTY, B.OTLTDQTY
+      , B.ETCDQTY1, B.ETCDQTY2, B.ETCDQTY3, B.ITQTY1, B.ITQTY2, B.ITQTY3
+      FROM HM_DAMMST A, HM_DAMCOLMGT B, DUBDAMSPC@TECH.WORLD C
+      WHERE A.DAMCD = B.DAMCD(+)
+      AND A.DAMCD = C.DAMCD
+      <isNotEmpty property="DAMCD">
+        AND A.DAMCD = #DAMCD#
+      </isNotEmpty>
+      <isNotEmpty property="WKCD">
+        AND A.WKCD = #WKCD#
+      </isNotEmpty>
+      <isNotEmpty property="DAMTYPE">
+        AND A.DAMTYPE = #DAMTYPE#
+      </isNotEmpty>
+      ORDER BY A.WKORD, A.DAMNM
+    </select>
+    <!--댐보저장항목 조회 종료-->
+    <insert id="InsertDamColMgt" parameterClass="DamColMgtModel">
+      INSERT INTO HDIMS.HM_DAMCOLMGT ( DAMCD, RWL, RSQTY, RSRT, OSPILWL, IQTY, ETCIQTY1, ETCIQTY2, ETQTY, TDQTY, EDQTY, ETCEDQTY,SPDQTY, OTLTDQTY, ETCDQTY1,ETCDQTY2, ETCDQTY3, ITQTY1,ITQTY2, ITQTY3)
+      VALUES (#DAMCD#, #RWL#, #RSQTY#, #RSRT#, #OSPILWL#, #IQTY#, #ETCIQTY1#, #ETCIQTY2#, #ETQTY#, #TDQTY#, #EDQTY#, #ETCEDQTY#,#SPDQTY#, #OTLTDQTY#, #ETCDQTY1#,#ETCDQTY2#, #ETCDQTY3#, #ITQTY1#,#ITQTY2#, #ITQTY3#)
+    </insert>
+    <update id="UpdateDamColMgt" parameterClass="DamColMgtModel">
+      UPDATE HDIMS.HM_DAMCOLMGT SET
+      RWL = #RWL#, 
+      RSQTY = #RSQTY#, 
+      RSRT = #RSRT#, 
+      OSPILWL = #OSPILWL#, 
+      IQTY = #IQTY#, 
+      ETCIQTY1 = #ETCIQTY1#, 
+      ETCIQTY2 = #ETCIQTY2#, 
+      ETQTY = #ETQTY#, 
+      TDQTY = #TDQTY#,
+      EDQTY    = #EDQTY#,
+      ETCEDQTY = #ETCEDQTY#,
+      SPDQTY   = #SPDQTY#,
+      OTLTDQTY = #OTLTDQTY#,
+      ETCDQTY1 = #ETCDQTY1#,
+      ETCDQTY2 = #ETCDQTY2#,
+      ETCDQTY3 = #ETCDQTY3#,
+      ITQTY1   = #ITQTY1#,
+      ITQTY2   = #ITQTY2#,
+      ITQTY3   = #ITQTY3#
+      WHERE  DAMCD    = #DAMCD#
+    </update>
+    <!--댐보관리 조회 시작-->
+    <select id="GetDamBoList" resultClass="DamBoModel" parameterClass="HashTable">
+      SELECT  A.DAMCD, A.DAMNM, TO_CHAR(A.WKCD) WKCD, B.WKNM, A.DAMTYPE, C.DAMTPNM, A.USE_FLAG, A.WKORD, A.DAMORD, A.MGTCD, D.MGTNM, A.DAMYN, A.WLYN, A.RFYN
+      FROM (
+          SELECT AA.DAMCD, AA.DAMNM, BB.WKORD, BB.DAMTYPE, BB.WKCD, NVL(BB.USE_FLAG, 'N') AS USE_FLAG,BB.DAMORD, BB.MGTCD, BB.DAMYN, BB.WLYN, BB.RFYN
+          FROM DUBDAMSPC@TECH.WORLD AA, HM_DAMMST BB
+          WHERE AA.DAMCD = BB.DAMCD(+)
+      )A, HM_WKMASTER B, HM_DAMTYPE C, HM_DAMMGT D
+      WHERE A.WKCD = B.WKCD(+)
+      AND A.DAMTYPE = C.DAMTYPE(+)
+      AND A.MGTCD=D.MGTCD(+)
+      <isNotEmpty property="DAMCD">
+        AND A.DAMCD = #DAMCD#
+      </isNotEmpty>
+      <isNotEmpty property="WKCD">
+        AND A.WKCD = #WKCD#
+      </isNotEmpty>
+      <isNotEmpty property="DAMTYPE">
+        AND A.DAMTYPE = #DAMTYPE#
+      </isNotEmpty>
+      ORDER BY C.ORD, A.DAMNM
+    </select>
+    <!--댐보관리 조회 종료-->
+
+    <!--댐보관리 수정 삭제시 조회 시작-->
+    <select id="GetDamBoList2" resultClass="DamBoModel" parameterClass="HashTable">
+      SELECT  A.DAMCD, A.DAMNM, TO_CHAR(A.WKCD) WKCD, B.WKNM, A.DAMTYPE, C.DAMTPNM, A.USE_FLAG, A.DAMORD, A.MGTCD, D.MGTNM, A.DAMYN, A.WLYN, A.RFYN
+      FROM HM_DAMMST A, HM_WKMASTER B, HM_DAMTYPE C, HM_DAMMGT D
+      WHERE A.WKCD = B.WKCD(+)
+      AND A.DAMTYPE = C.DAMTYPE(+)
+      AND A.MGTCD=D.MGTCD(+)
+      <isNotEmpty property="DAMCD">
+        AND A.DAMCD = #DAMCD#
+      </isNotEmpty>
+      ORDER BY C.ORD, A.DAMNM
+    </select>
+    <!--댐보관리 수정 삭제시 조회 시작-->
+
+    <!--댐보관리 추가 시작-->
+    <insert id="InsertDamBo" resultClass="DamBoModel" parameterClass="DamBoModel">
+      insert into HM_DAMMST(DAMCD, DAMNM, WKCD, DAMTYPE, USE_FLAG, WKORD, MGTCD, DAMORD, DAMYN, WLYN, RFYN)
+      values(#DAMCD#, #DAMNM#, #WKCD#, #DAMTYPE#, #USE_FLAG#, #WKORD#, #MGTCD#, 0, #DAMYN#, #WLYN#,#RFYN#)
+    </insert>
+    <!--댐보관리 추가 종료-->
+
+    <!--댐보관리 수정 시작-->
+    <update id="UpdateDamBo"  parameterClass="DamBoModel">
+      UPDATE HM_DAMMST SET DAMNM = #DAMNM#, WKCD = #WKCD#, DAMTYPE = #DAMTYPE#
+      , USE_FLAG = #USE_FLAG#, WKORD = #WKORD#, MGTCD=#MGTCD#, DAMORD=#DAMORD#, DAMYN=#DAMYN#, WLYN=#WLYN#, RFYN=#RFYN#
+      WHERE DAMCD = #DAMCD#
+    </update>
+    <!--댐보관리 수정 종료-->
+
+    <!--댐보관리 삭제 시작-->
+    <delete id="DeleteDamBo" parameterClass="DamBoModel">
+      DELETE FROM HM_DAMMST
+      WHERE DAMCD = #DAMCD#
+    </delete>
+    <!--댐보관리 삭제 종료-->   
+
+    <!--댐보관리 수계 콤보 조회 시작-->
+    <select id="GetWk" resultClass="DamBoModel">
+      SELECT TO_CHAR(WKCD) WKCD, WKNM
+      FROM HM_WKMASTER
+      WHERE OUTYN = 'Y'
+      ORDER BY ORD
+    </select>
+    <!--댐보관리 수계 콤보 조회 종료-->
+      
+    <!--수계 CRUD 시작-->
+    <select id="SelectWK" resultClass="DamBoModel">
+      SELECT WKCD, WKNM, OUTYN, ORD
+      FROM HM_WKMASTER
+      ORDER BY ORD
+    </select>  
+    <insert id="InsertWK" parameterClass ="DamBoModel">
+      INSERT INTO HM_WKMASTER (WKCD, WKNM, OUTYN, ORD) 
+      VALUES (#WKCD#, #WKNM#, #OUTYN#, #ORD#)
+    </insert>
+    <update id="UpdateWK" parameterClass ="DamBoModel">
+      UPDATE HM_WKMASTER SET WKNM=#WKNM#, OUTYN=#OUTYN#, ORD=#ORD#
+      WHERE WKCD = #WKCD#
+    </update>  
+    <delete id="DeleteWK" parameterClass ="DamBoModel">
+      DELETE HM_WKMASTER 
+      WHERE WKCD = #WKCD#
+    </delete>  
+    <!--수계 저장 종료-->
+      
+    <!--댐보관리 댐구분 콤보 조회 시작-->
+    <select id="GetDamType" resultClass="DamBoModel" parameterClass ="HashTable">
+      <isNotEmpty property="firstvalue">
+        SELECT '' AS DAMTYPE, '$firstvalue$' AS DAMTPNM, 0 AS ORD
+        FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+      <isEqual property="Type" compareValue="all">
+        SELECT DAMTYPE, DAMTPNM, ORD
+        FROM HM_DAMTYPE
+        ORDER BY ORD
+      </isEqual>
+      <isEqual property="Type" compareValue="excBo">
+        SELECT DAMTYPE, DAMTPNM, ORD
+        FROM HM_DAMTYPE
+        WHERE DAMTYPE != 'B'
+        ORDER BY ORD
+      </isEqual>
+    </select>
+    <!--댐보관리 댐구분 콤보 조회 종료-->
+
+    <!--댐보관리 조회 조건, 수계 콤보 조회 시작-->
+    <select id="GetWkCombo" resultClass="DamBoModel">
+      SELECT '' WKCD, '전체' WKNM, 0 ORD FROM DUAL
+      UNION ALL
+      SELECT TO_CHAR(WKCD) WKCD, WKNM, ORD
+      FROM HM_WKMASTER
+      WHERE OUTYN = 'Y'
+      ORDER BY ORD
+    </select>
+    <!--댐보관리 수계 콤보 조회 종료-->
+
+    <!--댐보관리 조회 조건, 댐구분 콤보 조회 시작-->
+    <select id="GetDamTypeCombo" resultClass="DamBoModel">
+      SELECT '' DAMTYPE, '전체' DAMTPNM, 0 ORD FROM DUAL
+      UNION ALL
+      SELECT DAMTYPE, DAMTPNM, ORD
+      FROM HM_DAMTYPE
+      ORDER BY ORD
+    </select>
+    <!--댐보관리 댐구분 콤보 조회 종료-->
+
+    
+    <!--관측국 관리 조회 시작-->
+    <select id="GetObsList" resultClass="ObsModel" parameterClass="HashTable">
+      SELECT  A.DAMCD||'_'||A.OBSCD||'_'||B.OBSTP ID, A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP, C.OBSTPNM
+      FROM VM_DAMCODE A, VM_OBSCODE B, HM_OBSTP C
+      WHERE A.DAMCD = B.DAMCD
+      AND B.OBSTP = C.OBSTP
+      <isNotEmpty property="DAMCD">
+        AND B.DAMCD = #DAMCD#
+      </isNotEmpty>
+      <isNotEmpty property="OBSCD">
+        AND B.OBSCD = #OBSCD#
+      </isNotEmpty>
+      <isNotEmpty property="OBSTP">
+        AND B.OBSTP = #OBSTP#
+      </isNotEmpty>
+      ORDER BY A.DAMNM, B.OBSNM
+    </select>
+    <select id="GetDamCodeList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+        SELECT '' Key, '$firstvalue$' Value, 0 Ordernum, '' DAMCD, '전체' DAMNM, 'A' WKORD, 'D' DAMTYPE, '0' WKCD
+        FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+      SELECT Key, Value, ROWNUM AS Ordernum, DAMCD, DAMNM, WKORD, DAMTYPE, WKCD
+      FROM (
+        SELECT A.DAMCD Key, A.DAMNM Value, A.DAMCD , A.DAMNM, B.WKORD, B.DAMTYPE, B.WKCD
+        FROM DUBDAMSPC@TECH.WORLD A, HM_DAMMST B
+        WHERE A.DAMCD=B.DAMCD(+)
+        ORDER BY B.WKORD(+),A.DAMNM
+      )
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="DamType">
+        DAMTYPE IN (#DamType#)
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="damcd">
+        Key = #damcd#
+      </isNotEmpty>
+      <isNotNull property="damcdlist">
+        <iterate prepend="AND" property="damcdlist"  open="KEY IN (" close=")" conjunction=",">
+          #damcdlist[]#
+        </iterate>
+      </isNotNull>
+      <isNotEmpty prepend="AND" property="obscd">
+        Key IN (SELECT DISTINCT DAMCD FROM VM_OBSCODE WHERE OBSCD = #obscd# AND ROWNUM = 1)
+      </isNotEmpty>
+      <isNotNull property="obscdlist">
+        <iterate prepend="AND" property="obscdlist"  open="KEY IN (SELECT DISTINCT DAMCD FROM VM_OBSCODE WHERE OBSCD IN (" close="))" conjunction=",">
+          #obscdlist[]#
+        </iterate>
+      </isNotNull>
+    </select>
+    <select id="GetObsMst" resultClass="ObsModel" parameterClass="HashTable">
+      SELECT DAMCD, OBSCD, OBSTP,USEYN, REPORTYN
+      FROM HM_OBSMST
+      WHERE  DAMCD    = #DAMCD#
+      AND    OBSCD    = #OBSCD#
+      AND    OBSTP    = #OBSTP#
+    </select>
+    <insert id="InsertObsMst" parameterClass="ObsModel">
+      INSERT INTO HM_OBSMST (DAMCD, OBSCD, OBSTP,USEYN, REPORTYN)
+      VALUES (#DAMCD#, #OBSCD#, #OBSTP#,#USEYN#, #REPORTYN#)
+    </insert>
+    <update id="UpdateObsMst" parameterClass="ObsModel">
+      UPDATE HM_OBSMST SET
+      USEYN    = #USEYN#,
+      REPORTYN = #REPORTYN#
+      WHERE  DAMCD    = #DAMCD#
+      AND    OBSCD    = #OBSCD#
+      AND    OBSTP    = #OBSTP#
+    </update>
+    <!--관측국 관리 조회 종료-->
+    <select id="GetObsMstCount" resultClass="int" parameterClass="HashTable">
+        SELECT COUNT(*)
+        FROM (
+            SELECT A.DAMCD, C.DAMNM, D.DAMTYPE DAMTP,A.RFOBSCD OBSCD, A.OBSNM, NVL(B.OBSTP,'RF') OBSTP, D.WKORD, B.USEYN, B.REPORTYN
+            FROM DUBRFOBSIF@TECH.WORLD A, HM_OBSMST B, DUBDAMSPC@TECH.WORLD C, HM_DAMMST D
+            WHERE A.DAMCD=B.DAMCD(+)
+            AND A.RFOBSCD=B.OBSCD(+)
+            AND B.OBSTP(+)='RF'
+            AND A.DAMCD=C.DAMCD
+            AND C.DAMCD=D.DAMCD(+)
+            <isNotEmpty property="DAMCD">
+              AND A.DAMCD = #DAMCD#
+            </isNotEmpty>
+            <isNotEmpty property="TXT">
+              <isEqual property="TERM" compareValue="DAMNM">
+                AND C.DAMNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+              <isEqual property="TERM" compareValue="OBSNM">
+                AND A.OBSNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+            </isNotEmpty>
+            UNION ALL
+            SELECT A.DAMCD, C.DAMNM, D.DAMTYPE DAMTP, A.WLOBSCD OBSCD, A.OBSNM, NVL(B.OBSTP,'WL') OBSTP, D.WKORD, B.USEYN, B.REPORTYN
+            FROM DUBWLOBSIF@TECH.WORLD A, HM_OBSMST B, DUBDAMSPC@TECH.WORLD C, HM_DAMMST D
+            WHERE A.DAMCD=B.DAMCD(+)
+            AND A.WLOBSCD=B.OBSCD(+)
+            AND B.OBSTP(+)='WL'
+            AND A.DAMCD=C.DAMCD
+            AND C.DAMCD=D.DAMCD(+)
+            <isNotEmpty property="DAMCD">
+              AND A.DAMCD = #DAMCD#
+            </isNotEmpty>
+            <isNotEmpty property="TXT">
+              <isEqual property="TERM" compareValue="DAMNM">
+                AND C.DAMNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+              <isEqual property="TERM" compareValue="OBSNM">
+                AND A.OBSNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+            </isNotEmpty>
+        ) A, HM_OBSTP B
+        WHERE A.OBSTP=B.OBSTP
+        <isNotEmpty property="TXT">
+          <isEqual property="TERM" compareValue="ALL">
+                AND A.DAMNM LIKE '%' || #TXT# || '%' OR A.OBSNM LIKE '%' || #TXT# || '%'
+          </isEqual>
+        </isNotEmpty>
+        <isNotEmpty property="DAMTP">
+          AND A.DAMTP = #DAMTP#
+        </isNotEmpty>
+        <isNull property="SORTPROPERTY" >
+          ORDER BY A.WKORD, A.DAMNM, A.OBSNM
+        </isNull>
+        <isNotNull property="SORTPROPERTY" >
+          ORDER BY $SORTPROPERTY$ $SORTDIRECTION$
+        </isNotNull>
+    </select>
+    <select id="GetObsMstList" resultClass="ObsModel" parameterClass="HashTable">
+      SELECT *
+      FROM (
+        SELECT ROWNUM AS ROW_NUM, ID, DAMCD, DAMNM, OBSCD, OBSNM, OBSTP, OBSTPNM, USEYN, REPORTYN
+        FROM (
+          SELECT A.DAMCD||'_'||A.OBSCD||'_'||A.OBSTP ID
+          , A.DAMCD, A.DAMNM, A.OBSCD, A.OBSNM, A.OBSTP, B.OBSTPNM
+          , NVL(A.USEYN,'Y') USEYN, NVL(A.REPORTYN,'Y') REPORTYN
+          FROM (
+              SELECT A.DAMCD, C.DAMNM, D.DAMTYPE DAMTP, A.RFOBSCD OBSCD, A.OBSNM, NVL(B.OBSTP,'RF') OBSTP, D.WKORD, B.USEYN, B.REPORTYN
+              FROM DUBRFOBSIF@TECH.WORLD A, HM_OBSMST B, DUBDAMSPC@TECH.WORLD C, HM_DAMMST D
+              WHERE A.DAMCD=B.DAMCD(+)
+              AND A.RFOBSCD=B.OBSCD(+)
+              AND B.OBSTP(+)='RF'
+              AND A.DAMCD=C.DAMCD
+              AND C.DAMCD=D.DAMCD(+)
+            <isNotEmpty property="DAMCD">
+              AND A.DAMCD = #DAMCD#
+            </isNotEmpty>
+            <isNotEmpty property="TXT">
+              <isEqual property="TERM" compareValue="DAMNM">
+                AND C.DAMNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+              <isEqual property="TERM" compareValue="OBSNM">
+                AND A.OBSNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+            </isNotEmpty>
+              UNION ALL
+              SELECT A.DAMCD, C.DAMNM, D.DAMTYPE DAMTP, A.WLOBSCD OBSCD, A.OBSNM, NVL(B.OBSTP,'WL') OBSTP, D.WKORD, B.USEYN, B.REPORTYN
+              FROM DUBWLOBSIF@TECH.WORLD A, HM_OBSMST B, DUBDAMSPC@TECH.WORLD C, HM_DAMMST D
+              WHERE A.DAMCD=B.DAMCD(+)
+              AND A.WLOBSCD=B.OBSCD(+)
+              AND B.OBSTP(+)='WL'
+              AND A.DAMCD=C.DAMCD
+              AND C.DAMCD=D.DAMCD(+)
+            <isNotEmpty property="DAMCD">
+              AND A.DAMCD = #DAMCD#
+            </isNotEmpty>
+            <isNotEmpty property="TXT">
+              <isEqual property="TERM" compareValue="DAMNM">
+                AND C.DAMNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+              <isEqual property="TERM" compareValue="OBSNM">
+                AND A.OBSNM LIKE '%' || #TXT# || '%'
+              </isEqual>
+            </isNotEmpty>
+          ) A, HM_OBSTP B
+          WHERE A.OBSTP=B.OBSTP
+          <isNotEmpty property="TXT">
+            <isEqual property="TERM" compareValue="ALL">
+              AND A.DAMNM LIKE '%' || #TXT# || '%' OR A.OBSNM LIKE '%' || #TXT# || '%'
+            </isEqual>
+          </isNotEmpty>
+          <isNotEmpty property="DAMTP">
+              AND A.DAMTP = #DAMTP#
+            </isNotEmpty>
+          <isNull property="SORTPROPERTY" >
+            ORDER BY A.WKORD, A.DAMNM, A.OBSNM
+          </isNull>
+          <isNotNull property="SORTPROPERTY" >
+            ORDER BY $SORTPROPERTY$ $SORTDIRECTION$
+          </isNotNull>
+        )
+      )
+      WHERE ROW_NUM BETWEEN $START$ AND $START$ + $LIMIT$
+    </select>
+    <!--관측국 관리, 관측국 구분 콤보 조회 시작-->
+    <select id="GetObsType" resultClass="ObsModel">
+      SELECT '' OBSTP, '전체' OBSTPNM FROM DUAL
+      UNION ALL
+      SELECT OBSTP, OBSTPNM
+      FROM HM_OBSTP
+    </select>
+    <!--관측국 관리, 관측국 구분 콤보 조회 종료-->
+
+
+    <!--관리단코드 콤보 조회 시작-->
+    <select id="GetDamMgtList" resultClass="DamMgtModel" parameterClass="HashTable">
+      <isNotEmpty property="ALLNM">
+        SELECT '' MGTCD, '$ALLNM$' MGTNM, 'N' USEYN, '' MGTCOMMENT, 1 MGTLVL FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+        SELECT MGTCD, 
+               CASE WHEN MGTLVL = 1 THEN MGTNM 
+                    WHEN MGTLVL = 2 THEN '└→' || MGTNM 
+               ELSE '└─→' || MGTNM 
+               END MGTNM,
+               USEYN, MGTCOMMENT, MGTLVL 
+        FROM
+        (
+             SELECT MGTCD, 
+                    MGTNM, 
+                    USEYN, 
+                    MGTCOMMENT, 
+                    MGTLVL, 
+                    MGTORD, 
+                    PARCD,
+                    (SELECT COUNT(*) FROM HM_DAMMGT WHERE PARCD=AA.MGTCD) CHILD_CNT
+             FROM HM_DAMMGT AA
+             START WITH MGTLVL = 1
+             CONNECT BY PRIOR MGTCD=PARCD
+             ORDER SIBLINGS BY MGTORD
+        )
+    </select>
+    <!--관리단코드 콤보 조회  조회 종료-->
+
+    <!--댐관리단코드  조회 시작-->
+    <select id="GetDamMgtTreeList" resultClass="DamMgtModel" parameterClass="HashTable">
+      SELECT MGTCD, MGTNM, USEYN, MGTCOMMENT, MGTLVL, MGTORD, PARCD
+      , (SELECT COUNT(*) FROM HM_DAMMGT WHERE PARCD=AA.MGTCD) CHILD_CNT
+      FROM HM_DAMMGT AA
+      START WITH MGTLVL=1
+      CONNECT BY PRIOR MGTCD=PARCD
+      ORDER SIBLINGS BY MGTORD
+    </select>
+    <select id="GetDamMgtNodeCount" resultClass="int" parameterClass="HashTable">
+      SELECT COUNT(*) CNT
+      FROM HM_DAMMGT
+      <isEqual property="MGTCD" compareValue="root">
+        WHERE PARCD IS NULL
+      </isEqual>
+      <isNotEqual property="MGTCD" compareValue="root">
+        WHERE PARCD=#MGTCD#
+      </isNotEqual>
+    </select>
+    <!--댐관리단코드  추가 시작-->
+    <insert id="InsertDamMgt" parameterClass="DamMgtModel">
+      INSERT INTO HM_DAMMGT(MGTCD, MGTNM, USEYN, MGTCOMMENT, MGTLVL, MGTORD, PARCD)
+      VALUES(TRIM(TO_CHAR(SEQ_HM_DAMMGT.NEXTVAL,'0000')), #MGTNM#, #USEYN#, #MGTCOMMENT#, #MGTLVL#, #MGTORD#, #PARCD#)
+    </insert>
+    <!--댐관리단코드  추가 종료-->
+
+    <!--댐관리단코드  수정 시작-->
+    <update id="UpdateDamMgt" parameterClass="DamMgtModel">
+      UPDATE HM_DAMMGT SET MGTNM = #MGTNM#
+      , USEYN = #USEYN#
+      , MGTCOMMENT = #MGTCOMMENT#
+      , MGTLVL = #MGTLVL#
+      , MGTORD = #MGTORD#
+      WHERE MGTCD = #MGTCD#
+    </update>
+    <!--댐관리단코드  수정 종료-->
+
+    <!--댐관리단코드  삭제 시작-->
+    <delete id="DeleteDamMgt" parameterClass="DamMgtModel">
+      DELETE FROM HM_DAMMGT
+      WHERE MGTCD = #MGTCD#
+      OR PARCD = "MGTCD"
+    </delete>
+    <!--댐관리단코드  삭제 종료-->
+
+    <!--댐타입 조회 시작-->
+    <select id="GetDamTypeList" resultClass="DamTypeModel">
+      SELECT DAMTYPE, DAMTPNM, ORD, USEYN
+      FROM HM_DAMTYPE
+      ORDER BY ORD, DAMTPNM
+    </select>
+    <!--댐타입 조회 종료-->
+
+    <!--댐타입 추가 시작-->
+    <insert id="InsertDamType" parameterClass="DamTypeModel">
+      INSERT INTO HM_DAMTYPE (DAMTYPE, DAMTPNM, ORD, USEYN)
+      VALUES(#DAMTYPE#, #DAMTPNM#, #ORD#, #USEYN#)
+    </insert>
+    <!--댐타입 추가 종료-->
+
+    <!--댐타입 수정 시작-->
+    <update id="UpdateDamType" parameterClass="DamTypeModel">
+      UPDATE HM_DAMTYPE SET DAMTPNM = #DAMTPNM#, ORD = #ORD#, USEYN=#USEYN#
+      WHERE DAMTYPE = #DAMTYPE#
+    </update>
+    <!--댐타입 수정 종료-->
+
+    <!--댐타입 삭제 시작-->
+    <delete id="DeleteDamType" parameterClass="DamTypeModel">
+      DELETE FROM HM_DAMTYPE
+      WHERE DAMTYPE = #DAMTYPE#
+    </delete>
+    <!--댐타입 삭제 종료-->
+  </statements>
+</sqlMap>  
+  

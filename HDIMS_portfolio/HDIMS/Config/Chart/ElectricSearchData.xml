@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <series>
+    <value xid="0"></value>
+  </series>
+  <graphs>
+    <graph gid="1">
+      <value xid="0" description=""></value>
+    </graph>
+    <graph gid="2">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="3">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="4">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="5">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="6">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="7">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="8">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="9">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="10">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="11">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="12">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="13">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="14">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="15">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="16">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="17">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="18">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="19">
+      <value xid="0"  description=""></value>
+    </graph>
+    <graph gid="20">
+      <value xid="0"  description=""></value>
+    </graph>
+  </graphs>
+</chart>

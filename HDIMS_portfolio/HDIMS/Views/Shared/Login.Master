@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+<style type="text/css">
+@import "/Content/style.css";
+@import "/Scripts/extjs/resources/css/ext-all.css";
+@import "/Scripts/jquery.multiselect.css";
+@import "/Scripts/jquery.loadmask.css";
+@import "/Scripts/redmond/jquery-ui-1.8.16.custom.css";
+
+#loginDiv {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%; 
+	height: 100%; 
+	margin:0; 
+	padding:0;
+	background:#fff;				
+	z-index:11;
+	text-align:center;
+	vertical-align:middle;
+}
+</style>
+<script type="text/javascript" src="/Scripts/extjs/ext-all.js"></script>
+<script type="text/javascript" src="/Scripts/extjs/locale/ext-lang-ko.js"></script>
+<script type="text/javascript" src="/Scripts/swfobject.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.multiselect.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.loadmask.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.popupWindow.js"></script>
+<script type="text/javascript" src="/Scripts/common/chart.js"></script>
+<script type="text/javascript" src="/Scripts/common/code.js"></script>
+<script type="text/javascript" src="/Scripts/common/staticCode.js"></script>
+<script type="text/javascript" src="/Scripts/common/function.js"></script>
+<script type="text/javascript">
+    Ext.Loader.setConfig({ enabled: true });
+    Ext.Loader.setPath('Ext.ux', '/Scripts/extjs/ux/');
+    Ext.require(['*']);
+</script>
+<asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
+</head>
+<body>
+<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+</body>
+</html>

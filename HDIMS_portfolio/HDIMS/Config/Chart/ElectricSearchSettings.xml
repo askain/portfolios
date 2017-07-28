@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <font>Tahoma</font>
+  <start_on_axis>0</start_on_axis>
+  <redraw>true</redraw>
+  <plot_area>
+    <border_alpha>100</border_alpha>
+    <margins>
+        <left>60</left>
+        <right>80</right>
+        <top>20</top>
+        <bottom>100</bottom>
+    </margins>
+  </plot_area>
+  <grid>
+    <y_right>
+      <enabled>0</enabled>
+    </y_right>
+  </grid>
+  <digits_after_decimal>2</digits_after_decimal>
+  <decimals_separator>.</decimals_separator>
+  <thousands_separator>,</thousands_separator>
+  <context_menu>
+    <menu mid="4" function_name="showAll" title="전체보기"/>
+  </context_menu>
+  <values>
+    <x>
+      <inside>false</inside>
+    </x>
+    <y_left>
+      <inside>false</inside>
+    </y_left>
+    <y_right>
+      <inside>false</inside>
+    </y_right>
+  </values>
+  <graphs>
+    <graph gid="1">
+      <title>1</title>
+      <color>A5BC4E</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>1호기 : {value}</b>]]></balloon_text>
+    </graph>
+    <graph gid="2">
+      <title>2</title>
+      <color>E48701</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>2호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="3">
+      <title>3</title>
+      <color>4169E1</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>3호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="4">
+      <title>4</title>
+      <color>FF6347</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>4호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="5">
+      <title>5</title>
+      <color>FF6347</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>5호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="6">
+      <title>6</title>
+      <color>00BFFF</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>6호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="7">
+      <title>7</title>
+      <color>006400</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>7호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="8">
+      <title>8</title>
+      <color>800000</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>8호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="9">
+      <title>9</title>
+      <color>DEB887</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>9호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="10">
+      <title>10</title>
+      <color>4B0082</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>10호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="11">
+      <title>11</title>
+      <color>8B4513</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>11호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="12">
+      <title>12</title>
+      <color>1E90FF</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>12호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="13">
+      <title>13</title>
+      <color>008B8B</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>13호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="14">
+      <title>14</title>
+      <color>FFD700</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>14호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="15">
+      <title>15</title>
+      <color>800080</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>15호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="16">
+      <title>16</title>
+      <color>A52A2A</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>16호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="17">
+      <title>17</title>
+      <color>87CEEB</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>17호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="18">
+      <title>18</title>
+      <color>2F4F4F</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>18호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="19">
+      <title>19</title>
+      <color>8A2BE2</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>19호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="20">
+      <title>20</title>
+      <color>FF7F50</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>20호기 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+  </graphs>
+  <scroller>
+    <y>5</y>
+    <height>10</height>
+    <color>E48701</color>
+    <bg_color>FFFFFF</bg_color>
+  </scroller>
+  <indicator>
+    <selection_color>000000</selection_color>
+  </indicator>
+  <legend>
+    <!--<x>!140</x>
+    <y>15</y>
+    <width>150</width>
+    <align>left</align>-->
+    <!--<max_columns>11</max_columns>-->
+    <spacing>1</spacing>
+  </legend>
+  <axes>
+    <x>
+      <tick_length>2</tick_length>
+      <width>1</width>
+    </x>
+    <y_left>
+      <tick_length>2</tick_length>
+      <width>1</width>
+    </y_left>
+    <y_right>
+      <tick_length>2</tick_length>
+      <width>1</width>
+    </y_right>
+  </axes>
+  <zoom_out_button>
+    <x>!1</x>
+    <y>!1</y>
+    <text>전체보기</text>
+  </zoom_out_button>
+  <error_messages>
+    <color>BBBB00</color>
+    <text_color>FFFFFF</text_color>
+  </error_messages>
+  <strings>
+    <no_data>챠트의 데이터가 존재하지 않습니다.</no_data>
+    <export_as_image>챠트를 이미지로 변환중입니다.</export_as_image>
+    <collecting_data>데이터를 조회중입니다.</collecting_data>
+  </strings>
+</settings>

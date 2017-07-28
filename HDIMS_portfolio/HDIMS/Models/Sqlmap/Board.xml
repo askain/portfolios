@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Board"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="BoardModel" type="HDIMS.Models.Domain.Board.BoardModel, HDIMS" />
+    <typeAlias alias="BoardContentModel" type="HDIMS.Models.Domain.Board.BoardContentModel, HDIMS" />
+    <typeAlias alias="BoardReplyModel" type="HDIMS.Models.Domain.Board.BoardReplyModel, HDIMS" />
+  </alias>
+
+  <statements>
+
+    <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓게시판 설정↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+    <!-- 게시판 리스트 조회 시작-->
+    <select id="SelectBoard" resultClass="BoardModel" parameterClass="HashTable">
+        SELECT BOARDCD, BOARDNM, BOARDNOTE, FILEYN, READAUTHCODE, WRITEAUTHCODE, ORD, USEYN, FILEEXTENTION, MAILYN, MAILADDRESS, HOMEYN, MAXFILESIZE, OASISYN
+        FROM HM_BOARDMGT
+        WHERE 1=1
+        <isNotEmpty property="BOARDCD" prepend="AND">
+            BOARDCD = #BOARDCD#
+        </isNotEmpty>
+        ORDER BY BOARDCD
+    </select>
+    <!-- 게시판 리스트 조회 종료-->
+
+    <!--게시판 리스트 추가 시작-->
+    <insert id="InsertBoard" parameterClass="BoardModel">
+      INSERT INTO HM_BOARDMGT (BOARDCD, BOARDNM, BOARDNOTE, FILEYN, READAUTHCODE, WRITEAUTHCODE, ORD, USEYN, FILEEXTENTION, MAILYN, MAILADDRESS, HOMEYN, MAXFILESIZE, OASISYN)
+      VALUES (#BOARDCD#, #BOARDNM#, #BOARDNOTE#, #FILEYN#, #READAUTHCODE#, #WRITEAUTHCODE#, #ORD#, #USEYN#, #FILEEXTENTION#, #MAILYN#, #MAILADDRESS#, #HOMEYN#, #MAXFILESIZE#, #OASISYN#)
+    </insert>
+    <!--게시판 리스트 추가 종료-->
+
+    <!--게시판 리스트 수정 시작-->
+    <update id="UpdateBoard" parameterClass="BoardModel">
+      UPDATE HM_BOARDMGT
+      SET    BOARDNM = #BOARDNM#, 
+             BOARDNOTE = #BOARDNOTE#,
+             FILEYN = #FILEYN#,
+             READAUTHCODE = #READAUTHCODE#, 
+             WRITEAUTHCODE = #WRITEAUTHCODE#,
+             ORD = #ORD#,
+             USEYN = #USEYN#,
+             FILEEXTENTION = #FILEEXTENTION#,
+             MAILYN = #MAILYN#, 
+             MAILADDRESS = #MAILADDRESS#, 
+             HOMEYN = #HOMEYN#,
+             MAXFILESIZE = #MAXFILESIZE#,
+             OASISYN = #OASISYN#
+      WHERE  BOARDCD = #BOARDCD#
+    </update>
+    <!--게시판 리스트 수정 종료-->
+
+    <!--게시판 리스트 삭제 시작-->
+    <statement id="DeleteBoard" resultClass="int">
+      BEGIN
+        DELETE FROM HM_BOARDMGT WHERE  BOARDCD = #BOARDCD#;
+        DELETE FROM HM_BOARDCONTENT WHERE BOARDCD = #BOARDCD#;
+        DELETE FROM HM_BOARDREPLY WHERE BOARDCD = #BOARDCD#;
+        DELETE FROM HM_BOARDREPORT@TECH.WORLD WHERE BOARDCD = #BOARDCD#;
+      END;
+    </statement>
+    <!--게시판 리스트 삭제 종료-->
+
+      
+    <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓메뉴 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+    <!--메뉴에 추가 시작-->
+    <insert id="InsertBoardInMenu" parameterClass="BoardModel">
+      INSERT INTO HM_MENU_MASTER(MENU_ID, MENU_NAME, MENU_URI, MENU_LVL, USE_FLAG, PARENT_ID, MENU_ORD, MENU_DATE)
+      VALUES(#MENU_ID#, #BOARDNM#, #MENU_URI#, 2, #USEYN#, 999, #BOARDCD#, TO_CHAR(SYSDATE, 'YYYYMMDDHH24SS'))
+    </insert>
+    <!--메뉴에 추가 종료-->  
+
+    <!--메뉴 관리 수정 시작-->
+    <update id="UpdateBoardInMenu" parameterClass="HashTable">
+      UPDATE HM_MENU_MASTER SET MENU_NAME = #BOARDNM#, USE_FLAG= #USEYN#, MENU_ORD = #BOARDCD#, MENU_URI=#MENU_URI#
+      WHERE MENU_ID = #MENU_ID#
+    </update>
+    <!--메뉴 관리 수정 종료-->
+    
+    <!--메뉴 관리 삭제 시작-->
+    <delete id="DeleteBoardInMenu" parameterClass="HashTable">
+      DELETE FROM HM_MENU_MASTER
+      WHERE MENU_ID = #MENU_ID#
+    </delete>
+    <!--메뉴 관리 삭제 종료-->
+
+      
+    <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓메뉴-권한 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+    <!--메뉴에 추가 시작-->
+    <insert id="InsertAuthMenu" parameterClass="HashTable">
+      INSERT INTO HM_AUTH_MENU(AUTHCODE, MENU_ID)
+      VALUES(#AUTHCODE#, #MENU_ID#)
+    </insert>
+    <!--메뉴에 추가 종료-->  
+    
+    <!--메뉴 관리 삭제 시작-->
+    <delete id="DeleteAuthMenu" parameterClass="HashTable">
+      DELETE FROM HM_AUTH_MENU
+      WHERE MENU_ID = #MENU_ID#
+    </delete>
+    <!--메뉴 관리 삭제 종료-->
+
+      
+    <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓게시판 내용↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+    <!-- 게시판 리스트 깻수 시작-->
+    <select id="SelectContentCnt" resultClass="int" parameterClass="HashTable">
+        SELECT
+            COUNT(*) AS CNT
+        FROM
+        (
+            SELECT 
+                BOARDCD, CONTENTCD, TITLE, CONTENT, EMPNO, EMPNM, INDT, CGDT, READCNT
+                ,ROW_NUMBER() OVER (PARTITION BY BOARDCD, CONTENTCD ORDER BY BOARDCD, CONTENTCD) AS ROW_NUM
+            FROM 
+                HM_BOARDCONTENT
+            WHERE 1=1
+                <isNotEmpty property="BOARDCD" prepend="AND">
+                    BOARDCD = #BOARDCD#
+                </isNotEmpty>
+                <isNotEmpty property="CONTENTCD" prepend="AND">
+                    CONTENTCD = #CONTENTCD#
+                </isNotEmpty>
+        )
+    </select>
+    <!-- 게시판 리스트 갯수 끝-->
+      
+    <!-- 글 조회 시작-->
+    <select id="SelectContent" resultClass="BoardContentModel" parameterClass="HashTable">
+        SELECT
+            BOARDCD, CONTENTCD, TITLE, CONTENT, EMPNO, EMPNM, INDT, CGDT, TO_CHAR(READCNT) AS READCNT, TO_CHAR(ROW_NUM) AS ROW_NUM, OASISSTATUS, OASISDOCSID, OASISDOCUID, TO_CHAR(REPLYCNT) REPLYCNT, READAUTHCODE, ALWAYSONTOP, CATEGORY
+        FROM
+        (
+            SELECT 
+                A.BOARDCD, A.CONTENTCD, A.TITLE, A.CONTENT, A.EMPNO, A.EMPNM, A.INDT, A.CGDT, A.READCNT
+                , ROW_NUMBER() OVER (PARTITION BY A.BOARDCD, A.CONTENTCD ORDER BY A.BOARDCD, A.CONTENTCD) AS ROW_NUM
+                , B.OASISSTATUS
+                , B.OASISDOCSID
+                , B.OASISDOCUID
+                , (SELECT COUNT(*) FROM HM_BOARDREPLY WHERE A.BOARDCD = BOARDCD(+) AND A.CONTENTCD = CONTENTCD(+)) AS REPLYCNT
+                , A.READAUTHCODE
+                , A.ALWAYSONTOP
+                , A.CATEGORY
+            FROM 
+                HM_BOARDCONTENT A
+                , ( <!--결재상태 참조-->
+                    SELECT BOARDCD, CONTENTCD, OASISSTATUS, OASISDOCSID, OASISDOCUID
+                    FROM (
+                        SELECT BOARDCD, CONTENTCD, OASISSTATUS, OASISDOCSID, OASISDOCUID
+                             , ROW_NUMBER() OVER (PARTITION BY BOARDCD, CONTENTCD ORDER BY SDATE DESC) ROW_NUM
+                        FROM HM_BOARDREPORT@TECH.WORLD
+                        WHERE 1=1
+                        <isNotEmpty property="BOARDCD" prepend="AND">
+                            BOARDCD = #BOARDCD#
+                        </isNotEmpty>
+                        <isNotEmpty property="CONTENTCD" prepend="AND">
+                            CONTENTCD = #CONTENTCD#
+                        </isNotEmpty>
+                    ) WHERE ROW_NUM=1
+                ) B
+            WHERE 1=1
+              AND A.BOARDCD = B.BOARDCD(+)
+              AND A.CONTENTCD = B.CONTENTCD(+)
+                <isNotEmpty property="BOARDCD" prepend="AND">
+                    A.BOARDCD = #BOARDCD#
+                </isNotEmpty>
+                <isNotEmpty property="CONTENTCD" prepend="AND">
+                    A.CONTENTCD = #CONTENTCD#
+                </isNotEmpty>
+                <isNotEmpty property="HOMEYN" prepend="AND">
+                    A.BOARDCD IN (SELECT BOARDCD FROM HM_BOARDMGT WHERE HOMEYN = #HOMEYN#)
+                    <isEqual property="HOMEYN" compareValue="Y" prepend="AND">  <!-- 최근 1년치만 -->
+                        A.INDT BETWEEN TO_CHAR(SYSDATE - 365, 'YYYYMMDDHH24MISS') AND TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
+                    </isEqual>
+                </isNotEmpty>
+                <!-- 여기서부터 검색조건 -->
+                <isNotEmpty property="TITLECONTENTLIKE" prepend="AND ">
+                    ( A.TITLE LIKE '%'||#TITLECONTENTLIKE#||'%' OR A.CONTENT LIKE '%'||#TITLECONTENTLIKE#||'%' )
+                </isNotEmpty>
+                <isNotEmpty property="TITLELIKE" prepend="AND">
+                    A.TITLE LIKE '%'||#TITLELIKE#||'%'
+                </isNotEmpty>
+                <isNotEmpty property="EMPNMLIKE" prepend="AND">
+                    A.EMPNM LIKE '%'||#EMPNMLIKE#||'%'
+                </isNotEmpty>
+                <isNotEmpty property="INDT" prepend="AND">
+                    A.INDT LIKE '%'||#INDT#||'%'
+                </isNotEmpty>
+                <isNotEmpty property="CATEGORY" prepend="AND">
+                    A.CATEGORY = #CATEGORY#
+                </isNotEmpty>
+        
+        )
+        <isNotEmpty property="LIMIT">
+            WHERE ROW_NUM <![CDATA[<=]]> #LIMIT#
+        </isNotEmpty>
+<!--        <isEmpty property="CONTENTCD">
+            WHERE ROW_NUM BETWEEN $START$ AND $START$ + $LIMIT$
+        </isEmpty>
+-->
+        ORDER BY ALWAYSONTOP DESC, TO_NUMBER(CONTENTCD) DESC
+    </select>
+    <!-- 글 조회 종료-->
+      
+    <!-- 글 등록 시작 -->
+    <insert id="InsertContent" parameterClass="HashTable">
+        INSERT INTO HM_BOARDCONTENT (BOARDCD, CONTENTCD, TITLE, CONTENT, EMPNO, EMPNM, INDT, READAUTHCODE, CATEGORY)
+        VALUES (
+        #BOARDCD#
+        , (SELECT NVL(MAX(TO_NUMBER(CONTENTCD))+1, 0) FROM HM_BOARDCONTENT WHERE BOARDCD = #BOARDCD#)
+        , #TITLE#
+        , #CONTENT#
+        , #EMPNO#
+        , #EMPNM#
+        , #INDT#
+        , #READAUTHCODE#
+        , #CATEGORY#)
+        <selectKey resultClass="string" type="post" property="BOARDCD">
+            SELECT TO_CHAR(NVL(MAX(TO_NUMBER(CONTENTCD)), 0)) FROM HM_BOARDCONTENT WHERE BOARDCD = #BOARDCD#
+        </selectKey>
+    </insert>
+    <!-- 글 등록 종료-->
+      
+    <!-- 글 수정 시작 -->
+    <update id="UpdateContent" parameterClass="HashTable">
+        UPDATE HM_BOARDCONTENT
+        SET    TITLE     = #TITLE#,
+               CONTENT   = #CONTENT#,
+               CGDT      = #CGDT#,
+               READAUTHCODE = #READAUTHCODE#,
+               ALWAYSONTOP = #ALWAYSONTOP#,
+               CATEGORY = #CATEGORY#
+        WHERE  BOARDCD   = #BOARDCD#
+        AND    CONTENTCD = #CONTENTCD#
+    </update>
+    <!-- 글 수정 종료-->
+      
+    <!-- 글 삭제 시작 -->
+    <statement id="DeleteContent" parameterClass="HashTable">
+        BEGIN
+            DELETE FROM HM_BOARDCONTENT WHERE BOARDCD = #BOARDCD# AND CONTENTCD = #CONTENTCD#;
+            DELETE FROM HM_BOARDREPLY WHERE BOARDCD = #BOARDCD# AND CONTENTCD = #CONTENTCD#;
+            DELETE FROM HM_BOARDREPORT@TECH.WORLD WHERE BOARDCD = #BOARDCD# AND CONTENTCD = #CONTENTCD#;
+        END;
+    </statement>
+    <!-- 글 삭제 종료-->
+    
+    <!-- 조회수 + 1 시작 -->
+    <update id="CountReadContent" parameterClass="HashTable">
+        UPDATE HM_BOARDCONTENT
+        SET    READCNT = READCNT + 1
+        WHERE  BOARDCD   = #BOARDCD#
+        AND    CONTENTCD = #CONTENTCD#
+    </update>
+    <!-- 조회수 + 1 종료-->
+      
+      
+    <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓의견글 내용↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->      
+    <!-- 의견글 조회 시작 -->
+    <select id="SelectReply" resultClass="BoardReplyModel" parameterClass="HashTable">
+        SELECT
+            BOARDCD, CONTENTCD, REPLYCD, CONTENT, EMPNO, EMPNM, INDT
+        FROM 
+            HM_BOARDREPLY
+        WHERE 
+            BOARDCD = #BOARDCD#
+            AND CONTENTCD = #CONTENTCD#
+            <isNotEmpty property="REPLYCD" prepend="AND">
+                REPLYCD = #REPLYCD#
+            </isNotEmpty>
+        ORDER BY INDT
+    </select>
+    <!-- 의견글 조회 끝 -->
+      
+    <!-- 의견글 등록 시작 -->
+    <insert id="InsertReply" parameterClass="HashTable">
+        INSERT INTO HM_BOARDREPLY (BOARDCD, CONTENTCD, REPLYCD, CONTENT, EMPNO, EMPNM, INDT)
+        VALUES (
+        #BOARDCD#
+        , #CONTENTCD#
+        , (SELECT LPAD(NVL (MAX (TO_NUMBER(REPLYCD)) + 1, '0000'), 4, '0') FROM HM_BOARDREPLY WHERE BOARDCD = #BOARDCD# AND CONTENTCD = #CONTENTCD#)
+        , #CONTENT#
+        , #EMPNO#
+        , #EMPNM#
+        , #INDT#)
+    </insert>
+    <!-- 의견글 등록 종료-->
+      
+    <!-- 의견글 삭제 시작 -->
+    <delete id="DeleteReply" parameterClass="HashTable">
+        DELETE FROM HM_BOARDREPLY
+        WHERE  BOARDCD   = #BOARDCD#
+        AND    CONTENTCD = #CONTENTCD#
+        <isNotEmpty property="REPLYCD" prepend="AND">
+            REPLYCD = #REPLYCD#
+        </isNotEmpty>
+    </delete>
+    <!-- 의견글 삭제 종료-->
+      
+      
+</statements>
+</sqlMap>
+

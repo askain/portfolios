@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>LINQ test</title>
+<link rel="stylesheet" type="text/css" href="./css/product.css">
+<link rel="stylesheet" type="text/css" href="./css/phone.css">
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/jquery.easing.js"></script>
+<script type="text/javascript" src="./js/core.js"></script>
+<script type="text/javascript" src="./js/common.ui.js"></script>
+<script type="text/javascript" src="./js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="./js/cccommon.js"></script>
+<script type="text/javascript" src="./js/twd_userpreference_phone.js"></script>
+<script type="text/javascript" src="./js/cs.item.js"></script>
+<script type="text/javascript" src="./js/cs.optionBar.js"></script>
+<script type="text/javascript" src="./js/cs.layout.js"></script>
+<script type="text/javascript" src="./js/cs.common.js"></script>
+<script type="text/javascript" src="./js/cs.controller.js"></script>
+<script type="text/javascript" src="./js/linq.js"></script>
+<script type="text/javascript" src="./js/twd_bind_phone.js"></script>
+<script type="text/javascript" src="./js/twd_userevents_phone.js"></script>
+<script type="text/javascript" src="./js/twd_dao_phone.js"></script>
+<script type="text/javascript" src="./data/phoneList.json" charset="utf-8"></script>
+<script>
+var _ERUrlProductImgRootCS = "./img";
+</script>
+<script>
+(function($) {
+	window.debug = function(ret){  
+		if( typeof ret === 'string' ) {
+			console.log("ret=" + ret);	
+		} else {
+			console.log("ret.length=" + ret.length);
+			for(var i = 0 ; i < ret.length ; i++)	{
+				console.log(ret[i]);
+			}
+		}
+	},
+	window.debugCount = function(ret, productId)	{
+		var cnt = Enumerable.From(ret).Count(function(x)	{
+			return x.PRODUCT_ID == productId;
+		});
+		console.log("debug productId=" + productId + "'s count:' " + cnt);
+	}	
+})($);
+</script>
+<script>
+
+	window.callback = function(data)	{
+
+		window.DAO.linq(data.phoneList);
+		// 휴대폰 리스트 인스턴스
+		var phoneListDAO = window.DAO.linq._singletonInstance;
+					
+		// 회사명 모두 가져오기
+		var compnayList = phoneListDAO.getCompanyList();
+				
+		// 회사명 화면에 바인딩
+		window.bind.phoneList_subcategory(compnayList, /*selector미정*/null);
+				
+		// 카테고리 화면에 바인딩
+		window.bind.phoneList_categoryList(data.categoryList, "2001");	// 2001 : 휴대폰 카테고리
+				
+		// 휴대폰 리스트 바인딩
+		//window.userEvents.listing_phoneList();
+
+	};
+	
+	// help language selection
+	$(function()	{
+		$("#help_lang_eng").click(function()	{
+			$(".showhide_lang_eng").show();
+			$(".showhide_lang_kor").hide();
+			$(".showhide_lang_jap").hide();
+		});
+		$("#help_lang_kor").click(function()	{
+			$(".showhide_lang_eng").hide();
+			$(".showhide_lang_kor").show();
+			$(".showhide_lang_jap").hide();
+		});
+		$("#help_lang_jap").click(function()	{
+			$(".showhide_lang_eng").hide();
+			$(".showhide_lang_kor").hide();
+			$(".showhide_lang_jap").show();
+		});
+	});
+
+</script>
+
+
+
+<!-- for console -->
+<style>
+#console_area {
+	border-bottom: 1px solid #e6e6e6;
+	position: relative;
+	margin-left: 300px;
+}
+#a_console	{
+	position: absolute;
+	top:0;
+	left:0;
+	width:250px;
+	background-color:orange;
+	z-index: 999;
+}
+#a_help	{
+	position: absolute;
+	top:50px;
+	left:0;
+	width:250px;
+	background-color:lime;
+	z-index: 999;
+}
+.showhide_lang_kor, .showhide_lang_jap	{
+	display: none;
+}
+</style>
+<script>
+$(function()	{
+	$("#run_custom_linq").click(function()	{
+		try{
+			var command = $("#linq_command_area").val();
+
+			var result = eval(command);
+			
+			result = result.ToArray();
+			
+			window.bind.phoneList(result);
+			console.log(result);
+		}
+		catch(e)	{
+			alert("linq command is not corrected.");
+		}
+	});
+	
+	$("#a_console").click(function()	{
+		var $custom_console = $("#custom_console");
+		if($custom_console.is(":visible") == true)	{
+			$custom_console.slideUp();
+		} else {
+			$custom_console.show();
+		}
+		
+	});
+	
+	$("#a_help").click(function()	{
+		$("#help_layer").toggle();
+	});
+});
+
+
+</script>
+<!-- for console -->
+
+</head>
+<body>
+ 
+<div id="wrapper">
+	<!-- container -->
+	<div id="container">
+		<!-- console -->
+		<div id="custom_console">
+			<div id="console_area">
+				<textarea id="linq_command_area" style="float:left;width:800px;height:200px"></textarea>
+				<button id="run_custom_linq" style="float:left;width:100px;height:200px;">Run!</button>
+			</div>
+		</div>
+		<div>
+			<a href="#" id="a_console"><span style="font-size:30px;">Toggle<span></a><br/>
+			<a href="#" id="a_help"><span style="font-size:30px;">Help</span></a>
+		</div>
+		<!-- //console -->
+		
+		<!-- contents -->
+		<div id="contents" class="product_wrap step01">
+			<!-- 기종 -->
+			<div class="product_step01 d-product">
+				<div class="d-html-load" style="margin-top: 0px;"><!-- 상단 옵션 바 -->    
+					<div class="option_bar clfix">     
+						<div class="option_wrap d-optionBar">      
+							<!-- 카테고리 및 제조사 선택 -->
+							<div class="category_wrap">
+								<p class="tit_category">
+								<a href="#">
+								<span class="none">Category</span></a></p><!-- 클릭 시 class="on" 호출 -->
+								<!-- 레이어 박스 -->
+								<div class="category_layer" style="display:none;">        
+									<div class="data_list">         
+										<div class="category_area">          
+											<p class="tit">Category</p>          
+											<ul class="category_list"></ul>         
+										</div>                  
+										<div class="maker_area">          
+											<p class="tit">Maker</p>          
+											<ul class="maker_list"></ul>         
+										</div>        
+									</div>        
+									<div class="btn_wrap">
+										<span class="btn btn_o_s"><span><a href="#" class="d-apply">Apply</a></span></span>         
+										<span class="btn btn_w_s"><span><a href="#" class="d-cancel">Cancel</a></span></span>
+									</div>
+								</div>
+								<!-- //레이어 박스 -->
+							</div>
+							<!-- //카테고리 및 제조사 선택 -->
+							<div class="category_location">
+								<p class="category">Show All</p>
+								<div class="maker_wrap">        
+									<ul>
+									</ul>
+								</div>
+								<div class="list_page" style="display:none;">
+									<button type="button" class="btnicon_pre" title="제조사명 이전리스트 보기"><span class="none">이전</span></button>
+									<p class="num"><strong>1</strong>&nbsp;/&nbsp;<span>2</span></p>
+									<button type="button" class="btnicon_next" title="제조사명 다음리스트 보기"><span class="none">다음</span></button>
+								</div>
+							</div>
+							<!-- 리스트 sort 셀렉트 박스 -->      
+							<div class="sort_wrap">       
+								<p class="select"><a href="#" title="휴대폰리스트 정렬방식 선택">Recommands</a><span class="none">현재 정렬방식</span></p>       
+								<div class="select_wrap" style="display:none;">        
+									<span class="select_top">&nbsp;</span>        
+									<ul class="sort_list">         
+										<li class="on"><a href="#">Recommands</a></li><!-- on -->         
+										<li><a href="#">Orders</a></li>         
+										<li><a href="#">Newest</a></li>          
+										<li><a href="#">Low Price</a></li>         
+										<li><a href="#">High Price</a></li>
+										<li><a href="#">High Discount</a></li>     
+									</ul>        
+									<span class="select_btm">&nbsp;</span>       
+								</div>      
+							</div>      
+							<!-- //리스트 sort셀렉트 박스 -->      
+							<div class="btn_sort d-view-type">       
+								<button type="button" class="btnicon_bigview"><span class="none">휴대폰리스트 크게보기</span></button>
+								<button type="button" class="btnicon_smallview on"><span class="none">휴대폰리스트 작게보기</span></button>      
+							</div>     
+						</div>    
+					</div>			
+					<!-- //상단 옵션 바 -->        
+					<div class="product_area d-item-wrap small_list w1440">
+						<div class="list_wrap">      
+						<!-- 기종 리스트 -->      
+						<ul class="phone_list d-item-list" style="left: 0px;"></ul>      
+						<!-- //기종 리스트 -->     
+						</div>     
+						<!-- 이전/다음 버튼 -->     
+						<p class="list_pre"><button type="button" class="d-prev btnicon_control_pre" title="기종 이전리스트 보기" style="display: none;"><span class="none">이전 리스트</span></button></p>     
+						<p class="list_next"><button type="button" class="d-next btnicon_control_next" title="기종 다음리스트 보기"><span class="none">다음 리스트</span></button></p>
+						<!-- //이전/다음 버튼 -->  
+					</div>
+					<div class="pnone_list_none" style="display: none;">
+						<div class="none_wrap">      
+							<p>No matching product is available.</p>      
+							<span>Please select other category and makers.</span>     
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //기종 -->
+		</div><!-- //contents -->
+	</div><!-- //container -->
+	
+<div id="help_layer" class="d-popup-cnt d-popup-layer modal" style="display: none;">
+	<div class="dim"></div>
+	<div class="ly_cont" style="margin-left:-325px">
+		<div class="layer_pop" style="width:650px; line-height: 1.5;">
+			<div class="inner">	
+
+				<div class="pop_head">
+					<h1><span>Linq.js Help</span>&nbsp;<a href="#none" id="help_lang_eng">English</a>&nbsp;<a href="#none" id="help_lang_kor">한글</a>&nbsp;<a href="#none" id="help_lang_jap">日本語</a></h1>
+				</div>
+
+				<div class="pop_container line" style="padding: 30px 29px 0 29px;">	
+				<!-- 팝업 컨텐츠 -->
+				
+						<div>
+							<h3 class="showhide_lang_eng">Firstly, If you don't know about linqjs. then visit <a href="http://linqjs.codeplex.com/" target="_blink">linq.js home</a> and <a href="http://neue.cc/reference.htm" target="_blink">reference site</a></h3>
+							<h3 class="showhide_lang_kor">linq.js를 잘 모르신다면 일단 <a href="http://linqjs.codeplex.com/" target="_blink">linq.js홈</a>과 <a href="http://neue.cc/reference.htm" target="_blink">레퍼런스 사이트</a>를 방문하세요.</h3>
+							<h3 class="showhide_lang_jap">linq.jsを知らない方は<a href="http://linqjs.codeplex.com/" target="_blink">linq.jsホ?ム</a>と <a href="http://neue.cc/reference.htm" target="_blink">レファ サイト</a>をご?ください。</h3>
+						</div>
+
+						<div class="box_gray_r mt05">
+							<p class="box_g box_g_lt"> </p>
+							<p class="box_g box_g_rt"> </p>
+							<p class="box_g box_g_lb"> </p>
+							<p class="box_g box_g_rb"> </p>
+							<div class="box_gray_wrap" style="height: 300px; overflow-y: scroll;">
+								<dl>
+									<dd>
+										<ul class="list_dot02">
+											<li>
+												Enumerable.From(window.DAO.linq._singletonInstance.list)<br/>
+												<p class="fc_org">&nbsp;&nbsp;&nbsp;&nbsp;//
+													<span class="showhide_lang_eng"> filtering only represent products.</span>
+													<span class="showhide_lang_kor"> 대표상품만 걸러낸다.</span>
+													<span class="showhide_lang_jap"> 代表商品のみ取り除く。</span>
+												</p>
+												&nbsp;&nbsp;&nbsp;&nbsp;.Where(function(x)	{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x.DEFAULT_PRODUCT_ID == x.PRODUCT_ID;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;})<br/>
+												<p class="fc_org">&nbsp;&nbsp;&nbsp;&nbsp;//
+													<span class="showhide_lang_eng"> filter only products that stock is over 100.</span>
+													<span class="showhide_lang_kor"> 재고가 100개 이상인 제품만 걸러낸다.</span>
+													<span class="showhide_lang_jap"> 在庫が100個以上の製品を取り除く。</span>
+												</p>
+												&nbsp;&nbsp;&nbsp;&nbsp;.Where(function(x)	{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x.STOCK >= 100;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;})<br/>
+												<p class="fc_org">&nbsp;&nbsp;&nbsp;&nbsp;//
+													<span class="showhide_lang_eng"> products made by samsung.</span>
+													<span class="showhide_lang_kor"> 삼성 제품만 걸러낸다.</span>
+													<span class="showhide_lang_jap"> サムソンの製品を取り除く。</span>
+												</p>
+												&nbsp;&nbsp;&nbsp;&nbsp;.Where(function(x)	{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x.COMPANY_NM === "Samsung";<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;})<br/>
+												<p class="fc_org">&nbsp;&nbsp;&nbsp;&nbsp;//
+													<span class="showhide_lang_eng"> distinct by group id.</span>
+													<span class="showhide_lang_kor"> 그룹아이디로 distinct한다.</span>
+													<span class="showhide_lang_jap"> グル?プIDでdistinctする。</span>
+												</p>
+												&nbsp;&nbsp;&nbsp;&nbsp;.Distinct(function(x)	{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x.PRODUCT_GRP_ID;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;})<br/>
+												<p class="fc_org">&nbsp;&nbsp;&nbsp;&nbsp;//
+													<span class="showhide_lang_eng"> order by product name.</span>
+													<span class="showhide_lang_kor"> 상품명순으로 정렬한다.</span>
+													<span class="showhide_lang_jap"> 商品名で?べる。</span>
+												</p>
+												&nbsp;&nbsp;&nbsp;&nbsp;.OrderBy(function (x) {<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x.PRODUCT_NM; <br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;});<br/>
+											</li>
+										</ul>
+									</dd>
+								</dl>
+							</div>
+						</div>
+						
+						<div class="mt20">
+							<h3 class="showhide_lang_eng">The Textarea on top contains a LINQ command. You can edit it and test your own command by pressing "Run!" button. Otherwise you can just choose category and makers(Brands) and click "apply" button, then the LINQ command would be changed.</h3>
+							<h3 class="showhide_lang_kor">상단의 텍스트영역에는 LINQ 명령어가 들어가 있습니다. 자유롭게 수정하고 "Run!" 버튼으로 테스트 할 수 있습니다. 카테고리나 제조사를 변경하고 "apply" 버튼을 누를 경우에는 LINQ 명령어가 변경되는 것을 확인할 수 있습니다.</h3>
+							<h3 class="showhide_lang_jap">上のテキストエアリアはLINQのcommandが入っています。自由に修正し、”Run!"ボタンでテストできます。カテゴリやメ?カ?を選?し”apply”ボタンをクリックすると、commandが?更することを確認できます。</h3>
+						</div>
+						
+						<div class="mt20">
+							<h3 class="showhide_lang_eng">"window.DAO.linq._singletonInstance.list" is source data. You can confirm it's structure with developer mode console.(press F12 key in IE, Chrome)</h3>
+							<h3 class="showhide_lang_kor">"window.DAO.linq._singletonInstance.list" 에는 소스 데이터가 들어가 있습니다. 개발자모드의 콘솔에 입력하면 데이터 구조를 파악할 수 있습니다. (인터넷익스플로어, 크롬에서 F12키를 누르세요)</h3>
+							<h3 class="showhide_lang_jap">"window.DAO.linq._singletonInstance.list"にはソ?スデ?タが入ってます。開?者モ?ドのコンソ?ルに入力すればデ?タの構造が分かります。(IE, Chromeで F12キ?を押してください。)</h3>
+						</div class="mt10">
+						
+						<br/>
+						<br/>
+						<br/>
+				<!-- // 팝업 컨텐츠 -->  
+				</div>				
+
+				<span class="bt_exit2 d-popup-closeBtn"><a href="#">Close</a></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+</body></html>

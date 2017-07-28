@@ -1,0 +1,7 @@
+﻿{ identifier: 'DAMTYPE', 
+  label: 'DAMTPNM',
+  items: [
+	{ "DAMTYPE": "D", "DAMTPNM": "다목적댐" },
+	{ "DAMTYPE": "W", "DAMTPNM": "용수전용댐" },
+	{ "DAMTYPE": "B", "DAMTPNM": "다기능보" }
+]}

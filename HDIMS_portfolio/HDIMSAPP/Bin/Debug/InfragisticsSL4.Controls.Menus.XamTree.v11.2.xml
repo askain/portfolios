@@ -1,0 +1,1442 @@
+﻿<?xml version="1.0"?>
+<doc><!--11.2.20112.1010-->
+    <assembly>
+        <name>InfragisticsSL4.Controls.Menus.XamTree.v11.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Controls.Menus.XamTree">
+            <summary>
+            Displays information in a hierarchical structure by using collapsible nodes
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Menus.XamTree"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnApplyTemplate">
+            <summary>
+            Overrides the framework invocation when the template is applied.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.GetContainerForItemOverride">
+            <summary>
+            Overrides the framework invocation when a new container is needed.
+            </summary>
+            <returns>A new <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.IsItemItsOwnContainerOverride(System.Object)">
+            <summary>
+            Overrides the framework invocation to test if an item is already a container.
+            </summary>
+            <param name="item">The object to test if it is a container.</param>
+            <returns>Returns true if the item is already a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Overrides the framework invocation to prepare a container.
+            </summary>
+            <param name="element">A <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> that needs to be prepared.</param>
+            <param name="item">The data to be displayed by the <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Overrides the framework invocation when a user clicks the left mouse button.
+            </summary>
+            <param name="e">Data about the mousedown event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Overrides the framework invocation when a user clicks a key.
+            </summary>
+            <param name="e">Data about the keydown event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnKeyUp(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Overrides the framework invocation when a user releases a key.
+            </summary>
+            <param name="e">Data about the KeyUp event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnGotFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.GotFocus"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnLostFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            Overrides the framework invocation when this control loses focus.
+            </summary>
+            <param name="e">Data about the lostfocus event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Overrides the framework invocation when a user releases the left mouse button.
+            </summary>
+            <param name="e">Data about the left mouse button up event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnMouseMove(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Overrides the framework invocation when a user moves the mouse over the control.
+            </summary>
+            <param name="e">Data about the mouse move event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnMouseEnter(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.MouseEnter"/> event occurs.
+            </summary>
+            <param name="e">The data for the event</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnMouseLeave(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.MouseLeave"/> event occurs.
+            </summary>
+            <param name="e">The data for the event</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnCreateAutomationPeer">
+            <summary>
+            Overrides the framework invocation when an automation peer needs to be created.
+            </summary>
+            <returns>The a new XamTreeAutomationPeer.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs)">
+            <summary>
+            Called when the MouseWheel is raised on the <see cref="T:Infragistics.Controls.Menus.XamTree"/>
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.ActiveItemProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.ActiveItem"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.HierarchicalItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.HierarchicalItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.CollapsedIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.CollapsedIconTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.ExpandedIconTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.ExpandedIconTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.ItemContainerStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.ItemContainerStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.CheckBoxVisibilityProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.CheckBoxVisibility"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.CheckBoxModeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.CheckBoxMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.CheckBoxStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.CheckBoxStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.IsCheckBoxThreeStateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.IsCheckBoxThreeState"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.SelectionTypeProperty">
+            <summary>
+            Identifies the <see cref="T:Infragistics.Controls.Menus.ItemSelectionType"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.IsDraggableProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.IsDraggable"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.DefaultItemsContainerProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.DefaultItemsContainer"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.NoDropCursorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.NoDropCursor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.DragCursorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.DragCursor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTree.CopyCursorProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTree.CopyCursor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.ScrollItemIntoView(System.Object)">
+            <summary>
+            Brings a given item in the tree into the viewport.
+            </summary>
+            <param name="dataItem">The object to be displayed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.ResolveXamTreeItem(System.Object)">
+            <summary>
+            Allows access to the <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> for a given object.
+            </summary>
+            <param name="dataItem">The object that is wrapped in a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.</param>
+            <returns>
+            A XamTreeItem that wraps the passed in object.
+            If a XamTreeItem hasn't been created for the object as of yet, null will be returned. 
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.ClearTree">
+            <summary>
+            This method should be used after setting the ItemsSource to null to remove any existing items from the <see cref="P:Infragistics.Controls.Menus.XamTree.SelectedItems"/> and clear internal tracking in the <see cref="T:Infragistics.Controls.Menus.XamTree"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.ResolveIndexOfItem(System.Windows.Controls.ItemsControl,System.Object,Infragistics.Controls.Menus.XamTreeItem)">
+            <summary>
+            Resolves the actual index of the item in the specified items control.
+            </summary>
+            <param name="parentControl">The ItemsControl to search.</param>
+            <param name="data">The underlying data to search for. </param>
+            <param name="item">If the data isn't in the items control, lets search for the XamTreeItem.</param>
+            <returns>The index of the item in the parentControl.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.GetNextItem(System.Object,System.Boolean,System.Boolean)">
+            <summary>
+            Returns the next visible item in the <see cref="T:Infragistics.Controls.Menus.XamTree"/>.
+            </summary>
+            <param name="current">The item from which it should start walking.</param>
+            <param name="walkChildren">Whether or not children should be ignored.</param>
+            <param name="walkSiblings">Whether or not siblings should be ignored.</param>
+            <returns>The next visible item in the tree.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.GetPreviousItem(System.Object)">
+            <summary>
+            Returns the next previous visible item in the <see cref="T:Infragistics.Controls.Menus.XamTree"/>.
+            </summary>
+            <param name="current">The item from which it should start walking.</param>
+            <returns>The previous item in the XamTree, if no previous sibling then the parent</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.GetLastChild(System.Object)">
+            <summary>
+            Finds the last child of the children that are expanded.
+            </summary>
+            <param name="parent">The parent to find the last child of.</param>
+            <returns>The last child of the parent.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.RegisterXamTreeNode(Infragistics.Controls.Menus.XamTreeItem,System.Object,System.Windows.DataTemplate)">
+            <summary>
+            Registers the <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> with the <see cref="T:Infragistics.Controls.Menus.XamTree"/>.
+            If the XamTreeItem is generated, and already registered, the item that was passed in will be ignored and the registered item will 
+            be used in its stead. Also, if the item isn't registered, but is generated and the defaultItemTemplate contains a XamTreeItem,
+            that item will be registered in place of the passed in item. 
+            </summary>
+            <param name="item">The XamTreeItem that should be registered with the XamTree. </param>
+            <param name="key">The object that is the data of the DataTeeItem.</param>
+            <param name="defaultItemTemplate">A DataTemplate that should contain a XamTreeItem as its content, which will be used instead of the passed in item.</param>
+            <returns>Returns the XamTreeItem that was registered with the tree. This isn't necessarily the same XamTreeItem that was passed in.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.SelectItem(System.Object,System.Boolean)">
+            <summary>
+            Selects a given item.
+            </summary>
+            <param name="item">The Item to select.</param>
+            <param name="viaUI">If the item was selected using the UI</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.ClearSelection">
+            <summary>
+            Unselects all currently selected nodes.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.UnselectItem(System.Object)">
+            <summary>
+            Unselect a given item.
+            </summary>
+            <param name="item">The item to unselect.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.IsItemSelected(System.Object)">
+            <summary>
+            Returns whether or not an item is selected.
+            </summary>
+            <param name="item">The item to test if it is selected.</param>
+            <returns>Returns true if the item is selected.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnActiveItemChanging(System.Object,System.Object)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.ActiveItemChanging"/> event.
+            </summary>
+            <param name="oldItem">The item that was active.</param>
+            <param name="newItem">The item that is becoming active.</param>
+            <returns>Returns true if the event was canceled.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnActiveItemChanged">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.ActiveItemChanged"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnSelectionChanged(System.Object[])">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.SelectionChanged"/> event.
+            </summary>
+            <param name="previouslySelected">A list of items that were selected prior to the selection changing.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemCheckChanging(System.Object,System.Nullable{System.Boolean})">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemCheckChanging"/> event.
+            </summary>
+            <param name="item">The item being checked/unchecked.</param>
+            <param name="isChecked">The state it is being set to.</param>
+            <returns>Returns true if the event was canceled.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemCheckChanged(System.Object,System.Nullable{System.Boolean})">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemCheckChanged"/> event.
+            </summary>
+            <param name="item">The item that has been checked.</param>
+            <param name="isChecked">What its state has been set to.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemDragStart(Infragistics.Controls.Menus.DragStartEventArgs)">
+            <summary>
+            Raises a <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragStart"/> event.
+            </summary>
+            <param name="e">Data about the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragStart"/> event.</param>
+            <returns>Returns true if the event was canceled.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemDragMove(System.Object,System.Windows.Point)">
+            <summary>
+            Raises a <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragMove"/> event.
+            </summary>
+            <param name="source">The item being dragged.</param>
+            <param name="point">The location of the mouse.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemDragEnter(System.Object,System.Object)">
+            <summary>
+            Raises a <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragEnter"/> event.
+            </summary>
+            <param name="source">The item being dragged.</param>
+            <param name="target">The item it is dragged over.</param>
+            <returns>Returns true if the event was canceled.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemDragLeave(System.Object,System.Object)">
+            <summary>
+            Raises a <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragLeave"/> event.
+            </summary>
+            <param name="source">The item being dragged.</param>
+            <param name="target">The item it was being dragged over.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemDropped(System.Object,System.Object,Infragistics.Controls.Menus.DropPosition)">
+            <summary>
+            Raises a <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDropped"/> event.
+            </summary>
+            <param name="source">The item being dropped.</param>
+            <param name="target">The item it is being dropped on.</param>
+            <param name="position">If it is being dropped before, on or after the item.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemDragEnded(System.Object,System.Object)">
+            <summary>
+            Raises an <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragEnded"/> event.
+            </summary>
+            <param name="source">The item that is no longer being dragged.</param>
+            <param name="target">The invalid item it was dropped on.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemDragCanceled(System.Object)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragCanceled"/> event.
+            </summary>
+            <param name="source">The object that was being dragged.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemExpansionChanging(System.Object,System.Boolean)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemExpansionChanging"/> event.
+            </summary>
+            <param name="item">The <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> that is being expanded/collapsed.</param>
+            <param name="newValue">True if the XamTreeItem is being expanded, false if it is being collapsed.</param>
+            <returns>Returns true if the event was canceled.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.OnItemExpansionChanged(System.Object,System.Boolean)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemExpansionChanged"/> event.
+            </summary>
+            <param name="item">The <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> being expanded/collapsed.</param>
+            <param name="newValue">True the XamTreeitem was expanded, false if it was collapsed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTree.FinishedLoadingPersistence">
+            <summary>
+            Allows an object to perform an operation, after it's been loaded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.ActiveItem">
+            <summary>
+            Gets or sets the currently active item.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.HierarchicalItemTemplate">
+            <summary>
+            Gets or sets a multi level data template for this tree.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.CollapsedIconTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that will be used as an icon when a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is in the collapsed state. 
+            This DataTemplate will be applied for each XamTreeItem in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> unless the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.CollapsedIcon"/> is set explicitly on the XamTreeItem itself.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.ExpandedIconTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that will be used as an icon when a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is in the expanded state. 
+            This DataTemplate will be applied for each XamTreeItem in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> unless the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.ExpandedIcon"/> is set explicitly on the XamTreeItem itself.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.ItemContainerStyle">
+            <summary>
+            Gets or sets the <see cref="P:System.Windows.FrameworkElement.Style"/> that will be applied to a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.
+            This Style will be applied for each XamTreeItem in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> unless the Style property is set explicitly on the XamTreeItem itself.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.CheckBoxVisibility">
+            <summary>
+            Gets or sets whether a <see cref="T:System.Windows.Controls.CheckBox"/> will be visible on a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.
+            This visibility will be applied for each XamTreeItem in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> unless the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.CheckBoxVisibility"/> property is set explicitly on the XamTreeItem itself.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.CheckBoxMode">
+            <summary>
+            Gets or sets how CheckBoxes will be treated in the <see cref="T:Infragistics.Controls.Menus.XamTree"/>
+            <para>Manual - Each CheckBox will be treated independently of all other CheckBoxes.</para>
+            <para>Auto - Each CheckBox will notify its parent and children of its current checked state, and update them appropriately.</para>
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.CheckBoxStyle">
+            <summary>
+            Gets/Sets the style for the <see cref="T:System.Windows.Controls.CheckBox"/> on all <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>s  in the Tree
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.IsCheckBoxThreeState">
+            <summary>
+            Gets or sets if each CheckBox in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> is ThreeState.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.SelectionType">
+            <summary>
+            Gets or sets what type of selection is allowed for the end user.
+            <para>Single - Only one <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> can be selected at any given time.</para>
+            <para>Extended - Multiple XamTreeItems can be selected via the ctrl and shift keys.</para>
+            <para>None - Selection will be turned off for the <see cref="T:Infragistics.Controls.Menus.XamTree"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.XamTreeItems">
+            <summary>
+            Gets a collection of <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>s. 
+            If a XamTreeItem hasn't been generated for an object as of yet, it will be generated here.
+            Note: the XamTreeItem returned might not be part of the VisualTree at this point. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.IsDraggable">
+            <summary>
+            Determines whether a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> can be dragged via a Drag and Drop operation..
+            IsDroppable will be applied for each XamTreeItem in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> unless the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.IsDraggable"/> property is set explicitly on the XamTreeItem itself.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.DefaultItemsContainer">
+            <summary>
+            Gets or sets a DataTemplate that expects a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> as it's root content. 
+            The XamTreeItem will be used as the default container for all generated XamTreeItems.
+            If the root content of the DataTemplate is not a XamTreeItem, the property will be ignored and an Empty XamTreeItem will be used instead.
+            This DataTemplate will be used for each XamTreeitem in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> unless the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.DefaultItemsContainer"/> is set explicitly on the XamTreeItem itself.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.SelectedItems">
+            <summary>
+            Gets a collection that contains all the items in the <see cref="T:Infragistics.Controls.Menus.XamTree"/> that are currently selected. 
+            This collection can also be used to select and unselect addtional items.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.NoDropCursor">
+            <summary>
+            Gets or sets the visual tree that is used when the use is unable to drop during a drag operation.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.DragCursor">
+            <summary>
+            Gets or sets the visual tree that is used when moving during a drag operation.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.CopyCursor">
+            <summary>
+            Gets or sets the visual tree that is used when copying during a drag operation.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.MouseOverItem">
+            <summary>
+            Gets/Sets the <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> that the mouse is currently over. 
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ActiveItemChanging">
+            <summary>
+            Occurs when the <see cref="P:Infragistics.Controls.Menus.XamTree.ActiveItem"/> is changing.
+            This event is cancellable.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ActiveItemChanged">
+            <summary>
+            Occurs when the <see cref="P:Infragistics.Controls.Menus.XamTree.ActiveItem"/> has changed.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.SelectionChanged">
+            <summary>
+            Occurs when the selection has changed.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemCheckChanging">
+            <summary>
+            Occurs when one of the <see cref="P:Infragistics.Controls.Menus.XamTree.XamTreeItems"/> is being checked.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemCheckChanged">
+            <summary>
+            Occurs when one of the <see cref="P:Infragistics.Controls.Menus.XamTree.XamTreeItems"/> has been checked.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemDragStart">
+            <summary>
+            Occurs when drop and drag of a <see cref="P:Infragistics.Controls.Menus.XamTree.XamTreeItems"/> is starting.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemDragMove">
+            <summary>
+            Occurs when an item being dragged is moved.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemDragEnter">
+            <summary>
+            Occurs when an item is dragged over another <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemDragLeave">
+            <summary>
+            Occurs during a Drag and Drop operation when the mouse leaves a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemDropped">
+            <summary>
+            Occurs when a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is droped on another XamTreeItem.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemDragEnded">
+            <summary>
+            Occurs when an Item is no longer being dragged.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemDragCanceled">
+            <summary>
+            Occurs when an item is being dragged and the drag operation is canceled.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemExpansionChanging">
+            <summary>
+            Occurs when an item is expanding.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTree.ItemExpansionChanged">
+            <summary>
+            Occurs when an Item was expanded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.PropertiesToIgnore">
+            <summary>
+            Gets a List of properties that shouldn't be saved when the PersistenceManager goes to save them.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTree.PriorityProperties">
+            <summary>
+            Gets a List of properties that should be applied, before even trying to look at any other property on the object.
+            </summary>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.XamTreeAutomationPeer">
+            <summary>
+            An automation peer for <see cref="T:Infragistics.Controls.Menus.XamTree"/> allowing screenreaders and programatic user interaction.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeAutomationPeer.#ctor(Infragistics.Controls.Menus.XamTree)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamTreeAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The <see cref="T:Infragistics.Controls.Menus.XamTree"/> that this automation peer controls.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeAutomationPeer.GetChildrenCore">
+            <summary>
+            Gets the collection of child elements of the <see cref="T:System.Windows.Controls.ItemsControl"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.ItemsControlAutomationPeer"/>.
+            </summary>
+            <returns>The collection of child elements.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Overrides the framework invocation of when a request is made for what types of user interaction are avalible. 
+            </summary>
+            <param name="patternInterface">This is the type of user interaction requested.</param>
+            <returns>An object that can handle this pattern or null if none available.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Overrides the framework invocation of what generic type of control this is.
+            </summary>
+            <returns>The <see cref="T:System.Windows.Automation.Peers.AutomationControlType"/> that describes this control.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeAutomationPeer.GetClassNameCore">
+            <summary>
+            Overrides the framework invocation requesting a string that describes this control.
+            </summary>
+            <returns>A string describing the name of this control.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeAutomationPeer.GetSelection">
+            <summary>
+            Gets the currently selected items.
+            </summary>
+            <returns>A list of providers for each of the items that are selected.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamTreeAutomationPeer.CanSelectMultiple">
+            <summary>
+            Gets a value indicating whether the <see cref="T:Infragistics.Controls.Menus.XamTree"/> allows selection of multiple items.
+            </summary>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamTreeAutomationPeer.IsSelectionRequired">
+            <summary>
+            Gets a value indicating whetherthe <see cref="T:Infragistics.Controls.Menus.XamTree"/> requires selection of items.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.XamTreeItem">
+            <summary>
+            Represents a selectable draggable item in a <see cref="P:Infragistics.Controls.Menus.XamTreeItem.XamTree"/>
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnApplyTemplate">
+            <summary>
+            Overrides the framework invocation when the template is applied.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.GetContainerForItemOverride">
+            <summary>
+            Overrides the framework invocation when a container is needed.
+            </summary>
+            <returns>A new <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/></returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.IsItemItsOwnContainerOverride(System.Object)">
+            <summary>
+            Overrides the framework invocation testing if an item is already a container.
+            </summary>
+            <param name="item">The item to test.</param>
+            <returns>Returns true if its already a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/></returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Overrides the framework invocation of preparing a given <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.
+            </summary>
+            <param name="element">The <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> to prepare.</param>
+            <param name="item">The content of the <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Overrides the framework invocation when an item is added or removed for the objects in the tree.
+            </summary>
+            <param name="e">Data on what items changed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Overrides the framework invocation when a key is pressed.
+            </summary>
+            <param name="e">Data on which key was pressed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Overrides the framework invocation when the left mouse button is clicked.
+            </summary>
+            <param name="e">Data on the current state of the mouse.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Overrides the framework invocation when the left mouse button is released.
+            </summary>
+            <param name="e">Data on the current state of the mouse.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnMouseMove(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Overrides the framework invocation when the mouse is moved.
+            </summary>
+            <param name="e">Data on the current state of the mouse.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnCreateAutomationPeer">
+            <summary>
+            Overrides the framework invocation when an AutomationPeer is needed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the "arrange" pass of Silverlight Layout.
+            </summary>
+            <param name="finalSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the "measure" pass of Silverlight Layout.
+            </summary>
+            <param name="availableSize"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.IsExpandedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.IsExpanded"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.HeaderProperty">
+            <summary>
+            Identifies the <see cref="T:System.Windows.Interop.Content"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.IsSelectedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.IsSelected"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.HierarchicalItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.HierarchicalItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.LevelProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.Level"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.CollapsedIconProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.CollapsedIcon"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.ExpandedIconProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.ExpandedIcon"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.CheckBoxVisibilityProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.CheckBoxVisibility"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.IsCheckedProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.IsChecked"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.SetIsChecked(System.Nullable{System.Boolean})">
+            <summary>
+            Updates the _isChecked member, to match the actual IsChecked property
+            This is neccessary, as the Tree might be null at the time its set, so we need to wait until its not
+            so that we can fire the events and properly perform the Auto checkbox mode
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.SetIsCheckedSilently(System.Nullable{System.Boolean})">
+             <summary>
+            This is so that when we're in Auto mode, we can update the Checked state of the node, without triggering 
+            events. If the _isChecked is set before the IsChecked, then we won't hit the event firing code in the PropertyChanged  
+             </summary>
+             <param name="value"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.WalkThroughChildrenAndEnsureCheckState">
+            <summary>
+            Ensure that the IsChecked was actually property set while a tree was attached to it.
+            Do this for all nodes...as we 're in Auto mode. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.UpdateAllRelativesCheckState">
+            <summary>
+            The IsChecked property has been set directly for this node...as opposed to indirectly by being set silently. 
+            This means we should update all of our children, granchildren, parents, grand parents, etc...
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.UpdateChildIsChecked(Infragistics.Controls.Menus.XamTreeItem,System.Nullable{System.Boolean})">
+            <summary>
+            Update the checked state of a child and all it's children, this is done silently. 
+            </summary>
+            <param name="item"></param>
+            <param name="isChecked"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.UpdateCheckStateFromChildren">
+            <summary>
+            Update the checked state of a node, based on the values from its direct children. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.IsDraggableProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.IsDraggable"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.TargetUriProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.TargetUri"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.TargetFrameProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.TargetFrame"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.DefaultItemsContainerProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.DefaultItemsContainer"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.XamTreeItem.CheckBoxStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.CheckBoxStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.ScrollItemIntoView">
+            <summary>
+            Scrolls the current <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> into view.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.PrepareContent(Infragistics.Controls.Menus.XamTree,System.Object,System.Object,System.Windows.DataTemplate,Infragistics.Controls.HierarchicalDataTemplate,System.Windows.Style,System.String)">
+            <summary>
+            Prepares a given <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>'s data using the data template.
+            </summary>
+            <param name="tree">The parent <see cref="P:Infragistics.Controls.Menus.XamTreeItem.XamTree"/>.</param>
+            <param name="parent">The parent <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.</param>
+            <param name="data">The content for this XamTreeItem.</param>
+            <param name="itemTemplate">The template for the content of this XamTreeItem.</param>
+            <param name="hierarchicalItemTemplate">The template describing the content for this item and which its children are.</param>
+            <param name="itemsStyle">A style to be applied to this XamTreeItem's content.</param>
+            <param name="displayMemberPath">The path of the text, if no template applied.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.EnsureCommonVisualState">
+            <summary>
+            Sets the appropriate visual state given the properties of this XamTreeItem.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the PropertyChanged event.
+            </summary>
+            <param name="propertyName">The name of the property that has changed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItem.FinishedLoadingPersistence">
+            <summary>
+            Allows an object to perform an operation, after it's been loaded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.IsExpanded">
+            <summary>
+            Gets or sets if the current item's children are expanded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.HasChildren">
+            <summary>
+            Gets true if the current item has children.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.Header">
+            <summary>
+            Gets or sets the content for this node.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.XamTree">
+            <summary>
+            Gets the parent <see cref="P:Infragistics.Controls.Menus.XamTreeItem.XamTree"/> of this <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> or null if there is no parent.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.ParentItem">
+            <summary>
+            Gets the parent object of this <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.IsSelected">
+            <summary>
+            Gets or sets if the current <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is selected.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.HierarchicalItemTemplate">
+            <summary>
+            Gets or sets the <see cref="T:Infragistics.Controls.HierarchicalDataTemplate"/> for this <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> that describes the visual tree of this item, and what property its children are.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.Level">
+            <summary>
+             Gets how deep in the tree this <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.Index">
+            <summary>
+            Gets the index of the current <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> relative to its peers.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.CollapsedIcon">
+            <summary>
+            Gets/Sets the content that will be displayed on a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> when it is collapsed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.ExpandedIcon">
+            <summary>
+            Gets/Sets the content that will be displayed on a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> when it is expanded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.CheckBoxVisibility">
+            <summary>
+            Gets or sets if the Checkbox on this particular item is shown and if it should take up space.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.CheckBoxVisibilityResolved">
+            <summary>
+            Gets if the checkbox is shown, if the visibility is set to default returns its lists checkbox Visibility.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.IsChecked">
+            <summary>
+            Gets or sets if the checkbox for the current <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is checked.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.XamTreeItems">
+            <summary>
+            Gets a collection of <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>'s of the children.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.Data">
+            <summary>
+            Gets the object of the ItemSource for the current <see cref="P:Infragistics.Controls.Menus.XamTreeItem.XamTreeItems"/>.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.IsDraggable">
+            <summary>
+            Gets or sets if the current <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is draggable or should use its parents value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.IsDraggableResolved">
+            <summary>
+            Gets if the current <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> is draggable.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.TargetUri">
+            <summary>
+            Gets or sets a uri for the current <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> that will be opened in the frame specified by the TargetFrame when clicked by the user.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.TargetFrame">
+            <summary>
+            Gets or sets the frame using the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.TargetUri"/> property that will be loaded when the users clicks this <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.DefaultItemsContainer">
+            <summary>
+            Gets or sets the visual tree that should be used for new <see cref="P:Infragistics.Controls.Menus.XamTreeItem.XamTreeItems"/> of its children.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.CheckBoxStyle">
+            <summary>
+            Gets/Sets the style for the <see cref="P:Infragistics.Controls.Menus.XamTreeItem.CheckBox"/> of this particular item.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.CheckBoxStyleResolved">
+            <summary>
+            Gets the style for the CheckBox of a Node. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.ExpansionIndicator">
+            <summary>
+            Gets the current expansion indicator for this item.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.IsTempItem">
+            <summary>
+            Gets/sets whether this item is actually just a temporary item used as a placeholder until the fx generates an item.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Menus.XamTreeItem.PropertyChanged">
+            <summary>
+            Occurs when one of the properties of this XamTreeItem have changed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.PropertiesToIgnore">
+            <summary>
+            Gets a List of properties that shouldn't be saved when the PersistenceManager goes to save them.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItem.PriorityProperties">
+            <summary>
+            Gets a List of properties that should be applied, before even trying to look at any other property on the object.
+            </summary>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.XamTreeItemAutomationPeer">
+            <summary>
+            An automation peer for <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> allowing screenreaders and programatic user interaction.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.#ctor(Infragistics.Controls.Menus.XamTreeItem)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamTreeItemAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> that this automation peer controls.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Overrides the framework invocation of what generic type of control this is.
+            </summary>
+            <returns>The <see cref="T:System.Windows.Automation.Peers.AutomationControlType"/> that describes this control.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.GetChildrenCore">
+            <summary>
+            Gets the collection of child elements of the <see cref="T:System.Windows.Controls.ItemsControl"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.ItemsControlAutomationPeer"/>.
+            </summary>
+            <returns>The collection of child elements.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.GetClassNameCore">
+            <summary>
+            Overrides the framework invocation requesting a string that describes this control.
+            </summary>
+            <returns>A string describing the name of this control.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Overrides the framework invocation of when a request is made for what types of user interaction are avalible. 
+            </summary>
+            <param name="patternInterface">This is the type of user interaction requested.</param>
+            <returns>An object that can handle this pattern or null if none available.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.RaiseExpandCollapsePropertyChangedEvent(System.Boolean,System.Boolean)">
+            <summary>
+            Raises the expand collapse automation event.
+            </summary>
+            <param name="oldValue">if set to <c>true</c> The old value.</param>
+            <param name="newValue">if set to <c>true</c> The new value.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.RaiseIsSelectedPropertyChangedEvent(System.Boolean)">
+            <summary>
+            Raises the automation is selected changed.
+            </summary>
+            <param name="isSelected">if set to <c>true</c> when property IsSelected is set to <c>true</c>.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.OwningTreeItem_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles the PropertyChanged event of the OwningTreeItem property as XamTree.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.ScrollIntoView">
+            <summary>
+            Scrolls the item this automation peer controls into view.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.AddToSelection">
+            <summary>
+            Selects the item this automation peer controls.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.RemoveFromSelection">
+            <summary>
+            Deselects the item this automation peer controls.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.Select">
+            <summary>
+            Clears the current selection then selects the item this automation peer controls.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.Collapse">
+            <summary>
+            Hides all nodes, controls, or content that are descendants of the control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.Expand">
+            <summary>
+            Displays all child nodes, controls, or content of the control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.IsSelected">
+            <summary>
+            Gets a value indicating whether the item this automation peer controls is selected.
+            </summary>
+            <value></value>
+            <returns>true if the element is selected; otherwise, false.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.SelectionContainer">
+            <summary>
+            Gets the provider for this control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamTreeItemAutomationPeer.ExpandCollapseState">
+            <summary>
+            Gets the state (expanded or collapsed) of the control.
+            </summary>
+            <value></value>
+            <returns>The state (expanded or collapsed) of the control.</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.XamTreeItemsCollection">
+            <summary>
+            A collection of <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>'s.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItemsCollection.#ctor(Infragistics.Controls.Menus.XamTree,Infragistics.Controls.Menus.XamTreeItem)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Menus.XamTreeItemsCollection"/> class.
+            </summary>
+            <param name="tree">The parent <see cref="T:Infragistics.Controls.Menus.XamTree"/> of the XamTreeItemsCollection.</param>
+            <param name="owner">The <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> owner of the XamTreeItemsCollection.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.XamTreeItemsCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator for this collection.
+            </summary>
+            <returns>Returns an enumerator for this collection.</returns>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.XamTreeItemsCollection.Item(System.Int32)">
+            <summary>
+            Returns a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/> of a given index.
+            </summary>
+            <param name="index">The index of the item to return.</param>
+            <returns>A XamTreeItem of the given index.</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.ItemSelectionType">
+            <summary>
+            Specifies the type of selection that will occcur. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.ItemSelectionType.Single">
+            <summary>
+            Only one item can be selected at any given time.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.ItemSelectionType.Extended">
+            <summary>
+            Multiple items can be selected using the ctrl and shift keys.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.ItemSelectionType.None">
+            <summary>
+            No item can be selected.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.CheckBoxMode">
+            <summary>
+            Specifies how the CheckBox will be used on the XamTree.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.CheckBoxMode.Manual">
+            <summary>
+            Each <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/>'s CheckBox is independent of every other XamTreeItem in the <see cref="T:Infragistics.Controls.Menus.XamTree"/>
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.CheckBoxMode.Auto">
+            <summary>
+            In this mode all Leaf XamWebTreeitems are 2 state checkboxes, and all other DataTeeItems are tristate.
+            The checked state of an item will cause its children to placed in the same state and its parent to be notified.
+            If all of the children of the parent are in the same state, the parent will be in the same state, otherwise it will be in a third state.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DropPosition">
+            <summary>
+            Specifies the place in which an item was Dropped during a Drag and Drop operation. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.DropPosition.DropBefore">
+            <summary>
+            The Source item was dropped before the Target item.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.DropPosition.DropAfter">
+            <summary>
+            The Source item was dropped after the Target item.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.DropPosition.DropOnto">
+            <summary>
+            The Source item was dropped directly on top of the Target item.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DragAction">
+            <summary>
+            Specifies the current type of drag operation.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.DragAction.Invalid">
+            <summary>
+            The drag operation is on an invalid area to be droped.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.DragAction.Move">
+            <summary>
+            The drag operation is on a valid drop location and in a move state.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Menus.DragAction.Copy">
+            <summary>
+            The drag operation is on a valid drop location and is a copy state.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.ActiveItemChangingEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ActiveItemChanging"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ActiveItemChangingEventArgs.OldItem">
+            <summary>
+            Returns the object that was previously active.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ActiveItemChangingEventArgs.NewItem">
+            <summary>
+            Returns the object that is going to be active.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ActiveItemChangingEventArgs.Cancel">
+            <summary>
+            Returns/Sets if the changing the active item will succeed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.CheckChangingEventArgs">
+            <summary>
+            Provides data for the <see cref="M:Infragistics.Controls.Menus.XamTree.OnItemCheckChanging(System.Object,System.Nullable{System.Boolean})"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.CheckChangingEventArgs.IsChecked">
+            <summary>
+            Returns what the IsChecked state is being set to.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.CheckChangingEventArgs.Item">
+            <summary>
+            Returns the object that is being checked or unchecked.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.CheckChangingEventArgs.Cancel">
+            <summary>
+            Returns/Sets if the changing checked state of the item will succeed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.CheckChangedEventArgs">
+            <summary>
+            Provides data for the <see cref="M:Infragistics.Controls.Menus.XamTree.OnItemCheckChanged(System.Object,System.Nullable{System.Boolean})"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.CheckChangedEventArgs.IsChecked">
+            <summary>
+            Returns what the IsChecked state has been set to.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.CheckChangedEventArgs.Item">
+            <summary>
+            Returns the object that has been checked or unchecked.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DroppedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDropped"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DroppedEventArgs.DropPosition">
+            <summary>
+            Returns the <see cref="P:Infragistics.Controls.Menus.DroppedEventArgs.DropPosition"/> that the item was droped at.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DroppedEventArgs.SourceItem">
+            <summary>
+            Returns the object that was droped.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DroppedEventArgs.TargetItem">
+            <summary>
+            Returns the object that the item was droped on.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DragStartEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragStart"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragStartEventArgs.SourceItem">
+            <summary>
+            Returns the object that the user is starting to drag.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragStartEventArgs.DragContent">
+            <summary>
+            Returns/Sets the content that should be displayed while dragging.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragStartEventArgs.Cancel">
+            <summary>
+            Returns/Sets if the user will be able to drag this item.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DragEnterEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragEnter"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragEnterEventArgs.SourceItem">
+            <summary>
+            Returns the item that is being dragged.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragEnterEventArgs.TargetItem">
+            <summary>
+            Returns the item that was dragged over.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragEnterEventArgs.Cancel">
+            <summary>
+            Returns/Sets if the changing of the checked state will succeed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DragLeaveEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragLeave"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragLeaveEventArgs.SourceItem">
+            <summary>
+            Returns the item that is being dragged.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragLeaveEventArgs.TargetItem">
+            <summary>
+            Returns the item that the object was dropped on.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DragMoveEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragMove"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragMoveEventArgs.SourceItem">
+            <summary>
+            Returns the item that is being dragged.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragMoveEventArgs.CursorPosition">
+            <summary>
+            Returns the position of the cursor.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DragCanceledEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragCanceled"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragCanceledEventArgs.SourceItem">
+            <summary>
+            Returns the item that was being dragged.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.DragEndedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemDragEnded"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragEndedEventArgs.SourceItem">
+            <summary>
+            Returns the item that was being dragged.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragEndedEventArgs.TargetItem">
+            <summary>
+            Returns the item that it was dragged on to.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.DragEndedEventArgs.DragOperation">
+            <summary>
+            Returns if the item was droped in a copy state.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.ExpansionChangingEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemExpansionChanging"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ExpansionChangingEventArgs.IsExpanded">
+            <summary>
+            Returns what the IsExpanded is being set to.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ExpansionChangingEventArgs.SourceItem">
+            <summary>
+            Returns the item that is being expanded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ExpansionChangingEventArgs.Cancel">
+            <summary>
+            Returns/Sets if the changing of the expanded state will succeed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.ExpansionChangedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Infragistics.Controls.Menus.XamTree.ItemExpansionChanged"></see>, events of a <see cref="T:Infragistics.Controls.Menus.XamTree"/> control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ExpansionChangedEventArgs.IsExpanded">
+            <summary>
+            Returns what the IsExpanded hsa been set to.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Menus.ExpansionChangedEventArgs.SourceItem">
+            <summary>
+            Returns the item that was Expanded.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Menus.Primitives.XamTreeLeftMarginIndentationValueConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> that will create a thickness with only a left value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.XamTreeLeftMarginIndentationValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Creates a thickness with a Left value, based on the the level of a node, and a passed in indentation width.
+            </summary>
+            <param name="value">An integer that represents the level of a <see cref="T:Infragistics.Controls.Menus.XamTreeItem"/></param>
+            <param name="targetType"></param>
+            <param name="parameter">A double that represents the indentation that should be applied.</param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Controls.Menus.Primitives.XamTreeLeftMarginIndentationValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Not Implemented
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,70 @@
+﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="HDIMSAPP" EntryPointType="HDIMSAPP.App" RuntimeVersion="4.0.50826.0">
+  <Deployment.Parts>
+    <AssemblyPart x:Name="HDIMSAPP" Source="HDIMSAPP.dll" />
+    <AssemblyPart x:Name="ICSharpCode.SharpZLib.Silverlight" Source="ICSharpCode.SharpZLib.Silverlight.dll" />
+    <AssemblyPart x:Name="ImageTools.Controls" Source="ImageTools.Controls.dll" />
+    <AssemblyPart x:Name="ImageTools" Source="ImageTools.dll" />
+    <AssemblyPart x:Name="ImageTools.Filtering" Source="ImageTools.Filtering.dll" />
+    <AssemblyPart x:Name="ImageTools.IO.Bmp" Source="ImageTools.IO.Bmp.dll" />
+    <AssemblyPart x:Name="ImageTools.IO.Gif" Source="ImageTools.IO.Gif.dll" />
+    <AssemblyPart x:Name="ImageTools.IO.Jpeg" Source="ImageTools.IO.Jpeg.dll" />
+    <AssemblyPart x:Name="ImageTools.IO.Png" Source="ImageTools.IO.Png.dll" />
+    <AssemblyPart x:Name="ImageTools.Utils" Source="ImageTools.Utils.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Charts.XamDataChart.v11.2" Source="InfragisticsSL4.Controls.Charts.XamDataChart.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Editors.v11.2" Source="InfragisticsSL4.Controls.Editors.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Editors.XamCalendar.v11.2" Source="InfragisticsSL4.Controls.Editors.XamCalendar.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Editors.XamColorPicker.v11.2" Source="InfragisticsSL4.Controls.Editors.XamColorPicker.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Editors.XamComboEditor.v11.2" Source="InfragisticsSL4.Controls.Editors.XamComboEditor.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Editors.XamDateTimeInput.v11.2" Source="InfragisticsSL4.Controls.Editors.XamDateTimeInput.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Editors.XamMaskedInput.v11.2" Source="InfragisticsSL4.Controls.Editors.XamMaskedInput.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Grids.ExcelExporter.v11.2" Source="InfragisticsSL4.Controls.Grids.ExcelExporter.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Grids.XamGrid.v11.2" Source="InfragisticsSL4.Controls.Grids.XamGrid.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Interactions.XamDialogWindow.v11.2" Source="InfragisticsSL4.Controls.Interactions.XamDialogWindow.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Interactions.XamHtmlViewer.v11.2" Source="InfragisticsSL4.Controls.Interactions.XamHtmlViewer.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Layouts.XamTileManager.v11.2" Source="InfragisticsSL4.Controls.Layouts.XamTileManager.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Lists.XamTileView.v11.2" Source="InfragisticsSL4.Controls.Lists.XamTileView.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Maps.XamOrgChart.v11.2" Source="InfragisticsSL4.Controls.Maps.XamOrgChart.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Menus.XamDataTree.v11.2" Source="InfragisticsSL4.Controls.Menus.XamDataTree.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Menus.XamMenu.v11.2" Source="InfragisticsSL4.Controls.Menus.XamMenu.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Menus.XamOutlookBar.v11.2" Source="InfragisticsSL4.Controls.Menus.XamOutlookBar.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Menus.XamTree.v11.2" Source="InfragisticsSL4.Controls.Menus.XamTree.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.DataVisualization.v11.2" Source="InfragisticsSL4.DataVisualization.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Documents.Excel.v11.2" Source="InfragisticsSL4.Documents.Excel.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.v11.2" Source="InfragisticsSL4.v11.2.dll" />
+    <AssemblyPart x:Name="Microsoft.CSharp" Source="Microsoft.CSharp.dll" />
+    <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
+    <AssemblyPart x:Name="SilverlightFileUploader" Source="SilverlightFileUploader.dll" />
+    <AssemblyPart x:Name="System.ComponentModel.DataAnnotations" Source="System.ComponentModel.DataAnnotations.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls.Data" Source="System.Windows.Controls.Data.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls.Data.Input" Source="System.Windows.Controls.Data.Input.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls" Source="System.Windows.Controls.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls.Navigation" Source="System.Windows.Controls.Navigation.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls.Toolkit" Source="System.Windows.Controls.Toolkit.dll" />
+    <AssemblyPart x:Name="System.Windows.Data" Source="System.Windows.Data.dll" />
+    <AssemblyPart x:Name="Telerik.Windows.Controls.Data" Source="Telerik.Windows.Controls.Data.dll" />
+    <AssemblyPart x:Name="Telerik.Windows.Controls" Source="Telerik.Windows.Controls.dll" />
+    <AssemblyPart x:Name="Telerik.Windows.Controls.GridView" Source="Telerik.Windows.Controls.GridView.dll" />
+    <AssemblyPart x:Name="Telerik.Windows.Controls.Input" Source="Telerik.Windows.Controls.Input.dll" />
+    <AssemblyPart x:Name="Telerik.Windows.Data" Source="Telerik.Windows.Data.dll" />
+    <AssemblyPart x:Name="zxing.Silverlight" Source="zxing.Silverlight.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Controls.Editors.XamSlider.v11.2" Source="InfragisticsSL4.Controls.Editors.XamSlider.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Persistence.v11.2" Source="InfragisticsSL4.Persistence.v11.2.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.DragDrop.v11.2" Source="InfragisticsSL4.DragDrop.v11.2.dll" />
+    <AssemblyPart x:Name="System.ComponentModel.Composition" Source="System.ComponentModel.Composition.dll" />
+    <AssemblyPart x:Name="System.ComponentModel.Composition.Initialization" Source="System.ComponentModel.Composition.Initialization.dll" />
+    <AssemblyPart x:Name="System.Xml.Linq" Source="System.Xml.Linq.dll" />
+    <AssemblyPart x:Name="InfragisticsSL4.Compression.v11.2" Source="InfragisticsSL4.Compression.v11.2.dll" />
+    <AssemblyPart x:Name="System.Xml.Serialization" Source="System.Xml.Serialization.dll" />
+    <AssemblyPart Source="ko/Microsoft.CSharp.resources.dll" />
+    <AssemblyPart Source="ko/System.ComponentModel.DataAnnotations.resources.dll" />
+    <AssemblyPart Source="ko/System.Windows.Controls.resources.dll" />
+    <AssemblyPart Source="ko/System.Windows.Controls.Data.resources.dll" />
+    <AssemblyPart Source="ko/System.Windows.Controls.Data.Input.resources.dll" />
+    <AssemblyPart Source="ko/System.Windows.Controls.Navigation.resources.dll" />
+    <AssemblyPart Source="ko/System.Windows.Data.resources.dll" />
+    <AssemblyPart Source="ko/System.ComponentModel.Composition.resources.dll" />
+    <AssemblyPart Source="ko/System.ComponentModel.Composition.Initialization.resources.dll" />
+    <AssemblyPart Source="ko/System.Xml.Linq.resources.dll" />
+    <AssemblyPart Source="ko/System.Xml.Serialization.resources.dll" />
+  </Deployment.Parts>
+</Deployment>

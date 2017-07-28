@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Common"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="CodeModel" type="HDIMS.Models.Domain.Common.Code, HDIMS"/>
+    <typeAlias alias="ExCodeModel" type="HDIMS.Models.Domain.Common.ExCode, HDIMS"/>
+    <typeAlias alias="EtcCodeModel" type="HDIMS.Models.Domain.Common.EtcCode, HDIMS"/>
+    <typeAlias alias="UserInfo" type="HDIMS.Models.Domain.Common.UserInfo, HDIMS"/>
+    <typeAlias alias="MenuModel" type="HDIMS.Models.Domain.Common.MenuModel, HDIMS"/>
+    <typeAlias alias="PairValue" type="HDIMS.Models.Domain.Common.PairValue, HDIMS"/>
+    <typeAlias alias="ObsCode2" type="HDIMS.Models.Domain.Common.ObsCode, HDIMS"/>
+  </alias>
+
+  <resultMaps>
+    <resultMap id="MenuMap" class="MenuModel">
+      <result property="id" column="ID"/>
+      <result property="text" column="TEXT"/>
+      <result property="link" column="LINK"/>
+      <result property="leaf" column="LEAF"/>
+      <result property="expanded" column="EXPANDED"/>
+      <result property="depth" column="DEPTH"/>
+      <result property="ord" column="ORD"/>
+      <result property="menu_date" column="MENU_DATE"/>
+      <result property="flag" column="FLAG"/>
+      <result property="parentId" column="PARENTID"/>
+    </resultMap>
+  </resultMaps>  
+
+  <statements>
+    <select id="GetDamColTypeList" resultClass="HashTable" parameterClass="HashTable">
+      SELECT DAMCD, RWL, RSQTY, RSRT, OSPILWL, IQTY, ETCIQTY1, ETCIQTY2, ETQTY, TDQTY, EDQTY, ETCEDQTY, SPDQTY, OTLTDQTY, ETCDQTY1
+      , ETCDQTY2, ETCDQTY3, ITQTY1, ITQTY2, ITQTY3
+      FROM HM_DAMCOLMGT
+    </select>
+    <select id="GetDamCodeList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+          SELECT '' Key, '$firstvalue$' Value, 0 Ordernum, '' DAMCD, '전체' DAMNM, 'A' WKORD, 'D' DAMTYPE, '0' WKCD
+          FROM DUAL
+          UNION ALL
+      </isNotEmpty>
+      SELECT Key, Value, ROWNUM AS Ordernum, DAMCD, DAMNM, WKORD, DAMTYPE, WKCD
+      FROM (
+      SELECT DC.DAMCD Key, DC.DAMNM Value, DC.DAMCD , DC.DAMNM, DC.WKORD, DC.DAMTYPE, DC.WKCD
+      FROM VM_DAMCODE DC, HM_DAMTYPE DT
+      WHERE 1=1
+      AND DC.DAMTYPE = DT.DAMTYPE
+      ORDER BY DC.WKORD, DT.ORD, DC.DAMNM
+      )
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="DamType">
+        DAMTYPE IN (#DamType#)
+      </isNotEmpty>
+      <isEmpty prepend="AND" property="DamType">
+        DAMTYPE IN ('D','W','B')
+      </isEmpty>
+      <isNotEmpty prepend="AND" property="damcd">
+        Key = #damcd#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="WKCD">
+        WKCD = #WKCD#
+      </isNotEmpty>
+      <isNotNull property="damcdlist">
+          <iterate prepend="AND" property="damcdlist"  open="KEY IN (" close=")" conjunction=",">
+            #damcdlist[]#
+          </iterate>
+      </isNotNull>
+      <isNotEmpty prepend="AND" property="obscd">
+        Key IN (SELECT DISTINCT DAMCD FROM VM_OBSCODE WHERE OBSCD = #obscd# AND ROWNUM = 1)
+      </isNotEmpty>
+      <isNotNull property="obscdlist">
+        <iterate prepend="AND" property="obscdlist"  open="KEY IN (SELECT DISTINCT DAMCD FROM VM_OBSCODE WHERE OBSCD IN (" close="))" conjunction=",">
+          #obscdlist[]#
+        </iterate>
+      </isNotNull>
+    </select>
+    <select id="GetStaticObsCodeList" resultClass="ObsCode2" parameterClass="HashTable">
+        SELECT DAMCD, RFOBCD, WLOBCD, OBSTP
+        FROM VM_OBSCODE
+    </select>
+    <select id="GetObsCodeList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+          SELECT '' KEY, '$firstvalue$' VALUE, 0 ORDERNUM, '' PARENTKEY, '' OBSTP FROM DUAL
+          UNION ALL
+      </isNotEmpty>
+      SELECT KEY, VALUE, ORDERNUM, PARENTKEY, OBSTP
+      FROM (
+      <isEmpty property="ObsTp">
+        SELECT OBSCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY, OBSTP
+      </isEmpty>
+      <isNotEmpty property="ObsTp">
+        <isEqual property="ObsTp" compareValue="RF">
+          SELECT RFOBCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY, OBSTP
+        </isEqual>
+        <isNotEqual property="ObsTp" compareValue="RF">
+          SELECT OBSCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY, OBSTP
+        </isNotEqual>
+      </isNotEmpty>
+      FROM VM_OBSCODE
+      WHERE 1=1
+      <isNotEmpty property="DamCode">
+        AND DAMCD=#DamCode#
+      </isNotEmpty>
+      <isNotEmpty property="ObsTp">
+        AND OBSTP=UPPER(#ObsTp#)
+      </isNotEmpty>
+      <isNotNull property="DamCdList">
+        <iterate prepend="AND" property="DamCdList"  open="DAMCD IN (" close=")" conjunction=",">
+          #DamCdList[]#
+        </iterate>
+      </isNotNull>
+      ORDER BY OBSNM
+      )
+    </select>
+    
+    <select id="GetObsCodeWRList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+        SELECT '' KEY, '$firstvalue$' VALUE, 0 ORDERNUM, '' PARENTKEY, '' OBSTP FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+      SELECT KEY, VALUE, ORDERNUM, PARENTKEY, OBSTP
+      FROM (
+      <isEmpty property="ObsTp">
+        SELECT OBSCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY, OBSTP
+      </isEmpty>
+      <isNotEmpty property="ObsTp">
+        <isEqual property="ObsTp" compareValue="RF">
+          SELECT RFOBCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY, OBSTP
+        </isEqual>
+        <isNotEqual property="ObsTp" compareValue="RF">
+          SELECT OBSCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY, OBSTP
+        </isNotEqual>
+      </isNotEmpty>
+      FROM VM_OBSCODE
+      WHERE 1=1
+      <isNotEmpty property="DamCode">
+        AND DAMCD=#DamCode#
+      </isNotEmpty>
+      <isNotEmpty property="ObsTp">
+        AND OBSTP in (UPPER(#ObsTp#), 'WR')
+      </isNotEmpty>
+      ORDER BY OBSNM
+      )
+    </select>
+
+    <select id="GetRfObsCodeList" resultClass="CodeModel" parameterClass="HashTable">
+      SELECT RFOBSCD KEY, OBSNM VALUE, RFODR ORDERNUM, DAMCD PARENTKEY, DAMCD, DAMTYPE, WKCD
+      FROM VM_RFOBSCODE
+      WHERE 1=1
+      <isNotEmpty property="DamCode">
+        AND DAMCD=#DamCode#
+      </isNotEmpty>
+      <isNotEmpty property="WKCD">
+        AND WKCD=#WKCD#
+      </isNotEmpty>
+      <isNotNull property="DamCdList">
+        <iterate prepend="AND" property="DamCdList"  open="DAMCD IN (" close=")" conjunction=",">
+          #DamCdList[]#
+        </iterate>
+      </isNotNull>
+      ORDER BY RFODR, OBSNM
+    </select>
+    <select id="GetAllDamCode" resultClass="HashTable" parameterClass="HashTable">
+      SELECT AA.DAMCD, AA.DAMNM, BB.DAMTYPE DAMTP
+      FROM DUBDAMSPC@TECH.WORLD AA, HM_DAMMST BB
+      WHERE AA.DAMCD = BB.DAMCD
+      <isNotEmpty property="WLYN">
+        AND BB.WLYN=#WLYN#
+      </isNotEmpty>
+      <isNotEmpty property="RFYN">
+        AND BB.RFYN=#RFYN#
+      </isNotEmpty>
+      ORDER BY BB.WKORD, BB.DAMORD, AA.DAMNM
+    </select>
+
+    <select id="GetDamTypeCode" resultClass="HashTable" parameterClass="HashTable">
+      SELECT DAMTYPE, DAMTPNM
+      FROM HM_DAMTYPE
+      WHERE 1=1
+      <isNotEmpty property="USEYN">
+      AND USEYN=#USEYN#
+      </isNotEmpty>
+      ORDER BY ORD
+    </select>
+    <select id="GetDamCodes" resultClass="HashTable" parameterClass="HashTable">
+      SELECT DAMCD, DAMNM, WKORD, DAMTYPE DAMTP, WKCD, USE_FLAG, MGTCD, MGTNM, DAMORD, DAMYN, WLYN, RFYN, EDRF
+      FROM (
+              SELECT AA.DAMCD, AA.DAMNM, BB.WKORD, BB.DAMTYPE, BB.WKCD, BB.USE_FLAG, BB.MGTCD
+              ,  CC.MGTNM, BB.DAMORD, BB.DAMYN, BB.WLYN, BB.RFYN, BB.EDRF
+              FROM   DUBDAMSPC@TECH.WORLD AA, HM_DAMMST BB, HM_DAMMGT CC
+              WHERE AA.DAMCD = BB.DAMCD
+              AND BB.MGTCD = CC.MGTCD(+)
+              <isNotEmpty property="USE_FLAG">
+              AND BB.USE_FLAG = 'Y'    
+              </isNotEmpty>
+              <isNotEmpty property="DAMYN">
+              AND BB.DAMYN = 'Y'
+              </isNotEmpty>
+              <isNotEmpty property="WLYN">
+              AND BB.WLYN = 'Y'    
+              </isNotEmpty>
+              <isNotEmpty property="RFYN">
+              AND BB.RFYN = 'Y'    
+              </isNotEmpty>
+              <isNotEmpty property="DAMTP">
+              AND BB.DAMTYPE=#DAMTP#
+              </isNotEmpty>
+              <isNotEmpty property="DAMCD">
+                AND AA.DAMCD=#DAMCD#
+              </isNotEmpty>
+              <isNotEmpty property="DAMNM">
+                AND AA.DAMNM LIKE '%'||#DAMNM#||'%'
+              </isNotEmpty>
+              <isNotEmpty property="WKCD">
+                AND BB.WKCD=#WKCD#
+              </isNotEmpty>
+      )  
+      <isNotEmpty property="DAMORD">
+      ORDER BY DAMNM
+      </isNotEmpty>
+      <isEmpty property="DAMORD">
+      ORDER BY DAMNM
+      </isEmpty>
+    </select>
+    <select id="GetObsCodes" resultClass="HashTable" parameterClass="HashTable">
+      SELECT A.DAMCD, A.OBSCD, A.OBSNM, A.OBSTP
+      FROM VM_OBSCODE3 A, HM_DAMMST B
+      WHERE A.DAMCD=B.DAMCD
+      AND B.DAMYN='Y'
+      ORDER BY A.OBSTP, A.OBSNM
+    </select>
+    <select id="GetAllObsCodes" resultClass="HashTable" parameterClass="HashTable">
+      SELECT A.DAMCD, A.OBSCD, A.OBSNM, A.OBSTP
+      FROM VM_OBSCODE3 A, HM_DAMMST B
+      WHERE A.DAMCD=B.DAMCD
+      ORDER BY A.OBSTP, A.OBSNM
+    </select>
+    <!--<select id="GetWlSearchObsCodeList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+          SELECT '' KEY, '$firstvalue$' VALUE, 0 ORDERNUM, '' PARENTKEY FROM DUAL
+          UNION ALL
+      </isNotEmpty>
+      SELECT KEY, VALUE, ORDERNUM, PARENTKEY
+      FROM (
+      SELECT WLOBCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY
+      FROM VM_OBSCODE
+      WHERE 1=1
+      <isNotEmpty property="DamCode">
+        AND DAMCD=#DamCode#
+      </isNotEmpty>
+      AND OBSTP IN ('WL')
+      ORDER BY OBSNM
+      )
+    </select>
+    <select id="GetRfSearchObsCodeList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+          SELECT '' KEY, '$firstvalue$' VALUE, 0 ORDERNUM, '' PARENTKEY FROM DUAL
+          UNION ALL
+      </isNotEmpty>
+      SELECT KEY, VALUE, ORDERNUM, PARENTKEY
+      FROM (
+      SELECT RFOBCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY
+      FROM VM_OBSCODE
+      WHERE 1=1
+      <isNotEmpty property="DamCode">
+        AND DAMCD=#DamCode#
+      </isNotEmpty>
+      AND OBSTP IN ('RF')
+      ORDER BY OBSNM
+      )
+    </select>-->
+    
+    
+    <select id="GetExCodeList" resultClass="ExCodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+        SELECT '' AS EXCD, '' AS EXTP, 0 AS EXORD, '$firstvalue$' AS EXCONT, '' AS EXNOTE, 'Y' AS EXYN, '' AS EXCOLOR
+        FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+      SELECT
+      EXCD, EXTP, EXORD,
+      EXCONT, EXNOTE, EXYN, EXCOLOR
+      FROM HM_EXCODE
+      WHERE EXTP IN (#ExTp#,'C')
+      <isNotEmpty prepend="AND" property="ExYn">
+        EXYN=#ExYn#
+      </isNotEmpty>
+      <isNotEmpty property="exflag">
+      <iterate property="exlist" prepend=" AND EXCD IN " open=" (" close=")" conjunction=",">
+        #exlist[]#
+      </iterate>
+      </isNotEmpty>
+      ORDER BY EXORD
+    </select>
+    <select id="GetEtcCodeList" resultClass="EtcCodeModel" parameterClass="HashTable">
+      SELECT
+      ETCCD, ETCTP, ETCTITLE,
+      ETCCONT, ETCYN, ETCCOLOR
+      FROM HM_ETCCODE
+      WHERE ETCTP IN (#EtcTp#,'C')
+      <isNotEmpty prepend="AND" property="EtcYn">
+        ETCYN=#EtcYn#
+      </isNotEmpty>
+      ORDER BY ETCCD
+    </select>
+    <select id="GetUserInfoList" resultClass="UserInfo" parameterClass="HashTable">
+      SELECT
+      EMPNO, KORNAME EMPNM, PASSWD,
+      DEPT, ORGLEVEL, EMAIL,
+      WEATHER_AREA, DEFUI, TO_CHAR(REGDT,'YYYY-MM-DD HH24:MI') REGDT,
+      DEFUI_KOR, HPTEL, HOMETEL,
+      OFFICETEL, AUTHORITY_ADMIN, AUTHORITY_EQPCHK,
+      AUTHORITY_SIMU, AUTHORITY_COMM, DEPTID,
+      ETC, MGTDAM, SCREENWIDTH
+      FROM DTB_USERINFO
+      ORDER BY KORNAME
+    </select>
+    <select id="GetMenuTitleList" resultClass="PairValue" parameterClass="HashTable">
+      SELECT TO_CHAR(MENU_ID) AS ID, MENU_NAME AS TEXT
+      FROM HM_MENU_MASTER
+    </select>
+    <select id="GetAdminMenuList" resultMap="MenuMap" parameterClass="HashTable">
+        SELECT text, link, id, (CASE WHEN leaf > 0 THEN 'false' ELSE 'true' END) leaf
+        , expanded, depth, ord, menu_date, flag, parentId
+        FROM (
+            SELECT MENU_NAME text, NVL(MENU_URI,'') link, TO_CHAR(MENU_ID) id,
+            (
+                SELECT COUNT(*) FROM HM_MENU_MASTER
+                WHERE PARENT_ID=TT.MENU_ID
+            ) leaf
+            , DECODE(MENU_URI,NULL,'true','false') expanded,
+            FN_CONV_CHAR(MENU_LVL) depth, FN_CONV_CHAR(MENU_ORD) ord, menu_date, USE_FLAG flag, FN_CONV_CHAR(PARENT_ID) parentId
+            FROM HM_MENU_MASTER TT
+            START WITH PARENT_ID IS NULL
+            CONNECT BY PRIOR MENU_ID=PARENT_ID
+            ORDER SIBLINGS BY ORD
+        )
+    </select>
+    <select id="GetMenuList" resultMap="MenuMap" parameterClass="HashTable">
+        SELECT text, link, id, (CASE WHEN leaf > 0 THEN 'false' ELSE 'true' END) leaf
+          , expanded, depth, ord, menu_date, flag, parentId
+        FROM (
+          SELECT TO_CHAR(MENU_ID) id ,MENU_NAME text ,NVL(MENU_URI,'') link , TO_CHAR(MENU_LVL) depth, TO_CHAR(PARENT_ID) parentId
+          , DECODE(MENU_URI,NULL,'true','false') expanded
+          ,(SELECT COUNT(*) FROM HM_MENU_MASTER WHERE PARENT_ID=TT.MENU_ID
+            <isNotEmpty property="USE_FLAG" prepend ="AND">
+              USE_FLAG=#USE_FLAG#
+            </isNotEmpty>
+          ) leaf
+          ,TO_CHAR(MENU_ORD) ord, USE_FLAG flag,MENU_DATE
+          , MENU_ID, PARENT_ID, MENU_ORD
+          FROM (
+              SELECT MENU_ID,MENU_NAME, MENU_URI, MENU_LVL, PARENT_ID, MENU_ORD,USE_FLAG,MENU_DATE
+              FROM(
+                  SELECT DISTINCT MENU_ID,MENU_NAME,MENU_URI,MENU_LVL, PARENT_ID,MENU_ORD,USE_FLAG,MENU_DATE
+                  FROM (
+                      SELECT MENU_ID, MENU_NAME,MENU_URI,MENU_LVL, PARENT_ID,MENU_ORD,USE_FLAG,MENU_DATE
+                      FROM HM_MENU_MASTER
+                      WHERE MENU_ID IN (
+                        SELECT PARENT_ID
+                        FROM  HM_MENU_MASTER
+                        WHERE MENU_ID IN (
+                          SELECT M.PARENT_ID
+                          FROM  HM_AUTH_MENU P,HM_MENU_MASTER M
+                          WHERE P.MENU_ID = M.MENU_ID
+                          AND  M.USE_FLAG ='Y'
+                          AND P.AUTHCODE=#AUTHCODE#
+                        )
+                      )
+                      UNION ALL
+                      SELECT MENU_ID, MENU_NAME,MENU_URI,MENU_LVL, PARENT_ID,MENU_ORD,USE_FLAG,MENU_DATE
+                      FROM  HM_MENU_MASTER
+                      WHERE MENU_ID IN (
+                        SELECT M.PARENT_ID
+                        FROM  HM_AUTH_MENU P,HM_MENU_MASTER M
+                        WHERE P.MENU_ID = M.MENU_ID
+                        AND  M.USE_FLAG ='Y'
+                        AND P.AUTHCODE=#AUTHCODE#
+                      )
+                      UNION ALL
+                      SELECT M.MENU_ID, M.MENU_NAME,M.MENU_URI,M.MENU_LVL, M.PARENT_ID,M.MENU_ORD,M.USE_FLAG,M.MENU_DATE
+                      FROM  HM_AUTH_MENU P,HM_MENU_MASTER M
+                      WHERE P.MENU_ID = M.MENU_ID
+                      AND  M.USE_FLAG ='Y'
+                      AND P.AUTHCODE=#AUTHCODE#
+                  )
+              )
+              WHERE  USE_FLAG ='Y'
+            ) TT
+        )
+        START WITH PARENT_ID IS NULL
+        CONNECT BY PRIOR MENU_ID=PARENT_ID
+        ORDER SIBLINGS BY MENU_ORD
+    </select>
+    
+    <!-- 보정방법  -->
+    <select id="GetEdExWayList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+          SELECT '' KEY, '$firstvalue$' VALUE, 0 ORDERNUM FROM DUAL
+          UNION ALL
+      </isNotEmpty>
+      SELECT EDEXWAY KEY, EDEXWAYCONT VALUE, EDORD ORDERNUM
+      FROM HM_EDCODE
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="edtp">
+        EDTP = #edtp#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="edyn">
+        EDYN = #edyn#
+      </isNotEmpty>
+      ORDER BY ORDERNUM
+    </select>
+      
+    <select id="GetEdExLvlList" resultClass="CodeModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+          SELECT '' KEY, '$firstvalue$' VALUE, 0 ORDERNUM FROM DUAL
+          UNION ALL
+      </isNotEmpty>
+      SELECT FN_CONV_CHAR(EDEXLVL) KEY, EDEXLVLCONT VALUE, EDORD ORDERNUM
+      FROM HM_EDLVL
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="edyn">
+        EDYN = #edyn#
+      </isNotEmpty>
+      ORDER BY ORDERNUM
+    </select>
+
+    <select id="GetDamMgtCodes" resultClass="HashTable" parameterClass="HashTable">
+      SELECT B.MGTCD, B.MGTNM, MAX(A.DAMTYPE) DAMTYPE, MAX(A.WKCD) WKCD
+      FROM VM_DAMCODE A, HM_DAMMGT B
+      WHERE A.MGTCD=B.MGTCD
+      AND B.USEYN='Y'
+      HAVING 1=1
+      <isNotEmpty prepend="AND" property="damtp">
+        MAX(A.DAMTYPE) = #damtp#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="wkcd">
+        MAX(A.WKCD) = #wkcd#
+      </isNotEmpty>
+      GROUP BY B.MGTCD, B.MGTNM
+      ORDER BY MGTNM
+    </select>
+    <select id="GetSessionUsers" resultClass="HashTable">
+    <![CDATA[
+      SELECT A.SESSID, A.LOGINDT, A.EXPIREDT,B.KORNAME EMPNM, C.MGTNM, B.DEPT
+      , TO_CHAR(TO_DATE(A.LOGINDT,'YYYYMMDDHH24MISS'),'YYYY-MM-DD HH24:MI') LOGINDT2  
+      FROM HM_SESSIONS A, DTB_USERINFO B, HM_DAMMGT C
+      WHERE A.SESSID=B.EMPNO
+      AND B.MGTCD=C.MGTCD(+)
+      AND A.EXPIREDT >= TO_CHAR(SYSDATE-2/1440,'YYYYMMDDHH24MISS')
+    ]]>
+    </select>
+    <select id="GetSession" resultClass="HashTable" parameterClass="HashTable">
+      SELECT SESSID,LOGINDT, EXPIREDT
+      FROM HM_SESSIONS
+      WHERE SESSID=#USERID#
+    </select>
+    <delete id="DeleteSession" parameterClass="HashTable">
+      DELETE FROM HM_SESSIONS 
+      WHERE SESSID=#USERID#
+    </delete>
+    <delete id="DeleteSessions" parameterClass="HashTable">
+    <![CDATA[
+      DELETE FROM HM_SESSIONS
+      WHERE EXPIREDT <= TO_CHAR(SYSDATE-10/1440,'YYYYMMDDHH24MISS')
+    ]]>
+    </delete>
+    <insert id="InsertSession" parameterClass="HashTable">
+      INSERT INTO HM_SESSIONS(SESSID,LOGINDT, EXPIREDT, USERDATA)
+      VALUES(#USERID#,TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),#USERDATA#)
+    </insert>
+    <update id="UpdateSession" parameterClass="HashTable">
+      UPDATE HM_SESSIONS SET EXPIREDT=TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+      WHERE SESSID=#USERID#
+    </update>
+
+    <select id="GetAlarmCode" resultClass="HashTable" parameterClass="HashTable">
+      SELECT ALARMCD, ALARMNM
+      FROM HM_ALARMCODE
+      ORDER BY ALARMCD
+    </select>
+    <insert id="ReguestAuth" parameterClass="HashTable">
+      INSERT INTO DTBALARM(OBSDT, ERR_DT, PRIORITY, DAMCD, OBSCD, ERR_CD, ERR_CONT)
+      VALUES(TO_CHAR(SYSDATE,'YYYYMMDDHH24MI'),TO_CHAR(SYSDATE,'YYYYMMDDHH24MI') ,0, '0000001', '0000000', -46, '[HDIMS] $DEPT$ $EMPNM$님의 자료수정 권한 요청이 접수되었습니다.')
+    </insert>
+  </statements>
+</sqlMap>

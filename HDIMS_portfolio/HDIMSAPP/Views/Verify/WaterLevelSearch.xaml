@@ -1,0 +1,391 @@
+﻿<navigation:Page x:Class="HDIMSAPP.Views.Verify.WaterLevelSearch" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           xmlns:behavior="clr-namespace:HDIMSAPP.Common.Behavior"
+           xmlns:converter="clr-namespace:HDIMSAPP.Common.Converter"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="1200" d:DesignHeight="480" Width="Auto" Height="Auto"
+           Title="수위자료 검정" 
+           xmlns:ig="http://schemas.infragistics.com/xaml" 
+           xmlns:igPrim="clr-namespace:Infragistics.Controls.Grids.Primitives;assembly=InfragisticsSL4.Controls.Grids.XamGrid.v11.2"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+           xmlns:prim="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Data"
+           xmlns:Controls="clr-namespace:HDIMSAPP.Controls">
+    <navigation:Page.Resources>
+        <Style x:Key="gridChartCrosshairLineStyle" TargetType="Line">
+            <Setter Property="Stroke" Value="#FF008000" />
+            <Setter Property="StrokeThickness" Value="1" />
+        </Style>
+        <Style TargetType="prim:DataGridColumnHeader" x:Key="DataGridColumnHeaderStyle">
+            <Setter Property="Background" Value="#D6E3ED"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="10,3,10,3"/>
+            <Setter Property="SeparatorBrush" Value="#C9CACA" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="prim:DataGridColumnHeader">
+                        <Grid Name="Root">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="BackgroundRectangle" Stretch="Fill" Fill="{TemplateBinding SeparatorBrush}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Rectangle x:Name="BackgroundGradient" Stretch="Fill" Fill="{TemplateBinding Background}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                <ContentPresenter Content="{TemplateBinding Content}" Cursor="{TemplateBinding Cursor}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                            <Rectangle Name="VerticalSeparator" Grid.RowSpan="2" Grid.Column="2" Width="1" VerticalAlignment="Stretch" Fill="{TemplateBinding SeparatorBrush}" Visibility="{TemplateBinding SeparatorVisibility}" />
+                            <Path Grid.RowSpan="2" Name="SortIcon" RenderTransformOrigin=".5,.5" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0" Grid.Column="1" Stretch="Uniform" Width="8" Data="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " Fill="#FF82CAAB">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform x:Name="SortIconTransform" ScaleX=".9" ScaleY=".9" />
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DataGridColumnHeaderReadonlyStyle" TargetType="prim:DataGridColumnHeader">
+            <Setter Property="Background" Value="#EFEFEF"/>
+            <Setter Property="SeparatorBrush" Value="#C9CACA" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="10,3,10,3"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="prim:DataGridColumnHeader">
+                        <Grid Name="Root">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="BackgroundRectangle" Stretch="Fill" Fill="{TemplateBinding SeparatorBrush}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Rectangle x:Name="BackgroundGradient" Stretch="Fill" Fill="{TemplateBinding Background}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                <ContentPresenter Content="{TemplateBinding Content}" Cursor="{TemplateBinding Cursor}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                            <Rectangle Name="VerticalSeparator" Grid.RowSpan="2" Grid.Column="2" Width="1" VerticalAlignment="Stretch" Fill="{TemplateBinding SeparatorBrush}" Visibility="{TemplateBinding SeparatorVisibility}" />
+                            <Path Grid.RowSpan="2" Name="SortIcon" RenderTransformOrigin=".5,.5" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0" Grid.Column="1" Stretch="Uniform" Width="8" Data="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " Fill="#FF82CAAB">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform x:Name="SortIconTransform" ScaleX=".9" ScaleY=".9" />
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DataGridSelectableStyle" TargetType="sdk:DataGridCell">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="sdk:DataGridCell">
+                        <Grid Name="Root" Background="{TemplateBinding Background}">
+                            <!--
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CurrentStates">
+                                    <VisualState x:Name="Regular" />
+                                    <VisualState x:Name="Current">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+
+                                <VisualStateGroup x:Name="CustomSelection">
+                                    <VisualState x:Name="CustomSelection_UnSelected">
+                                  
+                                        <Storyboard>
+                                            
+                                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" 
+                                                                          Storyboard.TargetName="Root" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="00:00:00" Value="#FFD82F2F"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CustomSelection_Selected">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" 
+                                                                          Storyboard.TargetName="Root" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="00:00:00" Value="#FFD82F2F"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+
+                            </VisualStateManager.VisualStateGroups>
+
+                                        -->
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <Rectangle Name="FocusVisual" Stroke="#FF6DBDD1" StrokeThickness="1" Fill="#FF6DBDD1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsHitTestVisible="false" Opacity="0" />
+
+
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                            ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                            Margin="{TemplateBinding Padding}" />
+
+                            <Rectangle Name="RightGridLine" Grid.Column="1" VerticalAlignment="Stretch" Width="1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DataGridColumnDefaultStyle" TargetType="sdk:DataGridCell" BasedOn="{StaticResource DataGridSelectableStyle}">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="DataGridColumnCellStyle" TargetType="sdk:DataGridCell"  BasedOn="{StaticResource DataGridSelectableStyle}">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="DataGridColumnCellReadonlyStyle" TargetType="sdk:DataGridCell"  BasedOn="{StaticResource DataGridSelectableStyle}">
+            <Setter Property="Background" Value="#EFEFEF"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+
+        </Style>
+        <converter:VisibilityConverter x:Name="VisibilityConverter"/>
+        <DataTemplate x:Key="CheckBoxLegendItem">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Tag="{Binding Series.Name}" IsChecked="{Binding Series.Visibility, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}" Checked="LegendCheckBox_Checked" Unchecked="LegendCheckBox_Unchecked"/>
+                <TextBlock Text="{Binding Series.Title, TargetNullValue=Series Title}" Foreground="{Binding Series.Brush}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="tooltipTemplate">
+            <Border BorderBrush="#A7C0DC" BorderThickness="2"  
+                CornerRadius="5" Background="White" 
+                IsHitTestVisible="False"  
+                Padding="5">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Background="#FF0097FC">
+                        <TextBlock Text="일 시 : " FontWeight="Bold" Foreground="White"/>
+                        <TextBlock Text="{Binding Item.P_OBSDT}" FontWeight="Bold" Foreground="White"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding SeriesItemCollection}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Name="key" Text="{Binding Series.Tag}" Visibility="Collapsed" Width="0"/>
+                                    <TextBlock Name="title" Text="{Binding Series.Title}" Foreground="{Binding Series.Brush}"/>
+                                    <TextBlock Text=" : " Foreground="{Binding Series.Brush}"/>
+                                    <TextBlock Name="value" Text="{Binding Value}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </navigation:Page.Resources>
+    <Grid x:Name="LayoutRoot" Width="Auto" Height="Auto">
+        <Grid x:Name="SubLayoutRoot" Width="Auto" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="10" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="Transparent" BorderThickness="1" Height="30" HorizontalAlignment="Left" Margin="13,6,0,6" Name="border1" VerticalAlignment="Center" Width="183" CornerRadius="10" Background="Transparent">
+                <StackPanel Height="25" Name="stackPanel1" Width="159" Orientation="Horizontal">
+                    <Image Source="/HDIMSAPP;component/Images/television.png" Style="{StaticResource subPageTitleIcon}" />
+                    <TextBlock Name="titleTextBlock" Text="수위자료 검정" Style="{StaticResource subPageTitle}" />
+                </StackPanel>
+            </Border>
+            <Border  Grid.Row="1" BorderThickness="1" BorderBrush="#FFB5BCC7" Height="50" Margin="10,0,10,0" CornerRadius="5">
+                <StackPanel Height="50" HorizontalAlignment="Left" Margin="0,0,0,0" Name="SearchPanel" VerticalAlignment="Top" Width="2000" Orientation="Horizontal" Background="#FFD3E3F8">
+                    <TextBlock Height="22" Name="textBlock0" Text="수 계 : " Width="39" FontWeight="Bold" FontSize="12"  Margin="5,5,0,0" VerticalAlignment="Stretch" />
+                    <ig:XamComboEditor Height="22" Name="WKCombo" Width="88" Margin="2,0,0,0"  IsEditable="False"/>
+                    <TextBlock Height="22" Name="textBlock1" Text="댐구분 : " Width="45" FontWeight="Bold" FontSize="12"  Margin="5,5,0,0" VerticalAlignment="Stretch" />
+                    <ig:XamComboEditor Height="22" Name="damTpCombo" Width="88" Margin="2,0,0,0"  IsEditable="False"/>
+                    <TextBlock Height="22" Name="textBlock2" Text="댐 명 : " Width="39" FontWeight="Bold" FontSize="12" Margin="5,5,0,0" />
+                    <ig:XamComboEditor Height="22" Name="damCdCombo" Width="125"  Margin="2,0,0,0"  IsEditable="False"/>
+                    <TextBlock Height="22" Name="textBlock3" Text="일 시 : " Width="39" FontWeight="Bold" FontSize="12" Margin="5,5,0,0" />
+                    <sdk:DatePicker Height="23" Name="selectDtCal" Width="100" />
+                    <TextBlock Height="22" Name="textBlock4" Text="구 분 : " Width="39" FontWeight="Bold" FontSize="12" Margin="5,5,0,0" />
+                    <ig:XamComboEditor Height="22" Name="dataTpCombo" Width="60"  Margin="2,0,0,0"  IsEditable="False"/>
+                    <TextBlock Height="22" Name="textBlock5" Text="검색구분 : " Width="60" FontWeight="Bold" FontSize="12" Margin="5,5,0,0" />
+                    <ig:XamComboEditor Height="22" Name="searchTpCombo" Width="60"  Margin="2,0,0,0"  IsEditable="False"/>
+                    <TextBlock Height="22" Name="textBlock6" Text="보정색표현 : " Width="70" FontWeight="Bold" FontSize="12" Margin="5,5,0,0" />
+                    <ig:XamComboEditor Height="22" Name="selectColorCombo" Width="60"  Margin="2,0,0,0" IsEditable="False"/>
+                    <Button Height="25" x:Name="searchBtn" Width="50" Margin="10,0,0,0" ToolTipService.ToolTip="수위자료를 조회합니다" Click="searchBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/HDIMSAPP;component/Images/magnifier.png" Width="16" Height="16"/>
+                            <TextBlock Text="조회" Width="40" Height="22" Margin="3,1,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="25" x:Name="legendBtn" Width="50" Margin="3,0,0,0" ToolTipService.ToolTip="범례창을 띄웁니다" Click="legendBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/HDIMSAPP;component/Images/application-table.png" Width="16" Height="16"/>
+                            <TextBlock Text="범례" Width="40" Height="22" Margin="5,1,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="25" x:Name="excelBtn" Width="50" Margin="3,0,0,0" ToolTipService.ToolTip="조회한 내용을 엑셀파일로 다운로드 합니다" Click="excelBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/HDIMSAPP;component/Images/document-excel.png" Width="16" Height="16"/>
+                            <TextBlock Text="엑셀" Width="40" Height="22" Margin="5,1,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="25" x:Name="chartBtn" Width="65" Margin="3,0,0,0" ToolTipService.ToolTip="차트를 표시합니다" Click="chartBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/HDIMSAPP;component/Images/chart-up-color.png" Width="16" Height="16"/>
+                            <TextBlock Text="그래프" Width="40" Height="22" Margin="5,1,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="25" x:Name="cimsBtn" Width="75" Margin="3,0,0,0" ToolTipService.ToolTip="점검정비이력조회 창을 띄웁니다" Click="cimsBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/HDIMSAPP;component/Images/application-list.png" Width="16" Height="16"/>
+                            <TextBlock Text="고장보고" Width="50" Height="22" Margin="5,1,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="25" x:Name="saveBtn" Width="50" Margin="3,0,0,0" ToolTipService.ToolTip="보정한 데이터를 확정합니다" Click="saveBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/HDIMSAPP;component/Images/disks.png" Width="16" Height="16"/>
+                            <TextBlock Text="저장" Width="40" Height="22" Margin="5,1,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <!-- 복사&붙여넣기 기능 : AllowPaste="True" SelectionMode="Extend"  -->
+            <Controls:DoubleClickDataGrid Grid.Row="2" Margin="10,5,10,2" x:Name="damGrid" 
+                                              AllowPaste="True" SelectionMode="Extended" 
+                                              AutoGenerateColumns="False" ClipboardCopyMode="None"
+                                              IsReadOnly="True" AlternatingRowBackground="White" RowBackground="White"
+                                              GridLinesVisibility="All" 
+                                              CanUserSortColumns="False" CanUserReorderColumns="False">
+            </Controls:DoubleClickDataGrid>
+            <sdk:GridSplitter Grid.Row="3" Height="10" HorizontalAlignment="Stretch" Margin="10,0,10,0" Name="chartGridSplitter" VerticalAlignment="Top" Width="Auto">
+                <sdk:GridSplitter.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0" />
+                        <GradientStop Color="#FFD6F3F5" Offset="0.988" />
+                    </LinearGradientBrush>
+                </sdk:GridSplitter.Background>
+            </sdk:GridSplitter>
+            <Grid Grid.Row="3" x:Name="damChartGrid" Width="Auto" Height="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="5,15,10,0" Width="300" Name="DifferenceTextBlock" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                    <StackPanel Grid.Column="1" Margin="5,15,10,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Height="25" x:Name="exportImageGridChart" Width="90" Click="exportImageGridChart_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/HDIMSAPP;component/Images/images-stack.png" Width="16" Height="16"/>
+                                <TextBlock Text="그래프 저장" Width="70" Height="22" Margin="5,0,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Button>
+                        <!--<Button Height="25" x:Name="viewAllGridChart" Width="80" Click="viewAllGridChart_Click" Margin="5,0,0,0" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/HDIMSAPP;component/Images/application-resize.png" Width="16" Height="16"/>
+                            <TextBlock Text="전체 보기" Width="60" Height="22" Margin="5,0,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>-->
+                        <Button Height="25" x:Name="closeGridChart" Width="90" Click="closeGridChart_Click" Margin="5,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/HDIMSAPP;component/Images/cross-circle.png" Width="16" Height="16"/>
+                                <TextBlock Text="그래프 닫기" Width="70" Height="22" Margin="5,0,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" Margin="5,5,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="180"/>
+                    </Grid.ColumnDefinitions>
+                    <ig:XamDataChart  Grid.Column="0" x:Name="damDataChart" Margin="5,0,10,0" 
+                                    Background="Transparent"
+                                    PlotAreaBorderBrush="Black"
+                                    PlotAreaBackground="White" 
+                                    PlotAreaBorderThickness="1"
+                                    CrosshairVisibility="Visible"
+                                    FontFamily="굴림"
+                                    CrosshairLineStyle="{StaticResource gridChartCrosshairLineStyle}" 
+                                    Legend="{Binding ElementName=gridChartLegend}"
+                                    Width="Auto" Height="Auto">
+                        <behavior:ChartCrosshairBehaviors.CrosshairVisibility>
+                            <behavior:ChartCrosshairVisibilityBehavior ShowHorizontalCrosshair="False" ShowVerticalCrosshair="True">
+                            </behavior:ChartCrosshairVisibilityBehavior>
+                        </behavior:ChartCrosshairBehaviors.CrosshairVisibility>
+                        <behavior:ChartBehaviors.CursorTooltip>
+                            <behavior:CursorTooltipBehavior TooltipTemplate="{StaticResource tooltipTemplate}" />
+                        </behavior:ChartBehaviors.CursorTooltip>
+                    </ig:XamDataChart>
+                    <Grid Grid.Column="1" Margin="5,5,5,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Height="Auto" Width="Auto" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Button Height="25" x:Name="AllLegendSelectBtn" Width="80" Click="AllLegendSelect_Click" Margin="0,0,5,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/HDIMSAPP;component/Images/application--plus.png" Width="16" Height="16"/>
+                                    <TextBlock x:Name="AllSelectTxt" Text="전체선택" Width="60" Height="22" Margin="5,0,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Height="25" x:Name="AllLegendDeselectBtn" Width="80" Click="AllLegendSelect_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/HDIMSAPP;component/Images/application--minus.png" Width="16" Height="16"/>
+                                    <TextBlock x:Name="AllDeselectTxt" Text="전체해제" Width="60" Height="22" Margin="5,0,0,0" Foreground="#FF000000" Opacity="1" FontWeight="Bold"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <Border Grid.Row="1" Background="White" BorderThickness="1" BorderBrush="#FFB5BCC7"
+                            CornerRadius="5" Width="Auto" Height="Auto" Padding="1">
+                            <ig:Legend Name="gridChartLegend" Content="" Margin="0">
+                            </ig:Legend>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        <toolkit:BusyIndicator x:Name="LoadingBar" Content="" BusyContent="수위자료를 조회중입니다..." Style="{StaticResource HDIMSIndicator}" Grid.Row="0">
+        </toolkit:BusyIndicator>
+    </Grid>
+</navigation:Page>

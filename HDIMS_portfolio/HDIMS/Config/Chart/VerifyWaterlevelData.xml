@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <series>
+    <value xid="0"></value>
+  </series>
+  <graphs>
+    <graph gid="1">
+      <value xid="0" description="(EL.m)"></value>
+    </graph>
+    <graph gid="2">
+      <value xid="0"  description="(EL.m)"></value>
+    </graph>
+    <graph gid="3">
+      <value xid="0"  description="(㎥/s)"></value>
+    </graph>
+  </graphs>
+</chart>

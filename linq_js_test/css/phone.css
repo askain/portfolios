@@ -1,0 +1,386 @@
+@charset "euc-kr";
+
+/* 휴대폰 상단옵션 바 */
+.product_step01	.category_layer	.category_area	{height:263px;}
+.product_step01	.category_layer	.maker_list	{height:210px;}
+.product_step01	.category_layer	.category_list	li	span	{width:67px;}
+
+/* 휴대폰 썸네일 리스트 */
+.product_step01	.list_wrap	{height:428px;}
+.phone_list	{position:relative; width:99999px; z-index:0; overflow:hidden;}
+.phone_list	li	{float:left; width:263px; height:373px; padding-top:55px;}
+
+/* 휴대폰 썸네일 작은이미지형 */
+.small_list	{min-width:100% !important; width:100% !important; min-height:100% !important; margin-top:-1px; background:url('./img/phone/line_small_list.png') repeat !important;}
+.small_list	.list_wrap	{height:100% !important; overflow:visible;}
+.small_list	.phone_list	{width:1050px; overflow:visible;}
+.small_list	.phone_list	li	{width:175px !important; height:274px !important; padding-top:50px !important;}
+.small_list	.thumb_phone	{width:175px !important; height:273px !important;}
+.small_list	.thumb_phone	.thumb_img	{width:90px !important; height:150px !important;}
+.small_list	.thumb_phone	.thumb_sum	{font-size:12px;}
+.small_list	.thumb_phone	.thumb_sum	span	{margin:0px; font-size:12px; font-family:'돋움',dotum;}
+.small_list	.thumb_phone	.chk	{top:5px !important; left:20px !important;}
+.small_list	.thumb_phone	.color_choice	{top:149px !important; left:27px !important;}
+.small_list	.thumb_phone	.tip_layer {top:20px !important; left:10px !important;}
+.small_list	.thumb_page	{display:none;}
+.product_area.small_list	.list_pre, .product_area.small_list	.list_next	{display:none;}
+
+/* 휴대폰 목록 없음 */
+.pnone_list_none	{position:relative; width:100%; min-height:428px; background:#fff url('./img/product/bg_list_top.png') repeat-x left top; text-align:center;}
+.pnone_list_none	.none_wrap	{position:absolute; left:0; top:50%; width:100%;}
+.pnone_list_none	p	{margin-bottom:25px;}
+
+/* 해상도별 리스트 정렬 및 사이즈(flexible) */
+.w1440	{min-height:528px;}
+.w1440	.list_wrap	{height:528px;}
+.w1440	.phone_list	li	{padding-top:105px;}
+.w1440.small_list	.list_wrap	{width:1400px;}
+.w1440.small_list	.phone_list	{width:1400px;}
+.w1440	.pnone_list_none	{min-height:528px;}
+
+.w1680	{min-height:678px; background:#fff url('./img/product/bg_list_top.png') repeat-x left top;}
+.w1680	.list_wrap	{width:1576px; height:678px;}
+.w1680	.phone_list	li	{padding-top:155px;}
+.w1680	.thumb_phone	.thumb_img	{width:160px; height:280px;}
+.w1680	.thumb_phone	.color_choice	{top:279px;}
+.w1680	.thumb_phone	.flag	{right:15px;}
+.w1680	.thumb_phone	.chk	{left:30px;}
+.w1680	.thumb_phone	.tip_layer {left:19px;}
+.w1680.small_list	{width:1400px;}
+.w1680.small_list	.list_wrap	{width:1400px;}
+.w1680.small_list	.phone_list	{width:1400px;}
+.w1680	.pnone_list_none	{min-height:678px;}
+
+.w1920	{min-width:1576px; min-height:100%; height:100%; background:#fff url('./img/product/bg_list_top.png') repeat-x left top;}
+.w1920	.list_wrap	{width:1576px; height:708px;}
+.w1920.product_area	.thumb_page	{}
+.w1920	.phone_list	li	{padding-top:170px;}
+.w1920	.thumb_phone	.thumb_img	{width:160px; height:280px;}
+.w1920	.thumb_phone	.color_choice	{top:279px;}
+.w1920	.thumb_phone	.flag	{right:15px;}
+.w1920	.thumb_phone	.chk	{left:30px;}
+.w1920	.thumb_phone	.tip_layer {left:19px;}
+.w1920.small_list	{width:1750px;}
+.w1920.small_list	.list_wrap	{width:1750px;}
+.w1920.small_list	.phone_list	{width:1750px;}
+.w1920	.pnone_list_none	{min-height:708px;}
+
+/* 휴대폰 상세 */
+.product_step01	.detail_wrap	.thumb_view	.thumb_img	img	{width:160px; height:280px;}
+.product_step01	.detail_wrap	.thumb_view	.small_thumb	{top:320px;}
+.product_step01	.detail_view	.tit_wrap	{height:62px !important;}
+.product_step01	.detail_view	.option	.monthly	{position:absolute; left:0; bottom:-52px; height:42px !important; margin-top:0;}
+.product_step01	.detail_view	.option	.monthly	dt	{padding-top:8px;}
+.product_step01	.detail_view	.option	.monthly	dd	{padding-top:8px;}
+.product_step01	.detail_view	.option	.membership	.monthly	{position:relative; bottom:0; margin-top:2px !important;}
+.product_step01	.detail_view	.option	.membership	.num_change	{}
+.product_step01	.detail_view	.option	.membership	.membership_wrap	{display:block;}
+.product_step01	.detail_view	.option	.membership	.total_list	{height:108px;}
+.product_step01	.detail_view	.option	.membership_wrap	{display:none; position:relative; width:155px; height:30px; margin:4px 0 0 10px; background:#fff; z-index:1;}
+.product_step01	.detail_view	.option	.total_wrap	{height:274px;}
+.product_step01	.detail_view	.option	.total_wrap	.public_area {height: 210px; position:relative; margin-top:60px; border-top:1px solid #d9d9d9; background:url('./img/product/bg_txt_public.gif') no-repeat 0 -17px;} /* 141117_가격공시_준비_v0.1 (추가) */
+.product_step01	.detail_view	.option	.total_wrap	.public_area span {visibility:hidden; position:absolute; top:-999px; left:-999px; width:0; height:0; overflow:0; font-size:0; color:transparent;} /* 141117_가격공시_준비_v0.1 (추가) */
+.product_step01	.detail_view	.option	.total_list	{height:145px;}
+.product_step01	.detail_view	.option	.membership_wrap	.total_list	{height:auto; margin:0 10px; padding-top:7px;}
+.product_step01	.detail_view	.option	.membership_wrap	.tip_wrap	{display:block; margin-top:-21px; padding:5px 0 0 44px;}
+.product_step01	.detail_view	.option	.membership_wrap	.tip_wrap .tit	{padding-left:45px;}
+.product_step01	.detail_view	.option	.membership_wrap	.tip_layer .tip_box	{text-align:center;}
+.product_step01	.detail_view	.option	.membership_wrap	.tip_layer .tip_box	.tip_box_con	{padding:5px 0 0 0; letter-spacing:-1px;}
+.product_step01	.detail_view	.option	.membership_wrap	.tip_layer .tip_box	.close	{display:inline-block; position:absolute; top:5px; right:10px; width:17px; height:17px; background:url('./img/product/icon_option_button.png') no-repeat 0 -95px;}
+.product_step01	.tip_wrap .que_r {height:15px; padding:0; background:url('./img/phone/ico_etc.png') no-repeat 0 0;}
+.product_step01	.tip_wrap .tip_layer_t {top:22px;}
+.product_step01	.detail_view	.recomm_wrap	{height:277px;}
+.product_step01	.detail_view	.recomm_wrap	.recomm_list	{margin-top:40px;}
+.product_step01	.detail_view	.option	.remainder	{bottom:12px;}
+
+/* 휴대폰 상세(자급제) */
+.product_step01	.detail_view	.self	.option	.option_list	dt	{width:90px;}
+.product_step01	.detail_view	.self	.option	.option_list	dd	{width:247px;}
+.product_step01	.detail_view	.self	.option	.option_list	dd.data	{width:86px !important;}
+.product_step01	.detail_view	.self	.option	.total_wrap	{height:265px;}
+.product_step01	.detail_view	.self	.option	.total_wrap .public_area {height: 204px; position:relative; margin-top:60px; border-top:1px solid #d9d9d9; background:url('./img/product/bg_txt_public.gif') no-repeat 0 -17px;} /* 141117_가격공시_준비_v0.1 (추가) */
+.product_step01	.detail_view	.self	.option	.total_wrap .public_area span {visibility:hidden; position:absolute; top:-999px; left:-999px; width:0; height:0; overflow:0; font-size:0; color:transparent;} /* 141117_가격공시_준비_v0.1 (추가) */
+.product_step01	.detail_view	.self	.option	.monthly	{bottom:-45px;}
+.product_step01	.detail_view	.self	.option	.membership	.monthly	{position:relative; bottom:0; height:37px !important;}
+.product_step01	.detail_view	.self	.option	.membership_wrap	{margin-top:0px;}
+.product_step01	.detail_view	.self	.recomm_wrap	{height:267px;}
+.product_step01	.detail_view	.self	.recomm_wrap	.recomm_list	{margin-top:30px;}
+
+/* 상품통계 */
+.stats_wrap { position:relative; padding:50px 0;}
+.stats_wrap:after { clear:both; display:block; content:"";}
+.stats_wrap .tit { text-align:center;}
+
+/* 상품 그래프 */
+.graph_animate { position:relative; padding-left:10px;}
+.graph_animate .section { position:relative; height:270px; padding-top:70px;}
+.graph_animate .section h6 { float:left; padding-top:34px;}
+
+.graph_animate .graph_area { overflow:hidden; float:right; width:604px; height:280px; padding-left:30px; background:url('./img/phone/graph.png') no-repeat -600px -276px;}
+.graph_animate .graph_area ul { position:relative; top:30px; height:206px;}
+.graph_animate .graph_area ul li { position:relative; float:left; padding-top:10px; width:97px; height:200px;}
+.graph_animate .graph_area ul li .tit_graph { position:absolute; top:222px; left:-3px; width:70px; max-height:56px; line-height:16px; text-align:center; vertical-align:top; display:block; overflow:hidden; text-overflow:ellipsis; font-weight:bold;}
+.graph_animate .graph_area ul li .tit_graph .stit {}
+.graph_animate .graph_area .txt { position:absolute; top:-30px; display:block; width:56px; text-align:center; font:bold 20px arial; color:#999;}
+.graph_animate .graph_area .txt span { font-size:20px;}
+.graph_animate .graph_area .graph_wrap { position:relative; margin:0 auto; width:100px; height:200px; background:url('./img/phone/graph.png') no-repeat -600px -600px;}
+.graph_animate .graph_area .graph { position:absolute; bottom:3px; width:56px; height:200px; background:url('./img/phone/graph.png') repeat-y 0 0;}
+.graph_animate .graph_area .graph span.bg { position:absolute; top:-2px; display:block; width:100%; height:10px; background:url('./img/phone/graph.png') no-repeat -600px 0;}
+.graph_animate .graph_area .graph span.per { display:none;}
+
+.graph_animate .graph_age .graph_wrap { background-position:-600px -600px;}
+.graph_animate .graph_age .graph { background-position:0 bottom;}
+.graph_animate .graph_age .graph span.bg { background-position:-600px 0;}
+.graph_animate .graph_age li.per_high .graph_wrap { background-position:-700px -600px;}
+.graph_animate .graph_age li.per_high .graph { background-position:-100px bottom;}
+.graph_animate .graph_age li.per_high .graph span.bg { background-position:-700px 0;}
+
+.graph_animate .graph_phone .graph_wrap { background-position:-800px -600px;}
+.graph_animate .graph_phone .graph { background-position:-200px bottom;}
+.graph_animate .graph_phone .graph span.bg { background-position:-800px 0;}
+.graph_animate .graph_phone li.per_high .graph_wrap { background-position:-900px -600px;}
+.graph_animate .graph_phone li.per_high .graph { background-position:-300px bottom;}
+.graph_animate .graph_phone li.per_high .graph span.bg { background-position:-900px 0;}
+
+.graph_animate .graph_sex .graph_area { padding-left:225px; width:409px;}
+.graph_animate .graph_sex li.per_male .graph_wrap { background-position:-1000px -600px;}
+.graph_animate .graph_sex li.per_male .graph { background-position:-400px bottom;}
+.graph_animate .graph_sex li.per_male .graph span.bg { background-position:-1000px 0;}
+.graph_animate .graph_sex li.per_female .graph_wrap { background-position:-1100px -600px;}
+.graph_animate .graph_sex li.per_female .graph { background-position:-500px bottom;}
+.graph_animate .graph_sex li.per_female .graph span.bg { background-position:-1100px 0;}
+
+/* 요금제 상세 */
+.product_step02	.detail_view	.option_recomm	{position:relative;}
+.product_step02	.detail_view	.option_recomm	.dash_list	{margin-top:15px; font-size:11px;}
+.product_step02	.detail_view	.option_recomm	.dash_list	li	{margin-top:8px;}
+.product_step02	.detail_view	.option	.point_change	dt	{width:150px; padding-top:0px;}
+.product_step02	.detail_view	.option	.point_change	dd	{width:119px; padding-top:0px;}
+.product_step02	.detail_view	.option	.total_wrap	{position:relative; height:214px !important;}
+.product_step02	.detail_view	.option	.total_wrap	.total_area	{position:static !important;}
+.product_step02	.detail_view	.option	.total_wrap	.monthly	{top:170px !important; margin-top:0px !important;}
+.product_step02	.detail_view	.tariff_info	{position:absolute; top:0; right:0; float:none; width:243px;}
+.product_step02	.detail_view	.tariff_info	.tbl_row th {height:53px; padding:0 10px; vertical-align:middle;}
+.product_step02	.detail_view	.tariff_info	.tbl_row td {height:53px; padding:0 10px; vertical-align:middle;}
+
+/* 요금제 상단 옵션 */
+.product_step02	.category_location	{width:472px !important;}
+.product_step02	.category_location	.maker_wrap	{width:290px !important;}
+.product_step02	.category_location	.list_page	{width:70px;}
+.product_step02	.category_location	.list_page	.btnicon_pre	{right:21px;}
+.product_step02	.category_location	.list_page	.num	{margin:3px 49px 0 0;}
+.product_step02	.category_location	.list_page	.btnicon_next	{right:0px;}
+.product_step02	.sort_wrap	{margin-left:5px;}
+.btn_tariff	{position:relative; float:left; display:block; width:140px; height:26px; margin:12px 14px 0 6px;}
+.btn_tariff	a.link	{display:inline-block; width:140px; height:26px; background:url('./img/phone/btn_my_tariff.png') no-repeat 0 0;}
+.btn_tariff	a.link:hover	{background-position:-144px 0;}
+.btn_tariff	a.link:active	{background-position:-288px 0;}
+.btn_tariff	.tip_layer {top:-5px; left:-28px;}
+.btn_tariff	.tip_layer	.ac	{margin-top:7px;}
+.btn_tariff	.tip_layer	.tc_gray	{color:#666;}
+
+/* 나만의 요금제 찾기 */
+.mytariff	#my_tariff	{display:block;}
+.mytariff	.product_area	{display:none;}
+.mytariff	.option_bar	{display:none;}
+.myt_search.product_step02	.w1680,
+.myt_search.product_step02	.w1920	{background-image:none; background-color:#fff}
+.myt_search	.product_area	{display:block !important;}
+.myt_search	.product_area	.list_wrap,
+.myt_search	.product_area	.list_pre,
+.myt_search	.product_area	.list_next,
+.myt_search	.product_area	.thumb_page,
+.myt_search	.product_area	.tariff_table	.banner_wrap	{display:none;}
+.myt_search.product_step02	.product_area	{min-height:auto !important; padding-bottom:90px !important;}
+.myt_search.product_step02	.product_area	.tariff_table	{display:block !important; margin:0 auto 0;}
+
+.tariff_search	{display:none; position:relative; width:1050px; margin:0 auto 50px; background:#fff; z-index:3;}
+.tariff_search	.my_tariff_wrap	{position:relative; width:1050px; margin:0 auto 0; padding-top:40px;}
+.tariff_search	.tit_my_tariff	{margin-bottom:30px; text-align:center;}
+.tariff_search	.btn_close	{position:absolute; top:35px; right:0; width:35px; height:34px;}
+.tariff_search	.btn_close	a	{display:inline-block; width:35px; height:34px; background:url('./img/product/btn_detail_close.png') no-repeat 0 0;}
+.tariff_search	.btn_close	a:hover	{background-position:-45px 0;}
+.tariff_search	.btn_close	a:active	{background-position:-90px 0;}
+.tariff_search	.login_area	{position:absolute; top:25px; left:50%; margin-left:-274px; width:549px; vertical-align:middle; color:#666;}
+.tariff_search	.login_area	.login_txt	{float:left; padding-top:7px;}
+.tariff_search	.login_area	.bt_wrap	{float:right; display:block; width:95px; vertical-align:middle;}
+.tariff_search	.Tab {width:1050px; margin-bottom:0px;}
+.tariff_search	.Tab ul { width:1050px;}
+.tariff_search	.Tab.tab2 li { width:524px;}
+.tariff_search	.Tab.tab2 li:first-child { width:525px;}
+.tariff_search	.customized_wrap	{position:relative; width:1050px; min-height:329px; margin-top:36px}
+.tariff_search	.customized_wrap	.info_msg	{position:absolute; top:4px; right:0; width:264px; height:329px; background:url('./img/phone/bg_customized_info.png') no-repeat 0 0;}
+.tariff_search	.bg_customized	{width:766px; height:262px; background:url('./img/phone/bg_customized_tariff.png') no-repeat 0 0;}
+.tariff_search	.bg_customized	.graph_list	{width:512px; margin-left:203px; overflow:hidden;}
+.tariff_search	.bg_customized	.graph_list	li	{float:left; width:284px; height:249px; padding-top:13px;}
+.tariff_search	.bg_customized	.graph_list	li.end	{width:222px; height:245px; padding-top:17px;}
+.tariff_search	.graph_wrap	{position:relative; width:80px; height:243px;}
+.tariff_search	.graph_wrap	.png_graph	{position:absolute; left:0; bottom:0; width:80px; z-index:0;}
+.tariff_search	.graph_wrap	.graph_voice	{position:relative; width:80px; height:100%; background:url('./img/phone/graph_voice.png') no-repeat 0 bottom;}
+.tariff_search	.graph_wrap	.graph_voice	.btn_control	{display:inline-block; position:absolute; left:87px; width:37px; height:30px; background:url('./img/phone/btn_control_voice.png') no-repeat 0 0;}
+.tariff_search	.graph_wrap	.graph_voice	.btn_control:hover	{background-position:0 -42px;}
+.tariff_search	.graph_wrap	.graph_voice	.btn_control	 button {display:block; width:100%; height:100%; border:0 none; background:none; text-indent:-1000em;}
+.tariff_search	.graph_wrap	.graph_voice	.data_num	{display:inline-block; position:absolute; left:130px; margin-top:2px; background:url('./img/phone/bg_data_num.png') no-repeat 0 0; text-indent:-1000em;}
+.tariff_search	.graph_wrap	.graph_voice	.data_num.m100	{width:63px; height:24px; background-position:0 0;}
+.tariff_search	.graph_wrap	.graph_voice	.data_num.m150	{width:63px; height:24px; background-position:0 -30px;}
+.tariff_search	.graph_wrap	.graph_voice	.data_num.m200	{width:65px; height:24px; background-position:0 -61px;}
+.tariff_search	.graph_wrap	.graph_voice	.data_num.m200	{width:65px; height:24px; background-position:0 -61px;}
+.tariff_search	.graph_wrap	.graph_voice	.data_num.etc01	{width:69px; height:16px; margin-top:7px; background-position:0 -131px;}
+.tariff_search	.graph_wrap	.graph_voice	.data_num.etc02	{width:84px; height:16px; margin-top:7px; background-position:0 -103px;}
+.tariff_search	.graph_wrap	.graph_voice_top	{display:inline-block; width:80px; height:20px; background:url('./img/phone/graph_voice_top.png') no-repeat 0 top;}
+.tariff_search	.graph_wrap	.bg_voice	{position:absolute; left:0; bottom:0; width:80px; height:243px; background:url('./img/phone/bg_graph_voice.png') no-repeat 0 0; z-index:2;}
+.tariff_search	.graph_wrap.data	{width:81px; height:237px;}
+.tariff_search	.graph_wrap.data	.png_graph	{width:79px; padding-left:2px;}
+.tariff_search	.graph_wrap	.graph_data	{position:relative; width:79px; height:100%; background:url('./img/phone/graph_data.png') no-repeat 0 bottom;}
+.tariff_search	.graph_wrap	.graph_data	.btn_control	{display:inline-block; position:absolute; left:87px; width:37px; height:30px; margin-top:-7px; background:url('./img/phone/btn_control_data.png') no-repeat 0 0;}
+.tariff_search	.graph_wrap	.graph_data	.btn_control:hover	{background-position:0 -42px;}
+.tariff_search	.graph_wrap	.graph_data	.btn_control	 button {display:block; width:100%; height:100%; border:0 none; background:none; text-indent:-1000em;}
+.tariff_search	.graph_wrap	.graph_data	.data_num	{display:inline-block; position:absolute; left:130px; margin-top:-5px; background:url('./img/phone/bg_data_num.png') no-repeat 0 0; text-indent:-1000em;}
+.tariff_search	.graph_wrap	.graph_data	.data_num.m250	{width:68px; height:24px; background-position:0 -153px;}
+.tariff_search	.graph_wrap	.graph_data	.data_num.m700	{width:70px; height:24px; background-position:0 -182px;}
+.tariff_search	.graph_wrap	.graph_data	.data_num.g15	{width:54px; height:24px; background-position:0 -213px;}
+.tariff_search	.graph_wrap	.graph_data	.data_num.g3	{width:30px; height:24px; background-position:0 -246px;}
+.tariff_search	.graph_wrap	.graph_data	.data_num.g8	{width:30px; height:24px; background-position:0 -278px;}
+.tariff_search	.graph_wrap	.graph_data_top	{display:inline-block; width:79px; height:14px; background:url('./img/phone/graph_data_top.png') no-repeat 0 top;}
+.tariff_search	.graph_wrap	.graph_skt	{position:relative; width:80px; height:100%; background:url('./img/phone/graph_skt.png') no-repeat 0 bottom;}
+.tariff_search	.graph_wrap	.graph_skt_top	{display:inline-block; width:80px; height:20px; background:url('./img/phone/graph_skt_top.png') no-repeat 0 top;}
+.tariff_search	.graph_wrap	.bg_skt	{position:absolute; left:0; bottom:0; width:80px; height:243px; background:url('./img/phone/bg_graph_skt.png') no-repeat 0 0; z-index:2;}
+.tariff_search	.graph_wrap	.bg_data	{position:absolute; left:0; bottom:0; width:81px; height:237px; background:url('./img/phone/bg_graph_data.png') no-repeat 0 0; z-index:2;}
+.tariff_search	.data_info	{width:755px; margin:18px 0 0 10px; background:url('./img/product/line_dot_bottom.png') repeat-x 0 27px;}
+.tariff_search	.data_info	table	{width:673px; border:none 0;}
+.tariff_search	.data_info	thead	th	{height:28px; padding:0; text-align:center; vertical-align:top;}
+.tariff_search	.data_info	tbody	th,
+.tariff_search	.data_info	tbody	td	{padding:13px 0 0 0; text-align:center; color:#404040;}
+.tariff_search	.data_info	tbody	td	.t_11	{color:#808080; font-size:11px;}
+.tariff_search	.data_info	tbody	.end	{padding:4px 0 0 0;}
+
+.tariff_search	.bt_wrap	span	{display:inline-block; background:url('./img/phone/btn_tariff.png') no-repeat;}
+.tariff_search	.bt_wrap.customized	{position:absolute; top:266px; right:21px}
+.tariff_search	.bt_wrap	.sc_customized	{width:222px; height:46px; background-position:0 0;}
+.tariff_search	.bt_wrap	.sc_customized:hover	{background-position:-233px 0;}
+.tariff_search	.bt_wrap	.sc_login	{width:95px; height:29px; background-position:0 -52px;}
+.tariff_search	.bt_wrap	.sc_login:hover	{background-position:-104px -52px;}
+.tariff_search	.bt_wrap	.sc_amount	{width:162px; height:36px; background-position:0 -88px;}
+.tariff_search	.bt_wrap	.sc_amount:hover	{background-position:-168px -88px;}
+.tariff_search	.bt_wrap	.sc_amount.disable	{background-position:-338px -88px;}
+.tariff_search	.bt_wrap	.sc_amount.disable	button	{cursor:default;}
+.tariff_search	.bt_wrap	.sc_recomm_tariff	{width:222px; height:46px; background-position:0 -190px;}
+.tariff_search	.bt_wrap	.sc_recomm_tariff:hover	{background-position:-230px -190px;}
+.tariff_search	.recomm_wrap.search	.bt_wrap	.sc_recomm_tariff	{width:222px; height:46px; background-position:0 -132px; text-indent:-1000em;}
+.tariff_search	.recomm_wrap.search	.bt_wrap	.sc_recomm_tariff	button	{cursor:default;}
+.tariff_search	.bt_wrap	.sc_recomm_tariff.disable	{background-position:0 -132px; text-indent:-1000em;}
+.tariff_search	.bt_wrap	.sc_recomm_tariff.disable	button	{cursor:default;}
+
+.tariff_search	.recomm_wrap	{position:relative; width:1050px; padding-top:39px; overflow:hidden;}
+.tariff_search	.recomm_wrap.search	.search_area	{display:block;}
+.tariff_search	.recomm_wrap.search	.graph_wrap	.png_graph	{overflow:hidden;}
+.tariff_search	.recomm_wrap.search	.graph_wrap	.graph_voice,
+.tariff_search	.recomm_wrap.search	.graph_wrap	.graph_skt,
+.tariff_search	.recomm_wrap.search	.graph_wrap	.graph_data	{height:0; overflow:hidden;}
+.tariff_search	.recomm_wrap	.search_area	{display:none; position:absolute; left:10px; top:159px; width:756px; text-align:center; z-index:3;}
+.tariff_search	.recomm_wrap	.search_area	.txt	{margin-bottom:22px;}
+.tariff_search	.recomm_wrap	.search_area	.bt_wrap	span	{margin-left:300px;}
+.tariff_search	.recomm_wrap	.data_info	table	{width:716px;}
+.tariff_search	.bg_recomm_tariff	{width:756px; height:298px; margin:0 0 0 10px; background:url('./img/phone/bg_recomm_tariff.png') no-repeat 0 40px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	{width:616px; margin-left:124px; *margin-top:49px; overflow:hidden;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li	{float:left; width:201px; height:298px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.voice	{width:214px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.voice	.graph_wrap	{margin-top:49px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.voice	.numerical	{position:absolute; left:97px; margin-top:-30px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.skt	{width:200px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.skt	.graph_wrap	{margin-top:50px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.skt	.numerical	{position:absolute; left:97px; margin-top:-25px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.data	.graph_wrap	{margin-top:54px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.data	.graph_wrap	.bg_data	{*bottom:-5px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.data	.graph_wrap	.png_graph	{*bottom:-5px;}
+.tariff_search	.bg_recomm_tariff	.graph_list	li.data	.numerical	{position:absolute; left:97px; margin-top:-35px;}
+.tariff_search	.my_tariff	{position:absolute; top:79px; right:0; width:222px; height:350px; padding:0 20px; border:1px solid #ededed; background:#f8f8f8 url('./img/phone/bg_box_right.png') no-repeat right top;}
+.tariff_search	.my_tariff	.my_info	{width:100%; padding:26px 0 15px 0; border-bottom:1px solid #dbd9d7; text-align:center; vertical-align:middle; color:#333333; line-height:16px;}
+.tariff_search	.my_tariff	.my_info.etc	{height:67px; padding:45px 0 0 0;}
+.tariff_search	.my_tariff	.my_info	strong	{color:#f55500;}
+.tariff_search	.my_tariff	.my_info	img	{vertical-align:middle;}
+.tariff_search	.my_tariff	.my_info	.txt	{margin:4px 0 10px 0;}
+.tariff_search	.my_tariff	.login_mseg	{height:61px; margin-top:49px; border-bottom:1px solid #dbd9d7; text-align:center;}
+.tariff_search	.my_tariff	.tariff_info	{width:100%; padding-bottom:2px;}
+.tariff_search	.my_tariff	.tariff_info	dl	{width:100%; padding:20px 0 6px 0; border-bottom:1px solid #dbd9d7; line-height:16px; overflow:hidden;}
+.tariff_search	.my_tariff	.tariff_info	dl	dt	{clear:both; float:left; width:73px; padding:0 0 10px 6px;}
+.tariff_search	.my_tariff	.tariff_info	dl	dd	{float:left; width:140px; color:#4d4d4d; padding-bottom:10px;}
+.tariff_search	.my_tariff	.tariff_info	dl	dd.null	{color:#b0b0b0;}
+.tariff_search	.my_tariff	.bt_wrap	{width:100%; padding-top:10px; border-top:1px solid #dbd9d7;}
+
+.numerical	{display:inline-block; height:47px;}
+.numerical	span	{display:inline-block; height:24px; margin-right:1px; background:url('./img/phone/bg_graph_numerical.png') no-repeat 0 0; text-indent:-1000em;}
+.numerical	.numG1	{width:17px; background-position:0 0;}
+.numerical	.numG2	{width:16px; background-position:-25px 0;}
+.numerical	.numG3	{width:16px; background-position:-51px 0;}
+.numerical	.numG4	{width:19px; background-position:-76px 0;}
+.numerical	.numG5	{width:16px; background-position:-102px 0;}
+.numerical	.numG6	{width:17px; background-position:-128px 0;}
+.numerical	.numG7	{width:16px; background-position:-153px 0;}
+.numerical	.numG8	{width:17px; background-position:-179px 0;}
+.numerical	.numG9	{width:17px; background-position:-204px 0;}
+.numerical	.numG0	{width:17px; background-position:-230px 0;}
+.numerical	.minuteG	{width:12px; margin-left:2px; background-position:-253px 0;}
+.numerical	.flag_g	{display:block; width:89px; height:18px; margin:5px 0 0 -11px; background-position:0 -112px;}
+
+.numerical	.numO1	{width:17px; background-position:0 -37px;}
+.numerical	.numO2	{width:16px; background-position:-25px -37px;}
+.numerical	.numO3	{width:16px; background-position:-51px -37px;}
+.numerical	.numO4	{width:19px; background-position:-76px -37px;}
+.numerical	.numO5	{width:16px; background-position:-102px -37px;}
+.numerical	.numO6	{width:17px; background-position:-128px -37px;}
+.numerical	.numO7	{width:16px; background-position:-153px -37px;}
+.numerical	.numO8	{width:17px; background-position:-179px -37px;}
+.numerical	.numO9	{width:17px; background-position:-204px -37px;}
+.numerical	.numO0	{width:17px; background-position:-230px -37px;}
+.numerical	.minuteO	{width:12px; margin-left:2px; background-position:-253px -37px;}
+.numerical	.flag_o	{display:block; width:89px; height:18px; margin:5px 0 0 -11px; background-position:-103px -112px;}
+
+.numerical	.numB1	{width:17px; background-position:0 -74px;}
+.numerical	.numB2	{width:16px; background-position:-25px -74px;}
+.numerical	.numB3	{width:16px; background-position:-51px -74px;}
+.numerical	.numB4	{width:19px; background-position:-76px -74px;}
+.numerical	.numB5	{width:16px; background-position:-102px -74px;}
+.numerical	.numB6	{width:17px; background-position:-128px -74px;}
+.numerical	.numB7	{width:16px; background-position:-153px -74px;}
+.numerical	.numB8	{width:17px; background-position:-179px -74px;}
+.numerical	.numB9	{width:17px; background-position:-204px -74px;}
+.numerical	.numB0	{width:17px; background-position:-230px -74px;}
+.numerical	.dot	{width:6px; margin:0 1px; background-position:-256px -74px;}
+.numerical	.byte	{width:13px; background-position:-268px -74px;}
+.numerical	.flag_b	{display:block; width:89px; height:18px; margin:5px 0 0 -11px; background-position:-201px -112px;}
+
+
+/* 월납부금 총액 */
+.total_flow	.phone_flow	.thumb_wrap	img	{width:90px; height:130px;}
+
+/* 그래프 테스트 */
+.new_graph_wrap	{position:relative; width:80px; height:238px;}
+.new_graph_wrap	.color_graph	{position:absolute; left:0; bottom:0; width:80px; z-index:0;}
+.new_graph_wrap	.new_graph	{width:80px; height:100%; background:url('./img/phone/bg_graph_green.png') no-repeat 0 bottom;}
+.new_graph_wrap	.new_graph_top	{display:inline-block; width:80px; height:21px; background:url('./img/phone/bg_graph_green_top.png') no-repeat 0 top;}
+.new_graph_wrap	.bg_graph	{position:absolute; left:0; bottom:0; width:80px; height:238px; background:url('./img/phone/bg_graph.png') no-repeat 0 0; z-index:5;}
+
+/* 클럽T 혜택안내 레이어 팝업 */
+.clubTtab {width:785px; margin-bottom:18px;}
+.clubTtab li {width:392px; height:50px;}
+.clubTtab li:first-child {width:392px;}
+.clubTtab a {width:392px; background:url('./img/phone/tab_clubt_info.png') no-repeat;}
+.clubTtab li a:hover,
+.clubTtab li a:focus,
+.clubTtab li a.on {width:393px;}
+.clubTtab li.snb1 a {background-position:0 0;}
+.clubTtab li.snb1 a:hover,
+.clubTtab li.snb1 a:focus {background-position:0 -56px;}
+.clubTtab li.snb1 a.on {background-position:0 -56px;}
+.clubTtab li.snb2 a {background-position:-392px 0;}
+.clubTtab li.snb2 a:hover,
+.clubTtab li.snb2 a:focus {background-position:-392px -56px;}
+.clubTtab li.snb2 a.on {background-position:-392px -56px;}
+
+.Tab.clubTsubTab {margin-left:2px;}
+.Tab.clubTsubTab li a {width:194px;}
+.Tab.clubTsubTab li:first-child a {width:194px;}
+
+.clubT_guide	{width:780px; margin-top:30px;}
+.clubT_guide	.dShow	{width:740px; padding:0 20px 30px 20px; height:315px; overflow-y:scroll;}

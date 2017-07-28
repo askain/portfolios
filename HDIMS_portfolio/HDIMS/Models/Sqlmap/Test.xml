@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="test"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Test" type="HDIMS.Models.Domain.Test.TestModel, HDIMS" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="TestMap" class="Test">
+      <result property="No" column="T_NO"/>
+      <result property="Title" column="T_TITLE"/>
+      <result property="Regdt" column="T_REGDT"/>
+    </resultMap>
+  </resultMaps>
+
+  <parameterMaps>
+    <parameterMap id="insert-params">
+      <parameter property="Title" column="P_TITLE" dbType="VarChar"/>
+    </parameterMap>
+  </parameterMaps>
+
+  <statements>
+    <!--리스트 가져오기-->
+    <select id="getList" resultMap="TestMap">
+      SELECT T_NO, T_TITLE, TO_CHAR(T_REGDT,'YYYY-MM-DD') T_REGDT
+      FROM T_TEST
+      ORDER BY T_NO DESC
+    </select>
+
+    <select id="getTest" parameterClass="Test" resultMap="TestMap">
+      SELECT T_NO, T_TITLE, TO_CHAR(T_REGDT,'YYYY-MM-DD') T_REGDT
+      FROM T_TEST
+      WHERE T_NO=#No#
+    </select>
+
+
+    
+
+    <procedure id="insertTest" parameterMap="insert-params">
+      SP_INSERT_TEST
+    </procedure>
+  <!--
+    <insert id="insertTest" parameterClass="Test" resultClass="int">
+      INSERT INTO T_TEST(T_NO, T_TITLE, T_REGDT)
+      VALUES(SEQ_T_TEST.NEXTVAL, #Title#, SYSDATE)
+    </insert>
+  -->
+    <update id="updateTest" parameterClass="Test">
+      UPDATE T_TEST SET T_TITLE=#Title#
+      WHERE T_NO=#No#
+    </update>
+
+    <delete id="deleteTest" parameterClass="Test">
+      DELETE FROM T_TEST WHERE T_NO=#No#
+    </delete>
+    
+  </statements>
+
+
+</sqlMap>

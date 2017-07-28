@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <font>Tahoma</font>
+  <start_on_axis>0</start_on_axis>
+  <redraw>true</redraw>
+  <plot_area>
+    <border_alpha>100</border_alpha>
+    <margins>
+      <left>60</left>
+      <right>60</right>
+      <top>20</top>
+      <bottom>100</bottom>
+    </margins>
+  </plot_area>
+  <grid>
+    <x>
+      <alpha>10</alpha>
+      <approx_count>12</approx_count>
+    </x>
+    <y_right>
+      <enabled>0</enabled>
+    </y_right>
+  </grid>
+  <digits_after_decimal>2</digits_after_decimal>
+  <decimals_separator>.</decimals_separator>
+  <thousands_separator>,</thousands_separator>
+  <context_menu>
+    <menu mid="4" function_name="showAll" title="전체보기"/>
+  </context_menu>
+  <values>
+    <x>
+      <inside>false</inside>
+    </x>
+    <y_left>
+      <inside>false</inside>
+    </y_left>
+    <y_right>
+      <inside>false</inside>
+    </y_right>
+  </values>
+  <graphs>
+    <graph gid="1">
+      <title>저수위</title>
+      <color>A5BC4E</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>저수위 : {value}</b>]]></balloon_text>
+    </graph>
+    <graph gid="2">
+      <title>저수량</title>
+      <color>0000FF</color>
+      <axis>right</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>저수량1 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="3">
+      <title>저수율</title>
+      <color>00FF00</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>저수율 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="4">
+      <title>방수로수위</title>
+      <color>FF0000</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>방수로수위 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="5">
+      <title>유입량</title>
+      <color>DAA520</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>유입량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="6">
+      <title>기타유입량1</title>
+      <color>4169E1</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>기타유입량1 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="7">
+      <title>기타유입량2</title>
+      <color>FF6347</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>기타유입량2 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="8">
+      <title>공용량</title>
+      <color>00BFFF</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>공용량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="9">
+      <title>총방류량</title>
+      <color>800000</color>
+      <axis>left</axis>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>총방류량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="10">
+      <title>발전방류량</title>
+      <color>DEB887</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>발전방류량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="11">
+      <title>기타발전방류량</title>
+      <color>4B0082</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>기타발전방류량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="12">
+      <title>수문방류량</title>
+      <color>8B4513</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>수문방류량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="13">
+      <title>기타방류량1</title>
+      <color>1E90FF</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>기타방류량1 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="14">
+      <title>기타방류량2</title>
+      <color>008B8B</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>기타방류량2 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="15">
+      <title>기타방류량3</title>
+      <color>FFD700</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>기타방류량3 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="16">
+      <title>아울렛방류량</title>
+      <color>800080</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>아울렛방류량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="17">
+      <title>취수1</title>
+      <color>A52A2A</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>취수1 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="18">
+      <title>취수2</title>
+      <color>87CEEB</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>취수2 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="19">
+      <title>취수3</title>
+      <color>2F4F4F</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>취수3 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="20">
+      <title>평균우량</title>
+      <color>8A2BE2</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>FFFFFF</balloon_text_color>
+      <balloon_text><![CDATA[<b>평균우량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+  </graphs>
+  <scroller>
+    <y>10</y>
+    <height>10</height>
+    <color>E48701</color>
+    <bg_color>FFFFFF</bg_color>
+  </scroller>
+  <indicator>
+    <selection_color>000000</selection_color>
+  </indicator>
+  <legend>
+    <!--<x>!130</x>
+    <y>15</y>
+    <width>130</width>
+    <align>left</align>-->
+    <spacing>5</spacing>
+  </legend>
+  <zoom_out_button>
+    <x>!1</x>
+    <y>!1</y>
+    <text>전체보기</text>
+  </zoom_out_button>
+  <error_messages>
+    <color>BBBB00</color>
+    <text_color>FFFFFF</text_color>
+  </error_messages>
+  <strings>
+    <no_data>챠트의 데이터가 존재하지 않습니다.</no_data>
+    <export_as_image>챠트를 이미지로 변환중입니다.</export_as_image>
+    <collecting_data>데이터를 조회중입니다.</collecting_data>
+  </strings>
+</settings>

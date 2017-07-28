@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+
+  <object name="ManService" id="ManService" type="HDIMS.Services.ManAuthMng.ManService, HDIMS">
+  </object>
+  <object name="MenuService" id="MenuService" type="HDIMS.Services.ManAuthMng.MenuService, HDIMS">
+  </object>
+  <object name="AuthService" id="AuthService" type="HDIMS.Services.ManAuthMng.AuthService, HDIMS">
+  </object>
+
+</objects>

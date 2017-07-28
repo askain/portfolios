@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+<link rel="stylesheet" type="text/css" href="../../Scripts/extjs/resources/css/ext-all.css" />
+<script type="text/javascript" src="<%=Page.ResolveUrl("~/Scripts")%>/extjs/ext-all.js"></script>
+<script type="text/javascript" src="<%=Page.ResolveUrl("~/Scripts")%>/extjs/locale/ext-lang-ko.js"></script>
+<script type="text/javascript" src="<%=Page.ResolveUrl("~/Scripts")%>/swfobject.js"></script>
+<script type="text/javascript" src="<%=Page.ResolveUrl("~/Scripts")%>/jquery-1.6.2.min.js"></script>
+<script type="text/javascript">
+    Ext.Loader.setConfig({ enabled: true });
+    Ext.Loader.setPath('Ext.ux', '<%=Page.ResolveUrl("~/Scripts")%>/extjs/ux/');
+    Ext.require(['*']);
+</script>
+<asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
+</head>
+<body style="z-index:100000000">
+<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+</body>
+</html>

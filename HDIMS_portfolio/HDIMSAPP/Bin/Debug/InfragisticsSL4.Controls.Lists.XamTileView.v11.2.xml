@@ -1,0 +1,2277 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsSL4.Controls.Lists.XamTileView.v11.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Controls.Lists.Primitives.AnimatedPanel">
+            <summary>
+            Provides a base class for all panels that position and arrange child objects using animations.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Lists.Primitives.AnimatedPanel"/>
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.HorizontalOffsetProperty">
+            <summary>
+            Identifies the HorizontalOffset attached property. This offset can be used to move a child relative from its calculated location.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.GetHorizontalOffset(System.Windows.UIElement)">
+            <summary>
+            Gets the horizontal offset of an UIElement.
+            </summary>
+            <param name="element">The UIElement which is a child of <see cref="T:Infragistics.Controls.Lists.Primitives.AnimatedPanel"/>.</param>
+            <returns>The horizontal offset of a child</returns>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.HorizontalOffsetProperty"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.SetHorizontalOffset(System.Windows.UIElement,System.Double)">
+            <summary>
+            Sets the horizontal offset to an UIElement. 
+            </summary>
+            <param name="element">The UIElement which is a child of <see cref="T:Infragistics.Controls.Lists.Primitives.AnimatedPanel"/>.</param>
+            <param name="value">The value of horizontal offset.</param>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.HorizontalOffsetProperty"/>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.VerticalOffsetProperty">
+            <summary>
+            Identifies the VerticalOffset attached property.  This offset can be used to move a child relative from its calculated location.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.GetVerticalOffset(System.Windows.UIElement)">
+            <summary>
+            Gets the vertical offset.
+            </summary>
+            <param name="element">The UIElement which is a child of <see cref="T:Infragistics.Controls.Lists.Primitives.AnimatedPanel"/>.</param>
+            <returns>The vertical offset of a child</returns>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.VerticalOffsetProperty"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.SetVerticalOffset(System.Windows.UIElement,System.Double)">
+            <summary>
+            Sets the vertical offset to an UIElement. 
+            </summary>
+            <param name="element">The UIElement which is a child of <see cref="T:Infragistics.Controls.Lists.Primitives.AnimatedPanel"/>.</param>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.VerticalOffsetProperty"/>
+            <param name="value">The value of offset.</param>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationDurationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationDuration"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.EasingFunctionProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.AnimatedPanel.EasingFunction"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.OnAnimationStarted(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationStarted"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationStarted"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.OnAnimationCompleted(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationCompleted"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationCompleted"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called when the coordinate position of the mouse (or stylus) changes while over an AnimatedPanel.
+            At this time MouseLocation property contains old mouse position.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.GetChild(System.Int32)">
+            <summary>
+            Gets the child with having a specified index. This allows children reordering without add/remove from children collection.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The child of this panel at specified postion</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.FindChild(System.Windows.DependencyObject)">
+            <summary>
+            Finds the child of panel that is parent of a specified element.
+            </summary>
+            <param name="subChild">The subchild.</param>
+            <returns>The chlid of this panel that is parent of specified subchild or null</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.ArrangeChild(System.Windows.UIElement,System.Windows.Rect,System.Boolean)">
+            <summary>
+            Positions child objects and determines a size for a System.Windows.UIElement.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="finalRect">The final size that the parent computes for the child in layout, provided as a System.Windows.Rect value.</param>
+            <param name="useAnimation">if set to <c>true</c> the panel uses animation to arrange its children.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.ClearAnimations">
+            <summary>
+            Clears the animations.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.GetAnimation(System.Windows.UIElement)">
+            <summary>
+            Gets the animation used for an element.
+            </summary>
+            <param name="element">The element.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.AnimatedPanel.ResetAnimations">
+            <summary>
+            Resets the animations.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.AnimatedPanel.MouseLocation">
+            <summary>
+            Gets the current mouse location relative to the panel bounds.
+            </summary>
+            <value>The mouse location.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.AnimatedPanel.MouseLocationAbsolute">
+            <summary>
+            Gets the mouse location.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationDuration">
+            <summary>
+            Gets/sets the duration of the animation. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationDurationProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.AnimatedPanel.EasingFunction">
+            <summary>
+            Gets/set the easing function that is used to modify the animation used to arrange the children.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.AnimatedPanel.EasingFunctionProperty"/>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationStarted">
+            <summary>
+            Occurs after rectangle animation has been started.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.Primitives.AnimatedPanel.AnimationCompleted">
+            <summary>
+            Occurs after rectangle animation has been completed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.TilePaneAutomationPeer">
+            <summary>
+            Exposes <see cref="T:Infragistics.Controls.Lists.TilePane"/> types to UI
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.TilePaneAutomationPeer.#ctor(Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.TilePaneAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.TilePaneAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Returns the control type for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetAutomationControlType"/>.
+            </summary>
+            <returns>A value of the enumeration.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.TilePaneAutomationPeer.GetClassNameCore">
+            <summary>
+            Returns the name of the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetClassName"/>.
+            </summary>
+            <returns>
+            The name of the owner type that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. See Remarks.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.TilePaneAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.TilePaneAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Returns the control pattern for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>.
+            </summary>
+            <param name="patternInterface">One of the enumeration values.</param>
+            <returns>See Remarks.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.TilePaneAutomationPeer.Column">
+            <summary>
+            Gets the ordinal number of the column that contains the cell or item.
+            </summary>
+            <value></value>
+            <returns>A zero-based ordinal number that identifies the column that contains the cell or item.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.TilePaneAutomationPeer.ColumnSpan">
+            <summary>
+            Gets the number of columns that are spanned by a cell or item.
+            </summary>
+            <value></value>
+            <returns>The number of columns. </returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.TilePaneAutomationPeer.ContainingGrid">
+            <summary>
+            Gets a UI automation provider that implements <see cref="T:System.Windows.Automation.Provider.IGridProvider"/> and that represents the container of the cell or item.
+            </summary>
+            <value></value>
+            <returns>A UI automation provider that implements the <see cref="F:System.Windows.Automation.Peers.PatternInterface.Grid"/> control pattern and that represents the cell or item container. </returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.TilePaneAutomationPeer.Row">
+            <summary>
+            Gets the ordinal number of the row that contains the cell or item.
+            </summary>
+            <value></value>
+            <returns>A zero-based ordinal number that identifies the row that contains the cell or item. </returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.TilePaneAutomationPeer.RowSpan">
+            <summary>
+            Gets the number of rows spanned by a cell or item.
+            </summary>
+            <value></value>
+            <returns>The number of rows. </returns>
+        </member>
+        <member name="T:Infragistics.AutomationPeers.XamTileViewAutomationPeer">
+            <summary>
+            Exposes <see cref="T:Infragistics.Controls.Lists.XamTileView"/> types to UI
+            </summary>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTileViewAutomationPeer.#ctor(Infragistics.Controls.Lists.XamTileView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.AutomationPeers.XamTileViewAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTileViewAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Returns the control type for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetAutomationControlType"/>.
+            </summary>
+            <returns>A value of the enumeration.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTileViewAutomationPeer.GetChildrenCore">
+            <summary>
+            Returns the collection of child elements of the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetChildren"/>.
+            </summary>
+            <returns>
+            A list of child <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> elements.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTileViewAutomationPeer.GetClassNameCore">
+            <summary>
+            Returns the name of the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetClassName"/>.
+            </summary>
+            <returns>
+            The name of the owner type that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. See Remarks.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTileViewAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTileViewAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Returns the control pattern for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>.
+            </summary>
+            <param name="patternInterface">One of the enumeration values.</param>
+            <returns>See Remarks.</returns>
+        </member>
+        <member name="M:Infragistics.AutomationPeers.XamTileViewAutomationPeer.GetItem(System.Int32,System.Int32)">
+            <summary>
+            Retrieves the UI automation provider for the specified cell.
+            </summary>
+            <param name="row">The ordinal number of the row that contains the cell.</param>
+            <param name="column">The ordinal number of the column that contains the cell.</param>
+            <returns>
+            The UI automation provider for the specified cell.
+            </returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamTileViewAutomationPeer.ColumnCount">
+            <summary>
+            Gets the total number of columns in a grid.
+            </summary>
+            <value></value>
+            <returns>The total number of columns in a grid.</returns>
+        </member>
+        <member name="P:Infragistics.AutomationPeers.XamTileViewAutomationPeer.RowCount">
+            <summary>
+            Gets the total number of rows in a grid.
+            </summary>
+            <value></value>
+            <returns>The total number of rows in a grid.</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.DropIndicator">
+            <summary>
+            A control used to highlight position of <see cref="T:Infragistics.Controls.Lists.TilePane"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.DropIndicator.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Lists.Primitives.DropIndicator"/> 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.StripHorizontalAlignment">
+            <summary>
+            Specifies horizontal alignment of tiles inside a strip of in a <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.StripHorizontalAlignment.Left">
+            <summary>
+            Tiles are arranged from left to right.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.StripHorizontalAlignment.Center">
+            <summary>
+            Tiles are arranged in center of area.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.StripHorizontalAlignment.Right">
+            <summary>
+            Tiles are arranged from right to left.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.StripVerticalAlignment">
+            <summary>
+            specifies vertical alignment of tiles inside a strip in a <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.StripVerticalAlignment.Top">
+            <summary>
+            Tiles are arranged from top to bottom.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.StripVerticalAlignment.Center">
+            <summary>
+            Tiles are arranged in center of area.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.StripVerticalAlignment.Bottom">
+            <summary>
+            Tiles are arranged from bottom to top.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePaneSizing">
+            <summary>
+            Specifies how tlie size is calculated. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneSizing.None">
+            <summary>
+            Tile size depends on desired size of a child.    
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneSizing.Width">
+            <summary>
+            Tile width depends on width of TilePanel.    
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneSizing.Height">
+            <summary>
+            Tile height depends on height of TilePanel.    
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneSizing.Both">
+            <summary>
+            Tile size depends on size of TilePanel.    
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TileState">
+            <summary>
+            Specifies state of a child in <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TileState.Normal">
+            <summary>
+            In this state each tile consumes a uniform height and width.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TileState.Minimized">
+            <summary>
+            The tile is minimized on the <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TileState.Maximized">
+            <summary>
+            The tile is maximized on the <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePaneTransition">
+            <summary>
+            Specifies how the <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> rearranges its children when a child changes its position.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneTransition.Swap">
+            <summary>
+            The first and second children exchange its positions.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneTransition.SlideRowColumn">
+            <summary>
+            The first child goes to the new position. 
+            The adjacent children fill free tile - first children in the row, then children in the column.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneTransition.SlideColumnRow">
+            <summary>
+            The first child goes to the new position. 
+            The adjacent children fill free tile - first children in the column, then children in the row.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.MinimizedStripLocation">
+            <summary>
+            Specifies location where TilePanel arranges minimized tiles.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.MinimizedStripLocation.None">
+            <summary>
+            The child doesn't change its location in minimized state.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.MinimizedStripLocation.Top">
+            <summary>
+            Puts minimized children along the top.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.MinimizedStripLocation.Bottom">
+            <summary>
+            Puts minimized children along the bottom.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.MinimizedStripLocation.Left">
+            <summary>
+            Puts minimized children down the left side.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.MinimizedStripLocation.Right">
+            <summary>
+            Puts minimized children down the right side.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePaneCommand">
+            <summary>
+            An enumeration of available commands for the <see cref="T:Infragistics.Controls.Lists.TilePane"/> object.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneCommand.Maximize">
+            <summary>
+            Maximizes the <see cref="T:Infragistics.Controls.Lists.TilePane"/> object. This command supports <see cref="T:Infragistics.Controls.Lists.TileStateCommandMode"/> as a parameter.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePaneCommand.Restore">
+            <summary>
+            Restore the <see cref="T:Infragistics.Controls.Lists.TilePane"/> in normal state.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TileStateCommandMode">
+            <summary>
+            Specifies whether the command changes TileState from/to Maximized or the command sets TileState.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TileStateCommandMode.OneWay">
+            <summary>
+            Changes the state of control only to true value for specified propery.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TileStateCommandMode.Toggle">
+            <summary>
+            Toggle the state of the control for the specified property.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.XamTileViewCommand">
+            <summary>
+            An enumeration of available commands for the <see cref="T:Infragistics.Controls.Lists.XamTileView"/> object.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileViewCommand.NextPage">
+            <summary>
+            Displays the next page of data in <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileViewCommand.PreviousPage">
+            <summary>
+            Displays the previous page of data in <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePanelCommand">
+            <summary>
+            An enumeration of available commands for the <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> object.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelCommand.ScrollDownMinimized">
+            <summary>
+            Scrolls minimized tiles down in <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelCommand.ScrollUpMinimized">
+            <summary>
+            Scrolls minimized tiles up in <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TileStateChangedEventArgs">
+            <summary>
+             A class containing an event data for events raised from TiledPanel when a child changes its state
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanged"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TileStateChangedEventArgs.#ctor(System.Windows.UIElement,Infragistics.Controls.Lists.TileState,Infragistics.Controls.Lists.TileState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.TileStateChangedEventArgs"/> class.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="oldState">The old state.</param>
+            <param name="newState">The new state.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileStateChangedEventArgs.Element">
+            <summary>
+            The element that changes its state.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileStateChangedEventArgs.OldState">
+            <summary>
+            The old state of an element.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileStateChangedEventArgs.NewState">
+            <summary>
+            The new state of an element.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TileStateChangingEventArgs">
+            <summary>
+             A class containing an event data for events raised from TiledPanel when a child is about to change its state.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanging"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TileStateChangingEventArgs.#ctor(System.Windows.UIElement,Infragistics.Controls.Lists.TileState,Infragistics.Controls.Lists.TileState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.TileStateChangingEventArgs"/> class.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="oldState">The old state.</param>
+            <param name="newState">The new state.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileStateChangingEventArgs.Element">
+            <summary>
+            The element that changes its state.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileStateChangingEventArgs.OldState">
+            <summary>
+            The old state of an element.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileStateChangingEventArgs.NewState">
+            <summary>
+            The new state of an element.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TileDragEventArgs">
+            <summary>
+             A class containing an event data for event raised from TiledPanel when drag operation is in progress.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TileDragEventArgs.#ctor(System.Windows.UIElement,System.Windows.UIElement,System.Windows.UIElement)">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Lists.TileDragEventArgs"/>
+            </summary>
+            <param name="dragElement">The drag element.</param>
+            <param name="targetElement">The target element.</param>
+            <param name="previousTarget">The previous target.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragEventArgs.DragElement">
+            <summary>
+             Returns the element that is dragged.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragEventArgs.TargetElement">
+            <summary>
+            Returns the target element.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragEventArgs.PreviousTarget">
+            <summary>
+            Returns the previous target.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragEventArgs.CancelTarget">
+            <summary>
+            Gets/sets if the target element does not accept dragged element.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TileDragStartedEventArgs">
+            <summary>
+             A class containing an event data for event raised from TiledPanel when drag operation started.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TileDragStartedEventArgs.#ctor(System.Windows.UIElement)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.TileDragStartedEventArgs"/> class.
+            </summary>
+            <param name="element">The panel child.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragStartedEventArgs.DragElement">
+            <summary>
+            Returns the element that is dragged.
+            </summary>
+            <value>The drag element.</value>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TileDragCompletedEventArgs">
+            <summary>
+             A class containing an event data for event raised from TiledPanel when drag operation completed.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TileDragCompletedEventArgs.#ctor(System.Windows.UIElement,System.Windows.UIElement,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.TileDragStartedEventArgs"/> class.
+            </summary>
+            <param name="element">The panel child.</param>
+            <param name="targetElement">The target element.</param>
+            <param name="isCanceled">Indicates that drag operation is canceled.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragCompletedEventArgs.DragElement">
+            <summary>
+            Returns the element that is dragged.
+            </summary>
+            <value>The drag element.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragCompletedEventArgs.TargetElement">
+            <summary>
+            Returns the target element.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TileDragCompletedEventArgs.IsCanceled">
+            <summary>
+            Gets a value indicating whether drag operation is canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.PageIndexChangedEventArgs">
+            <summary>
+            Event arguments for the event <see cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanged"/>
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanged"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.PageIndexChangedEventArgs.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.PageIndexChangedEventArgs"/> class.
+            </summary>
+            <param name="oldPageIndex">The index of the old page.</param>
+            <param name="newPageIndex">The index of the new page.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.PageIndexChangedEventArgs.NewPageIndex">
+            <summary>
+            Gets the index of the new page.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.PageIndexChangedEventArgs.OldPageIndex">
+            <summary>
+            Gets the index of the old page.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.PageIndexChangingEventArgs">
+            <summary>
+            Event arguments for the event <see cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanging"/>
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanging"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.PageIndexChangingEventArgs.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.PageIndexChangingEventArgs"/> class.
+            </summary>
+            <param name="oldPageIndex">The index of the old page.</param>
+            <param name="newPageIndex">The index of the new page.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.PageIndexChangingEventArgs.NewPageIndex">
+            <summary>
+            Gets the index of the new page.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.PageIndexChangingEventArgs.OldPageIndex">
+            <summary>
+            Gets the index of the old page.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.RectangleAnimation">
+            <summary>
+            A class used to animate final rectangle in ArrangeChild method of an AnimatedPanel class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RectangleAnimation.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.Primitives.RectangleAnimation"/> class.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RectangleAnimation.#ctor(Infragistics.Controls.Lists.Primitives.AnimatedPanel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infragistics.Controls.Lists.Primitives.RectangleAnimation"/> class.
+            </summary>
+            <param name="animatedPanel">The animated panel.</param>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.RectangleAnimation.PositionProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Position"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.RectangleAnimation.WidthProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Width"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.RectangleAnimation.HeightProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Height"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Animate(System.Windows.UIElement,System.Windows.Rect,System.Windows.Rect)">
+            <summary>
+            Animates the specified element.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="from">Initial rectangle.</param>
+            <param name="to">Final rectangle.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Reset">
+            <summary>
+            Resets this instance.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RectangleAnimation.OnAnimatedPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when animated property changes its value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RectangleAnimation.RestartAnimation(System.Windows.Rect)">
+            <summary>
+            Restarts the animation.
+            </summary>
+            <param name="finalRect">The final rect.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.TargetElement">
+            <summary>
+            Gets the target element.
+            </summary>
+            <value>The target UIElement.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.IsAnimating">
+            <summary>
+            Gets a value indicating whether animation is in progress.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Position">
+            <summary>
+            Gets/set the current position of an animated rectangle. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.RectangleAnimation.PositionProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Width">
+            <summary>
+            Gets/set the current width of an animated rectangle. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.RectangleAnimation.WidthProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.Height">
+            <summary>
+            Gets/set the current height of an animated rectangle. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.RectangleAnimation.HeightProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.CurrentRect">
+            <summary>
+            Gets the current rectangle in arrange procedure. This value may be result of applying animations to the width, height or position. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.FinalRect">
+            <summary>
+            Gets the final position and size that the parent computes for the child in layout, provided as a System.Windows.Rect value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.RectangleAnimation.InitialRect">
+            <summary>
+            Gets the initial rect where the element is arranged.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.SettingsBase">
+            <summary>
+            An Abstract class that controls the settings for an object on the <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.SettingsBase.TileView">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Lists.XamTileView"/> that owns the <see cref="T:Infragistics.Controls.Lists.SettingsBase"/> object.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePane">
+            <summary>
+            A class that represents a selectable item in a <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Lists.TilePane"/> 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnCreateAutomationPeer">
+            <summary>
+            When implemented in a derived class, returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            The class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> subclass to return.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.MouseLeftButtonDown"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnMouseEnter(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.MouseEnter"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnMouseLeave(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.MouseLeave"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.MouseLeftButtonUp"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.KeyDown"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnLostMouseCapture(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.LostMouseCapture"/> event occurs to provide handling for the event in a derived class without attaching a delegate.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Input.MouseEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the Arrange pass of Silverlight layout. Classes can override this method to define their own Arrange pass behavior.
+            </summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>
+            The actual size used once the element is arranged.
+            </returns>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePane.HeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePane.Header"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePane.HeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePane.HeaderTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePane.TileStateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePane.TileState"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePane.DropIndicatorStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePane.DropIndicatorStyle"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.OnPropertyChanged(System.String)">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.GetParameter(Infragistics.Controls.CommandSource)">
+            <summary>
+            Gets the object that defines the parameters necessary to execute the command.
+            </summary>
+            <param name="source">The CommandSource object which defines the command to be executed.</param>
+            <returns>The object necessary for the command to complete.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePane.SupportsCommand(System.Windows.Input.ICommand)">
+            <summary>
+            Gets if the object will support a given command type.
+            </summary>
+            <param name="command">The command to be validated.</param>
+            <returns>
+            True if the object recognizes the command as actionable against it.
+            </returns>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePane.Header">
+            <summary>
+            Gets/set the Header of <see cref="T:Infragistics.Controls.Lists.TilePane"/>.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePane.HeaderProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePane.HeaderTemplate"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePane.HeaderTemplate">
+            <summary>
+            Gets/set a data template used to display the content of the control's header.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePane.HeaderTemplateProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePane.Header"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePane.Key">
+            <summary>
+            Gets/sets a key associated with this <see cref="T:Infragistics.Controls.Lists.TilePane"/>. Though not required, if specified this key can be used to access the <see cref="T:Infragistics.Controls.Lists.TilePane"/> in the <see cref="P:Infragistics.Controls.Lists.XamTileView.Items"/> collection.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePane.TileState">
+            <summary>
+            Gets/sets the TileState of TilePane.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePane.TileStateProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePane.TileState"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePane.DropIndicatorStyle">
+            <summary>
+            Gets/set the DropIndicatorStyle of TilePane.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePane.DropIndicatorStyleProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePane.Data">
+            <summary>
+            Gets or sets the data that is used to generate container from <see cref="T:Infragistics.Controls.Lists.XamTileView"/> when ItemsSource property is used to generate items.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Lists.XamTileView"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.ItemsSource"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePane.IsEmptyTile">
+            <summary>
+            Gets/sets a value indicating whether this tile is empty tile inside current page in <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+            <remarks>TileView fills empty positions in current displayed page with empty tiles. Develepores can modify the appearance of a en empty tile using the Visual State Manager.</remarks>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.TilePane.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePaneCollection">
+            <summary>
+            Represents a modifiable collection of <see cref="T:Infragistics.Controls.Lists.TilePane"/> objects.
+            </summary>
+            <remarks>The <see cref="T:Infragistics.Controls.Lists.TilePane"/>s in TilePaneCollection can be accessed either via key or integer index.</remarks>
+            <seealso cref="T:Infragistics.Controls.Lists.TilePane"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.Items"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCollection.#ctor">
+            <summary>
+            Initialize a new TilePaneCollection
+            </summary>
+            <remarks>
+            <p class="note"><b>Note: </b>An instance of this class is automatically created by the <see cref="T:Infragistics.Controls.Lists.XamTileView"/>. You do not normally need to create an instance of this class.</p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCollection.InsertItem(System.Int32,Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Inserts a new <see cref="T:Infragistics.Controls.Lists.TilePane"/> at the specified index in the collection.
+            </summary>
+            <param name="index">The index at which to insert the TilePane/&gt;</param>
+            <param name="item">The TilePane to insert in the collection</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes an  <see cref="T:Infragistics.Controls.Lists.TilePane"/> at the specified index.
+            </summary>
+            <param name="index">The index of the item in the collection to be removed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCollection.SetItem(System.Int32,Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Replaces an item at the specified index in the collection 
+            </summary>
+            <param name="index">Index of the item to replace</param>
+            <param name="item">The item to insert into the collection.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCollection.ClearItems">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCollection.ContainsItem(System.Object)">
+            <summary>
+            Determines whether TilePaneCollection contains the TilePane generated from the specified item.
+            </summary>
+            <returns>
+                <c>true</c> if the specified item contains data; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCollection.ContainerFromItem(System.Object)">
+            <summary>
+            Gets the <see cref="T:Infragistics.Controls.Lists.TilePane"/>which is generated from specific data.
+            </summary>
+            <param name="data">The object used to generate TilePane container.</param>
+            <returns>The <see cref="T:Infragistics.Controls.Lists.TilePane"/> which is generated from specific data or null if a <see cref="T:Infragistics.Controls.Lists.TilePane"/> with the specified data was not found.</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePaneCommandSource">
+            <summary>
+            The command source object for <see cref="T:Infragistics.Controls.Lists.TilePane"/> object.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCommandSource.ResolveCommand">
+            <summary>
+            Generates the <see cref="T:System.Windows.Input.ICommand"/> object that will execute the command.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePaneCommandSource.OnPropertyChanged(System.String)">
+            <summary>
+            Used to raise the PropertyChanged event for the specified property name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePaneCommandSource.CommandType">
+            <summary>
+            Returns/sets the TilePaneCommand which is to be executed by the command.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.TilePaneCommandBase">
+            <summary>
+            Base class for all commands that deal with a <see cref="T:Infragistics.Controls.Lists.TilePane"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePaneCommandBase.CanExecute(System.Object)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="parameter">The object that the command will be executed against.</param>
+            <returns>True if the object can support this command.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePaneCommandBase.Execute(System.Object)">
+            <summary>
+            Executes the command 
+            </summary>
+            <param name="parameter">The <see cref="T:Infragistics.Controls.Lists.TilePane"/> object that will be executed against.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePaneCommandBase.ExecuteCommand(Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.TilePane"/>
+            </summary>
+            <param name="tilePane"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePaneCommandBase.CanExecuteCommand(Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.TilePane"/>
+            </summary>
+            <param name="tilePane"></param>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.MaximizeCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that will be maximized.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.MaximizeCommand.ExecuteCommand(Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Maximizes a TilePane.
+            </summary>
+            <param name="tilePane">A <see cref="T:Infragistics.Controls.Lists.TilePane"/> object that will be maximized.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.MaximizeCommand.CanExecuteCommand(Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.TilePane"/>
+            </summary>
+            <param name="tilePane"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.RestoreCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that will be restored to its normal state.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RestoreCommand.ExecuteCommand(Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Restore a minimized or maximized TilePane to its normal state.
+            </summary>
+            <param name="tilePane">A <see cref="T:Infragistics.Controls.Lists.TilePane"/> object that will be restored to a normal state.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.RestoreCommand.CanExecuteCommand(Infragistics.Controls.Lists.TilePane)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.TilePane"/>
+            </summary>
+            <param name="tilePane"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.TilePanel">
+            <summary>
+            A custom panel that arranges items of XamTileView.
+            </summary>
+            <remarks>
+            The TilePanel provides the base tile layout panel behavior, 
+            managing the placement of content panes in the minimized, maximized and normal states, as well as the drag and drop user interactions.  
+            The TilePanel allows the user to define tiles which contain arbitrary content.
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the "measure" pass of Silverlight layout. Classes can override this method to define their own measure pass behavior.
+            </summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>
+            The size that this object determines it needs during layout, based on its calculations of child object allotted sizes.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the "Arrange" pass of Silverlight layout. Classes can override this method to define their own arrange pass behavior.
+            </summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>The actual size used.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.OnAnimationCompleted(System.EventArgs)">
+            <summary>
+            Raises the <see cref="!:AnimationCompleted"/> event.
+            </summary>
+            <param name="args"></param>
+            <seealso cref="!:AnimationCompleted"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called when the coordinate position of the mouse (or stylus) changes while over an AnimatedPanel.
+            At this time MouseLocation property contains old mouse position.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.ArrangeChild(System.Windows.UIElement,System.Windows.Rect,System.Boolean)">
+            <summary>
+            Positions a child and determines a size for a System.Windows.UIElement.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="finalRect">The final size that the parent computes for the child in layout, provided as a System.Windows.Rect value.</param>
+            <param name="useAnimation">if set to <c>true</c> the panel uses animation.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.GetChild(System.Int32)">
+            <summary>
+            Gets the child with having a specified index. This allows children reordering without add/remove from children collection.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>
+            The child of this panel at specified postion
+            </returns>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.AllowAnimationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.AllowAnimation"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneTransitionProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneTransition"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneOrderingProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneOrdering"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.StripHorizontalAlignmentProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.StripHorizontalAlignment"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.StripVerticalAlignmentProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.StripVerticalAlignment"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.StripSizeProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.StripSize"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneSizingProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneSizing"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.TileStateProperty">
+            <summary>
+            Identifies the state of a child. This is an attached dependency property.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Lists.TileState"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.OnTileStateChanged(System.Windows.UIElement,Infragistics.Controls.Lists.TileState,Infragistics.Controls.Lists.TileState)">
+            <summary>
+            Called when a child changes its <see cref="T:Infragistics.Controls.Lists.TileState"/>.
+            </summary>
+            <param name="target">The child.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.SetTileState(System.Windows.UIElement,Infragistics.Controls.Lists.TileState)">
+            <summary>
+            Sets the TileState attached property to a UIElement.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.GetTileState(System.Windows.UIElement)">
+            <summary>
+            Gets the value of TileState attached property of a UIElement.
+            </summary>
+            <param name="element">UIElement</param>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripLocationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripLocation"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripWidthProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripWidth"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripHeightProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripHeight"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.MaxMaximizedTilesProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MaxMaximizedTiles"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilePaneSizingProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilePaneSizing"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.StartDrag(System.Windows.DependencyObject)">
+            <summary>
+            Moves the specified child.
+            </summary>
+            <param name="child">The child.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.StopDrag(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Stops the moving.
+            </summary>
+            <param name="child">The child.</param>
+            <param name="cancel">if set to <c>true</c> cancel drag.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.Swap(System.Windows.UIElement,System.Windows.UIElement)">
+            <summary>
+            Swaps position of two children.
+            </summary>
+            <param name="firstChild">The first child.</param>
+            <param name="secondChild">The second child.</param>
+            <returns>true on success, false otherwise</returns>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneTransition"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.ResetChildrenOrder">
+            <summary>
+            Resets the children order.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.GetChildPosition(System.Windows.UIElement)">
+            <summary>
+            Gets the child position.
+            </summary>
+            <param name="element">The child.</param>
+            <returns>Returns the child postion or -1 if an element is not a child of TilePanel</returns>
+            <seealso cref="M:Infragistics.Controls.Lists.Primitives.TilePanel.ResetChildrenOrder"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.CanScrollMinimizedTiles(System.Int32)">
+            <summary>
+            Determines whether <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> can scroll minimized tiles.
+            </summary>
+            <param name="numberOfTiles">The number of tiles. The value less than zero changes the scroll direction</param>
+            <returns>
+                <c>true</c> if <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> can scroll minimized tiles with specified number of tiles; otherwise, <c>false</c>.
+            </returns>
+            <seealso cref="M:Infragistics.Controls.Lists.Primitives.TilePanel.ScrollMinimizedTiles(System.Int32)"/>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilePaneSizing"/>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilesScrollOffsetProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilesScrollOffset"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.ScrollMinimizedTiles(System.Int32)">
+            <summary>
+            Scrolls the minimized tiles.
+            </summary>
+            <param name="numberOfTiles">The number of tiles. The value less than zero changes scroll direction</param>
+            <seealso cref="M:Infragistics.Controls.Lists.Primitives.TilePanel.CanScrollMinimizedTiles(System.Int32)"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.SortChildren">
+            <summary>
+            Sorts the children.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.IsDragging(System.Windows.UIElement)">
+            <summary>
+            Determines whether the specified element is dragging.
+            </summary>
+            <param name="element">The element.</param>
+            <returns>
+                <c>true</c> if the specified element is dragging; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.GetParameter(Infragistics.Controls.CommandSource)">
+            <summary>
+            Gets the object that defines the parameters necessary to execute the command.
+            </summary>
+            <param name="source">The CommandSource object which defines the command to be executed.</param>
+            <returns>The object necessary for the command to complete.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanel.SupportsCommand(System.Windows.Input.ICommand)">
+            <summary>
+            Gets if the object will support a given command type.
+            </summary>
+            <param name="command">The command to be validated.</param>
+            <returns>
+            True if the object recognizes the command as actionable against it.
+            </returns>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.AllowAnimation">
+            <summary>
+            Gets/set the AllowAnimation of TilePanel. Specifies whether children have to be arranged using animation. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.AllowAnimationProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneTransition">
+            <summary>
+            Gets/set the the value that specifies how the <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> rearranges its children when a child changes its position.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneTransitionProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneOrdering">
+            <summary>
+            Gets/set the orientation of strips in TiledPanel. Specifies how <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> arranges its children: in rows when TilePaneOrdering is Horizontal or in columns when TilePaneOrdering is Vertical. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneOrderingProperty"/>
+            <seealso cref="T:System.Windows.Controls.Orientation"/>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.StripSize"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.StripHorizontalAlignment">
+            <summary>
+            Gets/set the StripHorizontalAlignment which specifies vertical alignment of tiles inside a strip of <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.StripHorizontalAlignmentProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.StripVerticalAlignment">
+            <summary>
+            Gets/set the StripVerticalAlignment which specifies vertical alignment of tiles inside a strip of TilePanel. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.StripVerticalAlignmentProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.StripSize">
+            <summary>
+            Gets/sets the number of tiles in a strip - the number of rows or columns depends on value of <see cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneOrdering"/>. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.StripSizeProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneOrdering"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneSizing">
+            <summary>
+            Gets/set the value that specifies whether children have to be scaled to fit to in a panel. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.TilePaneSizingProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripLocation">
+            <summary>
+            Gets/set locations of strips that contain minimized tiles. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripLocationProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripWidth"/>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripHeight"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripWidth">
+            <summary>
+            Gets/set the width of a vertical strip that contains minimized tiles. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripWidthProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripLocation"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripHeight">
+            <summary>
+            Gets/set the height of a horizontal strip that contains minimized tiles. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripHeightProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedStripLocation"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.MaxMaximizedTiles">
+            <summary>
+            Gets/set the the maximum number of selected children inside TilePanel. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.MaxMaximizedTilesProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilePaneSizing">
+            <summary>
+            Gets/set whether children have to be scaled to fit to in a TilePanel when they are minimized. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilePaneSizingProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilesScrollOffset">
+            <summary>
+            Gets/set the position of first visible tile in the TilePanel. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.Primitives.TilePanel.MinimizedTilesScrollOffsetProperty"/>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePanelCommandSource">
+            <summary>
+            The command source object for <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> object.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePanelCommandSource.ResolveCommand">
+            <summary>
+            Generates the <see cref="T:System.Windows.Input.ICommand"/> object that will execute the command.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelCommandSource.CommandType">
+            <summary>
+            Returns/sets the <see cref="T:Infragistics.Controls.Lists.TilePanelCommand"/> which is to be executed by the command.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.TilePanelCommandBase">
+            <summary>
+            Base class for all commands that deal with a <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanelCommandBase.CanExecute(System.Object)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="parameter">The object that the command will be executed against.</param>
+            <returns>True if the object can support this command.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanelCommandBase.Execute(System.Object)">
+            <summary>
+            Executes the command 
+            </summary>
+            <param name="parameter">The <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> object that will be executed against.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanelCommandBase.ExecuteCommand(Infragistics.Controls.Lists.Primitives.TilePanel)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/>
+            </summary>
+            <param name="tilePanel"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.TilePanelCommandBase.CanExecuteCommand(Infragistics.Controls.Lists.Primitives.TilePanel)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="tilePanel"></param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.TilePanelCommandBase.ParameterStepPage">
+            <summary>
+            The number of tiles to the next or previous page used in ScrollDownMinimizedCommand and ScrollUpMinimizedCommand. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.ScrollDownMinimizedCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that scrolls minimized tiles down.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.ScrollDownMinimizedCommand.ExecuteCommand(Infragistics.Controls.Lists.Primitives.TilePanel)">
+            <summary>
+            Scrolls minimized tiles down.
+            </summary>
+            <param name="tilePanel">A <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> object that will be maximized.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.ScrollDownMinimizedCommand.CanExecuteCommand(Infragistics.Controls.Lists.Primitives.TilePanel)">
+            <summary>
+            Reports if the ScrollDownMinimizedCommand command can be executed on the object inputted.
+            </summary>
+            <param name="tilePanel"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.ScrollUpMinimizedCommand">
+            <summary>
+            A <see cref="T:Infragistics.CommandBase"/> object that scrolls minimized tiles up.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.ScrollUpMinimizedCommand.ExecuteCommand(Infragistics.Controls.Lists.Primitives.TilePanel)">
+            <summary>
+            Scrolls minimized tiles up.
+            </summary>
+            <param name="tilePanel">A <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> object that will be restored to a normal state.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.ScrollUpMinimizedCommand.CanExecuteCommand(Infragistics.Controls.Lists.Primitives.TilePanel)">
+            <summary>
+            Reports if the ScrollUpMinimizedCommand command can be executed on the object inputted.
+            </summary>
+            <param name="tilePanel"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.TilePanelSettings">
+            <summary>
+            An class that controls the settings for a <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> on the <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.TilePanelSettings.OnPropertyChanged(System.String)">
+            <summary>
+            Invoked when a property changes on the <see cref="T:Infragistics.DependencyObjectNotifier"/> object.
+            </summary>
+            <param name="name">The name of the property that has changed.</param>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.AllowAnimationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.AllowAnimation"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.TilePaneTransitionProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.TilePaneTransition"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.AnimationDurationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.AnimationDuration"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.EasingFunctionProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.EasingFunction"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.TilePaneSizingProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.TilePaneSizing"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedTilePaneSizingProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedTilePaneSizing"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.TilePaneOrderingProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.TilePaneOrdering"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.MaxMaximizedTilesProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.MaxMaximizedTiles"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripLocationProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripLocation"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripWidthProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripWidth"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripHeightProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripHeight"/> dependency property
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.AllowAnimation">
+            <summary>
+            Gets/set the AllowAnimation of TilePanelSetting. Specifies whether children have to be arranged using animation. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.AllowAnimationProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePanelSettings.EasingFunction"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePanelSettings.AnimationDuration"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.TilePaneTransition">
+            <summary>
+            Gets/set the the value that specifies how the control rearranges its children when a child changes its position. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.TilePaneTransitionProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePanelSettings.TilePaneTransition"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.AnimationDuration">
+            <summary>
+            Gets/sets the duration of the animation. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.AnimationDurationProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.EasingFunction">
+            <summary>
+            Gets/set the easing function that is used to modify the animation used to arrange the children.
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.EasingFunctionProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.TilePaneSizing">
+            <summary>
+            Gets/set the value of TilePaneSizing in TilePanelSetting. Specifies whether children have to be scaled to fit to in a panel. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.TilePaneSizingProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedTilePaneSizing">
+            <summary>
+            Gets/set whether children have to be scaled to fit in the TilePanel when they are minimized. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedTilePaneSizingProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.TilePaneOrdering">
+            <summary>
+            Gets/set the orientation of strips in TiledPanel. Specifies how <see cref="T:Infragistics.Controls.Lists.Primitives.TilePanel"/> arranges its children: in rows when TilePaneOrdering is Horizontal or in columns when TilePaneOrdering is Vertical. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.TilePaneOrderingProperty"/>
+            <seealso cref="T:System.Windows.Controls.Orientation"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.MaxMaximizedTiles">
+            <summary>
+            Gets/set the the maximum number of selected children inside TilePanelSetting. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.MaxMaximizedTilesProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripLocation">
+            <summary>
+            Gets/set location of strip that contains minimized tiles. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripLocationProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripWidth"/>
+            <seealso cref="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripHeight"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripWidth">
+            <summary>
+            Gets/set the value that specifies width of minimized strip. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripWidthProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripHeight">
+            <summary>
+            Gets/set the value that specifies height of minimized strip. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.TilePanelSettings.MinimizedStripHeightProperty"/>
+        </member>
+        <member name="T:Infragistics.TilePaneVisualStates.TileStates">
+            <summary>
+            Specifies visual states in MinimizedStates VisualStateGroup.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains tilestate states.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileStates.Maximized">
+            <summary>
+            TilePane is maximized.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileStates.Minimized">
+            <summary>
+            TilePane is minimized.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileStates.Normal">
+            <summary>
+            TilePane is not maximized or minimized.
+            </summary>
+        </member>
+        <member name="T:Infragistics.TilePaneVisualStates.TileDragStates">
+            <summary>
+            A name of VisualGroup that contains drag and drop states.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileDragStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains tilestate states.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileDragStates.Dragging">
+            <summary>
+            TilePane is dragging.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileDragStates.DropTarget">
+            <summary>
+            TilePane is drop target.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileDragStates.NoDrag">
+            <summary>
+            TilePane is not dragging.
+            </summary>
+        </member>
+        <member name="T:Infragistics.TilePaneVisualStates.TileCommonStates">
+            <summary>
+            A name of VisualGroup that contains common states.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileCommonStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains tilestate states.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileCommonStates.Common">
+            <summary>
+            TilePane is dragging.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileCommonStates.MouseOver">
+            <summary>
+            Mouse is over tile
+            </summary>
+        </member>
+        <member name="T:Infragistics.TilePaneVisualStates.TileItemStates">
+            <summary>
+            A name of VisualGroup that contains visual states used to display empty and data items.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileItemStates.GroupName">
+            <summary>
+            A name of VisualGroup that contains TileDataStates states.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileItemStates.EmptyTile">
+            <summary>
+            TilePane is added to fill empty space.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TilePaneVisualStates.TileItemStates.ItemTile">
+            <summary>
+            TilePane is defined from the developer.
+            </summary>
+        </member>
+        <member name="T:Infragistics.DropIndicatorVisualStates.Orientation">
+            <summary>
+            Specifies visual states in Orientation VisualStateGroup.
+            </summary>
+        </member>
+        <member name="F:Infragistics.DropIndicatorVisualStates.Orientation.GroupName">
+            <summary>
+            A name of VisualGroup that contains position states.
+            </summary>
+        </member>
+        <member name="F:Infragistics.DropIndicatorVisualStates.Orientation.Horizontal">
+            <summary>
+            DropIndicator is Horizontal oriented.
+            </summary>
+        </member>
+        <member name="F:Infragistics.DropIndicatorVisualStates.Orientation.Vertical">
+            <summary>
+            DropIndicator is Vertical oriented.
+            </summary>
+        </member>
+        <member name="T:Infragistics.TileViewVisualStates.MinimizedTilesLocation">
+            <summary>
+            Specifies visual states in Orientation VisualStateGroup.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TileViewVisualStates.MinimizedTilesLocation.GroupName">
+            <summary>
+            A name of VisualGroup that contains minimized tiles location.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TileViewVisualStates.MinimizedTilesLocation.Left">
+            <summary>
+            Minimized tiles exist on the left side of the TilePanel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TileViewVisualStates.MinimizedTilesLocation.Top">
+            <summary>
+            Minimized tiles exist on the top of the TilePanel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TileViewVisualStates.MinimizedTilesLocation.Right">
+            <summary>
+            Minimized tiles exist on the right side of the TilePanel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TileViewVisualStates.MinimizedTilesLocation.Bottom">
+            <summary>
+            Minimized tiles exist at the bottom of the TilePanel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.TileViewVisualStates.MinimizedTilesLocation.None">
+            <summary>
+            No minimized tiles.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.XamTileView">
+            <summary>
+            The XamTileView provides the base tile layout panel behavior, 
+            managing the placement of content panes in the minimized, maximized and normal states, as well as the drag and drop user interactions.  
+            The XamTileView allows the user to define tiles which contain arbitrary content 
+            or allowing the developer to assign to it a collection of data, which is used to generate tiles.
+            The XamTileView also includes other data concepts such as paging.
+            </summary>
+            <seealso cref="T:Infragistics.Controls.Lists.TilePane"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Infragistics.Controls.Lists.XamTileView"/> 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnCreateAutomationPeer">
+            <summary>
+            When implemented in a derived class, returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            The class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> subclass to return.
+            </returns>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.ColumnsInPageProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.ColumnsInPage"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.RowsInPageProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.RowsInPage"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.PageIndexProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.PageIndex"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.KeepMaximizedTilesInCurrentPageProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.KeepMaximizedTilesInCurrentPage"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.ItemsSource"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.TilePaneContainerStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.TilePaneContainerStyle"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.TilePaneContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.TilePaneContentTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.TilePaneHeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.TilePaneHeaderTemplate"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.DefaultItemsContainerProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.DefaultItemsContainer"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.TilePanelSettingsProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.TilePanelSettings"/> dependency property
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Lists.XamTileView.TileStartIndexProperty">
+            <summary>
+            Identifies the <see cref="P:Infragistics.Controls.Lists.XamTileView.PageIndex"/> dependency property
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.ResetTilesOrder(System.Boolean)">
+            <summary>
+            Resets the intial order of tiles.
+            </summary>
+            <param name="resetCurrentPageOnly">if set to <c>true</c> TileView resets order in current page only.</param>
+            <remarks>The user can reorder items in the XamTileView using drag and drop.</remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.GetContainerForItemOverride">
+            <summary>
+            Creates or identifies the element that is used to display the given item.
+            </summary>
+            <returns>
+            The element that is used to display the given item.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.IsItemItsOwnContainerOverride(System.Object)">
+            <summary>
+            Determines if the specified item is (or is eligible to be) its own container.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>
+            true if the item is <see cref="T:Infragistics.Controls.Lists.TilePane"/>; otherwise, false.
+            </returns>
+            <seealso cref="T:Infragistics.Controls.Lists.TilePane"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Prepares the specified element to display the specified item.
+            </summary>
+            <param name="element">The element used to display the specified item.</param>
+            <param name="item">The item to display.</param>
+            <seealso cref="T:Infragistics.Controls.Lists.TilePane"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Invoked when the <see cref="P:System.Windows.Controls.ItemsControl.Items"/> property changes.
+            </summary>
+            <param name="e">Information about the change.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.RegisterResources(System.String,System.Reflection.Assembly)">
+            <summary>
+            Adds an additonal Resx file in which the control will pull its resources from.
+            </summary>
+            <param name="name">The name of the embedded resx file that contains the resources to be used.</param>
+            <param name="assembly">The assembly in which the resx file is embedded.</param>
+            <remarks>Don't include the extension of the file, but prefix it with the default Namespace of the assembly.</remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.UnregisterResources(System.String)">
+            <summary>
+            Removes a previously registered resx file.
+            </summary>
+            <param name="name">The name of the embedded resx file that was used for registration.</param>
+            <remarks>
+            Note: this won't have any effect on controls that are already in view and are already displaying strings.
+            It will only affect any new controls created.
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnMaximizedStateChanging(Infragistics.Controls.Lists.TileStateChangingEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanging"/> event.
+            </summary>
+            
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanging"/>
+            <seealso cref="T:Infragistics.Controls.Lists.TileStateChangingEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnMaximizedStateChanged(Infragistics.Controls.Lists.TileStateChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanged"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanged"/>
+            <seealso cref="T:Infragistics.Controls.Lists.TileStateChangedEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnTileDragStarted(Infragistics.Controls.Lists.TileDragStartedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.XamTileView.TileDragStarted"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.TileDragStarted"/>
+            <seealso cref="T:Infragistics.Controls.Lists.TileDragStartedEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnTileDrag(Infragistics.Controls.Lists.TileDragEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.XamTileView.TileDrag"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.TileDrag"/>
+            <seealso cref="T:Infragistics.Controls.Lists.TileDragEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnTileDragCompleted(Infragistics.Controls.Lists.TileDragCompletedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.XamTileView.TileDragCompleted"/> event.
+            </summary>
+            <param name="args">The <see cref="T:Infragistics.Controls.Lists.TileDragCompletedEventArgs"/> instance containing the event data.</param>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.TileDragCompleted"/>
+            <seealso cref="T:Infragistics.Controls.Lists.TileDragCompletedEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnPageIndexChanging(Infragistics.Controls.Lists.PageIndexChangingEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanging"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanging"/>
+            <seealso cref="T:Infragistics.Controls.Lists.PageIndexChangingEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnPageIndexChanged(Infragistics.Controls.Lists.PageIndexChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanged"/> event.
+            </summary>
+            <seealso cref="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanged"/>
+            <seealso cref="T:Infragistics.Controls.Lists.PageIndexChangedEventArgs"/>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.GetParameter(Infragistics.Controls.CommandSource)">
+            <summary>
+            Gets the object that defines the parameters necessary to execute the command.
+            </summary>
+            <param name="source">The CommandSource object which defines the command to be executed.</param>
+            <returns>The object necessary for the command to complete.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.SupportsCommand(System.Windows.Input.ICommand)">
+            <summary>
+            Gets if the object will support a given command type.
+            </summary>
+            <param name="command">The command to be validated.</param>
+            <returns>
+            True if the object recognizes the command as actionable against it.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the PropertyChanged event.
+            </summary>
+            <param name="propertyName">The name of the property that has changed.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileView.FinishedLoadingPersistence">
+            <summary>
+            Allows an object to perform an operation, after it's been loaded.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.ColumnsInPage">
+            <summary>
+            Gets/set the ColumnsInPage of <see cref="T:Infragistics.Controls.Lists.XamTileView"/>. 
+            </summary>
+            <remarks>The number of tiles in a page of <see cref="T:Infragistics.Controls.Lists.XamTileView"/> can be found by multiplying ColumnsInPage and <see cref="P:Infragistics.Controls.Lists.XamTileView.RowsInPage"/>.
+            The value less than zero means that there is no limit of columns in a page. By default, the value is 3.
+            </remarks>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.ColumnsInPageProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.RowsInPage"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.RowsInPage">
+            <summary>
+            Gets/set the RowsInPage of <see cref="T:Infragistics.Controls.Lists.XamTileView"/>. 
+            </summary>
+            <remarks>The number of tiles in a page of <see cref="T:Infragistics.Controls.Lists.XamTileView"/> can be found by multiplying <see cref="P:Infragistics.Controls.Lists.XamTileView.ColumnsInPage"/> and RowsInPage.
+            The value less than zero means that there is no limit of rows in a page.  By default, the value is 3.</remarks>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.RowsInPageProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.ColumnsInPage"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.VisibleTiles">
+            <summary>
+            Gets the tiles in current page of <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+            <remarks>Tiles from VisibleTiles collection are displayied in visible area of <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.</remarks>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.ColumnsInPage"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.RowsInPage"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.PageIndex"/>
+            <seealso cref="T:Infragistics.Controls.Lists.TilePane"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.PageIndex">
+            <summary>
+            Gets/sets the index of current page. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.PageIndexProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.VisibleTiles"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.ColumnsInPage"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.RowsInPage"/>
+            <seealso cref="T:Infragistics.Controls.Lists.Primitives.NextPageCommand"/>
+            <seealso cref="T:Infragistics.Controls.Lists.Primitives.PreviousPageCommand"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.KeepMaximizedTilesInCurrentPage">
+            <summary>
+            Gets/set the value indicating that maximized tiles should stay always in the displayed page in <see cref="T:Infragistics.Controls.Lists.XamTileView"/>. 
+            </summary>
+            <remarks>The maximized tiles will be in the displayed page after scrolling to a new page when KeepMaximizedTilesInCurrentPage is True.</remarks>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.KeepMaximizedTilesInCurrentPageProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.PageIndex"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.Items">
+            <summary>
+            Gets a modifiable collection of <see cref="T:Infragistics.Controls.Lists.TilePane"/> items.
+            </summary>
+            <remarks>
+            <p class="body"> The developer can use only one of <see cref="P:Infragistics.Controls.Lists.XamTileView.Items"/> or <see cref="P:Infragistics.Controls.Lists.XamTileView.ItemsSource"/> properties to add items to the control.
+            </p>
+            </remarks>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.ItemsSource"/>        
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.ItemsSource">
+            <summary>
+            Gets/set the ItemsSource of XamTileView. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.ItemsSourceProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.TilePaneContainerStyle">
+            <summary>
+            Gets/set the style that is used when rendering the item containers in <see cref="T:Infragistics.Controls.Lists.XamTileView"/>. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.TilePaneContainerStyleProperty"/>
+            <seealso cref="T:Infragistics.Controls.Lists.TilePane"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.TilePaneContentTemplate">
+            <summary>
+            Gets/sets the DataTemplate used to display the content of each tile in XamTileView when the collection is populated via a binding on the ItemsSource property. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.TilePaneContentTemplateProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.ItemsSource"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.TilePaneHeaderTemplate">
+            <summary>
+            Gets/sets the DataTemplate used to display the header of each group in XamTileView when the Items collection is populated via a binding on the ItemsSource property. 
+            </summary>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.TilePaneHeaderTemplateProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.DefaultItemsContainer">
+            <summary>
+            Gets or sets a DataTemplate that will be used as a container when the items are being generated. 
+            </summary>
+            <remarks>
+            <p class="body">
+            This property takes effect only to the items that are <b>not</b> native containers of the control.</p> 
+            <p class="note">The root element of the template provided by <b>DefaultItemsContainer</b> should be the native
+            container of the control - <see cref="T:Infragistics.Controls.Lists.TilePane"/>.
+            If the root content of the DataTemplate is not a TilePane, the property will be ignored and 
+            an Empty TilePane will be used instead</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.TilePanelSettings">
+            <summary>
+            Gets/set the TilePanelSettings object that controls the settings for a TilePanel on the <see cref="!:XamWebTileView"/>.
+            </summary>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.TilePanelSettings"/>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.TilePanelSettingsProperty"/>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.TileStartIndex">
+            <summary>
+            Gets/set the index of first tile in a page. 
+            </summary>
+            <remarks>PageOrigin is an index of first visible tile in a page.</remarks>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.VisibleTiles"/>
+            <seealso cref="F:Infragistics.Controls.Lists.XamTileView.TileStartIndexProperty"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.ColumnsInPage"/>
+            <seealso cref="P:Infragistics.Controls.Lists.XamTileView.RowsInPage"/>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanging">
+            <summary>
+            Occurs when a <see cref="T:Infragistics.Controls.Lists.TilePane"/> changes its state.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.MaximizedStateChanged">
+            <summary>
+            Occurs after state of a <see cref="T:Infragistics.Controls.Lists.TilePane"/> is changed.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.TileDragStarted">
+            <summary>
+            Occurs when a drag operation starts in <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.TileDrag">
+            <summary>
+            Occurs when a child is dragged.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.TileDragCompleted">
+            <summary>
+            Occurs when drag operation ends.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanging">
+            <summary>
+            Occurs when the PageIndex is changing.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.PageIndexChanged">
+            <summary>
+            Occurs after the PageIndex has changed.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Lists.XamTileView.PropertyChanged">
+            <summary>
+            Occurs when one of the properties of this object have changed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.PropertiesToIgnore">
+            <summary>
+            Gets a List of properties that shouldn't be saved when the PersistenceManager goes to save them.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileView.PriorityProperties">
+            <summary>
+            Gets a List of properties that should be applied, before even trying to look at any other property on the object.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.XamTileViewCommandSource">
+            <summary>
+            The command source object for <see cref="T:Infragistics.Controls.Lists.XamTileView"/> object.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileViewCommandSource.ResolveCommand">
+            <summary>
+            Generates the <see cref="T:System.Windows.Input.ICommand"/> object that will execute the command.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.XamTileViewCommandSource.OnPropertyChanged(System.String)">
+            <summary>
+            Used to raise the PropertyChanged event for the specified property name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.XamTileViewCommandSource.CommandType">
+            <summary>
+            Returns/sets the <see cref="T:Infragistics.Controls.Lists.XamTileViewCommand"/> XamTileViewCommand which is to be executed by the command.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.XamTileViewCommandBase">
+            <summary>
+            Base class for all commands that deal with a <see cref="T:Infragistics.Controls.Lists.XamTileView"/>.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.XamTileViewCommandBase.CanExecute(System.Object)">
+            <summary>
+            Reports if the command can be executed on the object inputted.
+            </summary>
+            <param name="parameter">The object that the command will be executed against.</param>
+            <returns>True if the object can support this command.</returns>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.XamTileViewCommandBase.Execute(System.Object)">
+            <summary>
+            Executes the command 
+            </summary>
+            <param name="parameter">The <see cref="T:Infragistics.Controls.Lists.XamTileView"/> object that will be executed against.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.XamTileViewCommandBase.ExecuteCommand(Infragistics.Controls.Lists.XamTileView)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.XamTileView"/>
+            </summary>
+            <param name="xamTileView"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.XamTileViewCommandBase.CanExecuteCommand(Infragistics.Controls.Lists.XamTileView)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.XamTileView"/>
+            </summary>
+            <param name="xamTileView"></param>
+        </member>
+        <member name="P:Infragistics.Controls.Lists.Primitives.XamTileViewCommandBase.ParameterStepPage">
+            <summary>
+            The number of tiles to the next or previous page used in NextPageCommand and PreviousPageCommand. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.NextPageCommand">
+            <summary>
+            A command that displays next page of items <see cref="T:Infragistics.Controls.Lists.XamTileView"/>XamTileView.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.NextPageCommand.ExecuteCommand(Infragistics.Controls.Lists.XamTileView)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.XamTileView"/>
+            </summary>
+            <param name="xamTileView">A <see cref="T:Infragistics.Controls.Lists.XamTileView"/> object that will be maximized.</param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.NextPageCommand.CanExecuteCommand(Infragistics.Controls.Lists.XamTileView)">
+            <summary>
+            Returns true, if it is possible to move to the next page <see cref="T:Infragistics.Controls.Lists.XamTileView"/>
+            </summary>
+            <param name="xamTileView"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+        <member name="T:Infragistics.Controls.Lists.Primitives.PreviousPageCommand">
+            <summary>
+            A command that displays previous page of items <see cref="T:Infragistics.Controls.Lists.XamTileView"/>XamTileView.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.PreviousPageCommand.ExecuteCommand(Infragistics.Controls.Lists.XamTileView)">
+            <summary>
+            Executes the specific command on the specified <see cref="T:Infragistics.Controls.Lists.XamTileView"/>
+            </summary>
+            <param name="xamTileView"></param>
+        </member>
+        <member name="M:Infragistics.Controls.Lists.Primitives.PreviousPageCommand.CanExecuteCommand(Infragistics.Controls.Lists.XamTileView)">
+            <summary>
+            Returns true, if it is possible to move back to the previous page <see cref="T:Infragistics.Controls.Lists.XamTileView"/>
+            </summary>
+            <param name="xamTileView"></param>
+            <returns>true on success otherwise, false</returns>
+        </member>
+    </members>
+</doc>

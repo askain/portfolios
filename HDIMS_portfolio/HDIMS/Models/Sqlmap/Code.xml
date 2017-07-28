@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="Code"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="BaselineManagementModel" type="HDIMS.Models.Domain.Code.BaselineManagementModel, HDIMS" />
+    <typeAlias alias="DAMBaselineManagementModel" type="HDIMS.Models.Domain.Code.DAMBaselineManagementModel, HDIMS" />
+    <typeAlias alias="ObsManagementModel" type="HDIMS.Models.Domain.Code.ObsManagementModel, HDIMS" />
+    <typeAlias alias="ExamManagementModel" type="HDIMS.Models.Domain.Code.ExamManagementModel, HDIMS" />
+    <typeAlias alias="RevisionManagementModel" type="HDIMS.Models.Domain.Code.RevisionManagementModel, HDIMS" />
+    <typeAlias alias="EtcManagementModel" type="HDIMS.Models.Domain.Code.EtcManagementModel, HDIMS" />
+    <typeAlias alias="EquipManagementModel" type="HDIMS.Models.Domain.Code.EquipManagementModel, HDIMS" />
+    <typeAlias alias="EquipGroupComboModel" type="HDIMS.Models.Domain.Code.EquipGroupComboModel, HDIMS" />
+    <typeAlias alias="EquipGroupManagementModel" type="HDIMS.Models.Domain.Code.EquipGroupManagementModel, HDIMS" />
+    <typeAlias alias="AlarmManagementModel" type="HDIMS.Models.Domain.Code.AlarmManagementModel, HDIMS" />
+  </alias>
+
+  <statements>
+
+    <!-- 수위 이상기준치 관리 조회 시작-->
+    <select id="GetWLBaselineList" resultClass="BaselineManagementModel" parameterClass="HashTable">
+      SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP, B.OBSCD , C.WLOBCD,
+            FN_CONV_CHAR(C.WL_EXCODE0952) WL_EXCODE0952, FN_CONV_CHAR(C.WL_EXCODE0953) WL_EXCODE0953, FN_CONV_CHAR(C.WL_EXCODE0954) WL_EXCODE0954,
+            FN_CONV_CHAR(C.WL_EXCODE0961) WL_EXCODE0961, FN_CONV_CHAR(C.WL_EXCODE0971) WL_EXCODE0971, FN_CONV_CHAR(C.WL_EXCODE0972) WL_EXCODE0972
+      FROM VM_DAMCODE A, VM_OBSCODE B, HM_WLOBSBLCODE C
+      WHERE A.DAMCD = B.DAMCD
+      <isNotEmpty property="DAMCD" prepend="AND">
+          A.DAMCD = #DAMCD#
+      </isNotEmpty>
+      <isNotEmpty property="OBSCD" prepend="AND">
+          B.OBSCD = #OBSCD#
+      </isNotEmpty>
+      AND B.OBSTP in ('WL', 'WR')
+      AND B.OBSCD = C.WLOBCD(+)
+      ORDER BY B.OBSNM
+    </select>
+    <!-- 수위 이상기준치 관리 조회 종료-->
+
+    <!-- 우량 이상기준치 관리 조회 시작-->
+    <select id="GetRFBaselineList" resultClass="BaselineManagementModel" parameterClass="HashTable">
+      SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP, B.OBSCD, C.RFOBCD,
+            FN_CONV_CHAR(C.RF_EXCODE0911) RF_EXCODE0911, FN_CONV_CHAR(C.RF_EXCODE0912) RF_EXCODE0912, 
+            FN_CONV_CHAR(C.RF_EXCODE0921) RF_EXCODE0921, FN_CONV_CHAR(C.RF_EXCODE0922) RF_EXCODE0922
+      FROM VM_DAMCODE A, VM_OBSCODE B, HM_RFOBSBLCODE C
+      WHERE A.DAMCD = B.DAMCD
+      <isNotEmpty property="DAMCD" prepend="AND">
+          A.DAMCD = #DAMCD#
+      </isNotEmpty>
+      <isNotEmpty property="OBSCD" prepend="AND">
+        B.OBSCD = #OBSCD#
+      </isNotEmpty>
+      AND B.OBSTP in ('RF', 'WR')
+      AND B.OBSCD = C.RFOBCD(+)
+      ORDER BY B.OBSNM
+    </select>
+    <!-- 우량 이상기준치 관리 조회 종료-->
+      
+    <!-- 댐 이상기준치 관리 조회 시작-->
+    <select id="GetDAMBaselineList" resultClass="DAMBaselineManagementModel" parameterClass="HashTable">
+      SELECT 
+        A.DAMCD, A.DAMNM, H.RWLNOCHGDT, H.RWLSDCHG, 
+           H.OSPILWLNOCHGDT, H.OSPILWLSDCHG, H.IQTYMAX, 
+           H.ETCIQTY2MAX, H.EDQTYUSE, H.EDQTYMAX, 
+           H.EDQTYMIN, H.ETCEDQTYUSE, H.ETCEDQTYMAX, 
+           H.ETCEDQTYMIN, H.SPDQTYUSE, H.SPDQTYMAX, 
+           H.SPDQTYMIN, H.ETCDQTY1USE, H.ETCDQTY1MAX, 
+           H.ETCDQTY1MIN, H.ETCDQTY2USE, H.ETCDQTY2MAX, 
+           H.ETCDQTY2MIN, H.ETCDQTY3USE, H.ETCDQTY3MAX, 
+           H.ETCDQTY3MIN, H.OTLTDQTYUSE, H.OTLTDQTYMAX, 
+           H.OTLTDQTYMIN, H.ITQTY1USE, H.ITQTY1MAX, 
+           H.ITQTY1MIN, H.ITQTY2USE, H.ITQTY2MAX, 
+           H.ITQTY2MIN, H.ITQTY3USE, H.ITQTY3MAX, 
+           H.ITQTY3MIN, H.OSPILWLUSE
+        FROM HM_DAMBLCODE H, VM_DAMCODE A, HM_DAMTYPE DT
+      WHERE H.DAMCD(+) = A.DAMCD
+        AND A.DAMTYPE = DT.DAMTYPE  
+      <isNotEmpty property="DAMCD" prepend="AND">
+          A.DAMCD = #DAMCD#
+      </isNotEmpty>
+      ORDER BY DT.ORD, A.DAMNM
+    </select>
+    <!-- 우량 이상기준치 관리 조회 종료-->
+      
+      
+
+    <!--수위 이상기준치 추가 시작-->
+    <insert id="InsertWLBaseline" parameterClass="BaselineManagementModel">
+      INSERT INTO HM_WLOBSBLCODE (WLOBCD, WL_EXCODE0952, WL_EXCODE0953, WL_EXCODE0954, WL_EXCODE0961, WL_EXCODE0971, WL_EXCODE0972)
+      VALUES(#OBSCD#, #WL_EXCODE0952#, #WL_EXCODE0953#, #WL_EXCODE0954#, #WL_EXCODE0961#, #WL_EXCODE0971#, #WL_EXCODE0972#)
+    </insert>
+    <!--수위 이상기준치 추가 종료-->
+
+    <!--우량 이상기준치 추가 시작-->
+    <insert id="InsertRFBaseline" parameterClass="BaselineManagementModel">
+      INSERT INTO HM_RFOBSBLCODE (RFOBCD, RF_EXCODE0911, RF_EXCODE0912, RF_EXCODE0921, RF_EXCODE0922)
+      VALUES(#OBSCD#, #RF_EXCODE0911#, #RF_EXCODE0912#, #RF_EXCODE0921#, #RF_EXCODE0922#)
+    </insert>
+    <!--우량 이상기준치 추가 종료-->
+
+    <!--댐 이상기준치 추가 시작-->
+    <insert id="InsertDAMBaseline" parameterClass="DAMBaselineManagementModel">
+      INSERT INTO HM_DAMBLCODE (DAMCD, RWLNOCHGDT, RWLSDCHG, OSPILWLNOCHGDT, OSPILWLSDCHG, IQTYMAX, ETCIQTY2MAX, EDQTYUSE, EDQTYMAX, EDQTYMIN, ETCEDQTYUSE, ETCEDQTYMAX, 
+                                ETCEDQTYMIN, SPDQTYUSE, SPDQTYMAX, SPDQTYMIN, ETCDQTY1USE, ETCDQTY1MAX, ETCDQTY1MIN, ETCDQTY2USE, ETCDQTY2MAX, ETCDQTY2MIN, ETCDQTY3USE, ETCDQTY3MAX, 
+                                ETCDQTY3MIN, OTLTDQTYUSE, OTLTDQTYMAX, OTLTDQTYMIN, ITQTY1USE, ITQTY1MAX, ITQTY1MIN, ITQTY2USE, ITQTY2MAX, ITQTY2MIN, ITQTY3USE, ITQTY3MAX, ITQTY3MIN, OSPILWLUSE) 
+      VALUES (#DAMCD#, #RWLNOCHGDT#, #RWLSDCHG#, #OSPILWLNOCHGDT#, #OSPILWLSDCHG#, #IQTYMAX#, #ETCIQTY2MAX#, #EDQTYUSE#, #EDQTYMAX#, #EDQTYMIN#, #ETCEDQTYUSE#, #ETCEDQTYMAX#, #ETCEDQTYMIN#, 
+              #SPDQTYUSE#, #SPDQTYMAX#, #SPDQTYMIN#, #ETCDQTY1USE#, #ETCDQTY1MAX#, #ETCDQTY1MIN#, #ETCDQTY2USE#, #ETCDQTY2MAX#, #ETCDQTY2MIN#, #ETCDQTY3USE#, #ETCDQTY3MAX#, #ETCDQTY3MIN#, 
+              #OTLTDQTYUSE#, #OTLTDQTYMAX#, #OTLTDQTYMIN#, #ITQTY1USE#, #ITQTY1MAX#, #ITQTY1MIN#, #ITQTY2USE#, #ITQTY2MAX#, #ITQTY2MIN#, #ITQTY3USE#, #ITQTY3MAX#, #ITQTY3MIN#, #OSPILWLUSE#)
+    </insert>
+    <!--댐 이상기준치 추가 종료-->
+      
+    <!--수위 이상기준치 수정 시작-->
+    <update id="UpdateWLBaseline" parameterClass="BaselineManagementModel">
+      UPDATE HM_WLOBSBLCODE SET WL_EXCODE0952 = #WL_EXCODE0952#, WL_EXCODE0953 = #WL_EXCODE0953#, WL_EXCODE0954 = #WL_EXCODE0954#, WL_EXCODE0961 = #WL_EXCODE0961#, WL_EXCODE0971 = #WL_EXCODE0971#, WL_EXCODE0972 = #WL_EXCODE0972#
+      WHERE WLOBCD = #OBSCD#
+    </update>
+    <!--수위 이상기준치 수정 종료-->
+
+    <!--우량 이상기준치 수정 시작-->
+    <update id="UpdateRFBaseline" parameterClass="BaselineManagementModel">
+      UPDATE HM_RFOBSBLCODE SET RF_EXCODE0911 = #RF_EXCODE0911#, RF_EXCODE0912 = #RF_EXCODE0912#, RF_EXCODE0921 = #RF_EXCODE0921#, RF_EXCODE0922 = #RF_EXCODE0922#
+      WHERE RFOBCD = #OBSCD#
+    </update>
+    <!--우량 이상기준치 수정 종료-->
+
+    <!--댐 이상기준치 수정 시작-->
+    <update id="UpdateDAMBaseline" parameterClass="DAMBaselineManagementModel">
+      UPDATE HM_DAMBLCODE SET 
+        RWLNOCHGDT=#RWLNOCHGDT#, RWLSDCHG=#RWLSDCHG#, OSPILWLNOCHGDT=#OSPILWLNOCHGDT#, OSPILWLSDCHG=#OSPILWLSDCHG#, IQTYMAX=#IQTYMAX#, ETCIQTY2MAX=#ETCIQTY2MAX#, EDQTYUSE=#EDQTYUSE#, 
+        EDQTYMAX=#EDQTYMAX#, EDQTYMIN=#EDQTYMIN#, ETCEDQTYUSE=#ETCEDQTYUSE#, ETCEDQTYMAX=#ETCEDQTYMAX#, ETCEDQTYMIN=#ETCEDQTYMIN#, SPDQTYUSE=#SPDQTYUSE#, SPDQTYMAX=#SPDQTYMAX#, 
+        SPDQTYMIN=#SPDQTYMIN#, ETCDQTY1USE=#ETCDQTY1USE#, ETCDQTY1MAX=#ETCDQTY1MAX#, ETCDQTY1MIN=#ETCDQTY1MIN#, ETCDQTY2USE=#ETCDQTY2USE#, ETCDQTY2MAX=#ETCDQTY2MAX#, 
+        ETCDQTY2MIN=#ETCDQTY2MIN#, ETCDQTY3USE=#ETCDQTY3USE#, ETCDQTY3MAX=#ETCDQTY3MAX#, ETCDQTY3MIN=#ETCDQTY3MIN#, OTLTDQTYUSE=#OTLTDQTYUSE#, OTLTDQTYMAX=#OTLTDQTYMAX#, 
+        OTLTDQTYMIN=#OTLTDQTYMIN#, ITQTY1USE=#ITQTY1USE#, ITQTY1MAX=#ITQTY1MAX#, ITQTY1MIN=#ITQTY1MIN#, ITQTY2USE=#ITQTY2USE#, ITQTY2MAX=#ITQTY2MAX#, ITQTY2MIN=#ITQTY2MIN#, 
+        ITQTY3USE=#ITQTY3USE#, ITQTY3MAX=#ITQTY3MAX#, ITQTY3MIN=#ITQTY3MIN#, OSPILWLUSE=#OSPILWLUSE#
+      WHERE DAMCD = #DAMCD#
+    </update>
+    <!--댐 이상기준치 수정 종료-->
+
+
+    <!-- 인근관측국 관리 관측국 콤보 조회 시작-->
+    <select id="GetObsMngCodeList" resultClass="ObsManagementModel" parameterClass="HashTable">
+      <isNotEmpty property="firstvalue">
+        SELECT '' KEY, '$firstvalue$' VALUE, 0 ORDERNUM, '' PARENTKEY FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+      SELECT KEY, VALUE, ORDERNUM, PARENTKEY
+      FROM (
+      <isNotEmpty property="OBSTP">
+        <isEqual property="OBSTP" compareValue="WL">
+          SELECT WLOBSCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY
+          FROM DUBWLOBSIF@TECH.WORLD
+        </isEqual>
+        <isEqual property="OBSTP" compareValue="RF">
+          SELECT RFOBSCD KEY, OBSNM VALUE, ROWNUM ORDERNUM, DAMCD PARENTKEY
+          FROM DUBRFOBSIF@TECH.WORLD
+        </isEqual>
+      </isNotEmpty>
+      WHERE 1=1
+      <isNotEmpty property="DAMCD">
+        AND DAMCD=#DAMCD#
+      </isNotEmpty>
+      ORDER BY OBSNM
+      )
+    </select>
+    <!-- 인근관측국 관리 관측국 콤보 조회 종료-->
+
+    <!-- 인근관측국 관리 등록/수정 댐콤보 조회 시작-->
+    <select id="GetObsMngDamCodeList" resultClass="ObsManagementModel" parameterClass="HashTable">
+      <isNotEmpty property="FIRSTVALUE">
+        SELECT '' KEY, '$FIRSTVALUE$' VALUE, 0 ORDERNUM FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+        SELECT KEY, VALUE, ROWNUM ORDERNUM FROM 
+        (
+          SELECT DAMCD KEY, DAMNM VALUE FROM DUBDAMSPC@TECH.WORLD ORDER BY VALUE
+        )
+        ORDER BY ORDERNUM
+    </select>
+    <!-- 근관측국 관리 등록/수정 댐명 콤보 조회 종료-->
+
+    <!-- 수위 인근관측국 관리 조회 시작-->
+    <select id="GetWLObsList" resultClass="ObsManagementModel" parameterClass="HashTable">
+      SELECT A.DAMCD, A.DAMNM, A.OBSCD, A.OBSNM, A.OBSTP, B.REGCOUNT, B.NROBNM, A.LATITUDE
+      FROM (
+      SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP, P.LATITUDE
+      FROM VM_DAMCODE A, VM_OBSCODE2 B, HM_OBSPOINT P
+      WHERE A.DAMCD = B.DAMCD
+      AND B.OBSTP = 'WL'
+      AND B.OBSCD = P.OBSCD(+) 
+      AND B.OBSTP = P.OBSTYPE(+)
+      <isNotEmpty property="DAMCD" prepend="AND">
+      A.DAMCD = #DAMCD#
+    </isNotEmpty>
+    <isNotEmpty property="OBSCD" prepend="AND">
+      B.OBSCD = #OBSCD#
+    </isNotEmpty>
+      ) A,
+      ( 
+        SELECT DAMCD, WLOBCD, LTRIM(SYS_CONNECT_BY_PATH(NROBNM,','),',') NROBNM, CNT REGCOUNT
+          FROM (                
+                SELECT C.DAMCD, B.WLOBCD, B.NROBCD, A.OBSNM NROBNM             
+                , ROW_NUMBER() OVER (PARTITION BY C.DAMCD, B.WLOBCD ORDER BY A.OBSNM) RN                
+                , COUNT(*) OVER (PARTITION BY C.DAMCD, B.WLOBCD) CNT                
+                FROM DUBWLOBSIF@TECH.WORLD A, HM_WLOBSNRCODE B, DUBWLOBSIF@TECH.WORLD C
+                WHERE A.WLOBSCD = B.NROBCD
+                AND B.WLOBCD=C.WLOBSCD
+                AND C.DAMCD=#DAMCD#              
+               )          
+           WHERE RN=CNT          
+           START WITH RN=1          
+           CONNECT BY PRIOR RN=RN-1 AND DAMCD=PRIOR DAMCD AND WLOBCD = PRIOR WLOBCD   
+       ) B        
+      WHERE A.DAMCD=B.DAMCD(+)        
+      AND A.OBSCD=B.WLOBCD(+)        
+      ORDER BY A.DAMCD, A.OBSNM
+    </select>
+    <!-- 수위 인근관측국 관리 조회 종료-->
+
+    <!-- 우량 인근관측국 관리 조회 시작-->
+    <select id="GetRFObsList" resultClass="ObsManagementModel" parameterClass="HashTable">
+      SELECT A.DAMCD, A.DAMNM, A.OBSCD, A.OBSNM, A.OBSTP, B.REGCOUNT, B.NROBNM, A.LATITUDE
+      FROM (
+        SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP, P.LATITUDE
+        FROM VM_DAMCODE A, VM_OBSCODE2 B, HM_OBSPOINT P
+        WHERE A.DAMCD = B.DAMCD
+        AND B.OBSTP = 'RF'
+        AND B.OBSCD = P.OBSCD(+) 
+        AND B.OBSTP = P.OBSTYPE(+)
+        <!--AND B.OBSTP = 'RF'-->
+        <isNotEmpty property="DAMCD" prepend="AND">
+          A.DAMCD = #DAMCD#
+        </isNotEmpty>
+        <isNotEmpty property="OBSCD" prepend="AND">
+          B.RFOBSCD = #OBSCD#
+        </isNotEmpty>
+      ) A,
+      ( SELECT DAMCD, RFOBCD, LTRIM(SYS_CONNECT_BY_PATH(NROBNM,','),',') NROBNM, CNT REGCOUNT
+        FROM (
+              SELECT C.DAMCD, B.RFOBCD, B.NROBCD, A.OBSNM NROBNM             
+                , ROW_NUMBER() OVER (PARTITION BY C.DAMCD, B.RFOBCD ORDER BY A.OBSNM) RN                
+                , COUNT(*) OVER (PARTITION BY C.DAMCD, B.RFOBCD) CNT                
+                FROM DUBRFOBSIF@TECH.WORLD A, HM_RFOBSNRCODE B, DUBRFOBSIF@TECH.WORLD C
+                WHERE A.RFOBSCD = B.NROBCD
+                AND B.RFOBCD=C.RFOBSCD
+                AND C.DAMCD=#DAMCD#
+            )
+        WHERE RN=CNT
+        START WITH RN=1
+        CONNECT BY PRIOR RN=RN-1 AND DAMCD= PRIOR DAMCD AND RFOBCD = PRIOR RFOBCD
+      ) B
+      WHERE A.DAMCD=B.DAMCD(+)
+      AND A.OBSCD=B.RFOBCD(+)
+      ORDER BY A.DAMCD, A.OBSNM
+
+    </select>
+    <!-- 우량 인근관측국 관리 조회 종료-->
+    
+    <!-- 수위 우량 인근관측국 왼쪽 하단 리스트 조회 시작-->
+    <select id="GetDownLeftObsList" resultClass="ObsManagementModel" parameterClass="HashTable" remapResults="true">
+      <isEqual property="OBSTP" compareValue="WL">
+        <!--SELECT * FROM
+        (
+          SELECT N.DAMCD, N.DAMNM, N.OBSCD, N.OBSNM, N.OBSTP
+            , N.WLOBCD, N.NROBCD
+            , FN_CONV_CHAR(FN_MAP_DIST(M.LATITUDE,M.LONGITUDE, N.LATITUDE, N.LONGITUDE)) NRDIST
+          FROM (
+              SELECT OBSCD, MAX(LONGITUDE) LONGITUDE, MAX(LATITUDE) LATITUDE
+              FROM (
+              SELECT OBSCD, LONGITUDE, LATITUDE
+              FROM HM_OBSPOINT 
+              WHERE OBSCD= #WLOBCD#
+              AND OBSTYPE='WL'
+              UNION ALL
+              SELECT #WLOBCD# OBSCD, '' LONGITUDE, '' LATITUDE 
+              FROM DUAL
+              ) GROUP BY OBSCD
+          ) M, (
+            SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP
+            , '' WLOBCD, '' NROBCD, C.LONGITUDE, C.LATITUDE
+            FROM VM_DAMCODE A, VM_OBSCODE2 B, HM_OBSPOINT C
+            WHERE A.DAMCD = B.DAMCD
+            <isNotEmpty property="DAMCD" prepend="AND">
+              A.DAMCD = #DAMCD#
+            </isNotEmpty>
+            AND B.OBSTP = 'WL'
+            AND B.OBSCD = C.OBSCD(+)
+            AND C.OBSTYPE(+) = 'WL'
+            AND B.OBSCD NOT IN (#WLOBCD#)
+          ) N
+          ORDER BY TO_NUMBER(NRDIST), N.DAMNM
+        )
+        WHERE ROWNUM BETWEEN 1 AND 10-->
+        SELECT DAMCD, DAMNM, WLOBSCD, OBSNM, OBSTP, WLOBCD, NROBCD, FN_CONV_CHAR(NRDIST) NRDIST
+          FROM (SELECT   N.DAMCD, N.DAMNM, N.WLOBSCD, N.OBSNM, 'WL' OBSTP, N.WLOBCD, 
+                         N.NROBCD,
+                         FN_MAP_DIST (M.LATITUDE,M.LONGITUDE,N.LATITUDE,N.LONGITUDE) NRDIST
+                    FROM (SELECT   OBSCD, MAX (LONGITUDE) LONGITUDE,
+                                   MAX (LATITUDE) LATITUDE
+                              FROM (SELECT OBSCD, LONGITUDE, LATITUDE
+                                      FROM HM_OBSPOINT
+                                     WHERE OBSCD = #WLOBCD# AND OBSTYPE = 'WL'
+                                    UNION ALL
+                                    SELECT #WLOBCD# OBSCD, '' LONGITUDE, '' LATITUDE
+                                      FROM DUAL)
+                          GROUP BY OBSCD) M,
+                         (SELECT A.DAMCD, A.DAMNM, B.WLOBSCD, B.OBSNM,
+                                 '' WLOBCD, '' NROBCD, C.LONGITUDE, C.LATITUDE
+                           FROM DUBDAMSPC@TECH.WORLD A, DUBWLOBSIF@TECH.WORLD B, HM_OBSPOINT C 
+                           WHERE A.DAMCD = B.DAMCD
+                          <isNotEmpty property="DAMCD" prepend="AND">
+                            A.DAMCD = #DAMCD#
+                          </isNotEmpty>
+                             AND B.WLOBSCD = C.OBSCD(+)
+                             AND C.OBSTYPE(+) = 'WL'
+                             AND B.WLOBSCD NOT IN (#WLOBCD#)
+                         ) N
+                ORDER BY NRDIST, N.DAMNM)
+         WHERE ROWNUM BETWEEN 1 AND 10
+      </isEqual>
+      <isEqual property="OBSTP" compareValue="RF">
+        <!--SELECT * FROM
+        (
+          SELECT N.DAMCD, N.DAMNM, N.OBSCD, N.OBSNM, N.OBSTP
+            , N.RFOBCD, N.NROBCD
+            , FN_CONV_CHAR(FN_MAP_DIST(M.LATITUDE,M.LONGITUDE, N.LATITUDE, N.LONGITUDE)) NRDIST
+            , FN_CONV_CHAR(FN_MAP_QUAD(M.LATITUDE,M.LONGITUDE, N.LATITUDE, N.LONGITUDE)) NRQUAD
+          FROM (
+              SELECT OBSCD, MAX(LONGITUDE) LONGITUDE, MAX(LATITUDE) LATITUDE
+              FROM (
+              SELECT OBSCD, LONGITUDE, LATITUDE
+              FROM HM_OBSPOINT 
+              WHERE OBSCD= #RFOBCD#
+              AND OBSTYPE='RF'
+              UNION ALL
+              SELECT #RFOBCD# OBSCD, '' LONGITUDE, '' LATITUDE 
+              FROM DUAL
+              ) GROUP BY OBSCD
+          ) M, (
+            SELECT A.DAMCD, A.DAMNM, B.OBSCD, B.OBSNM, B.OBSTP
+            , '' RFOBCD,  '' NROBCD, C.LONGITUDE, C.LATITUDE
+            FROM VM_DAMCODE A, VM_OBSCODE2 B, HM_OBSPOINT C
+            WHERE A.DAMCD = B.DAMCD
+            <isNotEmpty property="DAMCD" prepend="AND">
+              A.DAMCD = #DAMCD#
+            </isNotEmpty>
+            <isNotEmpty property="OBSCD" prepend="AND">
+              B.OBSCD = #OBSCD#
+            </isNotEmpty>
+            AND B.OBSTP = 'RF'
+            AND B.OBSCD = C.OBSCD(+)
+            AND C.OBSTYPE(+) = 'RF'
+            AND B.OBSCD NOT IN (#RFOBCD#)
+          ) N 
+          ORDER BY TO_NUMBER(NRDIST), N.DAMNM
+        )
+        WHERE ROWNUM BETWEEN 1 AND 10-->
+        SELECT DAMCD, DAMNM, RFOBSCD, OBSNM, OBSTP, RFOBCD, NROBCD, FN_CONV_CHAR(NRDIST) NRDIST, NRQUAD 
+        FROM
+            (
+              SELECT N.DAMCD, N.DAMNM, N.RFOBSCD, N.OBSNM, 'RF' OBSTP
+                , N.RFOBCD, N.NROBCD
+                , FN_MAP_DIST(M.LATITUDE,M.LONGITUDE, N.LATITUDE, N.LONGITUDE) NRDIST
+                , FN_CONV_CHAR(FN_MAP_QUAD(M.LATITUDE,M.LONGITUDE, N.LATITUDE, N.LONGITUDE)) NRQUAD
+              FROM (
+                  SELECT OBSCD, MAX(LONGITUDE) LONGITUDE, MAX(LATITUDE) LATITUDE
+                  FROM (
+                    SELECT OBSCD, LONGITUDE, LATITUDE
+                    FROM HM_OBSPOINT 
+                    WHERE OBSCD= #RFOBCD#
+                    AND OBSTYPE='RF'
+                    UNION ALL
+                    SELECT #RFOBCD# OBSCD, '' LONGITUDE, '' LATITUDE 
+                    FROM DUAL
+                  ) GROUP BY OBSCD
+              ) M, (
+                SELECT A.DAMCD, A.DAMNM, B.RFOBSCD, B.OBSNM, 
+                 '' RFOBCD,  '' NROBCD, C.LONGITUDE, C.LATITUDE
+                FROM DUBDAMSPC@TECH.WORLD A, DUBRFOBSIF@TECH.WORLD B, HM_OBSPOINT C
+                WHERE A.DAMCD = B.DAMCD
+                <isNotEmpty property="DAMCD" prepend="AND">
+                  A.DAMCD = #DAMCD#
+                </isNotEmpty>
+                AND B.RFOBSCD = C.OBSCD(+)
+                AND C.OBSTYPE(+) = 'RF'
+                AND B.RFOBSCD NOT IN (#RFOBCD#)
+              ) N 
+              ORDER BY NRDIST, N.DAMNM
+            )
+        WHERE ROWNUM BETWEEN 1 AND 10        
+      </isEqual>
+    </select>
+    <!-- 수위 우량 인근관측국 왼쪽 하단 리스트 조회 종료-->
+
+    <!-- 수위 우량 인근관측국 오른쪽 하단 등록/수정 리스트 조회 시작-->
+    <select id="GetDownRightObsList" resultClass="ObsManagementModel" parameterClass="HashTable" remapResults="true">
+      <isEqual property="OBSTP" compareValue="WL">
+        SELECT C.WLOBCD||'_'||C.NROBCD ID, A.DAMCD, A.DAMNM, B.WLOBSCD OBSCD, B.OBSNM, 'WL' OBSTP, C.WLOBCD,
+          C.NROBCD, D.OBSNM NROBNM, FN_CONV_CHAR(C.NRDIST) NRDIST, C.UPDOWNTP
+        FROM VM_DAMCODE A, DUBWLOBSIF@TECH.WORLD B, HM_WLOBSNRCODE C , DUBWLOBSIF@TECH.WORLD D
+        WHERE A.DAMCD = B.DAMCD
+        <isNotEmpty property="DAMCD" prepend="AND">
+          A.DAMCD = #DAMCD#
+        </isNotEmpty>
+        <isNotEmpty property="OBSCD" prepend="AND">
+          B.WLOBSCD = #OBSCD#
+        </isNotEmpty>
+        <isNotEmpty property="WLOBCD" prepend="AND">
+          C.WLOBCD = #WLOBCD#
+        </isNotEmpty>
+        <isNotEmpty property="NROBCD" prepend="AND">
+          C.NROBCD = #NROBCD#
+        </isNotEmpty>
+        <!--AND B.OBSTP = 'WL'-->
+        AND B.WLOBSCD = C.WLOBCD(+)
+        AND C.NROBCD = D.WLOBSCD
+        ORDER BY C.NRDIST, A.DAMCD, B.WLOBSCD
+      </isEqual>
+      <isEqual property="OBSTP" compareValue="RF">
+        SELECT C.RFOBCD||'_'||C.NROBCD ID, A.DAMCD, A.DAMNM, B.RFOBSCD OBSCD, B.OBSNM, 'RF' OBSTP, C.RFOBCD,
+        C.NROBCD, D.OBSNM NROBNM, FN_CONV_CHAR(C.NRDIST) NRDIST, C.NRQUAD
+        FROM VM_DAMCODE A, DUBRFOBSIF@TECH.WORLD B, HM_RFOBSNRCODE C , DUBRFOBSIF@TECH.WORLD D
+        WHERE A.DAMCD = B.DAMCD
+        <isNotEmpty property="DAMCD" prepend="AND">
+          A.DAMCD = #DAMCD#
+        </isNotEmpty>
+        <isNotEmpty property="OBSCD" prepend="AND">
+          B.RFOBSCD = #OBSCD#
+        </isNotEmpty>
+        <isNotEmpty property="RFOBCD" prepend="AND">
+          C.RFOBCD = #RFOBCD#
+        </isNotEmpty>
+        <isNotEmpty property="NROBCD" prepend="AND">
+          C.NROBCD = #NROBCD#
+        </isNotEmpty>
+        <!--AND B.OBSTP = 'RF'-->
+        AND B.RFOBSCD = C.RFOBCD(+)
+        AND C.NROBCD = D.RFOBSCD
+        ORDER BY C.NRDIST,A.DAMCD, B.RFOBSCD
+      </isEqual>
+    </select>
+    <!-- 수위 우량 인근관측국 오른쪽 하단 등록/수정 리스트 조회 종료-->
+
+    <!--수위 인근관측국 추가 시작-->
+    <insert id="InsertWLObs" parameterClass="ObsManagementModel">
+      INSERT INTO HM_WLOBSNRCODE (WLOBCD, NROBCD, NRDIST, UPDOWNTP)
+      VALUES(#WLOBCD#, #NROBCD#, #NRDIST#, #UPDOWNTP#)
+    </insert>
+    <!--수위 인근관측국 추가 종료-->
+
+    <!--우량 인근관측국 추가 시작-->
+    <insert id="InsertRFObs" parameterClass="ObsManagementModel">
+      INSERT INTO HM_RFOBSNRCODE (RFOBCD, NROBCD, NRDIST, NRQUAD)
+      VALUES(#RFOBCD#, #NROBCD#, #NRDIST#, #NRQUAD#)
+    </insert>
+    <!--우량 인근관측국 추가 종료-->
+
+    <!--수위 인근관측국 수정 시작-->
+    <update id="UpdateWLObs" parameterClass="ObsManagementModel">
+      UPDATE HM_WLOBSNRCODE SET NRDIST = #NRDIST#, UPDOWNTP = #UPDOWNTP#
+      WHERE WLOBCD = #OBSCD#
+      AND NROBCD = #NROBCD#
+    </update>
+    <!--수위 인근관측국 수정 종료-->
+
+    <!--우량 인근관측국 수정 시작-->
+    <update id="UpdateRFObs" parameterClass="ObsManagementModel">
+      UPDATE HM_RFOBSNRCODE SET NRDIST = #NRDIST#, NRQUAD = #NRQUAD#
+      WHERE RFOBCD = #OBSCD#
+      AND NROBCD = #NROBCD#
+    </update>
+    <!--우량 인근관측국 수정 종료-->
+
+    <!--인근관측국 삭제 시작-->
+    <delete id="DeleteObs" resultClass="ObsManagementModel">
+      <isEqual property="OBSTP" compareValue="WL">
+        DELETE FROM HM_WLOBSNRCODE
+        WHERE WLOBCD = #OBSCD#
+        AND NROBCD = #NROBCD#
+      </isEqual>
+      <isEqual property="OBSTP" compareValue="RF">
+        DELETE FROM HM_RFOBSNRCODE
+        WHERE RFOBCD = #OBSCD#
+        AND NROBCD = #NROBCD#
+      </isEqual>
+    </delete>
+    <!-- 인근관측국 삭제 종료-->
+    
+    
+    <!--검정코드관리 조회 시작-->
+    <select id="GetExamList" resultClass="ExamManagementModel" parameterClass="HashTable">
+      SELECT EXCD|| '_' ||EXTP AS ID, EXCD, EXTP, EXORD, EXCONT, EXNOTE, EXYN, EXCOLOR, PROCDT, PROCINT
+      FROM HM_EXCODE
+      WHERE 1=1
+      <isNotEmpty property ="EXTP">
+       AND EXTP in (#EXTP#, 'C')
+      </isNotEmpty>
+      ORDER BY EXTP DESC, EXORD, EXCD DESC
+    </select>
+    <!--검정코드관리 조회 종료-->
+
+    <!--검정코드관리 추가 시작-->
+    <insert id="InsertExam" parameterClass="ExamManagementModel">
+    <![CDATA[
+      INSERT INTO HM_EXCODE(EXCD, EXTP, EXORD, EXCONT, EXNOTE, EXYN, EXCOLOR,PROCINT,PROCDT)
+      VALUES(#EXCD#, #EXTP#, #EXORD#, #EXCONT#, #EXNOTE#, #EXYN#, #EXCOLOR#, #PROCINT#,
+      (CASE WHEN $PROCINT$ < 60 THEN 
+            TO_CHAR(TRUNC(SYSDATE,'HH24') + (TRUNC(TO_NUMBER(TO_CHAR(SYSDATE,'MI'))/$PROCINT$)*$PROCINT$)/1440,'YYYYMMDDHH24MI')
+      WHEN $PROCINT$ >= 60 THEN
+           TO_CHAR(TRUNC(SYSDATE,'HH24'),'YYYYMMDDHH24MI')
+      END)
+     )
+     ]]>
+    </insert>
+    <!--검정코드관리 추가 종료-->
+
+    <!--검정코드관리 수정 시작-->
+    <update id="UpdateExam" parameterClass="ExamManagementModel">
+    <![CDATA[
+      UPDATE HM_EXCODE SET EXORD=#EXORD#,EXCONT=#EXCONT#,EXNOTE=#EXNOTE#,EXYN=#EXYN#,EXCOLOR=#EXCOLOR#, PROCINT=#PROCINT#,
+      PROCDT=
+      (CASE WHEN $PROCINT$ < 60 THEN 
+            TO_CHAR(TRUNC(SYSDATE,'HH24') + (TRUNC(TO_NUMBER(TO_CHAR(SYSDATE,'MI'))/$PROCINT$)*$PROCINT$)/1440,'YYYYMMDDHH24MI')
+      WHEN $PROCINT$ >= 60 THEN
+           TO_CHAR(TRUNC(SYSDATE,'HH24'),'YYYYMMDDHH24MI')
+      END)
+      WHERE EXCD=#EXCD#
+      AND EXTP = #EXTP#
+    ]]>
+    </update>
+    <!--검정코드관리 수정 종료-->
+
+    <!--검정코드관리 삭제 시작-->
+    <delete id="DeleteExam" resultClass="EquipManagementModel">
+      DELETE FROM HM_EXCODE
+      WHERE EXCD=#EXCD#
+      AND EXTP = #EXTP#
+    </delete>
+    <!--검정코드관리 삭제 종료-->
+
+      
+      
+    <!--댐검정코드관리 조회 시작-->
+    <select id="GetDAMExamList" resultClass="ExamManagementModel" parameterClass="HashTable">
+      SELECT 
+        EXCD|| '_' ||EXCOLUMN ID, EXCD, EXCOLUMN, EXORD, EXCONT, EXNOTE, EXYN, EXCOLOR, EXCOLUMNNM, PROCDT, PROCINT
+      FROM 
+        HM_DAMEXCODE
+      ORDER BY 
+        EXORD, EXCD DESC
+    </select>
+    <!--댐검정코드관리 조회 종료-->
+
+    <!--댐검정코드관리 추가 시작-->
+    <insert id="InsertDAMExam" parameterClass="ExamManagementModel">
+    <![CDATA[
+      INSERT INTO HM_DAMEXCODE (EXCD, EXCOLUMN, EXORD, EXCONT, EXNOTE, EXYN, EXCOLOR, EXCOLUMNNM, PROCINT,PROCDT)
+      VALUES (#EXCD#, #EXCOLUMN#, #EXORD#, #EXCONT#, #EXNOTE#, #EXYN#, #EXCOLOR#, #EXCOLUMNNM#, #PROCINT#,
+      (CASE WHEN $PROCINT$ < 60 THEN 
+            TO_CHAR(TRUNC(SYSDATE,'HH24') + (TRUNC(TO_NUMBER(TO_CHAR(SYSDATE,'MI'))/$PROCINT$)*$PROCINT$)/1440,'YYYYMMDDHH24MI')
+      WHEN $PROCINT$ >= 60 THEN
+           TO_CHAR(TRUNC(SYSDATE,'HH24'),'YYYYMMDDHH24MI')
+      END)
+      ) 
+    ]]>        
+    </insert>
+    <!--댐검정코드관리 추가 종료-->
+
+    <!--댐검정코드관리 수정 시작-->
+    <update id="UpdateDAMExam" parameterClass="ExamManagementModel">
+    <![CDATA[
+      UPDATE HM_DAMEXCODE
+      SET    EXCOLUMN   = #EXCOLUMN#,
+             EXORD      = #EXORD#,
+             EXCONT     = #EXCONT#,
+             EXNOTE     = #EXNOTE#,
+             EXYN       = #EXYN#,
+             EXCOLOR    = #EXCOLOR#,
+             EXCOLUMNNM = #EXCOLUMNNM#,
+             PROCINT    = #PROCINT#,
+             PROCDT     = 
+              (CASE WHEN $PROCINT$ < 60 THEN 
+                    TO_CHAR(TRUNC(SYSDATE,'HH24') + (TRUNC(TO_NUMBER(TO_CHAR(SYSDATE,'MI'))/$PROCINT$)*$PROCINT$)/1440,'YYYYMMDDHH24MI')
+              WHEN $PROCINT$ >= 60 THEN
+                   TO_CHAR(TRUNC(SYSDATE,'HH24'),'YYYYMMDDHH24MI')
+              END)
+      WHERE  EXCD       = #EXCD#
+     ]]>
+    </update>
+    <!--댐검정코드관리 수정 종료-->
+
+    <!--댐검정코드관리 삭제 시작-->
+    <delete id="DeleteDAMExam" resultClass="EquipManagementModel">
+      DELETE FROM HM_DAMEXCODE
+      WHERE EXCD = #EXCD#
+      AND EXCOLUMN   = #EXCOLUMN#
+    </delete>
+    <!--댐검정코드관리 삭제 종료-->
+
+
+    <!--보정코드관리 조회 시작-->
+    <select id="GetRevisionManagementList" resultClass="RevisionManagementModel">
+      SELECT EDEXWAY, EDTP, EDORD, EDEXWAYCONT, EDNOTE, EDYN, EDEXWAY || '_' || EDTP AS ID
+      FROM HM_EDCODE
+      <isNotEmpty property="EDEXWAY">
+        WHERE EDEXWAY=#EDEXWAY#
+        AND EDTP = #EDTP#
+      </isNotEmpty>
+      ORDER BY EDTP DESC, EDORD
+    </select>
+    <!--보정코드관리 조회 종료-->
+
+    <!--보정코드관리 추가 시작-->
+    <insert id="InsertRevisionManagement" parameterClass="RevisionManagementModel">
+      INSERT INTO HM_EDCODE(EDEXWAY, EDTP, EDORD, EDEXWAYCONT, EDNOTE, EDYN)
+      VALUES(#EDEXWAY#, #EDTP#, #EDORD#, #EDEXWAYCONT#, #EDNOTE#, #EDYN#)
+    </insert>
+    <!--보정코드관리 추가 종료-->
+
+    <!--보정코드관리 수정 시작-->
+    <update id="UpdateRevisionManagement" parameterClass="RevisionManagementModel">
+      UPDATE HM_EDCODE SET EDORD=#EDORD#, EDEXWAYCONT=#EDEXWAYCONT#, EDNOTE=#EDNOTE#, EDYN=#EDYN#
+      WHERE EDEXWAY=#EDEXWAY#
+      AND EDTP = #EDTP#
+    </update>
+    <!--보정코드관리 수정 종료-->
+
+    <!--보정코드관리 삭제 시작-->
+    <delete id="DeleteRevisionManagement" parameterClass="RevisionManagementModel">
+      DELETE FROM HM_EDCODE
+      WHERE EDEXWAY=#EDEXWAY#
+      AND EDTP = #EDTP#
+    </delete>
+    <!--보정코드관리 삭제 종료-->
+
+
+    <!--설비상태관리 그룹명 콤보 조회 시작-->
+    <select id="GetEquipGroupCombo" resultClass="EquipGroupComboModel">
+      SELECT GROUPCD, GROUPNM, GROUPEXPLAIN
+      FROM HM_EQUIPGROUP
+      ORDER BY GROUPCD
+    </select>
+    <!--설비상태관리 그룹명 콤보 조회 시작 종료-->
+
+    <!--설비상태관리 조회 시작-->
+    <select id="GetEquipList" resultClass="EquipManagementModel">
+      <isNotEmpty property="firstvalue">
+        SELECT '' ABCOLUMN, '$firstvalue$' ABCONT, 'Y' ABYN, '' ABCOLOR, 0 ORD, '' AS GROUPCD, '' AS GROUPNM, '' ABCOMMENT
+        FROM DUAL
+        UNION ALL
+      </isNotEmpty>
+      SELECT A.ABCOLUMN, A.ABCONT, A.ABYN, A.ABCOLOR, 1 AS ORD, A.GROUPCD, B.GROUPNM, A.ABCOMMENT
+      FROM HM_EQUIPCODE A, HM_EQUIPGROUP B
+      WHERE A.GROUPCD = B.GROUPCD(+)
+      ORDER BY ORD, ABCOLUMN
+    </select>
+    <!--설비상태관리 조회 종료-->
+
+    <!--설비상태관리 추가 시작-->
+    <insert id="InsertEquip" parameterClass="EquipManagementModel">
+      INSERT INTO HM_EQUIPCODE(ABCOLUMN, ABCONT, ABYN, ABCOLOR, GROUPCD, ABCOMMENT)
+      VALUES(#ABCOLUMN#, #ABCONT#, #ABYN#, #ABCOLOR#, #GROUPCD#, #ABCOMMENT#)
+    </insert>
+    <!--설비상태관리 추가 종료-->
+
+    <!--설비상태관리 수정 시작-->
+    <update id="UpdateEquip" parameterClass="EquipManagementModel">
+      UPDATE HM_EQUIPCODE SET ABCONT=#ABCONT#,ABYN=#ABYN#,ABCOLOR=#ABCOLOR#,GROUPCD=#GROUPCD#,ABCOMMENT=#ABCOMMENT#
+      WHERE ABCOLUMN = #ABCOLUMN#
+    </update>
+    <!--설비상태관리 수정 종료-->
+
+    <!--설비상태관리 삭제 시작-->
+    <delete id="DeleteEquip" parameterClass="EquipManagementModel">
+      DELETE FROM HM_EQUIPCODE
+      WHERE ABCOLUMN = #ABCOLUMN#
+    </delete>
+    <!--설비상태관리 삭제 종료-->
+
+
+    <!--설비상태그룹관리 조회 시작-->
+    <select id="GetEquipGroupList" resultClass="EquipGroupManagementModel">
+      SELECT GROUPCD, GROUPNM, GROUPEXPLAIN
+      FROM HM_EQUIPGROUP
+      <isNotEmpty property="GROUPCD">
+        WHERE GROUPCD = #GROUPCD#
+      </isNotEmpty>
+      ORDER BY GROUPCD
+    </select>
+    <!--설비상태그룹관리 조회 종료-->
+
+    <!--설비상태그룹관리 추가 시작-->
+    <insert id="InsertEquipGroup" parameterClass="EquipGroupManagementModel">
+      INSERT INTO HM_EQUIPGROUP (GROUPCD, GROUPNM, GROUPEXPLAIN)
+      VALUES(#GROUPCD#, #GROUPNM#, #GROUPEXPLAIN#)
+    </insert>
+    <!--설비상태그룹관리 추가 종료-->
+
+    <!--설비상태그룹관리 수정 시작-->
+    <update id="UpdateEquipGroup" parameterClass="EquipGroupManagementModel">
+      UPDATE HM_EQUIPGROUP SET GROUPCD = #GROUPCD#, GROUPNM = #GROUPNM#, GROUPEXPLAIN = #GROUPEXPLAIN#
+      WHERE GROUPCD = #GROUPCD#
+    </update>
+    <!--설비상태그룹관리 수정 종료-->
+
+    <!--설비상태그룹관리 삭제 시작-->
+    <delete id="DeleteEquipGroup" parameterClass="EquipGroupManagementModel">
+      DELETE FROM HM_EQUIPGROUP
+      WHERE GROUPCD = #GROUPCD#
+    </delete>
+    <!--설비상태그룹관리 삭제 종료-->
+    
+
+    <!--댐운영자료 알람관리 조회 시작-->
+    <select id="GetAlarmList" resultClass="AlarmManagementModel">
+      SELECT ALARMCD, ALARMCONT, ALARMNM
+      FROM HM_ALARMCODE
+      ORDER BY ALARMCD
+    </select>
+    <!--댐운영자료 알람관리 조회 종료-->
+
+    <!--댐운영자료 알람관리 추가 시작-->
+    <insert id="InsertAlarm" parameterClass="AlarmManagementModel">
+      INSERT INTO HM_ALARMCODE(ALARMCD, ALARMCONT,ALARMNM)
+      VALUES(#ALARMCD#, #ALARMCONT#,#ALARMNM#)
+    </insert>
+    <!--댐운영자료 알람관리 추가 종료-->
+
+    <!--댐운영자료 알람관리 수정 시작-->
+    <update id="UpdateAlarm" parameterClass="AlarmManagementModel">
+      UPDATE HM_ALARMCODE SET ALARMCONT = #ALARMCONT#, ALARMNM=#ALARMNM#
+      WHERE ALARMCD = #ALARMCD#
+    </update>
+    <!--댐운영자료 알람관리 수정 종료-->
+
+    <!--댐운영자료 알람관리 삭제 시작-->
+    <delete id="DeleteAlarm" parameterClass="AlarmManagementModel">
+      DELETE FROM HM_ALARMCODE
+      WHERE ALARMCD = #ALARMCD#
+    </delete>
+    <!--댐운영자료 알람관리 삭제 종료-->
+    
+    
+    <!--기타범례관리 조회 시작-->
+    <select id="GetEtcList" resultClass="EtcManagementModel">
+      SELECT ETCCD, ETCTP, ETCTITLE, ETCCONT, ETCYN, ETCCOLOR
+      FROM HM_ETCCODE
+      ORDER BY ETCTP DESC, ETCCD
+    </select>
+    <!--기타범례관리 조회 종료-->
+
+    <!--기타범례관리 추가 시작-->
+    <insert id="InsertEtc" parameterClass="EtcManagementModel">
+      INSERT INTO HM_ETCCODE(ETCCD, ETCTP, ETCTITLE, ETCCONT, ETCYN, ETCCOLOR)
+      VALUES(#ETCCD#, #ETCTP#, #ETCTITLE#, #ETCCONT#, #ETCYN#, #ETCCOLOR#)
+    </insert>
+    <!--기타범례관리 추가 종료-->
+
+    <!--기타범례관리 수정 시작-->
+    <update id="UpdateEtc" parameterClass="EtcManagementModel">
+      UPDATE HM_ETCCODE SET ETCTITLE=#ETCTITLE#,ETCCONT=#ETCCONT#,ETCYN=#ETCYN#,ETCCOLOR=#ETCCOLOR#
+      WHERE ETCCD=#ETCCD#
+      AND ETCTP = #ETCTP#
+    </update>
+    <!--기타범례관리 수정 종료-->
+
+    <!--기타범례관리 삭제 시작-->
+    <delete id="DeleteEtc" parameterClass="EtcManagementModel">
+      DELETE FROM HM_ETCCODE
+      WHERE ETCCD=#ETCCD#
+      AND ETCTP = #ETCTP#
+    </delete>
+    <!--기타범례관리 삭제 종료-->
+    
+  
+</statements>
+</sqlMap>
+

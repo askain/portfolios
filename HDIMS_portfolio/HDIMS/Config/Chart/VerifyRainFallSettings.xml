@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <font>Tahoma</font>
+  <start_on_axis>0</start_on_axis>
+  <redraw>true</redraw>
+  <plot_area>
+    <border_alpha>100</border_alpha>
+    <margins>
+      <left>60</left>
+      <right>80</right>
+      <top>30</top>
+      <bottom>85</bottom>
+    </margins>
+  </plot_area>
+  <grid>
+    <y_right>
+      <enabled>0</enabled>
+    </y_right>
+  </grid>
+  <digits_after_decimal>2</digits_after_decimal>
+  <decimals_separator>.</decimals_separator>
+  <thousands_separator>,</thousands_separator>
+  <context_menu>
+    <menu mid="4" function_name="showAll" title="전체보기"/>
+  </context_menu>
+  <values>
+    <x>
+      <inside>false</inside>
+    </x>
+    <y_left>
+      <inside>false</inside>
+    </y_left>
+    <y_right>
+      <inside>false</inside>
+    </y_right>
+  </values>
+  <graphs>
+    <graph gid="1">
+      <title>원시계측우량</title>
+      <color>A5BC4E</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>원시시간우량 : {value}</b>]]></balloon_text>
+    </graph>
+    <graph gid="2">
+      <title>원시시간우량</title>
+      <color>E48701</color>
+      <axis>right</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>원시계측우량 : {value}</b>]]></balloon_text>
+      <hidden>1</hidden>
+    </graph>
+    <graph gid="3">
+      <title>추정계측우량</title>
+      <color>1B95D9</color>
+      <axis>left</axis>
+      <line_width>2</line_width>
+      <color_hover>CC0000</color_hover>
+      <balloon_text_color>000000</balloon_text_color>
+      <balloon_text><![CDATA[<b>추정계측우량 : {value}</b>]]></balloon_text>
+    </graph>    
+  </graphs>
+  <scroller>
+    <y>20</y>
+    <height>10</height>
+    <color>E48701</color>
+    <bg_color>FFFFFF</bg_color>
+  </scroller>
+  <indicator>
+    <selection_color>000000</selection_color>
+  </indicator>
+  <legend>
+    <!--<x>!130</x>-->
+    <y>0</y>
+    <!--<width>130</width>-->
+    <align>left</align>
+  </legend>
+  <axes>
+    <x>
+      <tick_length>2</tick_length>
+      <width>1</width>
+    </x>
+    <y_left>
+      <tick_length>2</tick_length>
+      <width>1</width>
+    </y_left>
+    <y_right>
+      <tick_length>2</tick_length>
+      <width>1</width>
+    </y_right>
+  </axes>
+  <zoom_out_button>
+    <x>!1</x>
+    <y>!1</y>
+    <text>전체보기</text>
+  </zoom_out_button>
+  <labels>
+    <label lid="0">
+      <text><![CDATA[<b>시간우량</b>]]></text>
+      <x>0</x>
+      <y>50%</y>
+      <width>10</width>
+      <rotate>true</rotate>
+    </label>
+    <label lid="0">
+      <text><![CDATA[<b>계측우량</b>]]></text>
+      <x>!20</x>
+      <y>50%</y>
+      <width>10</width>
+      <rotate>true</rotate>
+    </label>
+  </labels>
+  <error_messages>
+    <color>BBBB00</color>
+    <text_color>FFFFFF</text_color>
+  </error_messages>
+  <strings>
+    <no_data>챠트의 데이터가 존재하지 않습니다.</no_data>
+    <export_as_image>챠트를 이미지로 변환중입니다.</export_as_image>
+    <collecting_data>데이터를 조회중입니다.</collecting_data>
+  </strings>
+</settings>

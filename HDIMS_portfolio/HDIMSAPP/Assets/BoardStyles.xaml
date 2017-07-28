@@ -1,0 +1,213 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ig="http://schemas.infragistics.com/xaml"
+    xmlns:igPrim="clr-namespace:Infragistics.Controls.Grids.Primitives;assembly=InfragisticsSL4.Controls.Grids.XamGrid.v11.2">
+
+    <SolidColorBrush x:Key="KwaterColor" Color="#FFD3E3F8"/>
+    <SolidColorBrush x:Name="ForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Name="BackgroundColor" Color="White" />
+    <SolidColorBrush x:Name="BorderColor" Color="Gray" />
+    <SolidColorBrush x:Name="LineColor" Color="Gray" />
+    <Style TargetType="igPrim:HeaderCellControl">
+        <Setter Property="Background" Value="{StaticResource KwaterColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="igPrim:HeaderCellControl">
+                    <igPrim:SimpleClickableContainer x:Name="NormalFill" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ig:Commanding.Commands>
+                            <ig:XamGridColumnCommandSource EventName="SimpleClick" CommandType="Select"/>
+                            <ig:XamGridColumnCommandSource EventName="SimpleClick" CommandType="SortToggle"/>
+                        </ig:Commanding.Commands>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard/>
+                                </VisualState>
+                                <VisualState x:Name="Moving">
+                                    <Storyboard/>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FixedStates">
+                                <VisualState x:Name="Unfixed"/>
+                                <VisualState x:Name="Fixed"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FixedIndicatorStates">
+                                <VisualState x:Name="NotFixable"/>
+                                <VisualState x:Name="Pinned">
+                                    <Storyboard >
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PinnedIndicator" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FixedIndicator" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unpinned">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="UnpinnedIndicator" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FixedIndicator" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SortedStates">
+                                <VisualState x:Name="NotSorted"/>
+                                <VisualState x:Name="Ascending">
+                                    <Storyboard >
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SortedAscending" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Descending">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SortedDescending" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectedStates">
+                                <VisualState x:Name="NotSelected" />
+                                <VisualState x:Name="Selected"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="InActive" />
+                                <VisualState x:Name="Active"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <!--<ColumnDefinition Width="Auto" ></ColumnDefinition>-->
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Grid.Column="1"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" d:LayoutOverrides="Width" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                            <Path x:Name="SortedDescending" Grid.Column="2" Data="M 0 0 L 4 4 L 8 0 Z" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Right" Opacity="0" Margin="0,0,5,0"/>
+                            <Path x:Name="SortedAscending" Grid.Column="2" Data="M0,4 L8,4 L4,0 z" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Right" Opacity="0" Margin="0,0,5,0"/>
+                            <Grid Grid.Column="3"  Background="Transparent" Visibility="Collapsed"  x:Name="FixedIndicator" Cursor="Hand" Margin="0,0,5,0" >
+                                <Grid x:Name="PinnedIndicator" Visibility="Collapsed"  Background="Transparent">
+                                    <ig:Commanding.Command>
+                                        <ig:XamGridColumnCommandSource EventName="MouseLeftButtonDown" CommandType="Unfix"/>
+                                    </ig:Commanding.Command>
+                                    <Path
+											Height="10"
+											Width="7"
+											Stretch="Fill"
+											Opacity="1"
+											Data="M 6,4 C6,4 8,4 8,4 8,4 8,9 8,9 8,9 6,9 6,9 6,9 6,4 6,4 zM 5,3 C5,3 5,9 5,9 5,9 4,9 4,9 4,9 4,10 4,10 4,10 7,10 7,10 7,10 7,13 7,13 7,13 8,13 8,13 8,13 8,10 8,10 8,10 11,10 11,10 11,10 11,9 11,9 11,9 10,9 10,9 10,9 10,3 10,3 10,3 5,3 5,3 z"
+											Fill="{TemplateBinding Foreground}"  />
+                                </Grid>
+                                <Grid x:Name="UnpinnedIndicator" Visibility="Collapsed" Background="Transparent">
+                                    <ig:Commanding.Command>
+                                        <ig:XamGridColumnCommandSource EventName="MouseLeftButtonDown" CommandType="Fix"/>
+                                    </ig:Commanding.Command>
+                                    <Path
+											Height="7"
+											Width="10"
+											Stretch="Fill"
+											Opacity="1"
+											Data="M 12,7 C12,7 12,9 12,9 12,9 7,9 7,9 7,9 7,7 7,7 7,7 12,7 12,7 zM 13,6 C13,6 7,6 7,6 7,6 7,5 7,5 7,5 6,5 6,5 6,5 6,8 6,8 6,8 3,8 3,8 3,8 3,9 3,9 3,9 6,9 6,9 6,9 6,12 6,12 6,12 7,12 7,12 7,12 7,11 7,11 7,11 13,11 13,11 13,11 13,6 13,6 z"
+											Fill="{TemplateBinding Foreground}" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </igPrim:SimpleClickableContainer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--__________________________________ CellControl _____________________________________________________-->
+    <Style TargetType="ig:CellControl" x:Name="DefaultBoardCellControl">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundColor}" />
+        <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ig:CellControl">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+
+                                <VisualState x:Name="Normal" />
+
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard >
+
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00" Storyboard.TargetName="AltMouseOver" Storyboard.TargetProperty="Fill">
+
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="#FFE6EFF7"/>
+
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                    </Storyboard>
+
+                                </VisualState>
+
+                                <VisualState x:Name="Alternate" />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="SelectedStates">
+                                <VisualState x:Name="NotSelected" />
+                                <VisualState x:Name="Selected" />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="InActive" />
+                                <VisualState x:Name="Active" />
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" x:Name="Root"/>
+                        <Rectangle x:Name="AltMouseOver" Margin="{TemplateBinding BorderThickness}"/>
+                        <Border x:Name="ActiveSelected" BorderBrush="{StaticResource BorderColor}"   ></Border>
+                        <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ig:CellControl" x:Name="ImportantBoardCellControl" BasedOn="{StaticResource DefaultBoardCellControl}">
+        <Setter Property="Foreground" Value="DarkOrange" />
+    </Style>
+</ResourceDictionary>

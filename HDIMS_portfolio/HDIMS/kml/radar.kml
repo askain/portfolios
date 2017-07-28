@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+  <Document>
+    <Region>
+      <LatLonAltBox>
+        <north>41.18</north>
+        <south>30.78</south>
+        <east>133.25</east>
+        <west>120.89</west>
+      </LatLonAltBox>
+      <Lod>
+        <maxLodPixels>100000</maxLodPixels>
+      </Lod>
+    </Region>
+    <!--레이더영상-->
+	<name>Animation</name>
+	<open>1</open>
+	<GroundOverlay>
+    <color>ffffffff</color>
+		<Icon>
+			<href>2011/08/03/S30N_201108031350.png</href>
+		</Icon>
+		<LatLonBox>
+			<north>40.32</north>
+			<south>33.03</south>
+			<east>131.00</east>
+			<west>121.60</west>
+		</LatLonBox>
+		<altitude>0</altitude>
+		<altitudeMode>clampToGround</altitudeMode>
+	</GroundOverlay>
+  </Document>
+</kml>
