@@ -8,6 +8,9 @@ Hope Github Page is last settlement of my portfolios.
 
 Github Rocks!
 
+### LINQ.js
+
+
 
 ### Big Grid / Datatable (2011)
 
@@ -39,29 +42,39 @@ All of these javascript-based grid took about 7~10 seconds to load only for rend
 
 After all those test, we notices following
 ```markdown
-1. Smaller screen = better performance
-2. Row count doesn't affect performance. Most of good grids use "Row Virtualization" for better performance.
-3. Less columns = better performance
-4. There is no javascript-based grid use "Column Virtualization". So it is impossible to make a fast grid application with javascript-based grid. 
+1. Row count affects performance little. Most of grids used "Row Virtualization" for better performance.
+2. Less columns = better loading time and scrolling.
+3. Smaller screen = better scrolling
+4. There is no javascript-based grid that uses "Column Virtualization". So it is impossible to make a fast grid application with many columns, unless the grid supports "Column Virtualization". 
 ```
 
-So we turn our eyes to RIA(Rich Internet Applications). In RIA, we doesn't have much choice. We choose Silverlight, just because we were developing with .NET Framework.
-In 2011, Infragistics and Telerik were two famous frameworks using Silverlight.
+Browsers uses limited resources. Even if we makes "Column Virtualization" in javascript, the performance of javascript was not promising. So we turn our eyes to RIA(Rich Internet Applications). 
 
+There was a little choice of RIA. Flash, Flex, Silverlight, X-Platform... we choose Silverlight, just because we were developing on .NET Framework.
+
+
+In 2011, Infragistics and Telerik were two famous frameworks using Silverlight.
 ```markdown
 1. Silverlight Grid : Muuuuuch faster than javascript-based grids. But poor functionality.
 2. Infragistics : Much faster than javascript-based grids.
 3. Telerik : Slightly faster than Infragistics. also RadGridView uses "UI Virtualization" which support column virtualization! 
 ```
 
-For test, My Telerik application were still remaining here. [Go Test](/HDIMS_portfolio/WebApplication1/HDIMSAPPTestPage.html) 
+Unfortunately, javascript examples are remaining in ASPX format which is not supported in Git Page.
+But I made Silverlight example for test. **Waring** This link may cause freezing on low spec computer.
+[147 x 1000 Example, Siverlight(Telerik)](/HDIMS_portfolio/WebApplication1/HDIMSAPPTestPage.html)
+![Image](/img/HDIMS_thumb01.png)
+As you test the link. it is still slow with many data. But believe me. javascript was slower. 
+
+So my conclution is 
+```markdown
+`If you have to make a grid that has many columns. It is better to persuade clients to use Excel or Google sheet instead.
+But if you failed, use a grid that supports "Column Virtualization".`
+```
 
 
-
-Conclusion : If you have to make a grid that has many columns. Use a grid that supports "Column Virtualization".
-
-
-
+This link is for Google sheet for test.
+[147 x 1000 Example, Google sheet](https://docs.google.com/spreadsheets/d/1sQnBhdMUh2IRDMYgWctAuk3ovoTtXcMirNiB075OEiU/edit?usp=sharing)
 
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
