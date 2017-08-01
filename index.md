@@ -9,6 +9,9 @@ Hope Github Page is the last settlement of my portfolios.
 Github Rocks!
 
 
+
+
+
 ### ORACLE JOB SYNTAX MAKER (2013)
 
 It creates syntax for scheduling job in oracle.
@@ -17,13 +20,19 @@ It creates syntax for scheduling job in oracle.
 ![Image](/portfolios/img/SyntaxMaker_thumb01.png)
 
 
+
+
+
 ### LINQ.js (2013)
 
 neuecc <ils@neue.cc> made a javascript library that imitate LINQ on .Net Framework.
 And it is impressively fast & usable. I made a playground page for test & fun.
 
 [LINQ.js playground](/portfolios/linq_js_test/linq_js_test.html)
-![Image](/portfolios/img/HDIMS_thumb01.png)
+![Image](/portfolios/img/LINQJS_thumb01.png)
+
+
+
 
 
 ### Big Grid / Datatable (2011)
