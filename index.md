@@ -65,7 +65,8 @@ After all those test, we notices following
 1. Row count affects performance little. Most of grids used "Row Virtualization" for better performance.
 2. Less columns = better loading time and scrolling.
 3. Smaller screen = better scrolling
-4. There is no javascript-based grid that uses "Column Virtualization". So it is impossible to make a fast grid application with many columns, unless the grid supports "Column Virtualization". 
+4. There is no javascript-based grid that uses "Column Virtualization". So it is impossible to make a fast grid application with many columns, unless the grid supports "Column Virtualization".
+5. additionally, initializing the chart on bottom makes way too slow. it affects loading time. 
 
 Browsers uses limited resources. Even if we makes "Column Virtualization" in javascript, the performance of javascript was not promising. So we turn our eyes to RIA(Rich Internet Applications). 
 
