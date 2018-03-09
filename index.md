@@ -9,7 +9,8 @@ Hope Github Page is the last settlement of my portfolios.
 Github Rocks!
 
 
-
+### My memory with Ruby On Rails
+[Many unforgettable memory with Ruby On Rails](/withruby/with_ruby.html)
 
 
 ### ORACLE JOB SYNTAX MAKER (2013)
