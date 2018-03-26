@@ -54,6 +54,12 @@ end<br>
     <li>추억 17. puma가 먹통이 되고 kill script로 중지가 되지 않을때가 있다… 수동으로 worker까지 모두 종류해준후 기동하면 제대로 동작함</li><br>
     <li>추억 18. 어느 순간 부터 JSON.parse(params[:aaaa]) 가 에러를 내기 시작함. params로 가져오는 인스턴트들이 ActiveParameter인데 JSON.parse로 변환이 안됨. bundle update로 자동으로 업데이트된 minor gem 때문인걸로 잠정 결론. Rails 유지보수하는 새끼들은 이용자들 엿먹이는 재주가 있나보다…</li><br>
     <li>추억 19. makara 설정할때 max pool count는 각 master, slave 설정에 끼워넣어야 적용됨. 즉 total max pool count 는 적용이 안됨. 그리고 master에 넣은 ip가 slave에 있더라도 별개의 connection을 생성함. 예를 들어, master ip1 pool 50개, slave ip1 pool 50개 이런식으로 설정하면  max pool 100개가 됨. 그리고 master의 ip를 slave에 넣더라도 connection을 공유하지 않음.</li><br>
+    <li>추억 20. 어느 순간부터 갑자기 reids가 읽어오는 값을 제대로 serializing해주지 못 하면서 다음과 같은 에러를 내뱉었다.<br>
+    Message:incompatible marshal file format (can't be read)<br>
+    format version 4.8 required; 56.54 given<br>
+      원인은 rubymarshal 이라는 gem이 업데이트 되면서 기존의 redis에 저장된 데이터를 못 읽게 되어서라고 생각됨.
+    </li><br>
+    <li>추억 21. 많은 부하가 걸리면 puma가 죽곤 했는데(사실 부하가 안 걸려도 죽긴했다), passenger 라는 놈을 puma 대신 써봤는데 낮은 사양에서 죽는 현상은 마찬가지 였다. 서버를 엄청 좋은 걸로 업그레이드 했더니 부하가 걸려도 죽는 현상은 발생하지 않았다. 단 puma쓸때처럼 서버가 정지되고 ssh 로그인 조차 안되는 상황이 발생했다.</li>
   </ul>
 </body>
 </html>
