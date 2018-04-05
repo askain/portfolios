@@ -60,6 +60,7 @@ end<br>
       원인은 rubymarshal 이라는 gem이 업데이트 되면서 기존의 redis에 저장된 데이터를 못 읽게 되어서라고 생각됨.
     </li><br>
     <li>추억 21. 많은 부하가 걸리면 puma가 죽곤 했는데(사실 부하가 안 걸려도 죽긴했다), passenger 라는 놈을 puma 대신 써봤는데 낮은 사양에서 죽는 현상은 마찬가지 였다. 서버를 엄청 좋은 걸로 업그레이드 했더니 부하가 걸려도 죽는 현상은 발생하지 않았다. 단 puma쓸때처럼 서버가 정지되고 ssh 로그인 조차 안되는 상황이 발생했다.</li>
+    <li>추억 22. <a href="https://github.com/taskrabbit/makara/issues/182">undefined method `query_cache_enabled' for nil:NilClass</a>이 발생하여 모든 잼을 전체 삭제 후 재설치하여 해결하였음. 링크에는 SVMKwangillJung 로 답변남김.</li>
   </ul>
 </body>
 </html>
