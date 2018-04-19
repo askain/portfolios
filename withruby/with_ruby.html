@@ -61,6 +61,7 @@ end<br>
     </li><br>
     <li>추억 21. 많은 부하가 걸리면 puma가 죽곤 했는데(사실 부하가 안 걸려도 죽긴했다), passenger 라는 놈을 puma 대신 써봤는데 낮은 사양에서 죽는 현상은 마찬가지 였다. 서버를 엄청 좋은 걸로 업그레이드 했더니 부하가 걸려도 죽는 현상은 발생하지 않았다. 단 puma쓸때처럼 서버가 정지되고 ssh 로그인 조차 안되는 상황이 발생했다.</li>
     <li>추억 22. <a href="https://github.com/taskrabbit/makara/issues/182">undefined method `query_cache_enabled' for nil:NilClass</a>이 발생하여 모든 잼을 전체 삭제 후 재설치하여 해결하였음. 링크에는 SVMKwangillJung 로 답변남김.</li>
+    <li>추억 23. Puma를 Http가 아닌 tcp로 이용하려고 하니 tcp 리퀘스트를 받을 때마다 파라미터 갯수가 맞지 않는다는 에러가 남. 알고보니 리퀘스트를 실행하기 위해서는 request -> NewRelic -> 우리앱 ->response 순으로 실행되는데 newRelic의 tcp처리하는 call() 메쏘드가 파라미터를 하나만 지원하고 있었다. 실제로는 두개 필요함. Gem끼지 조합이 맞지 않음...</li>
   </ul>
 </body>
 </html>
