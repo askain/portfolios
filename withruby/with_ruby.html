@@ -15,7 +15,7 @@
     <hr class="my-4">
     <p>저의 의견이며 담겨 있으면 대부분의 루비 온 레일즈 사용자들과 의견이 다를 수 있습니다.</p>
     <p>2018년 4월 24일 작성</p>
-    <a class="btn btn-primary btn-lg" href="./Gemfile.lock" role="button">Gemfile.lock</a>
+    <a class="btn btn-primary btn-lg" href="https://github.com/askain/portfolios/blob/master/withruby/Gemfile.lock" role="button">Gemfile.lock</a>
   </div>
   <br>
 
@@ -24,7 +24,7 @@
     <p>AWS 서버가 하루에 세번씩 시간이 지나면서 죽는 일이 있었다. 원인은 shoryuken 이 메모리를 계속 확보하다가 100%가 되면 서버 정지함.</p>
     <p>shoryuken 버전업하여 해결</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 2</h5>
     <p>여전히 메모리 릭이 있어서 aws와 shoryuken 버전을 더 업하여 해결. 그런데!!!!!!!<br>gemfile을 수정하여 aws 2.x 에서 3.x 버전으로 업그레이드하니 rails버전을 맘대로 업데이트 해버림. 더 상단에 rails 버전이 선언되어있어도 소용 없음.</p>
@@ -53,32 +53,32 @@
     <p>배포하니 rails 5.0.6이 깔려 있음. (처음배포때는 5.1.x 버전이 깔려버렸는데 버전이 자세히 기억이 안남)</p>
     <p>게다가 gem list를 보니 ActiveModel 등이 버전이 두가지씩 깔려버렸음. 그래서 메뉴얼하게 구버전을 하나하나 삭제해줌.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 2-1</h5>
     <p>추억2가 발생할때 ActiveModel 등이 두가지 버전이 동시에 깔려버렸는데 구 버전들 삭제하고 배포 후 AWS_REGION설정이 안되었다고 에러가 남. AWS_REGION 설정을 일단은 해야 하는거 같으면서도 나중에 보니 안해도 됨???? 나도 무슨 일이 일어난 것인지 모르겟다.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 3</h5>
-    <p>gem 삭제로 인한 gem update 후에 몇가지 minor gem들이 업데이트 됨. 그런 이유로 memory leak이 미친듯이 늘어서 원인을 찾는 도중에 몇번 더 업데이트하게 되어 memory leak 이 사라짐. 무슨 gem이 원흉인지 모르겠다.</p>
+    <p><code>bundle update</code> 후에 몇가지 minor gem들이 업데이트 됨. 그런 이유로 Memory leak이 미친듯이 늘어서 원인을 찾는 도중에 몇번 더 업데이트하게 되어 Memory leak 이 사라짐. 무슨 gem이 원흉인지 모르겠다.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 4</h5>
     <p>쓰지 않는 gem 들을 정리를 했는데 memory 사용률이 매우 양호해짐. 그중에 쓰지않는 twilio gem을 삭제해서 그런게 아닐까 추측 중</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 5</h5>
     <p>uptime 오래된 서버는 재기동 시켜줘야 함. 메모리 릭. 오래된 서버를 계속 재기동 시켜주는 배치명령을 만듬. 비슷한 puma_worker_killer gem이 있긴한데 설치해보니 puma를 중지는 하는데 다시 살려주지를 못함.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 6</h5>
-    <p>octopus gem이 redis gem과 호환이 안되어서 replication 에 select 쿼리 날릴 시 옛날 캐쉬를 참조. 그래서 octopus를 삭제 할 밖에 없었음<br>나중에 makara gem을 대신 써서 해결</p>
+    <p>octopus gem이 redis gem과 호환이 안되어서 replication 에 select 쿼리 날릴 시 옛날 캐쉬를 참조. 그래서 octopus를 삭제 할 밖에 없었음<hr class="my-4">나중에 makara gem을 대신 써서 해결</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 7</h5>
     <p>ActiveResult 가 캐쉬를 쓰고/안쓰고를 설정할 수 없음. 쿼리 가져온 결과중에서 결과를 다시 뽑아내면 되는데 DB에 쿼리를 또 날림. 또 반대로 원치 않는데 캐시를 자꾸 쓰는 경우가 있음.</p>
@@ -96,29 +96,29 @@
       </div>
     </div>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 8</h5>
     <p>서버 CPU가 57%로 고정 되면서 먹통이 됨. ssh 접속도 안되고. AWS console에서 재기동 후 정상화 됨. 원인은 불명. 그 와중에 쌍둥이 서버는 정상</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 9</h5>
     <p>이건 Rails의 문제라기 보단 ORM과 쓰는 사람이 문제이긴 한데, 갑자기 staging DB에 모든 데이터가 없어져버렸음. 누군가 rake db:reset을 실행한 것이 아닌가 예상을 했지만 범인을 찾을 수 없었음. 가장 심각한 문제는 이걸 예방할 방법도 없음. 나중에 범인 찾음. 쥬니어 개발자가 범인이었다.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 10</h5>
     <p>이것도 쥬니어 개발자가 일으킨 문제인데 DB dead lock 이 생겨서 에러가 자꾸 발생. 이유 불명. 확인해보면 락은 안 걸려있음. 쓸데없는 DB transaction 명령을 삭제하여 해결</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 11</h5>
     <p>form_for(변수)를 사용할때  ‘admin_room_archive_path’를 찾아야 하는데 <code>undefined method `room_archive_path'</code> 에러가 발생.(파일을 수정하고 실행하면 잘나오고 다시 실행하면 에러난다.) 몇달 전부터 문제없이 잘 사용했는데 어느 날 부터 에러발생.</p>
     <p>이유는 rails 버그 <code>routes.rb</code>에서 resource를 이용해서 라우팅 한경우 어째서인지 as 명을 라우팅이 누락하는 경우가 있다. *명시적으로* 라우팅을 해줘야함. 유명한 버그인듯. 검색하니 비슷한 사례가 막 나옴.</p>
     <p>[:admin, xxxxx] 네임스페이스를 추가해서 해결했다고 생각했는데 나중에 또 에러남 있어도 문제 없어도 문제 ㅋㅋㅋ. 이딴게 무슨 프레임워크라고</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 12</h5>
     <p>버그는 아닌데,, 다음 코드로 쿼리를 실행하면 user_id가 있어도 <code>where user_id = ?</code> 가 생략됨.</p>
@@ -140,53 +140,56 @@
       </div>
     </div>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 13</h5>
     <p>이상하게 unix timestamp 를 찍으면 utc가 아닌 asia/seoul을 숫자로 변환. 결국 실제 시간보다 9시간 후의 시간이 됨. 참고로 php laravel, nodejs express에서는 정상적으로 utc 를 숫자로 표시함.</p>
-    <code>서버(Asia/Seoul)                ->                DB(기본설정)            ->             서버(Asia/Seoul)
-                                                           +9시간으로 저장             .to_i 시 +9시간 더함 = 총 18시간<br></code>
+    <code>서버(Asia/Seoul)                -----(+9시간으로 저장)---->                DB(기본설정)            -----(.to_i로 +9시간 더해짐)---->             서버(Asia/Seoul)(총 18시간 더해진 시간이 나옴)</code><br>
     <p>별다른 설정이 없는한 rail는 db를 utc로 생각하고 로컬/서버 시간이 utc가 아닌경우 db insert/update 할때 시간을 가감하여 실행함.[확인함] 로컬/서버가 utc면 가감하지 않음. [확인함] 그리고 가져올때도 마찬가지라고 생각했으나 rails 가 로컬/서버의 timezone에 관계 없이 +9시간 한 timestamp를 반환함.</p>
     <p>같은 컴퓨터에서 실행한 다른 프레임워크에서는 정상적으로 동작하는 걸 보니 이건 완벽하게 버그라고 할 수 있음</p>
     <p>이라고 생각했는데 나중에 여기에 대한 설정을 찾았음. 테스트해 보진 않았지만...</p>
-    <code>
-      ActiveSupport.to_time_preserves_timezone = true
-    </code>
+    <div class="card">
+      <div class="card-body">
+        <code>
+          ActiveSupport.to_time_preserves_timezone = true
+        </code>
+      </div>
+    </div>
     <p>서버 설정도 UTC로 해놓으므로서 해결</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 14</h5>
     <p>전역변수로 등록해 놓은 @@variable 에 인스턴스를 클래스 인스턴스가가 생성될때 생성되게 해놨는데 nil 이라고 에러남. GC가 없애버렸나???? 황당...</p>
     <p>그래서 nil인지 체크해서 nil이면 새로만들도록 함.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 15</h5>
     <p>thread 수를 두배 늘리는거보다 Procfile에서 worker를 두배로 늘리는 것이 기동 직후 차지하는 리소스가 더 적다. 후자가 쓰레드 수는 같으면서도 더 많은 worker 수를 가지는데 왜일까?</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 16</h5>
     <p><code>bundle update</code>로 필요한 sub-gem이 안깔려서 에러가 난적이 있음. 이유는 모르지만 다시 <code>bundle update</code> 실행하여 해결.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 17</h5>
     <p>puma가 먹통이 되고 kill script로 중지가 되지 않을때가 있다… 수동으로 worker까지 모두 종류해준후 기동하면 제대로 동작함</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 18</h5>
     <p>갑자기 <code>JSON.parse(params[:aaaa])</code>가 에러를 내기 시작함. params로 가져오는 인스턴트들이 ActiveParameter인데 JSON.parse로 변환이 안됨. <code>bundle update</code>로 자동으로 업데이트된 minor gem 때문인걸로 잠정 결론.</p>
     <p>Rails contribute하는 새끼들은 이용자들 엿먹이는 재주가 있나보다…</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 19</h5>
     <p>makara 설정할때 max pool count는 각 master, slave 설정에 끼워넣어야 적용됨. 즉 total max pool count 는 적용이 안됨. 그리고 master에 넣은 ip가 slave에 있더라도 별개의 connection을 생성함. 예를 들어, master 127.0.0.1 pool 50개, slave 127.0.0.1 pool 50개 이런식으로 설정하면  max pool 100개가 됨. 그리고 master의 ip를 slave에 넣더라도 connection을 공유하지 않음.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 20</h5>
     <p>어느 순간부터 갑자기 reids가 읽어오는 값을 제대로 serializing해주지 못 하면서 다음과 같은 에러를 내뱉었다.</p>
@@ -200,12 +203,12 @@
     </div>
     <p>원인은 rubymarshal 이라는 gem이 업데이트 되면서 기존의 redis에 저장된 데이터를 못 읽게 되어서라고 생각됨.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 21</h5>
-    <p>많은 부하가 걸리면 puma가 죽곤 했는데(사실 부하가 안 걸려도 죽긴했다), passenger 라는 놈을 puma 대신 써봤는데 낮은 사양에서 죽는 현상은 마찬가지 였다. 서버를 엄청 좋은 걸로 업그레이드 했더니 부하가 걸려도 죽는 현상은 발생하지 않았다. 단 puma쓸때처럼 서버가 정지되고 ssh 로그인 조차 안되는 상황이 발생했다.</p>
+    <p>많은 부하가 걸리면 puma가 죽곤 했는데(사실 이유없이 죽기도 했다), <a href="https://www.phusionpassenger.com/">passenger</a> 라는 놈을 puma 대신 써봤는데 낮은 사양에서 죽는 현상은 마찬가지 였다. 서버를 엄청 좋은 걸로 업그레이드 했더니 부하가 걸려도 죽는 현상은 발생하지 않았다. 단 puma쓸때처럼 서버가 정지되고 ssh 로그인 조차 안되는 상황이 발생했다.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 22</h5>
     <p>다음 에러가 발생하여 모든 잼을 전체 삭제 후 재설치하여 해결하였음. <a href="https://github.com/taskrabbit/makara/issues/182">makara issues</a>에 SVMKwangillJung 로 답변남김.</p>
@@ -215,31 +218,30 @@
       </div>
     </div>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 23</h5>
     <p>Puma를 Http가 아닌 tcp로 이용하려고 하니 tcp 리퀘스트를 받을 때마다 파라미터 갯수가 맞지 않는다는 에러가 남. 알고보니 리퀘스트를 실행하기 위해서는 request -> NewRelic -> 우리앱 ->response 순으로 실행되는데 newRelic의 tcp처리하는 call() 메쏘드가 파라미터를 하나만 지원하고 있었다. 실제로는 두개 필요함. Gem 조합이 맞지 않음...</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 24</h5>
     <p>가끔 response가 느릴 때가 있음. 3초정도 걸림. 바로 다시 해보면 빠름. 1초 이하가 나옴. GC를 하기 때문인가하고 예상 중.</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 25</h5>
-    <p>Ruby on Rails 와 nodejs를 벤치마킹 해보았다.</p>
-    <p>대상 기능은 PUFF Live API 이고 아래 문서를 통해 볼 수 있음.</p>
-    <a href="https://docs.google.com/document/d/1wl5E3rjSJNEeV0FSI7S5CseSfw_Emh0Ho9-AbMtO99A/edit?usp=sharing">Benchmark</a>
-    <p>RoR이 nodejs보다 30% 빠르지만 에러가 난다.</p>
+    <p><a href="https://docs.google.com/document/d/1wl5E3rjSJNEeV0FSI7S5CseSfw_Emh0Ho9-AbMtO99A/edit?usp=sharing">Ruby on Rails 와 nodejs를 벤치마킹</a> 해보았다.</p>
+    <p>RoR이 nodejs보다 30% 빠르지만 에러가 난다. 무소용</p>
   </div>
-  <br>
+  <hr class="my-4">
   <div class="">
     <h5 id="">추억 26</h5>
-    <p>I18n 기능에 있을 건 다 있으나 구조 자체가 문제가 있음. 예를 들어 로칼라이징을 하려면 언어 디렉토리안에 여러개의 파일을 담아 하는 것이 번역하기도 분류하여 관리하기도 편하다.</p>
+    <p>RoR의 I18n 기능에 있을 건 다 있으나 파일 구조가 문제가 있음. 예를 들어 로칼라이징을 하려면 언어 디렉토리안에 여러개의 파일을 담아 하는 것이 번역하기도 분류하여 관리하기도 편하다.</p>
     <p>하지만 RoR 은 디렉토리가 아니라 하나의 파일안에 모든 문장을 때려 넣어 쓰고 있다. RoR 개발자가 로칼라이징의 경험없음이 드러나는 부분.</p>
   </div>
-  <br>
+  <hr class="my-4">
+
 
   <div class="card">
     <h5 class="card-header">결론</h5>
@@ -247,7 +249,7 @@
       <h5 class="card-title">간헐적으로 느려짐</h5>
       <h5 class="card-title">어플리케이션이 중지되는 현상(Puma 이용시)</h5>
       <h5 class="card-title">설치한 Gem 의 상성 맞지 않아 문제가 일어남</h5>
-      <h5 class="card-title">메모리 릭. Gem 없이 하나부터 열까지 직접 만들 것이 아니라면 반드시 생김.</h5>
+      <h5 class="card-title">Memory leak. Gem 없이 하나부터 열까지 직접 만들 것이 아니라면 반드시 생김.</h5>
       <h5 class="card-title">판올림 업데이트가 아님에도 불구하고 기존 코드와 호환이 안되도록 Rails를 업데이트 해버리는 경우가 있음 by Rails Contributers.</h5>
       <h5 class="card-title">Ruby는 쓰레드를 사용해도 프로세스를 사용하는 nodejs보다 겨우 30% 빠른 속도. 게다가 에러도 생김. nodejs는 안생김(Puma 이용시)</h5>
     </div>
@@ -256,11 +258,10 @@
   <br>
 
   <div class="jumbotron">
-    <p class="lead">사실 루비 코딩은 정말 쉽고 몇몇 잼들은 정말 쓸만하다고 생각한다.</p>
-    <h1 class="display-4">하지만 PHP, JAVA, .Net 을 써도 앞서 언급한 문제 없이 개발할 수 있다면 굳이 Ruby를 쓸 이유가 있는가?</h1>
+    <p class="lead">사실 루비 코딩은 정말 쉽고 몇몇 잼들은 정말 쓸만하다고 생각한다. 하지만</p>
+    <h1 class="display-4">PHP, JAVA, .Net 을 써도 앞서 언급한 문제 없이 운영할 수 있다면 굳이 Ruby를 쓸 이유가 있는가?</h1>
     <p>(아 물론 nodejs는 가끔 이유없이 죽어서 제외)</p>
   </div>
-
 
 </div>
 </body>
