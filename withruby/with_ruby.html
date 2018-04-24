@@ -19,16 +19,16 @@
   </div>
   <br>
 
-  <div class="bd-callout bd-callout-warning">
-    <h5 id="conveying-meaning-to-assistive-technologies">추억 1</h5>
+  <div class="">
+    <h5 id="ruby_memory1">추억 1</h5>
     <p>AWS 서버가 하루에 세번씩 시간이 지나면서 죽는 일이 있었다. 원인은 shoryuken 이 메모리를 계속 확보하다가 100%가 되면 서버 정지함.</p>
-    <p>shoryuken 버전업(3.1.6)하여 해결<a href="https://github.com/phstc/shoryuken/blob/master/CHANGELOG.md#v315---2017-07-23">Change log</a></p>
+    <p>shoryuken 버전업(3.1.6)하여 해결. <a href="https://github.com/phstc/shoryuken/blob/master/CHANGELOG.md#v315---2017-07-23">Change log</a></p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 2</h5>
-    <p>여전히 메모리 릭이 있어서 aws와 shoryuken 버전을 더 업하여 해결. 그런데!!!!!!!</p>
-    <p>gemfile을 수정하여 aws 2.x 에서 3.x 버전으로 업그레이드하니 rails버전을 맘대로 업데이트 해버림. 더 상단에 rails 버전이 선언되어있어도 소용 없음.</p>
+    <h5 id="ruby_memory2">추억 2</h5>
+    <p>여전히 메모리 릭이 있어서 <code>aws</code>와 <code>shoryuken</code> 버전을 더 업하여 해결. 그런데!!!!!!!</p>
+    <p><code>gemfile</code>을 수정하여 <code>aws 2.x</code> 에서 <code>3.x</code> 버전으로 업그레이드하니 <code>rails</code>버전을 맘대로 업데이트 해버림. 최상단에 <code>rails</code>버전이 선언되어있어도 소용 없음.</p>
     기존
     <div class="card">
       <div class="card-body">
@@ -51,39 +51,39 @@
     <code>
 
     </code>
-    <p>배포하니 rails 5.0.6이 깔려 있음. (처음배포때는 5.1.x 버전이 깔려버렸는데 버전이 자세히 기억이 안남)</p>
+    <p>두번째 업데이트하니 <code>rails 5.0.6</code>이 깔려 있음. (처음 업데이트때는 <code>5.1.x</code> 버전이 깔려버렸는데 버전의 마지막 숫자가 자세히 기억이 안남)</p>
     <p>게다가 gem list를 보니 ActiveModel 등이 버전이 두가지씩 깔려버렸음. 그래서 메뉴얼하게 구버전을 하나하나 삭제해줌.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 2-1</h5>
-    <p>추억2가 발생할때 ActiveModel 등이 두가지 버전이 동시에 깔려버렸는데 구 버전들 삭제하고 배포 후 AWS_REGION설정이 안되었다고 에러가 남. AWS_REGION 설정을 일단은 해야 하는거 같으면서도 나중에 보니 안해도 됨???? 나도 무슨 일이 일어난 것인지 모르겟다.</p>
+    <h5 id="ruby_memory2-1">추억 2-1</h5>
+    <p><a href="#ruby_memory2">추억2</a>가 발생할때 <code>ActiveModel</code> 등이 두가지 버전이 동시에 깔려버렸는데 구 버전들 삭제하고 배포 후 <code>AWS_REGION</code>설정이 안되었다고 에러가 남. <code>AWS_REGION</code> 설정을 일단은 해야 하는거 같으면서도 나중에 보니 안해도 됨???? 나도 무슨 일이 일어난 것인지 모르겟다.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 3</h5>
-    <p><code>bundle update</code> 후에 aws의 몇가지 minor gem들이 업데이트 됨. 그런 이유로 Memory leak이 미친듯이 늘어서 원인을 찾는 도중에 몇번 더 업데이트하게 되어 Memory leak 이 사라짐. 무슨 gem이 원흉인지 모르겠다.</p>
+    <h5 id="ruby_memory3">추억 3</h5>
+    <p><code>bundle update</code> 후에 <code>aws</code>의 몇가지 minor gem들이 업데이트 됨. 그런 이유로 Memory leak이 미친듯이 늘어서 원인을 찾는 도중에 몇번 더 업데이트하게 되어 Memory leak 이 사라짐. 무슨 gem이 원흉인지 모르겠다.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 4</h5>
-    <p>쓰지 않는 gem 들을 정리를 했는데 memory 사용률이 매우 양호해짐. 그중에 twilio gem을 삭제해서 그런게 아닐까 추측 중</p>
+    <h5 id="ruby_memory4">추억 4</h5>
+    <p>쓰지 않는 gem 들을 정리를 했는데 Memory 사용률이 매우 양호해짐. 그중에 <code>twilio gem</code>을 삭제해서 그런게 아닐까 추측 중</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 5</h5>
-    <p>uptime 오래된 서버는 재기동 시켜줘야 함. 메모리 릭. 오래된 서버를 계속 재기동 시켜주는 배치명령을 만듬. 비슷한 puma_worker_killer gem이 있긴한데 설치해보니 puma를 중지는 하는데 다시 살려주지를 못함.</p>
+    <h5 id="ruby_memory5">추억 5</h5>
+    <p>uptime 이 오래된 서버는 재기동 시켜줘야 함. Memory leak. 오래된 서버를 계속 재기동 시켜주는 배치명령을 만듬. 비슷한 <code>puma_worker_killer gem</code>이 있긴한데 설치해보니 <code>puma</code>를 중지는 하는데 다시 살려주지를 못함.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 6</h5>
-    <p><a href="https://github.com/thiagopradi/octopus">octopus gem</a>이 ActionResult의 redis cache_store와 호환이 안되어서 Replication DB에 select cache를 참조할때 옛날 캐쉬를 참조. 그래서 octopus를 삭제 할 밖에 없었음</p>
-    <p>나중에 <a href="https://github.com/taskrabbit/makara">makara gem</a>을 대신 써서 해결</p>
+    <h5 id="ruby_memory6">추억 6</h5>
+    <p><code>octopus gem</code>이 <code>ActionResult</code>의 <code>redis cache_store</code>와 호환이 안되어서 Replication DB에 select cache를 참조할때 옛날 캐쉬를 참조. 그래서 <code>octopus gem</code>을 삭제 할 밖에 없었음</p>
+    <p>나중에 <code>makara gem</code>을 대신 써서 해결</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 7</h5>
-    <p>ActiveResult 가 캐쉬를 쓰고/안쓰고를 설정할 수 없음. 쿼리 가져온 결과중에서 결과를 다시 뽑아내면 되는데 DB에 쿼리를 또 날림. 또 반대로 원치 않는데 캐시를 자꾸 쓰는 경우가 있음.</p>
+    <h5 id="ruby_memory7">추억 7</h5>
+    <p><code>ActiveResult</code>가 캐쉬를 쓰고/안쓰고를 설정할 수 없음. 쿼리 가져온 결과중에서 결과를 다시 뽑아내면 되는데 DB에 쿼리를 또 날림. 또 반대로 원치 않는데 캐시를 자꾸 쓰는 경우가 있음.</p>
     <p>캐시쓰는걸 못 쓰게 할려고 다음처럼 명령을 내림 여기서 another_table은 테이블 이름임.</p>
     <div class="card">
       <div class="card-body">
@@ -100,30 +100,30 @@
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 8</h5>
+    <h5 id="ruby_memory8">추억 8</h5>
     <p>서버 CPU가 57%로 고정 되면서 먹통이 됨. ssh 접속도 안되고. AWS console에서 재기동 후 정상화 됨. 원인은 불명. 그 와중에 쌍둥이 서버는 정상</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 9</h5>
-    <p>이건 Rails의 문제라기 보단 ORM과 쓰는 사람이 문제이긴 한데, 갑자기 staging DB에 모든 데이터가 없어져버렸음. 누군가 rake db:reset을 실행한 것이 아닌가 예상을 했지만 범인을 찾을 수 없었음. 가장 심각한 문제는 이걸 예방할 방법도 없음.</p>
-    <p>나중에 범인 찾음. 쥬니어 개발자가 범인이었다. local db설정을 staging으로 해놓고 db:drop 해버린 것이 원인</p>
+    <h5 id="ruby_memory9">추억 9</h5>
+    <p>이건 Rails의 문제라기 보단 ORM과 쓰는 사람이 문제이긴 한데, 갑자기 staging DB에 모든 데이터가 없어져버렸음. 누군가 <code>rake db:reset</code>을 실행한 것이 아닌가 예상을 했지만 범인을 찾을 수 없었음. 가장 심각한 문제는 이걸 예방할 방법도 없음.</p>
+    <p>나중에 범인 찾음. 쥬니어 개발자가 범인이었다. local db설정을 staging으로 해놓고 <code>rake db:reset</code> 해버린 것이 원인</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 10</h5>
+    <h5 id="ruby_memory10">추억 10</h5>
     <p>이것도 쥬니어 개발자가 일으킨 문제인데 DB dead lock 이 생겨서 에러가 자꾸 발생. 이유 불명. 확인해보면 락은 안 걸려있음. 쓸데없는 DB transaction 명령을 삭제하여 해결</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 11</h5>
-    <p>form_for(변수)를 사용할때  ‘admin_room_archive_path’를 찾아야 하는데 <code>undefined method `room_archive_path'</code> 에러가 발생. 파일을 수정하고 실행하면 잘나오고 다시 실행하면 에러난다. 몇달 전부터 문제없이 잘 사용했는데 어느 날 부터 에러발생.</p>
+    <h5 id="ruby_memory11">추억 11</h5>
+    <p>form_for(변수)를 사용할때 ‘admin_room_archive_path’를 찾아야 하는데 <code>undefined method `room_archive_path'</code> 에러가 발생. 파일을 수정하고 실행하면 잘나오고 다시 실행하면 에러난다. 몇달 전부터 문제없이 잘 사용했는데 어느 날 부터 에러발생.</p>
     <p>이유는 rails 버그 <code>routes.rb</code>에서 resource를 이용해서 라우팅 한경우 어째서인지 as 명을 라우팅이 누락하는 경우가 있다. *명시적으로* 라우팅을 해줘야함. 유명한 버그인듯. 검색하니 비슷한 사례가 막 나옴.</p>
-    <p>[:admin, xxxxx] 네임스페이스를 추가해서 해결했다고 생각했는데 나중에 또 에러남 있어도 문제 없어도 문제 ㅋㅋㅋ. 이딴게 무슨 프레임워크라고</p>
+    <p><code>[:admin, xxxxx]</code> 같은 코드를 넣어줘서 네임스페이스를 추가해서 해결했다고 생각했는데 나중에 또 에러남 있어도 문제 없어도 문제 ㅋㅋㅋ. 이딴게 무슨 프레임워크라고</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 12</h5>
+    <h5 id="ruby_memory12">추억 12</h5>
     <p>버그는 아닌데,, 다음 코드로 쿼리를 실행하면 user_id가 있어도 <code>where user_id = ?</code> 가 생략됨.</p>
     <div class="card">
       <div class="card-body">
@@ -145,13 +145,13 @@
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 13</h5>
-    <p>이상하게 unix timestamp 를 찍으면 utc가 아닌 asia/seoul을 숫자로 변환. 결국 실제 시간보다 9시간 후의 시간이 됨. 참고로 php laravel, nodejs express에서는 정상적으로 utc 를 숫자로 표시함.</p>
+    <h5 id="ruby_memory13">추억 13</h5>
+    <p>이상하게 unix timestamp 를 찍으면 utc가 아닌 Asia/Seoul을 숫자로 변환. 결국 실제 시간보다 9시간 후의 시간이 됨. 참고로 php laravel, nodejs express에서는 정상적으로 utc 를 숫자로 표시함.</p>
     <p><code>서버(Asia/Seoul)                -----(+9시간으로 저장)---->                DB(기본설정)            -----(.to_i로 +9시간 더해짐)---->             서버(Asia/Seoul)(총 18시간 더해진 시간이 나옴)</code></p>
     <p>별다른 설정이 없는한 rail는 db를 utc로 생각하고 로컬/서버 시간이 utc가 아닌경우 db insert/update 할때 시간을 가감하여 실행함.[확인함] 로컬/서버가 utc면 가감하지 않음.</p>
     <p>그리고 가져올때도 마찬가지라고 생각했으나 rails 가 로컬/서버의 timezone에 관계 없이 +9시간 한 timestamp를 반환함.</p>
     <p>같은 컴퓨터에서 실행한 nodejs, laravel 프레임워크에서는 정상적으로 동작하는 걸 보니 이건 완벽하게 버그라고 할 수 있음</p>
-    <p>이라고 생각했는데 나중에 여기에 대한 설정을 찾았음. 테스트해 보진 않았지만...</p>
+    <p>이라고 생각했는데 나중에 여기에 대한 Rails의 설정을 찾았음. 테스트해 보진 않았지만...</p>
     <div class="card">
       <div class="card-body">
         <code>
@@ -163,40 +163,48 @@
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 14</h5>
-    <p>전역변수로 등록해 놓은 @@variable 에 인스턴스를 클래스 인스턴스가가 생성될때 생성되게 해놨는데 nil 이라고 에러남. GC가 없애버렸나???? 황당...</p>
+    <h5 id="ruby_memory14">추억 14</h5>
+    <p>전역변수로 등록해 놓은 <code>@@variable</code> 에 인스턴스를 클래스 인스턴스가가 생성될때 생성되게 해놨는데 nil 이라고 에러남. GC가 없애버렸나???? 황당...</p>
     <p>그래서 nil인지 체크해서 nil이면 새로만들도록 함.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 15</h5>
+    <h5 id="ruby_memory15">추억 15</h5>
     <p>thread 수를 두배 늘리는거보다 Procfile에서 worker를 두배로 늘리는 것이 기동 직후 차지하는 리소스가 더 적다. 후자가 쓰레드 수는 같으면서도 더 많은 worker 수를 가지는데 왜일까?</p>
+    <div class="card">
+      <div class="card-body">
+        <code>
+          메모리 사용량 비교<br>
+          64개의 쓰레드 * 2개의 프로세스 < 128개의 쓰래드
+        </code>
+      </div>
+    </div>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 16</h5>
+    <h5 id="ruby_memory16">추억 16</h5>
     <p><code>bundle update</code>로 필요한 sub-gem이 안깔려서 에러가 난적이 있음. 이유는 모르지만 다시 <code>bundle update</code> 실행하여 해결.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 17</h5>
-    <p>puma가 먹통이 되고 kill script로 중지가 되지 않을때가 있다… 수동으로 worker까지 모두 종류해준후 기동하면 제대로 동작함</p>
+    <h5 id="ruby_memory17">추억 17</h5>
+    <p><code>puma</code>가 먹통이 되고 kill script로 중지가 되지 않을때가 있다… 수동으로 worker까지 모두 종류해준 후 기동하면 제대로 동작함</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 18</h5>
-    <p>갑자기 <code>JSON.parse(params[:aaaa])</code>가 에러를 내기 시작함. params로 가져오는 인스턴트들이 ActiveParameter인데 JSON.parse로 변환이 안됨. <code>bundle update</code>로 자동으로 업데이트된 minor gem 때문인걸로 잠정 결론.</p>
+    <h5 id="ruby_memory18">추억 18</h5>
+    <p>갑자기 <code>JSON.parse(params[:aaaa])</code>가 에러를 내기 시작함. params로 가져오는 인스턴트들이 <code>ActiveParameter</code>인데 <code>JSON.parse</code>로 변환이 안됨. <code>bundle update</code>로 자동으로 업데이트된 minor gem 때문인걸로 잠정 결론.</p>
     <p>Rails contribute하는 새끼들은 이용자들 엿먹이는 재주가 있나보다…</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 19</h5>
-    <p>makara 설정할때 max pool count는 각 master, slave 설정에 끼워넣어야 적용됨. 즉 total max pool count 는 적용이 안됨. 그리고 master에 넣은 ip가 slave에 있더라도 별개의 connection을 생성함. 예를 들어, master 127.0.0.1 pool 50개, slave 127.0.0.1 pool 50개 이런식으로 설정하면  max pool 100개가 됨. 그리고 master의 ip를 slave에 넣더라도 connection을 공유하지 않음.</p>
+    <h5 id="ruby_memory19">추억 19</h5>
+    <p><code>makara</code> 설정할때 max pool count는 각 master, slave 설정에 끼워넣어야 적용됨. 즉 total max pool count 는 적용이 안됨. 그리고 master에 넣은 ip가 slave에 있더라도 별개의 connection을 생성함. 예를 들어, master 127.0.0.1 pool 50개, slave 127.0.0.1 pool 50개 이런식으로 설정하면  max pool 100개가 됨. 그리고 master의 ip를 slave에 넣더라도 connection을 공유하지 않음.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 20</h5>
-    <p>어느 순간부터 갑자기 reids가 읽어오는 값을 제대로 serializing해주지 못 하면서 다음과 같은 에러를 내뱉었다.</p>
+    <h5 id="ruby_memory20">추억 20</h5>
+    <p>어느 순간부터 갑자기 <code>reids</code>가 읽어오는 값을 제대로 serializing해주지 못 하면서 다음과 같은 에러를 내뱉었다.</p>
     <div class="card">
       <div class="card-body">
         <code>
@@ -205,16 +213,16 @@
         </code>
       </div>
     </div>
-    <p>원인은 rubymarshal 이라는 gem이 업데이트 되면서 기존의 redis에 저장된 데이터를 못 읽게 되어서라고 생각됨.</p>
+    <p>원인은 <code>rubymarshal gem</code>이 업데이트 되면서 기존의 <code>redis</code>에 저장된 데이터를 못 읽게 되어서라고 생각됨.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 21</h5>
-    <p>많은 부하가 걸리면 puma가 죽곤 했는데(사실 이유없이 죽기도 했다), <a href="https://www.phusionpassenger.com/">passenger</a> 라는 놈을 puma 대신 써봤는데 낮은 사양에서 죽는 현상은 마찬가지 였다. 서버를 엄청 좋은 걸로 업그레이드 했더니 부하가 걸려도 죽는 현상은 발생하지 않았다. 단 puma쓸때처럼 서버가 정지되고 ssh 로그인 조차 안되는 상황이 발생했다.</p>
+    <h5 id="ruby_memory21">추억 21</h5>
+    <p>많은 부하가 걸리면 <code>puma</code>가 죽곤 했는데(사실 이유없이 죽기도 했다), <a href="https://www.phusionpassenger.com/">passenger</a> 라는 놈을 puma 대신 써봤는데 낮은 사양에서 죽는 현상은 마찬가지 였다. 서버를 엄청 좋은 걸로 업그레이드 했더니 부하가 걸려도 죽는 현상은 발생하지 않았다. 대신 puma쓸때처럼 서버가 정지되고 ssh 로그인 조차 안되는 상황이 발생했다.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 22</h5>
+    <h5 id="ruby_memory22">추억 22</h5>
     <p>다음 에러가 발생하여 모든 잼을 전체 삭제 후 재설치하여 해결하였음. <a href="https://github.com/taskrabbit/makara/issues/182">makara issues</a>에 SVMKwangillJung 로 답변남김.</p>
     <div class="card">
       <div class="card-body">
@@ -224,28 +232,27 @@
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 23</h5>
-    <p>Puma를 Http가 아닌 tcp로 이용하려고 하니 tcp 리퀘스트를 받을 때마다 파라미터 갯수가 맞지 않는다는 에러가 남. 알고보니 리퀘스트를 실행하기 위해서는 request -> NewRelic -> 우리앱 ->response 순으로 실행되는데 newRelic의 tcp처리하는 call() 메쏘드가 파라미터를 하나만 지원하고 있었다. 실제로는 두개 필요함. Gem 조합이 맞지 않음...</p>
+    <h5 id="ruby_memory23">추억 23</h5>
+    <p><code>Puma</code>를 Http가 아닌 tcp로 이용하려고 하니 tcp 리퀘스트를 받을 때마다 파라미터 갯수가 맞지 않는다는 에러가 남. 알고보니 리퀘스트를 실행하기 위해서는 request -> NewRelic -> 우리앱 ->response 순으로 실행되는데 newRelic의 tcp처리하는 call() 메쏘드가 파라미터를 하나만 지원하고 있었다. 실제로는 두개 필요함. Gem 조합이 맞지 않음...</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 24</h5>
+    <h5 id="ruby_memory24">추억 24</h5>
     <p>가끔 response가 느릴 때가 있음. 3초정도 걸림. 바로 다시 해보면 빠름. 1초 이하가 나옴. GC를 하기 때문인가하고 예상 중.</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 25</h5>
+    <h5 id="ruby_memory25">추억 25</h5>
     <p><a href="https://docs.google.com/document/d/1wl5E3rjSJNEeV0FSI7S5CseSfw_Emh0Ho9-AbMtO99A/edit?usp=sharing">Ruby on Rails 와 nodejs를 벤치마킹</a> 해보았다.</p>
     <p>RoR이 nodejs보다 30% 빠르지만 에러가 난다. 무소용</p>
   </div>
   <hr class="my-4">
   <div class="">
-    <h5 id="">추억 26</h5>
+    <h5 id="ruby_memory26">추억 26</h5>
     <p>RoR의 I18n 기능에 있을 건 다 있으나 파일 구조가 문제가 있음. 예를 들어 로칼라이징을 하려면 언어 디렉토리안에 여러개의 파일을 담아 하는 것이 번역하기도 분류하여 관리하기도 편하다.</p>
     <p>하지만 RoR 은 디렉토리가 아니라 하나의 파일안에 모든 문장을 때려 넣어 쓰고 있다. RoR 개발자가 로칼라이징의 경험없음이 드러나는 부분.</p>
   </div>
   <hr class="my-4">
-
 
   <div class="card">
     <h5 class="card-header">결론</h5>
